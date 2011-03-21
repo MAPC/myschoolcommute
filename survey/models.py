@@ -1,4 +1,3 @@
-from django.db import models
 from django.contrib.gis.db import models
 from django.forms import ModelForm
 
@@ -6,6 +5,9 @@ from django.forms import ModelForm
 class School(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
+    # GeoDjango
+    location = models.PointField(geography=True) # default SRS 4326
+    objects = models.GeoManager()
              
 class Survey(models.Model):
     school = models.ForeignKey('School')
