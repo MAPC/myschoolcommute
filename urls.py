@@ -7,6 +7,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Example:
     # (r'^walkboston/', include('walkboston.foo.urls')),
+    
+    (r'^(?P<school_slug>[-\w]+)/$', 'survey.views.school'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
