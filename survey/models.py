@@ -5,8 +5,7 @@ from django.forms import ModelForm
 # Create your models here.
 class School(models.Model):
     name = models.CharField(max_length=50)
-    slug = SlugField()
-    prepopulated_fields = {'slug': ('name',)}
+    slug = models.SlugField()
              
 class Survey(models.Model):
     school = models.ForeignKey('School')
