@@ -8,6 +8,9 @@ class School(models.Model):
     # GeoDjango
     location = models.PointField(geography=True) # default SRS 4326
     objects = models.GeoManager()
+    
+    def __unicode__(self):
+        return self.name
              
 class Survey(models.Model):
     school = models.ForeignKey('School')
@@ -54,6 +57,9 @@ class Child(models.Model):
                )
     dropoff_to = models.CharField(max_length=3, blank=True, null=True, choices=dropoff)
     dropoff_from = models.CharField(max_length=3, blank=True, null=True, choices=dropoff)
+    
+    class Meta:
+        verbose_name_plural = 'Children'
 
 class ChildForm(ModelForm):
     class Meta:
