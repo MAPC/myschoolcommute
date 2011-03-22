@@ -5,6 +5,7 @@ from django.forms import ModelForm
 class School(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
+    letter = models.TextField('Letter text')
     # GeoDjango
     location = models.PointField(geography=True) # default SRS 4326
     objects = models.GeoManager()

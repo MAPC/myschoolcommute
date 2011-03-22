@@ -1,0 +1,11 @@
+[
+    {
+        "pk": 1, 
+        "model": "survey.school", 
+        "fields": {
+            "location": "POINT (-70.9785461425809956 42.1504211425789990)", 
+            "name": "Brockton Elementary", 
+            "slug": "brockton-elementary"
+        }
+    }
+]
