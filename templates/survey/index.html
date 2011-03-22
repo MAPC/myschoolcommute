@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block javascript %}
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<script type="text/javascript">
+	
+{% if school %}
+	
+  var school = new google.maps.LatLng({{ school.location.y }}, {{ school.location.x }});
+  var home = new google.maps.LatLng({{ school.location.y }}+0.005, {{ school.location.x }}-0.005);
+    
+{% else %}
+
+	var school = new google.maps.LatLng(42.34, -71.0);
+	var home = new google.maps.LatLng(42.335, -70.995);
+	
+{% endif %}
+
+	function initialize() {
+		var mapOptions = {
+			zoom: 14,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			center: school
+		};
+	 
+		var map = new google.maps.Map(document.getElementById("map_canvas"),
+			mapOptions);
+	    
+	    var iconSchool = "{{ MEDIA_URL }}img/school.png";
+		var markerSchool = new google.maps.Marker({
+			map:map,
+			title:"{{ school.name }}",
+			animation: google.maps.Animation.DROP,
+			position: school,
+			icon: iconSchool
+		});
+		var iconHome = "{{ MEDIA_URL }}img/home.png";
+		var markerHome = new google.maps.Marker({
+			map:map,
+			title:"Please drag & drop the marker to the intersection closest to your home",
+			draggable:true,
+			animation: google.maps.Animation.DROP,
+			position: home,
+			icon: iconHome
+		});
+		google.maps.event.addListener(markerH, 'click', toggleBounce);
+	  	}
+ 
+	function toggleBounce() {
+		if (markerH.getAnimation() != null) {
+			markerH.setAnimation(null);
+		} else {
+			markerH.setAnimation(google.maps.Animation.BOUNCE);
+		}
+	}
+</script>
+
+{% endblock %}
+
+{% block body %}
+
+{% if school %}
+
+<div class="prepend-2 span-20 append-2 last">
+	<h1>{{ school.name }}</h1>
+	
+	<h2>Important School Travel Survey</h2>
+	
+	<p>{{ letter.text|safe }}</p>
+	
+	<h3>Please drag & drop the home-marker to the intersection closest to your home</h3>
+	
+	<div id="map_canvas" style="width: 100%; height: 400px;">map div</div>
+	
+</div>
+
+{% endif %}
+
+
+{% endblock %}

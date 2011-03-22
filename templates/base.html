@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}WalkBoston To School Parent Survey</title>
+	<meta name="description" content="WalkBoston To School Parent Survey">
+	<meta name="keywords" content="Boston, Metro, Planning, Education, Survey, Pedestrian, Walking">
+	<meta name="author" content="MAPC">
+        
+    <!-- geotags -->
+	<meta name="DC.title" content="to school"> 
+	<meta name="geo.placename" content="Boston">
+	<meta name="geo.position" content="42.34;-71.08">
+	<meta name="geo.region" content="US-MA">
+	<meta name="ICBM" content="42.34;-71.08">
+	
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint-css/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint-css/blueprint/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]>
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint-css/blueprint/ie.css" type="text/css" media="screen, projection">
+	<![endif]-->
+	
+	{% block javascript %}{% endblock %}
+		
+</head>
+<body onload="initialize()">
+	
+	<div id="wrap">
+		<div class="container">
+	
+		{% block body %}{% endblock %}
+		
+		</div>
+	</div>
+	
+</body>
+</html>
