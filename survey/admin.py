@@ -1,4 +1,4 @@
-from survey.models import School, Survey, Child
+from survey.models import School, Survey, Child, Letter
 # from django.contrib import admin
 from django.contrib.gis import admin
 
@@ -11,3 +11,4 @@ class SurveyAdmin(admin.GeoModelAdmin):
 admin.site.register(School, SchoolAdmin)
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Child)
+admin.site.register(Letter)
