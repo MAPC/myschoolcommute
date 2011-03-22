@@ -57,7 +57,25 @@ $(document).ready(function()
 			$("#id_location").val("POINT (" + markerHome.position.lng() + " " +  markerHome.position.lat() + ")");
 		});
     	
+    	// don't submit form
+    	$("form").submit(function () { 
+    		return false; 
+    	});
     	
+    	var children_count = 0;
+    	
+    	// add another child
+		$("#button_addchild").click(function() {
+    		
+    		// clone fieldset
+    		$("#id_child_set-0").clone().appendTo("#children").hide().slideDown(500);
+    		
+    		// change fieldset id
+    		children_count++;
+    		$("#id_child_set-0:last").attr("id", "id_child_set-" + children_count);
+    		// TODO change all 'id', 'name' and 'for' to new id
+    		
+		});
     	
     });
 
@@ -88,13 +106,50 @@ $(document).ready(function()
 	
 	<div id="map_canvas" style="width: 100%; height: 400px;">map div</div>
 	
-	<table>
-	
-	{{ form.as_table }}
-	
-	{{ formset.as_table }}
-	
-	</table>
+	<form>
+		
+		<fieldset class="module aligned">
+		
+		{% for field in surveyform %}
+			{% if not field.is_hidden %}
+			<div class="form-row">
+				<div class="field-box">
+					{{ field.errors }}
+					{{ field.label_tag }}: {{ field }}
+				</div>
+			</div>
+			{% else %}
+				{{ field }}
+			{% endif %}
+		{% endfor %}
+		
+		</fieldset>
+		
+		<div id="children">
+		
+			<fieldset id="id_child_set-0" class="module aligned">
+			
+			{% for field in surveyformset.forms.0 %}
+				{% if not field.is_hidden %}
+				<div class="form-row">
+					<div class="field-box">
+						{{ field.errors }}
+						{{ field.label_tag }}: {{ field }}
+					</div>
+				</div>
+				{% else %}
+					{{ field }}
+				{% endif %}
+			{% endfor %}
+			
+			</fieldset>
+		
+		</div>
+		
+		<button id="button_addchild">Add Another Child at this School</button>
+		<input id="button_submit" type="submit" value="Submit" />
+		
+	</form>
 	
 </div>
 
