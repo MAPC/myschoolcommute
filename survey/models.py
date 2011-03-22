@@ -1,5 +1,5 @@
 from django.contrib.gis.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, HiddenInput
 
 # Create your models here.
 class Letter(models.Model):
@@ -28,6 +28,11 @@ class Survey(models.Model):
 class SurveyForm(ModelForm):
     class Meta:
         model = Survey
+        
+        widgets = {
+            'location': HiddenInput(),
+            'school': HiddenInput(),
+        }
     
 class Child(models.Model):
     survey = models.ForeignKey('Survey')
@@ -63,7 +68,3 @@ class Child(models.Model):
     
     class Meta:
         verbose_name_plural = 'Children'
-
-class ChildForm(ModelForm):
-    class Meta:
-        model = Child
