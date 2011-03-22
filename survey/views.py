@@ -14,23 +14,23 @@ def index(request, school_slug):
        
     survey = Survey()   
        
-    SurveyFormSet = inlineformset_factory(Survey, Child,  extra=1)
+    SurveyFormSet = inlineformset_factory(Survey, Child, extra=1, can_delete=False)
     
     if request.method == 'POST':
-        form = ProjectForm(request.POST, instance=survey)
-        formset = SurveyFormSet(request.POST, instance=survey)
+        surveyform = SurveyForm(request.POST, instance=survey)
+        surveyformset = SurveyFormSet(request.POST, instance=survey)
         # if formset.is_valid():
         #    formset.save()
             # Do something.
     else:
-        form = SurveyForm(instance=survey)
-        formset = SurveyFormSet(instance=survey)
+        surveyform = SurveyForm(instance=survey)
+        surveyformset = SurveyFormSet(instance=survey)
 
     return render_to_response('survey/index.html', {
         'school' : school, 
         'letter' : letter,
-        'form' : form,
-        'formset' : formset,
+        'surveyform' : surveyform,
+        'surveyformset' : surveyformset,
         },
         context_instance=RequestContext(request)
     )
