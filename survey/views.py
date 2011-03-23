@@ -18,8 +18,10 @@ def index(request, school_slug):
     if request.method == 'POST':
         surveyform = SurveyForm(request.POST, instance=survey)
         surveyformset = SurveyFormSet(request.POST, instance=survey)
-        # if formset.is_valid():
-        #    formset.save()
+        if surveyformset.is_valid() and surveyform.is_valid():
+            # pass
+            surveyform.save()
+            surveyformset.save()
             # Do something.
     else:
         surveyform = SurveyForm(instance=survey)
