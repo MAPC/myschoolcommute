@@ -1,10 +1,6 @@
 from django.contrib.gis.db import models
 from django.forms import ModelForm, HiddenInput
 
-# Create your models here.
-class Letter(models.Model):
-    text = models.TextField()
-
 class School(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()

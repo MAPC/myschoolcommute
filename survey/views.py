@@ -3,14 +3,13 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.forms.models import inlineformset_factory
-from survey.models import School, Letter, Survey, SurveyForm, Child
+from survey.models import School, Survey, SurveyForm, Child
 
 from django.template import RequestContext
 
 def index(request, school_slug):
     
     school = School.objects.get(slug__iexact=school_slug)
-    letter = Letter.objects.get(pk=1) # only one letter
        
     survey = Survey()   
        
@@ -28,7 +27,6 @@ def index(request, school_slug):
 
     return render_to_response('survey/index.html', {
         'school' : school, 
-        'letter' : letter,
         'surveyform' : surveyform,
         'surveyformset' : surveyformset,
         },
