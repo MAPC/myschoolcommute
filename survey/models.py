@@ -61,7 +61,6 @@ class Child(models.Model):
     dropoff = (
                ('yes', 'Yes'),
                ('no', 'No'),
-               ('n/a', 'N/A'),
                )
     dropoff_to = models.CharField(max_length=3, blank=True, null=True, choices=dropoff)
     dropoff_from = models.CharField(max_length=3, blank=True, null=True, choices=dropoff)
