@@ -6,8 +6,11 @@ class SchoolAdmin(admin.GeoModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     
 class SurveyAdmin(admin.GeoModelAdmin):
-    list_display = ('school','street')
+    list_display = ('pk','school')
+
+class ChildAdmin(admin.ModelAdmin):
+    list_display = ('pk','survey')
 
 admin.site.register(School, SchoolAdmin)
 admin.site.register(Survey, SurveyAdmin)
-admin.site.register(Child)
+admin.site.register(Child, ChildAdmin)
