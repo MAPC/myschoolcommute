@@ -13,24 +13,30 @@ def index(request, school_slug):
        
     survey = Survey()   
        
-    SurveyFormSet = inlineformset_factory(Survey, Child, extra=1, can_delete=False)
+    SurveyFormset = inlineformset_factory(Survey, Child, extra=1, can_delete=False)
     
     if request.method == 'POST':
         surveyform = SurveyForm(request.POST, instance=survey)
-        surveyformset = SurveyFormSet(request.POST, instance=survey)
+        surveyformset = SurveyFormset(request.POST, instance=survey)
+        survey.school = school
+        survey.ip = request.META['REMOTE_ADDR']
+        
         if surveyformset.is_valid() and surveyform.is_valid():
-            # pass
             surveyform.save()
             surveyformset.save()
-            # Do something.
+            
+            return HttpResponse("success. thank you!")
+            
+        else:
+            pass
     else:
         surveyform = SurveyForm(instance=survey)
-        surveyformset = SurveyFormSet(instance=survey)
+        surveyformset = SurveyFormset(instance=survey)
 
-    return render_to_response('survey/index.html', {
-        'school' : school, 
-        'surveyform' : surveyform,
-        'surveyformset' : surveyformset,
-        },
-        context_instance=RequestContext(request)
-    )
+        return render_to_response('survey/index.html', {
+            'school' : school, 
+            'surveyform' : surveyform,
+            'surveyformset' : surveyformset,
+            },
+            context_instance=RequestContext(request)
+        )
