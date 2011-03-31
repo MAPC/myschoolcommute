@@ -24,8 +24,9 @@ class Survey(models.Model):
     cross_st = models.CharField('Cross Street', max_length=50, blank=True, null=True)
     nr_vehicles = models.IntegerField('Number of vehicles', blank=True, null=True)
     nr_licenses = models.IntegerField('Number of driver licenses', blank=True, null=True)
+    ip = models.IPAddressField('IP Address', blank=True, null=True)
     # GeoDjango
-    location = models.PointField(geography=True) # default SRS 4326
+    location = models.PointField(geography=True, blank=True, null=True, default='POINT(0 0)') # default SRS 4326
     objects = models.GeoManager()
     
     def __unicode__(self):
@@ -34,10 +35,10 @@ class Survey(models.Model):
 class SurveyForm(ModelForm):
     class Meta:
         model = Survey
+        exclude = ('school', 'ip')
         
         widgets = {
             'location': HiddenInput(),
-            'school': HiddenInput(),
         }
     
 class Child(models.Model):
