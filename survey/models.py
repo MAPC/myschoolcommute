@@ -1,6 +1,13 @@
 from django.contrib.gis.db import models
 from django.forms import ModelForm, HiddenInput
 
+# workaround for South custom fields issues 
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.PointField'])
+except ImportError:
+    pass
+
 class School(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
@@ -20,6 +27,9 @@ class Survey(models.Model):
     # GeoDjango
     location = models.PointField(geography=True) # default SRS 4326
     objects = models.GeoManager()
+    
+    def __unicode__(self):
+        return u'%s' % (self.id)
 
 class SurveyForm(ModelForm):
     class Meta:
@@ -63,3 +73,6 @@ class Child(models.Model):
     
     class Meta:
         verbose_name_plural = 'Children'
+        
+    def __unicode__(self):
+        return u'%s' % (self.id)

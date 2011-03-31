@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'debug_toolbar',
     'survey',
+    'south',
 )
 
 # django-debug-toolbar
