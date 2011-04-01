@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.forms.models import inlineformset_factory
-from survey.models import School, Survey, SurveyForm, Child
+from survey.models import School, Survey, SurveyForm, Child, ChildForm
 
 from django.template import RequestContext
 
@@ -13,13 +13,14 @@ def index(request, school_slug):
        
     survey = Survey()   
        
-    SurveyFormset = inlineformset_factory(Survey, Child, extra=1, can_delete=False)
+    SurveyFormset = inlineformset_factory(Survey, Child, form=ChildForm, extra=1, can_delete=False)
     
     if request.method == 'POST':
         surveyform = SurveyForm(request.POST, instance=survey)
         surveyformset = SurveyFormset(request.POST, instance=survey)
         survey.school = school
         survey.ip = request.META['REMOTE_ADDR']
+        
         
         if surveyformset.is_valid() and surveyform.is_valid():
             surveyform.save()
