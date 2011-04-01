@@ -149,16 +149,25 @@ $(document).ready(function()
 	
 	<h2>Important School Travel Survey</h2>
 	
-	<p>Dear Parent or Caregiver,</p>
+	<p><strong>Dear Parent or Guardian,</strong></p>
  
-	<p><strong>Brockton Elementary would like to learn how students get to and from school.</strong><br> 
-	This information will be used to plan safe and healthy transportation options for all students. Please provide this survey by <strong>Thursday April 7</strong> for each child in your familiy at this school.</p>
+	<p>{{ school.name }} would like to learn how students get to and from school.</p> 
+	<p>This information will be used to plan safe and healthy transportation options for all students. <br>
+		Please complete one survey for each child at {{ school.name }} by Thursday, April 7.</p>
 
-	<p><strong>If at least half of our students return surveys, WalkBoston will donate $250 to the parent committee fund.  A 75% response rate will result in a donation of $400!</strong></p>
+	<p>Your school earns money when you complete this survey! If half of all parents complete surveys, 
+		WalkBoston (a nonprofit group) will donate $250 to the school's playground fund. If 75% of parents respond, 
+		WalkBoston will donate $400!</p>
+		
+	<p>Please do not complete the online survey if you have already submitted a paper copy.</p>
 	
-	<h3>Please drag & drop the home-marker to the intersection closest to your home</h3>
+	<h3>1. Where do you live?</h3>
+	
+	<p>Please drag &amp; drop the home-marker to the intersection closest to your home.,,</p>
 	
 	<div id="map_canvas" style="width: 100%; height: 400px;">map div</div>
+	
+	<p>...or tell us the street intersection closest to your home.</p>
 	
 	<form id="surveyform" action="." method="POST">
 		
@@ -209,7 +218,7 @@ $(document).ready(function()
 		</div>
 		
 		<button id="button_addchild">Add Another Child at this School</button>
-		<input id="button_submit" type="submit" value="Submit" />
+		<input id="button_submit" type="submit" value="Submit Survey" />
 	
 	</form>
 		
