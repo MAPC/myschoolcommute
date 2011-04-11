@@ -66,6 +66,7 @@ CHILD_GRADES = (
             ('8', '8th'),
             )
 CHILD_MODES = (
+            ('', '--'),
             ('w', 'Walk'),
             ('b', 'Bike'),
             ('sb', 'School bus'),
@@ -85,8 +86,8 @@ class Child(models.Model):
     grade = models.CharField(max_length=1, blank=True, null=True, choices=CHILD_GRADES)
     to_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)
     from_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)
-    dropoff_to = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
-    dropoff_from = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
+    dropoff = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
+    pickup = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
     
     class Meta:
         verbose_name_plural = 'Children'
@@ -105,11 +106,11 @@ class ChildForm(ModelForm):
     from_school = ChoiceField(label='Travel home from school (most days)',
                       choices=CHILD_MODES,
                       required=False,)
-    dropoff_to = ChoiceField(label='Do you usually drop off your child on your way to work or another destination?',
+    dropoff = ChoiceField(label='Do you usually drop off your child on your way to work or another destination?',
                       choices=CHILD_DROPOFF,
                       required=False,
                       initial='',)
-    dropoff_from = ChoiceField(label='Do you usually pick up your child on your way from work or another origin?',
+    pickup = ChoiceField(label='Do you usually pick up your child on your way from work or another origin?',
                       choices=CHILD_DROPOFF,
                       required=False,
                       initial='',)
