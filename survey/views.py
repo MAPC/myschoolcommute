@@ -7,7 +7,17 @@ from survey.models import School, Survey, SurveyForm, Child, ChildForm
 
 from django.template import RequestContext
 
-def index(request, school_slug):
+def index(request):
+    
+    schools = School.objects.all().order_by('name')
+    
+    return render_to_response('survey/index.html', {
+            'schools' : schools, 
+            },
+            context_instance=RequestContext(request)
+        )
+
+def form(request, school_slug):
     
     school = School.objects.get(slug__iexact=school_slug)
        
@@ -34,7 +44,7 @@ def index(request, school_slug):
         surveyform = SurveyForm(instance=survey)
         surveyformset = SurveyFormset(instance=survey)
 
-        return render_to_response('survey/index.html', {
+        return render_to_response('survey/form.html', {
             'school' : school, 
             'surveyform' : surveyform,
             'surveyformset' : surveyformset,

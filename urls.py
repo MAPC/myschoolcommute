@@ -14,6 +14,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     
-    # school
-    (r'^(?P<school_slug>[-\w]+)/$', 'survey.views.index'),
+    # school list
+    (r'^$', 'survey.views.index'),
+    
+    # survey form
+    (r'^(?P<school_slug>[-\w]+)/$', 'survey.views.form'),
 )
