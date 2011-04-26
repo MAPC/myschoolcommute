@@ -39,7 +39,13 @@ def form(request, school_slug):
             return HttpResponse("success. thank you!")
             
         else:
-            pass
+            return render_to_response('survey/form.html', {
+                'school' : school, 
+                'surveyform' : surveyform,
+                'surveyformset' : surveyformset,
+                },
+                context_instance=RequestContext(request)
+            )
     else:
         surveyform = SurveyForm(instance=survey)
         surveyformset = SurveyFormset(instance=survey)

@@ -33,9 +33,11 @@ class Survey(models.Model):
         return u'%s' % (self.id)
 
 class SurveyForm(ModelForm):
-    street = CharField(label='Your street',
+    street = CharField(label='Name of your street',
+                       widget = TextInput(attrs={'size': '30'}),
                        required=False,)
-    cross_st = CharField(label='Cross-street',
+    cross_st = CharField(label='Name of nearest cross-street',
+                         widget = TextInput(attrs={'size': '30'}),
                          required=False,)
     nr_vehicles = IntegerField(label='How many vehicles do you have in your household?', 
                                widget = TextInput(attrs={'size': '2'}),
@@ -85,8 +87,8 @@ class Child(models.Model):
     survey = models.ForeignKey('Survey')
     grade = models.CharField(max_length=1, blank=True, null=True, choices=CHILD_GRADES)
     to_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)
-    from_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)
     dropoff = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
+    from_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)    
     pickup = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
     
     class Meta:
@@ -98,18 +100,18 @@ class Child(models.Model):
 class ChildForm(ModelForm):
     grade = ChoiceField(label='What grade is your child in?',
                       choices=CHILD_GRADES,
-                      required=False,
+                      required=True,
                       initial='',)
-    to_school = ChoiceField(label='Travel to school (most days)',
+    to_school = ChoiceField(label='How does your child get TO school on most days?',
                       choices=CHILD_MODES,
-                      required=False,)
-    from_school = ChoiceField(label='Travel home from school (most days)',
-                      choices=CHILD_MODES,
-                      required=False,)
+                      required=True,)
     dropoff = ChoiceField(label='Do you usually drop off your child on your way to work or another destination?',
                       choices=CHILD_DROPOFF,
                       required=False,
                       initial='',)
+    from_school = ChoiceField(label='How does your child get home FROM school on most days?',
+                      choices=CHILD_MODES,
+                      required=True,)
     pickup = ChoiceField(label='Do you usually pick up your child on your way from work or another origin?',
                       choices=CHILD_DROPOFF,
                       required=False,
