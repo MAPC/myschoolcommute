@@ -7,6 +7,14 @@
 		margin-left: 10px;
 		margin-right: 10px;
 	}
+	#button_addchild {
+		margin-bottom: 18px;
+	}
+	#map_canvas {
+		width: 100%; 
+		height: 400px;
+		margin-bottom: 18px;
+	}
 </style>
 {% endblock %}
 
@@ -28,6 +36,7 @@ $(document).ready(function() {
 	.substr(7, ($("#id_location").val().length - 8))
 	.split(" ");
 	
+	// if we have a home location, render it
 	if (parseFloat(homeCoord[0]) === 0) {
 		var home = new google.maps.LatLng({{ school.location.y }}+0.002, {{ school.location.x }}-0.002);
 	} else {
@@ -91,14 +100,23 @@ $(document).ready(function() {
 	 ***********************/
 	
 	// child-form counter
+	// FIXME: count childforms, otherwise errorform breaks
 	var childCount = 0;
 	
 	// form validation: min information is location and child mode
 	var validation = {
-		"marker": false, // location not set
+		"formerror":{% if formerror %} true {% else %} false {% endif %},
+		"marker": false // location not set
 	};
 	
+	/* $('#other').click(function() {
+  $('#target').submit();
+}); */
+	
 	$("#surveyform").submit(function() {
+		// check location field
+		if ($("#id_location").val() === "POINT (0.0000000000000000 0.0000000000000000)") validation.marker = false;
+		
       	// no location provided, harder to check with django form validation
 		if (validation.marker === false && ($("#id_street").val() === "" || $("#id_cross_st").val() === "")) {
 			alert("Please provide your street information.");
@@ -108,7 +126,6 @@ $(document).ready(function() {
 		
 	// dropoff detail functionality
 	$.fn.dropoffDetails = function(child) {
-		console.log(childCount + " - " + child)
 		// reset and hide id_child_set-0-dropoff_to|_from fieldset
     	$("#id_child_set-" + child + "-dropoff, #id_child_set-" + child + "-pickup")
     	.each(function(index) {
@@ -127,6 +144,8 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	// FIXME: create a function for checking dropoff/pickup options
 	
 	// add another child
 	$("#button_addchild").click(function() {
@@ -169,7 +188,8 @@ $(document).ready(function() {
 	});	
 	
 	// bind dropoffDetail function to start form
-    $("#id_child_set-0-from_school, #id_child_set-0-to_school").dropoffDetails(0);
+	// don't when page is loaded due to django form validation error
+    if (!validation.formerror) $("#id_child_set-0-from_school, #id_child_set-0-to_school").dropoffDetails(0);
     
 });
 
@@ -198,12 +218,6 @@ $(document).ready(function() {
 		
 	<p>Please do not complete the online survey if you have already submitted a paper copy.</p>
 	
-	<p class="large">What street do you live on?</p>
-	
-	<p>Please drag &amp; drop the yellow home-marker <img src="{{ MEDIA_URL }}img/home.png" height="18" alt="Home marker" > on your street:</p>
-	
-	<div id="map_canvas" style="width: 100%; height: 400px;">map div</div>
-	
 	
 	
 	<form id="surveyform" action="." method="POST">
@@ -213,6 +227,12 @@ $(document).ready(function() {
 		{{ surveyformset.management_form }}
 		
 		<fieldset class="module aligned">
+			
+			<p class="large">What street do you live on?</p>
+	
+			<p>Please drag &amp; drop the yellow home-marker <img src="{{ MEDIA_URL }}img/home.png" height="20" alt="Home marker" > on your street</p>
+			
+			<div id="map_canvas">map div</div>
 			
 			<p>...or tell us the street intersection closest to your home.</p>
 			
@@ -264,6 +284,8 @@ $(document).ready(function() {
 		
 		</div>
 		
+		<button id="button_addchild">Add Another Child at this School</button>
+		
 		<fieldset class="module aligned">
 		
 			<div class="form-row">
@@ -300,11 +322,9 @@ $(document).ready(function() {
 				</div>
 			</div>
 		
-		</div>
+		</fieldset>
 		
-		
-		<button id="button_addchild">Add Another Child at this School</button>
-		<input id="button_submit" type="submit" value="Submit Survey" />
+		<button id="button_submit" type="submit">Submit Survey</button>
 	
 	</form>
 		

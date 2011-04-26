@@ -40,6 +40,7 @@ def form(request, school_slug):
             
         else:
             return render_to_response('survey/form.html', {
+                'formerror': True,
                 'school' : school, 
                 'surveyform' : surveyform,
                 'surveyformset' : surveyformset,
