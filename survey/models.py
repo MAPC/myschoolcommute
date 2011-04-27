@@ -8,6 +8,10 @@ try:
 except ImportError:
     pass
 
+class District(models.Model):
+    """ School Districts """
+    name = models.CharField(max_length=50)
+
 class School(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
