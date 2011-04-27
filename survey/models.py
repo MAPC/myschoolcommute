@@ -11,10 +11,16 @@ except ImportError:
 class District(models.Model):
     """ School Districts """
     name = models.CharField(max_length=50)
+    
+    def __unicode__(self):
+        return self.name
 
 class School(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
+    district = models.ForeignKey('District', null=True)
+    surveys_to_complete = models.IntegerField('Surveys to complete', default=0)
+    donation_subject = models.CharField(max_length=50, default='to the school')
     # GeoDjango
     location = models.PointField(geography=True) # default SRS 4326
     objects = models.GeoManager()

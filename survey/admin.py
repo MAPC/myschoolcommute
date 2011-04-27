@@ -1,4 +1,4 @@
-from survey.models import School, Survey, Child
+from survey.models import School, Survey, Child, District
 # from django.contrib import admin
 from django.contrib.gis import admin
 
@@ -11,6 +11,7 @@ class SurveyAdmin(admin.GeoModelAdmin):
 class ChildAdmin(admin.ModelAdmin):
     list_display = ('pk','survey')
 
+admin.site.register(District)
 admin.site.register(School, SchoolAdmin)
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Child, ChildAdmin)
