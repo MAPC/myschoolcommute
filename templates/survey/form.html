@@ -210,15 +210,15 @@ $(document).ready(function() {
  
 	<p>{{ school.name }} would like to learn how students get to and from school.</p> 
 	<p>This information will be used to plan safe and healthy transportation options for all students. <br>
-		Please complete one survey for each child at {{ school.name }} by Thursday, April 7.</p>
+		Please complete one survey for each child at {{ school.name }} by <strong>Friday, May 13</strong>.</p>
 
-	<p>Your school earns money when you complete this survey! If half of all parents complete surveys, 
-		WalkBoston (a nonprofit group) will donate $250 to the school's playground fund. If 75% of parents respond, 
-		WalkBoston will donate $400!</p>
+	<p><strong>Your school earns money when you complete this survey!</strong><br>
+		If {{ school.surveys_to_complete }} surveys are completed returned, WalkBoston (a nonprofit group) will donate $250 {{ school.donation_subject }}.
+	</p>
 		
 	<p>Please do not complete the online survey if you have already submitted a paper copy.</p>
 	
-	
+	 
 	
 	<form id="surveyform" action="." method="POST">
 		
