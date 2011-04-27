@@ -1,3 +1,6 @@
+{% load i18n %}
+{% load localeurl_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +23,19 @@
 	<link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint-css/blueprint/ie.css" type="text/css" media="screen, projection">
 	<![endif]-->
 	
+	<style type="text/css">
+	.langmenu ul {
+		list-style-type: none;
+		margin-left: auto;
+	}
+	.langmenu li {
+		float: left;
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+	
 	{% block style %}{% endblock %}
+	</style>
 	
 	{% block javascript %}{% endblock %}
 		
@@ -29,6 +44,20 @@
 	
 	<div id="wrap">
 		<div class="container">
+			
+		<div class="prepend-2 span-20 append-2 append-bottom prepend-top small langmenu last">
+		
+			<ul>	
+				{% for lang in LANGUAGES %}
+			        {% ifequal lang.0 LANGUAGE_CODE %}
+			            <li class="selected">{{ lang.1 }}</li>
+			        {% else %}
+			            <li><a href="{{ request.path|chlocale:lang.0 }}">{{ lang.1 }}</a></li>
+			        {% endifequal %}
+		    	{% endfor %}
+			</ul>	
+			
+		</div>
 	
 		{% block body %}{% endblock %}
 		

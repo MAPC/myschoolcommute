@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -14,9 +15,15 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     
+    # Translation app
+    (r'^rosetta/', include('rosetta.urls')),
+    
     # school list
     (r'^$', 'survey.views.index'),
     
     # survey form
-    (r'^(?P<school_slug>[-\w]+)/$', 'survey.views.form'),
+    (r'^(?P<school_slug>[-\w]+)/$', 'survey.views.form'),    
+    
 )
+
+

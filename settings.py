@@ -1,5 +1,7 @@
 # Django settings for walkboston project.
 
+_ = lambda s: s
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -33,6 +35,17 @@ TIME_ZONE = 'America/Chicago'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    ('pt', _('Portuguese')),
+    ('fr', _('French')),
+    ('ht', _('Haitian Creole')),
+    ('vi', _('Vietnamese')),
+    ('zh', _('Chinese')),
+    ('ar', _('Arabic')),
+)
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -64,7 +77,14 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.core.context_processors.i18n',
+    'django.contrib.auth.context_processors.auth',
+)
+
 MIDDLEWARE_CLASSES = (
+    'localeurl.middleware.LocaleURLMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -94,6 +114,8 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'survey',
     'south',
+    'rosetta',
+    'localeurl',
 )
 
 # django-debug-toolbar

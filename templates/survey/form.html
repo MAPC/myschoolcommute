@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block style %}
-<style type="text/css">
+
 	select, input {
 		margin-left: 10px;
 		margin-right: 10px;
@@ -15,7 +15,7 @@
 		height: 400px;
 		margin-bottom: 18px;
 	}
-</style>
+
 {% endblock %}
 
 {% block javascript %}
@@ -202,11 +202,20 @@ $(document).ready(function() {
 {% if school %}
 
 <div class="prepend-2 span-20 append-2 last">
+	
 	<h1>{{ school.name }}</h1>
 	
-	<h2>Important School Travel Survey</h2>
+	<h2>
+		{% blocktrans %}
+		Important School Travel Survey
+		{% endblocktrans %}
+	</h2>
 	
-	<p><strong>Dear Parent or Guardian,</strong></p>
+	<p><strong>
+		{% blocktrans %}
+		Dear Parent or Guardian,
+		{% endblocktrans %}
+	</strong></p>
  
 	<p>{{ school.name }} would like to learn how students get to and from school.</p> 
 	<p>This information will be used to plan safe and healthy transportation options for all students. <br>
@@ -216,7 +225,10 @@ $(document).ready(function() {
 		If {{ school.surveys_to_complete }} surveys are completed returned, WalkBoston (a nonprofit group) will donate $250 {{ school.donation_subject }}.
 	</p>
 		
-	<p>Please do not complete the online survey if you have already submitted a paper copy.</p>
+	<p>{% blocktrans %}
+		Please do not complete the online survey if you have already submitted a paper copy.
+		{% endblocktrans %}
+	</p>
 	
 	 
 	
@@ -228,13 +240,25 @@ $(document).ready(function() {
 		
 		<fieldset class="module aligned">
 			
-			<p class="large">What street do you live on?</p>
+			<p class="large">
+				{% blocktrans %}
+				What street do you live on?
+				{% endblocktrans %}
+			</p>
 	
-			<p>Please drag &amp; drop the yellow home-marker <img src="{{ MEDIA_URL }}img/home.png" height="20" alt="Home marker" > on your street</p>
+			<p>
+				
+				Please drag &amp; drop the yellow home-marker <img src="{{ MEDIA_URL }}img/home.png" height="20" alt="Home marker" > on your street
+				
+			</p>
 			
 			<div id="map_canvas">map div</div>
 			
-			<p>...or tell us the street intersection closest to your home.</p>
+			<p>
+				{% blocktrans %}
+				...or tell us the street intersection closest to your home.
+				{% endblocktrans %}
+			</p>
 			
 			<div class="form-row">
 				
@@ -284,7 +308,11 @@ $(document).ready(function() {
 		
 		</div>
 		
-		<button id="button_addchild">Add Another Child at this School</button>
+		<button id="button_addchild">
+			{% blocktrans %}
+			Add Another Child at this School
+			{% endblocktrans %}
+		</button>
 		
 		<fieldset class="module aligned">
 		
@@ -324,7 +352,11 @@ $(document).ready(function() {
 		
 		</fieldset>
 		
-		<button id="button_submit" type="submit">Submit Survey</button>
+		<button id="button_submit" type="submit">
+			{% blocktrans %}
+			Submit Survey
+			{% endblocktrans %}
+		</button>
 	
 	</form>
 		

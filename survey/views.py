@@ -13,6 +13,7 @@ def index(request):
     
     return render_to_response('survey/index.html', {
             'schools' : schools, 
+            'MEDIA_URL': settings.MEDIA_URL,
             },
             context_instance=RequestContext(request)
         )
@@ -44,6 +45,7 @@ def form(request, school_slug):
                 'school' : school, 
                 'surveyform' : surveyform,
                 'surveyformset' : surveyformset,
+                'MEDIA_URL': settings.MEDIA_URL,
                 },
                 context_instance=RequestContext(request)
             )
@@ -55,6 +57,7 @@ def form(request, school_slug):
             'school' : school, 
             'surveyform' : surveyform,
             'surveyformset' : surveyformset,
+            'MEDIA_URL': settings.MEDIA_URL,
             },
             context_instance=RequestContext(request)
         )
