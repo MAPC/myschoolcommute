@@ -16,11 +16,25 @@ class District(models.Model):
         return self.name
 
 class School(models.Model):
-    name = models.CharField(max_length=50)
-    slug = models.SlugField()
-    district = models.ForeignKey('District', null=True)
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+    
+    school_id = models.IntegerField('School ID', blank=True, null=True)
+    address = models.CharField(max_length=150, blank=True, null=True)
+    municipality = models.CharField(max_length=25, blank=True, null=True)
+    state = models.CharField(max_length=2, blank=True, null=True)
+    zip = models.CharField(max_length=10, blank=True, null=True)
+    principal = models.CharField(max_length=50, blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    fax = models.CharField(max_length=15, blank=True, null=True)
+    grades = models.CharField(max_length=70, blank=True, null=True)
+    type = models.CharField(max_length=3, blank=True, null=True) 
+     
+    district = models.ForeignKey('District', blank=True, null=True)
     surveys_to_complete = models.IntegerField('Surveys to complete', default=0)
+    survey_active = models.BooleanField('Is Survey School')
     donation_subject = models.CharField(max_length=50, default='to the school')
+    
     # GeoDjango
     location = models.PointField(geography=True) # default SRS 4326
     objects = models.GeoManager()
