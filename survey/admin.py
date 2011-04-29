@@ -1,4 +1,4 @@
-from survey.models import School, Survey, Child, District
+from walkboston.survey.models import School, Survey, Child, District
 # from django.contrib import admin
 from django.contrib.gis import admin
 
