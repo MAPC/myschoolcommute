@@ -9,7 +9,7 @@ from django.template import RequestContext
 
 def index(request):
     
-    schools = School.objects.all().order_by('name')
+    schools = School.objects.filter(survey_active=True).order_by('name')
     
     return render_to_response('survey/index.html', {
             'schools' : schools, 
