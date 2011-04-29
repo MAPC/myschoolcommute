@@ -3,6 +3,18 @@ from survey.models import School, Survey, Child, District
 from django.contrib.gis import admin
 
 class SchoolAdmin(admin.GeoModelAdmin):
+    fieldsets = [
+        (None, 
+            {'fields': ['name', 'slug', 'surveys_to_complete', 'donation_subject', 'survey_active', ]}),
+        ('School Database Attributes', 
+            {'fields': ['school_id', 'address', 'municipality', 'state', 'zip', 'principal', 'phone', 'fax', 'grades', 'type']}),
+        ('Map',
+            {'fields': ['location', ]}),
+    ]    
+    list_filter = ['survey_active']
+    list_display = ('name', 'municipality', 'grades', 'principal','phone')
+    search_fields = ['name', 'municipality']
+    ordering = ['municipality']
     prepopulated_fields = {'slug': ('name',)}
     
 class SurveyAdmin(admin.GeoModelAdmin):
