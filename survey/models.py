@@ -31,9 +31,8 @@ class School(models.Model):
     type = models.CharField(max_length=3, blank=True, null=True) 
      
     district = models.ForeignKey('District', blank=True, null=True)
-    surveys_to_complete = models.IntegerField('Surveys to complete', default=0)
+    survey_incentive = models.TextField(blank=True, null=True)
     survey_active = models.BooleanField('Is Survey School')
-    donation_subject = models.CharField(max_length=50, default='to the school')
     
     # GeoDjango
     location = models.PointField(geography=True) # default SRS 4326

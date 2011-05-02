@@ -234,8 +234,8 @@ $(document).ready(function() {
 		{% blocktrans %}
 		Your school earns money when you complete this survey!
 		{% endblocktrans %}
-	</strong><br>
-		If {{ school.surveys_to_complete }} surveys are completed returned, WalkBoston (a nonprofit group) will donate $250 {{ school.donation_subject }}.
+	</strong><br>	
+		{{ school.survey_incentive }}
 	</p>
 		
 	<p>{% blocktrans %}
