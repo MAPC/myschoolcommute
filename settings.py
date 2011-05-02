@@ -136,6 +136,12 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.logger.LoggingPanel',
 )
 
+# dbgettext settings
+DBGETTEXT_PROJECT_OPTIONS = 'walkboston.dbgettext_options'
+
+# format options
+FORMAT_MODULE_PATH = 'walkboston.formats'
+
 # import local settings
 try:
     from settings_local import *
