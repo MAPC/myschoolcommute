@@ -33,6 +33,9 @@
 		margin-right: 10px;
 		margin-left: 10px;
 	}
+	.ar {
+		text-align: right;
+	}
 	
 	{% block style %}{% endblock %}
 	</style>
@@ -55,7 +58,7 @@
 			            <li><a href="{{ request.path|chlocale:lang.0 }}">{{ lang.1 }}</a></li>
 			        {% endifequal %}
 		    	{% endfor %}
-			</ul>	
+			</ul>
 			
 		</div>
 	

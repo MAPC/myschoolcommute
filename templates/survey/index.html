@@ -3,9 +3,7 @@
 
 {% block body %}
 
-{% if user.is_staff %}
-
-<div class="prepend-2 span-20 append-2 last">
+<div class="prepend-2 span-20 append-2 last {{ LANGUAGE_CODE }}">
 	
 	<h1>
 		{% blocktrans %}
@@ -23,7 +21,5 @@
 	
 	
 </div>
-
-{% endif %}
 
 {% endblock %}
