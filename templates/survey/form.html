@@ -217,11 +217,24 @@ $(document).ready(function() {
 		{% endblocktrans %}
 	</strong></p>
  
-	<p>{{ school.name }} would like to learn how students get to and from school.</p> 
-	<p>This information will be used to plan safe and healthy transportation options for all students. <br>
-		Please complete one survey for each child at {{ school.name }} by <strong>Friday, May 13</strong>.</p>
+	<p>{{ school.name }} would like to learn how students get to and from school. 
+		{% blocktrans %}
+		This information will be used to plan safe and healthy walking options for students.
+		{% endblocktrans %}
+	</p>
+		
+	<p>{% blocktrans %}
+		<em>This survey will take less than 3 minutes to complete.</em>
+		{% endblocktrans %}
+	</p>
+	
+	<p>Please complete one survey for each child at {{ school.name }} by <strong>Friday, May 20</strong>.</p>
 
-	<p><strong>Your school earns money when you complete this survey!</strong><br>
+	<p><strong>
+		{% blocktrans %}
+		Your school earns money when you complete this survey!
+		{% endblocktrans %}
+	</strong><br>
 		If {{ school.surveys_to_complete }} surveys are completed returned, WalkBoston (a nonprofit group) will donate $250 {{ school.donation_subject }}.
 	</p>
 		
@@ -247,9 +260,9 @@ $(document).ready(function() {
 			</p>
 	
 			<p>
-				
+				{% blocktrans %}								
 				Please drag &amp; drop the yellow home-marker <img src="{{ MEDIA_URL }}img/home.png" height="20" alt="Home marker" > on your street
-				
+				{% endblocktrans %}
 			</p>
 			
 			<div id="map_canvas">map div</div>
@@ -363,6 +376,5 @@ $(document).ready(function() {
 </div>
 
 {% endif %}
-
 
 {% endblock %}
