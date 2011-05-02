@@ -1,6 +1,9 @@
 from django.contrib.gis.db import models
 from django.forms import ModelForm, HiddenInput, TextInput, IntegerField, CharField, ChoiceField
 
+# gettext
+_ = lambda s: s
+
 # workaround for South custom fields issues 
 try:
     from south.modelsinspector import add_introspection_rules
@@ -56,16 +59,16 @@ class Survey(models.Model):
         return u'%s' % (self.id)
 
 class SurveyForm(ModelForm):
-    street = CharField(label='Name of your street',
+    street = CharField(label=_('Name of your street'),
                        widget = TextInput(attrs={'size': '30'}),
                        required=False,)
-    cross_st = CharField(label='Name of nearest cross-street',
+    cross_st = CharField(label=_('Name of nearest cross-street (nearest intersection)'),
                          widget = TextInput(attrs={'size': '30'}),
                          required=False,)
-    nr_vehicles = IntegerField(label='How many vehicles do you have in your household?', 
+    nr_vehicles = IntegerField(label=_('How many vehicles do you have in your household?'), 
                                widget = TextInput(attrs={'size': '2'}),
                                required=False,)
-    nr_licenses = IntegerField(label='How many people in your household have a driver\'s license?',
+    nr_licenses = IntegerField(label=_('How many people in your household have a driver\'s license?'),
                                widget = TextInput(attrs={'size': '2'}),
                                required=False,)
 
@@ -81,29 +84,29 @@ CHILD_GRADES = (
             ('', '--'),
             ('p', 'Pre-K'),
             ('k', 'K'),
-            ('1', '1st'),
-            ('2', '2nd'),
-            ('3', '3rd'),
-            ('4', '4th'),
-            ('5', '5th'),
-            ('6', '6th'),
-            ('7', '7th'),
-            ('8', '8th'),
+            ('1', '1'),
+            ('2', '2'),
+            ('3', '3'),
+            ('4', '4'),
+            ('5', '5'),
+            ('6', '6'),
+            ('7', '7'),
+            ('8', '8'),
             )
 CHILD_MODES = (
             ('', '--'),
-            ('w', 'Walk'),
-            ('b', 'Bike'),
-            ('sb', 'School bus'),
-            ('fv', 'Family Vehicle (only children in your family)'),
-            ('cp', 'Carpool (with children from other families)'),
-            ('t', 'Transit (city bus, subway, etc.)'),
-            ('o', 'Other (skateboard, scooter, inline skates, etc.)')
+            ('w', _('Walk')),
+            ('b', _('Bike')),
+            ('sb', _('School Bus')),
+            ('fv', _('Family Vehicle (only children in your family)')),
+            ('cp', _('Carpool (with children from other families)')),
+            ('t', _('Transit (city bus, subway, etc.)')),
+            ('o', _('Other (skateboard, scooter, inline skates, etc.)'))
             )
 CHILD_DROPOFF = (
             ('', '--'),
-            ('yes', 'Yes'),
-            ('no', 'No'),
+            ('yes', _('Yes')),
+            ('no', _('No')),
             )
     
 class Child(models.Model):
@@ -121,21 +124,21 @@ class Child(models.Model):
         return u'%s' % (self.id)
     
 class ChildForm(ModelForm):
-    grade = ChoiceField(label='What grade is your child in?',
+    grade = ChoiceField(label=_('What grade is your child in?'),
                       choices=CHILD_GRADES,
                       required=True,
                       initial='',)
-    to_school = ChoiceField(label='How does your child get TO school on most days?',
+    to_school = ChoiceField(label=_('How does your child get TO school on most days?'),
                       choices=CHILD_MODES,
                       required=True,)
-    dropoff = ChoiceField(label='Do you usually drop off your child on your way to work or another destination?',
+    dropoff = ChoiceField(label=_('Do you usually drop off your child on your way to work or another destination?'),
                       choices=CHILD_DROPOFF,
                       required=False,
                       initial='',)
-    from_school = ChoiceField(label='How does your child get home FROM school on most days?',
+    from_school = ChoiceField(label=_('How does your child get home FROM school on most days?'),
                       choices=CHILD_MODES,
                       required=True,)
-    pickup = ChoiceField(label='Do you usually pick up your child on your way from work or another origin?',
+    pickup = ChoiceField(label=_('Do you usually pick up your child on your way from work or another origin?'),
                       choices=CHILD_DROPOFF,
                       required=False,
                       initial='',)

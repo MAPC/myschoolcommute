@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'south',
     'rosetta',
     'localeurl',
+    'dbgettext',
 )
 
 # django-debug-toolbar

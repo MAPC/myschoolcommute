@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load dbgettext_tags %}
 
 {% block style %}
 
@@ -13,7 +14,12 @@
 	#map_canvas {
 		width: 100%; 
 		height: 400px;
-		margin-bottom: 18px;
+	}
+	#map_legend {
+		text-align: right;
+	}
+	#map_legend img {
+		height: 16px;
 	}
 
 {% endblock %}
@@ -223,10 +229,11 @@ $(document).ready(function() {
 		{% endblocktrans %}
 	</p>
 		
-	<p>{% blocktrans %}
-		<em>This survey will take less than 3 minutes to complete.</em>
+	<p><em>
+		{% blocktrans %}
+		This survey will take less than 3 minutes to complete.
 		{% endblocktrans %}
-	</p>
+	</em></p>
 	
 	<p>Please complete one survey for each child at {{ school.name }} by <strong>Friday, May 20</strong>.</p>
 
@@ -235,7 +242,7 @@ $(document).ready(function() {
 		Your school earns money when you complete this survey!
 		{% endblocktrans %}
 	</strong><br>	
-		{{ school.survey_incentive }}
+		{% trans school.survey_incentive %}
 	</p>
 		
 	<p>{% blocktrans %}
@@ -261,11 +268,13 @@ $(document).ready(function() {
 	
 			<p>
 				{% blocktrans %}								
-				Please drag &amp; drop the yellow home-marker <img src="{{ MEDIA_URL }}img/home.png" height="20" alt="Home marker" > on your street
+				Please drag and drop the yellow home-marker to an intersection on your street, near your home:
 				{% endblocktrans %}
+				
 			</p>
 			
 			<div id="map_canvas">map div</div>
+			<div id="map_legend" class="small"><img src="{{ MEDIA_URL }}img/home.png" height="20" alt="Home marker" > ... home marker <img src="{{ MEDIA_URL }}img/school.png" height="20" alt="Home marker" > ... {{ school.name }}</div>
 			
 			<p>
 				{% blocktrans %}
@@ -276,7 +285,7 @@ $(document).ready(function() {
 			<div class="form-row">
 				
 					{{ surveyform.street.errors }}
-					{{ surveyform.street.label }}: {{ surveyform.street }}
+					{{ surveyform.street.label }}: {{ surveyform.street }}<br>
 					{{ surveyform.cross_st.errors }}
 					{{ surveyform.cross_st.label }}: {{ surveyform.cross_st }}
 			
