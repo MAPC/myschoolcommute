@@ -5,7 +5,7 @@ from django.contrib.gis import admin
 class SchoolAdmin(admin.GeoModelAdmin):
     fieldsets = [
         (None, 
-            {'fields': ['name', 'slug', 'surveys_to_complete', 'donation_subject', 'survey_active', ]}),
+            {'fields': ['name', 'slug', 'survey_active', 'survey_incentive']}),
         ('School Database Attributes', 
             {'fields': ['school_id', 'address', 'municipality', 'state', 'zip', 'principal', 'phone', 'fax', 'grades', 'type']}),
         ('Map',
