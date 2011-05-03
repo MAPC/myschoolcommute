@@ -24,12 +24,12 @@
 	<![endif]-->
 	
 	<style type="text/css">
-	.langmenu ul {
-		list-style-type: none;
-		margin-left: auto;
+	.langmenu {
+		text-align: center;
 	}
-	.langmenu li {
-		float: left;
+	.langmenu ul li {
+		list-style: none;
+		display: inline;
 		margin-right: 10px;
 		margin-left: 10px;
 	}
@@ -37,9 +37,8 @@
 		text-align: right;
 	}
 	#footer {
-		text-align: right;
-	}
-	
+		text-align: center;
+	}	
 	{% block style %}{% endblock %}
 	</style>
 	
@@ -67,7 +66,13 @@
 	
 		{% block body %}{% endblock %}
 		
-		<div id="footer" class="prepend-2 span-20 append-2 append-bottom prepend-top small">&copy; <a href="http://www.mapc.org" title="Metropolitan Area Planning Council">MAPC</a> 2011</div>
+		<div id="footer" class="prepend-2 span-20 append-2 append-bottom prepend-top small">
+			<p>
+				{% blocktrans %}
+				Questions? Please contact{% endblocktrans %} <a href="mailto:admin@myschoolcommute.org?subject=myschoolcommute website question">admin@myschoolcommute.org</a><br>
+				&copy; <a href="http://www.mapc.org" title="Metropolitan Area Planning Council">MAPC</a> 2011
+			</p>	
+		</div>
 		
 		</div>
 	</div>
