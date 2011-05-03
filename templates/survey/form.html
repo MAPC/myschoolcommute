@@ -235,7 +235,11 @@ $(document).ready(function() {
 		{% endblocktrans %}
 	</em></p>
 	
-	<p>Please complete one survey for each child at {{ school.name }} by <strong>Friday, May 20</strong>.</p>
+	<p>
+		{% blocktrans %}
+		Please complete one survey for each child at this school by <strong>Friday, May 20</strong>.
+		{% endblocktrans %}
+	</p>
 
 	<p><strong>
 		{% blocktrans %}
@@ -245,9 +249,11 @@ $(document).ready(function() {
 		{% trans school.survey_incentive %}
 	</p>
 		
-	<p>{% blocktrans %}
+	<p><strong>
+		{% blocktrans %}
 		Please do not complete the online survey if you have already submitted a paper copy.
 		{% endblocktrans %}
+		</strong>
 	</p>
 	
 	 
@@ -332,7 +338,7 @@ $(document).ready(function() {
 		
 		<button id="button_addchild">
 			{% blocktrans %}
-			Add Another Child at this School
+			Add another child at this school
 			{% endblocktrans %}
 		</button>
 		
