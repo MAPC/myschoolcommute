@@ -223,8 +223,9 @@ $(document).ready(function() {
 		{% endblocktrans %}
 	</strong></p>
  
-	<p>{{ school.name }} would like to learn how students get to and from school. 
-		{% blocktrans %}
+	<p>
+		{% blocktrans with school.name as schoolname %}
+		{{ schoolname }} would like to learn how students get to and from school. 
 		This information will be used to plan safe and healthy walking options for students.
 		{% endblocktrans %}
 	</p>
