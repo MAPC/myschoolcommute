@@ -292,9 +292,9 @@ $(document).ready(function() {
 			<div class="form-row">
 				
 					{{ surveyform.street.errors }}
-					{{ surveyform.street.label }}: {{ surveyform.street }}<br>
+					{% trans surveyform.street.label %}: {{ surveyform.street }}<br>
 					{{ surveyform.cross_st.errors }}
-					{{ surveyform.cross_st.label }}: {{ surveyform.cross_st }}
+					{% trans surveyform.cross_st.label %}: {{ surveyform.cross_st }}
 			
 			</div>
 			
@@ -353,10 +353,10 @@ $(document).ready(function() {
 						{% for error in surveyform.nr_vehicles.errors %}
 						    {{ error|escape }}<br>
 						{% endfor %}
-							<span class="large">{{ surveyform.nr_vehicles.label }}</span> {{ surveyform.nr_vehicles }}
+							<span class="large">{% trans surveyform.nr_vehicles.label %}</span> {{ surveyform.nr_vehicles }}
 						</div>
 					{% else %}
-						<span class="large">{{ surveyform.nr_vehicles.label }}</span> {{ surveyform.nr_vehicles }}
+						<span class="large">{% trans surveyform.nr_vehicles.label %}</span> {{ surveyform.nr_vehicles }}
 					{% endif %}
 					
 				</div>
@@ -370,10 +370,10 @@ $(document).ready(function() {
 						{% for error in surveyform.nr_licenses.errors %}
 						    {{ error|escape }}<br>
 						{% endfor %}
-							<span class="large">{{ surveyform.nr_licenses.label }}</span> {{ surveyform.nr_licenses }}
+							<span class="large">{% trans surveyform.nr_licenses.label %}</span> {{ surveyform.nr_licenses }}
 						</div>
 					{% else %}
-						<span class="large">{{ surveyform.nr_licenses.label }}</span> {{ surveyform.nr_licenses }}
+						<span class="large">{% trans surveyform.nr_licenses.label %}</span> {{ surveyform.nr_licenses }}
 					{% endif %}
 					
 				</div>

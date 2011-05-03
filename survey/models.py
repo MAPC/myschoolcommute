@@ -1,8 +1,7 @@
 from django.contrib.gis.db import models
 from django.forms import ModelForm, HiddenInput, TextInput, IntegerField, CharField, ChoiceField
-
-# gettext
-_ = lambda s: s
+# lazy translation as default on model
+from django.utils.translation import ugettext_lazy as _
 
 # workaround for South custom fields issues 
 try:
