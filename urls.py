@@ -19,10 +19,10 @@ urlpatterns = patterns('',
     (r'^rosetta/', include('rosetta.urls')),
     
     # school list
-    (r'^$', 'survey.views.index'),
+    (r'^$', 'walkboston.survey.views.index'),
     
     # survey form
-    (r'^(?P<school_slug>[-\w]+)/$', 'survey.views.form'),    
+    (r'^(?P<school_slug>[-\w]+)/$', 'walkboston.survey.views.form'),    
     
 )
 

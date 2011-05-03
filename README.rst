@@ -15,6 +15,13 @@ Dependencies
 * Django 1.2.5 (GeoDjango)
 * PostGIS
 
+Update translations
+===================
+
+1. ``python manage.py dbgettext_export``
+2. ``python manage.py makemessages -l <lang_code>``
+3. ``python manage.py compilemessages``
+
 MAPC
 ====
 
