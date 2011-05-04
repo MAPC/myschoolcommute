@@ -18,12 +18,13 @@ urlpatterns = patterns('',
     # Translation app
     (r'^rosetta/', include('rosetta.urls')),
     
-    # school list
+    # district/school list on front-page
     (r'^$', 'survey.views.index'),
     
-    # survey form
-    (r'^(?P<school_slug>[-\w]+)/$', 'survey.views.form'),    
-    
+    # district
+    (r'^(?P<district_slug>[-\w]+)/$', 'survey.views.district'),
+    # school
+    (r'^(?P<district_slug>[-\w]+)/(?P<school_slug>[-\w]+)/$', 'survey.views.form'),    
 )
 
 

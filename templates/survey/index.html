@@ -7,17 +7,23 @@
 	
 	<h1>
 		{% blocktrans %}
-		Surveys are available for following schools:
+		Available districts and schools:
 		{% endblocktrans %}
 	</h1>
 	
-	<ul>
-	{% for school in schools %}
+	{% for district in districts %}
 	
-		<li><a href="{{ school.slug }}">{{ school.name }}</a></li>
+		<h2><a href="{{ district.slug }}" title="{{ district.name }}">{{ district.name }}</a></h2>
+		
+		<ul>
+		{% for school in district.school_set.select_related %}
+		
+			<li><a href="{{ district.slug }}/{{ school.slug }}">{{ school.name }}</a></li>
+		
+		{% endfor %}
+		</ul>
 	
 	{% endfor %}
-	</ul>
 	
 	
 </div>

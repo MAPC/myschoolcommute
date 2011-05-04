@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block body %}
+
+<div class="prepend-2 span-20 append-2 last {{ LANGUAGE_CODE }}">
+	
+	<h1>
+		{{ district.name }}
+	</h1>
+	
+	<ul>
+	{% for school in district.school_set.select_related %}
+	
+		<li><a href="{{ school.slug }}">{{ school.name }}</a></li>
+	
+	{% endfor %}
+	</ul>
+	
+	
+</div>
+
+{% endblock %}
