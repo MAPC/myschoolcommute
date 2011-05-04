@@ -48,7 +48,11 @@ def form(request, school_slug, **kwargs):
             surveyform.save()
             surveyformset.save()
             
-            return HttpResponse("success. thank you!")
+            return render_to_response('survey/thanks.html', {
+                'MEDIA_URL': settings.MEDIA_URL,
+                },
+                context_instance=RequestContext(request)
+            )
             
         else:
             return render_to_response('survey/form.html', {
