@@ -13,13 +13,17 @@ except ImportError:
 class District(models.Model):
     """ School Districts """
     name = models.CharField(max_length=50)
+    slug = models.SlugField(unique=True, blank=True, null=True)
     
     def __unicode__(self):
         return self.name
+    
+    class Meta:
+        ordering = ['name']
 
 class School(models.Model):
     name = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
     
     school_id = models.IntegerField('School ID', blank=True, null=True)
     address = models.CharField(max_length=150, blank=True, null=True)
@@ -42,6 +46,9 @@ class School(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    class Meta:
+        ordering = ['name']
              
 class Survey(models.Model):
     school = models.ForeignKey('School')

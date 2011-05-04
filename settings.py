@@ -42,6 +42,7 @@ LANGUAGES = (
     ('fr', _('French')),
     ('ht', _('Haitian Creole')),
     ('vi', _('Vietnamese')),
+    ('km', _('Khmer')),
     ('zh', _('Chinese')),
     ('ar', _('Arabic')),
 )

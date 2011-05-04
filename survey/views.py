@@ -3,22 +3,33 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.forms.models import inlineformset_factory
-from walkboston.survey.models import School, Survey, SurveyForm, Child, ChildForm
+from survey.models import School, Survey, SurveyForm, Child, ChildForm, District
 
 from django.template import RequestContext
 
 def index(request):
     
-    schools = School.objects.filter(survey_active=True).order_by('name')
+    # get all districts with active school surveys
+    districts = District.objects.filter(school__survey_active=True).distinct()
     
     return render_to_response('survey/index.html', {
-            'schools' : schools, 
+            'districts': districts,
             'MEDIA_URL': settings.MEDIA_URL,
             },
             context_instance=RequestContext(request)
         )
+    
+def district(request, district_slug):
+    
+    district = District.objects.get(slug__iexact=district_slug)
+    
+    return render_to_response('survey/district.html', {
+            'district': district,
+            'MEDIA_URL': settings.MEDIA_URL,
+            },
+            context_instance=RequestContext(request))
 
-def form(request, school_slug):
+def form(request, school_slug, **kwargs):
     
     school = School.objects.get(slug__iexact=school_slug)
        

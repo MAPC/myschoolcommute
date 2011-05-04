@@ -2,10 +2,13 @@ from walkboston.survey.models import School, Survey, Child, District
 # from django.contrib import admin
 from django.contrib.gis import admin
 
+class DistrictAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+
 class SchoolAdmin(admin.GeoModelAdmin):
     fieldsets = [
         (None, 
-            {'fields': ['name', 'slug', 'survey_active', 'survey_incentive']}),
+            {'fields': ['name', 'slug', 'survey_active', 'district', 'survey_incentive']}),
         ('School Database Attributes', 
             {'fields': ['school_id', 'address', 'municipality', 'state', 'zip', 'principal', 'phone', 'fax', 'grades', 'type']}),
         ('Map',
@@ -23,7 +26,7 @@ class SurveyAdmin(admin.GeoModelAdmin):
 class ChildAdmin(admin.ModelAdmin):
     list_display = ('pk','survey')
 
-admin.site.register(District)
+admin.site.register(District, DistrictAdmin)
 admin.site.register(School, SchoolAdmin)
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Child, ChildAdmin)
