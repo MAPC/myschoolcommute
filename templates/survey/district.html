@@ -5,9 +5,7 @@
 
 <div class="prepend-2 span-20 append-2 last {{ LANGUAGE_CODE }}">
 	
-	<h1>
-		{{ district.name }}
-	</h1>
+	<h2>{{ district.name }}</h2>
 	
 	<ul>
 	{% for school in district.school_set.select_related %}
