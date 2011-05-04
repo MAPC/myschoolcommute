@@ -115,13 +115,14 @@ $(document).ready(function() {
 		"marker": false // location not set
 	};
 	
-	/* $('#other').click(function() {
-  $('#target').submit();
-}); */
-	
 	$("#surveyform").submit(function() {
 		// check location field
-		if ($("#id_location").val() === "POINT (0.0000000000000000 0.0000000000000000)") validation.marker = false;
+		if ($("#id_location").val() === "POINT (0.0000000000000000 0.0000000000000000)") {
+			validation.marker = false;
+		} else {
+			// required for django validation error page-reload
+			validation.marker = true;
+		}
 		
       	// no location provided, harder to check with django form validation
 		if (validation.marker === false && ($("#id_street").val() === "" || $("#id_cross_st").val() === "")) {
