@@ -125,7 +125,7 @@ CHILD_DROPOFF = (
     
 class Child(models.Model):
     survey = models.ForeignKey('Survey')
-    grade = models.CharField(max_length=1, blank=True, null=True, choices=CHILD_GRADES)
+    grade = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_GRADES)
     birth_day = models.IntegerField(blank=True, null=True, choices=DAY_CHOICES)
     to_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)
     dropoff = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
