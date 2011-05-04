@@ -59,10 +59,10 @@ class Survey(models.Model):
 
 class SurveyForm(ModelForm):
     street = CharField(label=_('Name of your street'),
-                       widget = TextInput(attrs={'size': '30'}),
-                       required=False,)
+                    widget = TextInput(attrs={'size': '30'}),
+                    required=False,)
     cross_st = CharField(label=_('Name of nearest cross-street (nearest intersection)'),
-                         widget = TextInput(attrs={'size': '30'}),
+                    widget = TextInput(attrs={'size': '30'}),
                          required=False,)
     nr_vehicles = IntegerField(label=_('How many vehicles do you have in your household?'), 
                                widget = TextInput(attrs={'size': '2'}),
@@ -92,6 +92,7 @@ CHILD_GRADES = (
             ('7', '7'),
             ('8', '8'),
             )
+
 CHILD_MODES = (
             ('', '--'),
             ('w', _('Walk')),
@@ -102,6 +103,9 @@ CHILD_MODES = (
             ('t', _('Transit (city bus, subway, etc.)')),
             ('o', _('Other (skateboard, scooter, inline skates, etc.)'))
             )
+
+DAY_CHOICES = [(0, '--')] + [(i, i) for i in range(1, 32)]
+
 CHILD_DROPOFF = (
             ('', '--'),
             ('yes', _('Yes')),
@@ -111,6 +115,7 @@ CHILD_DROPOFF = (
 class Child(models.Model):
     survey = models.ForeignKey('Survey')
     grade = models.CharField(max_length=1, blank=True, null=True, choices=CHILD_GRADES)
+    birth_day = models.IntegerField(blank=True, null=True, choices=DAY_CHOICES)
     to_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)
     dropoff = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
     from_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)    
@@ -127,6 +132,9 @@ class ChildForm(ModelForm):
                       choices=CHILD_GRADES,
                       required=True,
                       initial='',)
+    birth_day = ChoiceField(label=_('On what day of the month was your child born?'),
+                      choices=DAY_CHOICES,
+                      required=False,)
     to_school = ChoiceField(label=_('How does your child get TO school on most days?'),
                       choices=CHILD_MODES,
                       required=True,)
