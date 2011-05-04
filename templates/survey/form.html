@@ -288,7 +288,7 @@ $(document).ready(function() {
 			</p>
 			
 			<div id="map_canvas">map div</div>
-			<div id="map_legend" class="small"><img src="{{ MEDIA_URL }}img/home.png" height="20" alt="Home marker" > ... home marker <img src="{{ MEDIA_URL }}img/school.png" height="20" alt="Home marker" > ... {{ school.name }}</div>
+			<div id="map_legend" class="small"><img src="{{ MEDIA_URL }}img/home.png" height="20" alt="Home marker" > ... {% blocktrans %}your home{% endblocktrans %} <img src="{{ MEDIA_URL }}img/school.png" height="20" alt="Home marker" > ... {{ school.name }}</div>
 			
 			<p>
 				{% blocktrans %}
