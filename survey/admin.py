@@ -15,13 +15,17 @@ class SchoolAdmin(admin.GeoModelAdmin):
             {'fields': ['location', ]}),
     ]    
     list_filter = ['survey_active']
-    list_display = ('name', 'municipality', 'grades', 'principal','phone')
+    list_display = ('name', 'survey_count', 'municipality', 'grades', 'principal','phone',)
     search_fields = ['name', 'municipality']
     ordering = ['municipality']
     prepopulated_fields = {'slug': ('name',)}
     
+    def survey_count(self, obj):
+        return obj.survey_set.count()
+    
 class SurveyAdmin(admin.GeoModelAdmin):
     list_display = ('pk','school')
+    search_fields = ['school__name']
 
 class ChildAdmin(admin.ModelAdmin):
     list_display = ('pk','survey')
