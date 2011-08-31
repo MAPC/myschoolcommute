@@ -1,3 +1,6 @@
 [submodule "blueprint-css"]
 	path = survey/static/css/blueprint-css
 	url = git://github.com/joshuaclayton/blueprint-css.git
+[submodule "bootstrap"]
+	path = survey/static/css/bootstrap
+	url = git://github.com/twitter/bootstrap.git
