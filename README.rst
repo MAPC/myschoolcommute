@@ -30,7 +30,7 @@ Project team: Tim Reardon, Jamila Henderson, Christian Spanring
 GPL License
 ===========
 
-Walk Boston Parent Survey Form is Copyright 2010 MAPC.
+Walk Boston Parent Survey Form is Copyright 2011 MAPC.
 
 Walk Boston Parent Survey Form is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
