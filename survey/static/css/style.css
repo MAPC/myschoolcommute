@@ -1,0 +1,25 @@
+h2 {
+	margin-top: 60px;
+}
+footer {
+	text-align: center;
+}
+label {
+	width: 200px;
+}
+div.input {
+    margin-left: 220px;
+}
+select {
+	margin-top: 4px;
+}
+#map_canvas {
+	width: 100%; 
+	height: 500px;
+}
+#map_legend {
+	text-align: right;
+}
+#map_legend img {
+	height: 16px;
+}

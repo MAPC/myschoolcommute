@@ -1,24 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block style %}
-
-	h1 {
-		text-align: center;
-	}
-
-{% endblock %}
-
 {% block body %}
 
-<div class="prepend-2 span-20 append-2 last {{ LANGUAGE_CODE }}">
-	
-	<h1>
-		{% blocktrans %}
-		Thank you!
-		{% endblocktrans %}
-	</h1>
-	
-</div>
+	<h2>{% trans "Thank you!" %}</h2>
 
 {% endblock %}

@@ -17,32 +17,14 @@
 	<meta name="geo.region" content="US-MA">
 	<meta name="ICBM" content="42.34;-71.08">
 	
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint-css/blueprint/screen.css" type="text/css" media="screen, projection">
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint-css/blueprint/print.css" type="text/css" media="print">
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint-css/blueprint/ie.css" type="text/css" media="screen, projection">
-	<![endif]-->
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap/bootstrap-1.1.1.min.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 	
 	<style type="text/css">
-	ul li {
-		list-style: none;
-	}
-	.langmenu {
-		text-align: center;
-	}
-	.langmenu ul li {
-		display: inline;
-		margin-right: 10px;
-		margin-left: 10px;
-	}
-	.ar {
-		text-align: right;
-	}
-	#footer {
-		text-align: center;
-	}	
 	{% block style %}{% endblock %}
 	</style>
+	
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.5.2.min.js" type="text/javascript"></script>
 	
 	{% block javascript %}{% endblock %}
 	
@@ -62,36 +44,38 @@
 	
 </head>
 <body>
-	
-	<div id="wrap">
-		<div class="container">
-			
-		<div class="prepend-2 span-20 append-2 append-bottom prepend-top small langmenu last">
-		
-			<ul>	
-				{% for lang in LANGUAGES %}
+
+	<div class="topbar">
+		<div class="fill">
+			<div class="container">
+				<h3><a href="/">MySchoolCommute.org</a></h3>
+				<ul>
+            		<li><a href="#">{% trans "About" %}</a></li>
+          		</ul>
+				<ul class="nav secondary-nav">
+                {% for lang in LANGUAGES %}
 			        {% ifequal lang.0 LANGUAGE_CODE %}
-			            <li class="selected">{% trans lang.1 %}</li>
+			            <li class="active"><a href="#">{% trans lang.1 %}</a></li>
 			        {% else %}
 			            <li><a href="{{ request.path|chlocale:lang.0 }}">{% trans lang.1 %}</a></li>
 			        {% endifequal %}
-		    	{% endfor %}
-			</ul>
-			
-		</div>
-	
-		{% block body %}{% endblock %}
-		
-		<div id="footer" class="prepend-2 span-20 append-2 append-bottom prepend-top small">
-			<p>
-				{% blocktrans %}
-				Questions? Please contact{% endblocktrans %} <a href="mailto:admin@myschoolcommute.org?subject=myschoolcommute website question">admin@myschoolcommute.org</a><br>
-				&copy; <a href="http://www.mapc.org" title="Metropolitan Area Planning Council">MAPC</a> 2011
-			</p>	
-		</div>
-		
+				{% endfor %}
+      			</ul>
+			</div>
 		</div>
 	</div>
+	<div class="container {{ LANGUAGE_CODE }}">
+	
+	{% block body %}{% endblock %}
+	
+	</div>
+	
+	<footer>
+		<p>
+			{% trans "Questions? Please contact" %} <a href="mailto:admin@myschoolcommute.org?subject=myschoolcommute website question">admin@myschoolcommute.org</a><br />
+			&copy; <a href="http://www.mapc.org" title="Metropolitan Area Planning Council">MAPC</a> 2011
+		</p>	
+	</footer>
 	
 </body>
 </html>
