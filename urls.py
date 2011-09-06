@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
+from django.views.generic.simple import direct_to_template
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -21,9 +22,13 @@ urlpatterns = patterns('',
     # district/school list on front-page
     (r'^$', 'survey.views.index'),
     
+    # static pages
+    (r'^about/$', direct_to_template, {'template': 'survey/about.html'}),
+    
     # district
     (r'^(?P<district_slug>[-\w]+)/$', 'survey.views.district'),
-    url(r'^(?P<districtid>[-\w]+)/getschools/$', 'survey.views.get_schools', name='disctrict_get_schools'),
+    url(r'^(?P<districtid>[-\w]+)/schools/$', 'survey.views.get_schools', name='disctrict_get_schools'),
+    url(r'^(?P<districtid>[-\w]+)/streets/$', 'survey.views.get_streets', name='disctrict_get_streets'),
     # school
     url(r'^(?P<district_slug>[-\w]+)/(?P<school_slug>[-\w]+)/$', 'survey.views.form', name='survey_school_form'),    
 )

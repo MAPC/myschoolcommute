@@ -6,7 +6,7 @@ from django.utils import simplejson
 
 from django.forms.models import inlineformset_factory
 
-from survey.models import School, Survey, SurveyForm, Child, ChildForm, District
+from survey.models import School, Survey, SurveyForm, Child, ChildForm, District, Street
 
 def index(request):
     
@@ -43,10 +43,34 @@ def get_schools(request, districtid):
     return HttpResponse(simplejson.dumps(response), mimetype='application/json')   
     
     
-
-def form(request, school_slug, **kwargs):
+def get_streets(request, districtid):
+    """
+    Returns all streets for given district
+    """
     
-    school = School.objects.get(slug__iexact=school_slug)
+    # check if district exists
+    district = get_object_or_404(District.objects, districtid=districtid)
+    
+    streets = Street.objects.filter(districtid=districtid)
+    
+    street_list =[]
+    
+    for street in streets:
+        street_list.append(street.name)
+    
+    return HttpResponse(simplejson.dumps(street_list), mimetype='application/json')
+
+
+def form(request, district_slug, school_slug, **kwargs):
+    
+    # check if district exists
+    district = get_object_or_404(District.objects, slug__iexact=district_slug)
+    
+    # get school in district
+    school = get_object_or_404(School.objects, districtid=district, slug__iexact=school_slug)
+    
+    # translate to lat/lon
+    school.geometry.transform(4326)
        
     survey = Survey()   
        
@@ -64,7 +88,6 @@ def form(request, school_slug, **kwargs):
             surveyformset.save()
             
             return render_to_response('survey/thanks.html', {
-                'MEDIA_URL': settings.MEDIA_URL,
                 },
                 context_instance=RequestContext(request)
             )
@@ -75,7 +98,6 @@ def form(request, school_slug, **kwargs):
                 'school' : school, 
                 'surveyform' : surveyform,
                 'surveyformset' : surveyformset,
-                'MEDIA_URL': settings.MEDIA_URL,
                 },
                 context_instance=RequestContext(request)
             )
@@ -87,7 +109,6 @@ def form(request, school_slug, **kwargs):
             'school' : school, 
             'surveyform' : surveyform,
             'surveyformset' : surveyformset,
-            'MEDIA_URL': settings.MEDIA_URL,
             },
             context_instance=RequestContext(request)
         )
