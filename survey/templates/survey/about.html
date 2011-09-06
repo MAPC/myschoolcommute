@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block body %}
+
+<div class="span16 columns">
+	<h2>{% trans "About this project" %}</h2>
+	
+	<p>The <a href="" title="Metropolitan Area Planning Council">Metropolitan Area Planning Council (MAPC)</a>, the regional planning agency for Metro Boston, 
+		and <a href="http://www.walkboston.org/" title="WalkBoston">WalkBoston</a>, a nonprofit organization, have developed an innovative online survey tool 
+		on how students get to and from school (mode choice). Data on student mode choice will provide schools with information they need to make decisions on 
+		traffic and safety concerns, sidewalk infrastructure and connectivity, transportation, and school assignment policies. Furthermore, information on 
+		mode choice can be used to plan safe and healthy walking options for students and can help reduce greenhouse gas emissions by shifting car trips 
+		to and from school to walking or biking trips.</p>
+	
+	<p>During summer 2011, 20 schools in 7 districts utilized the travel to school online survey tool, resulting in over 600 surveys. Based on our initial survey results<sup>1</sup>,  
+		we learned that car trips are the dominate mode of transportation with 55% of students in our sample being dropped off at school in the morning and 48% picked up 
+		in the afternoon. Walking and taking the school bus were also common modes to school at 25% and 18%, respectively. These percentages were slightly higher 
+		in the afternoon, with 29% of student walking from school and 20% taking the bus. We also looked at the potential to reduce greenhouse gas emissions by 
+		shifting car trips to walking or biking trips. Six survey schools in four districts<sup>2</sup> emerged as having the best potential to reduce greenhouse gas emissions 
+		through walk to school initiatives, with potential reductions in emissions of more than 67,500 kgs per year, or 4% of all auto-commute related greenhouse gas emissions.</p>
+		
+	<p>The survey research and implementation was funded by the <a href="http://www.barrfoundation.org/" title="Barr Foundation">Barr Foundation</a> and fits squarely within its goals of promoting healthy habits of walking and biking for 
+		elementary and middle school children and reducing carbon emissions. The results of our survey research will eventually lead to a targeted 
+		<a href="http://www.saferoutesinfo.org/" title="Safe Routes to School"></a>Safe Routes to School (SRTS) program, representing new approaches to SRTS and mode shift programs, 
+		potentially helping to set the stage for an effective and replicable national model. For more information on how your school can participate, please see below.</p>
+	
+	<h3>Survey Administration</h3>
+	
+	<p>This 3-minute, online survey can be easily administered to parents. Schools will be responsible for making parents aware of the online survey tool and providing them with 
+		a link to the survey, which is available in 7 languages other than English. Parents will have a week or more, depending on the needs of the school, to complete the survey 
+		before it closes and results are generated.</p>
+		
+	<h3>Survey Results</h3>
+	
+	<p>MAPC will provide a district/school level report, including a summary of the results accompanied by maps, tables, and charts. Although survey administration is free, 
+		there is a fee to generate district and school level reports. For more information, please contact MAPC at <a href="mailto:admin@myschoolcommute.org?subject=MySchoolCommute.org Website Request">admin@myschoolcommute.org</a>.</p>
+	
+	<hr>
+		
+	<dl>
+        <dt><sup>1</sup></dt>
+        <dd>These results are based on surveys submitted using our online tool and those submitted by paper, resulting in a sample of 4,446 surveys across 23 schools in 7 districts. 
+        	We have suspended the use of the paper survey going forward due to the burden and cost of data entry.</dd>
+        <dt><sup>2</sup></dt>
+        <dd>These are Arnone (Brockton), Ferryway (Malden), Forestdale (Malden), Horace Mann (Newton), Garfield (Revere), and Whelan (Revere).</dd>
+      </dl>
+	
+</div>
+
+{% endblock %}

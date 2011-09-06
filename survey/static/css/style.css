@@ -1,14 +1,14 @@
-h2 {
+.main {
 	margin-top: 60px;
 }
 footer {
 	text-align: center;
 }
 label {
-	width: 200px;
+	width: 240px;
 }
 div.input {
-    margin-left: 220px;
+    margin-left: 260px;
 }
 div.index {
 	margin-left: 0;
@@ -25,4 +25,10 @@ select {
 }
 #map_legend img {
 	height: 16px;
+}
+.question_title {
+	color: #404040;
+}
+span.required_field {
+	color: #9D261D;
 }
