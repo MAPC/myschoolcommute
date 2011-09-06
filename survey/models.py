@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from django.db.models import permalink
 from django.forms import ModelForm, HiddenInput, TextInput, IntegerField, CharField, ChoiceField
 # lazy translation as default on model
 from django.utils.translation import ugettext_lazy as _
@@ -7,41 +8,53 @@ from django.utils.translation import ugettext_lazy as _
 try:
     from south.modelsinspector import add_introspection_rules
     add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.PointField'])
+    add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.MultiPolygonField'])
+    add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.MultiLineStringField'])
 except ImportError:
     pass
 
 class District(models.Model):
     """ School Districts """
-    name = models.CharField(max_length=50)
-    slug = models.SlugField(unique=True, blank=True, null=True)
+    districtid = models.IntegerField(primary_key=True)
+    distname = models.CharField(max_length=35)
+    slug = models.SlugField(max_length=35, unique=True)
+    startgrade = models.CharField(max_length=2)
+    endgrade = models.CharField(max_length=2)
+    distcode4 = models.CharField(max_length=4)
+    distcode8 = models.CharField(max_length=8)
+    
+    geometry = models.MultiPolygonField(srid=26986)
+    objects = models.GeoManager()
     
     def __unicode__(self):
-        return self.name
+        return self.distname
     
     class Meta:
-        ordering = ['name']
+        ordering = ['distname']
 
 class School(models.Model):
+    """ Schools """
     name = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, blank=True, null=True)
+    slug = models.SlugField(max_length=200, blank=True, null=True)
     
-    school_id = models.IntegerField('School ID', blank=True, null=True)
+    schid = models.CharField('School ID', max_length=8, blank=True, null=True, unique=True)
     address = models.CharField(max_length=150, blank=True, null=True)
-    municipality = models.CharField(max_length=25, blank=True, null=True)
+    town_mail = models.CharField(max_length=25, blank=True, null=True)
+    town = models.CharField(max_length=25, blank=True, null=True)
     state = models.CharField(max_length=2, blank=True, null=True)
     zip = models.CharField(max_length=10, blank=True, null=True)
     principal = models.CharField(max_length=50, blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
     fax = models.CharField(max_length=15, blank=True, null=True)
     grades = models.CharField(max_length=70, blank=True, null=True)
-    type = models.CharField(max_length=3, blank=True, null=True) 
-     
-    district = models.ForeignKey('District', blank=True, null=True)
+    schl_type = models.CharField(max_length=3, blank=True, null=True)     
+    districtid = models.ForeignKey('District', blank=True, null=True)
+    
     survey_incentive = models.TextField(blank=True, null=True)
     survey_active = models.BooleanField('Is Survey School')
     
     # GeoDjango
-    location = models.PointField(geography=True) # default SRS 4326
+    geometry = models.PointField(srid=26986)
     objects = models.GeoManager()
     
     def __unicode__(self):
@@ -49,6 +62,25 @@ class School(models.Model):
     
     class Meta:
         ordering = ['name']
+        
+    @permalink
+    def get_absolute_url(self):
+        return ('survey_school_form', None, { 'school_slug': self.slug, 'district_slug': self.districtid.slug})
+        
+class Street(models.Model):
+    """
+    Streets to be returned as type-ahead in street-fields
+    to limit the variety of street names and make geocoding
+    more accurate.
+    """
+    name = models.CharField(max_length=240)
+    districtid = models.ForeignKey('District', blank=True, null=True)
+    
+    geometry = models.MultiLineStringField(srid=26986)
+    objects = models.GeoManager()
+    
+    def __unicode__(self):
+        return self.name
              
 class Survey(models.Model):
     school = models.ForeignKey('School')
@@ -63,6 +95,8 @@ class Survey(models.Model):
     
     def __unicode__(self):
         return u'%s' % (self.id)
+
+# Forms
 
 class SurveyForm(ModelForm):
     street = CharField(label=_('Name of your street'),
@@ -139,21 +173,21 @@ class Child(models.Model):
         return u'%s' % (self.id)
     
 class ChildForm(ModelForm):
-    grade = ChoiceField(label=_('What grade is your child in?'),
+    grade = ChoiceField(label=_('What grade is your child in (*)?'),
                       choices=CHILD_GRADES,
                       required=True,
                       initial='',)
     birth_day = ChoiceField(label=_('On what day of the month was your child born?'),
                       choices=DAY_CHOICES,
                       required=False,)
-    to_school = ChoiceField(label=_('How does your child get TO school on most days?'),
+    to_school = ChoiceField(label=_('How does your child get TO school on most days (*)?'),
                       choices=CHILD_MODES,
                       required=True,)
     dropoff = ChoiceField(label=_('Do you usually drop off your child on your way to work or another destination?'),
                       choices=CHILD_DROPOFF,
                       required=False,
                       initial='',)
-    from_school = ChoiceField(label=_('How does your child get home FROM school on most days?'),
+    from_school = ChoiceField(label=_('How does your child get home FROM school on most days (*)?'),
                       choices=CHILD_MODES,
                       required=True,)
     pickup = ChoiceField(label=_('Do you usually pick up your child on your way from work or another origin?'),

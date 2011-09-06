@@ -10,6 +10,9 @@ label {
 div.input {
     margin-left: 220px;
 }
+div.index {
+	margin-left: 0;
+}
 select {
 	margin-top: 4px;
 }

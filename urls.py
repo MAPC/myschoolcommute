@@ -23,8 +23,9 @@ urlpatterns = patterns('',
     
     # district
     (r'^(?P<district_slug>[-\w]+)/$', 'survey.views.district'),
+    url(r'^(?P<districtid>[-\w]+)/getschools/$', 'survey.views.get_schools', name='disctrict_get_schools'),
     # school
-    (r'^(?P<district_slug>[-\w]+)/(?P<school_slug>[-\w]+)/$', 'survey.views.form'),    
+    url(r'^(?P<district_slug>[-\w]+)/(?P<school_slug>[-\w]+)/$', 'survey.views.form', name='survey_school_form'),    
 )
 
 

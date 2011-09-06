@@ -2,50 +2,71 @@
 {% load i18n %}
 
 {% block javascript %}
-<script src="{{ STATIC_URL }}js/jquery.easing.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}js/jquery.collapse.js" type="text/javascript"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}js/chosen/chosen.css">
+<script src="{{ STATIC_URL }}js/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">	
+$(document).ready(function() {
 	
-<script type="text/javascript">
-	
-	$(document).ready(function(){	
-		/*
-		 * District/School collapser
-		 */
-		$(function(){
-			$('#collapser').jqcollapse({
-				slide: true,
-				speed: 300,
-				easing: 'easeOutCubic'
+	// initiate chosen dropdown UIs	
+	$(".chzn-select").chosen();	
+
+	// get schools for selected district
+	$("#district-select").chosen().change(function(e) {
+		districtid = $("#district-select option:selected").val();
+		// get schools for given district-id
+		$.getJSON("/" + districtid + "/getschools/", function(schools) {
+			// clear previouse dropdown options
+			$("#school-select option").remove();
+			// append new schools to dropdown
+			$.each(schools, function(id, school) {
+				$("<option value='" + school.url + "'>" + school.name + "</option>").appendTo("#school-select");
 			});
-		});	
+			// refresh chosen UI
+			$("#school-select").trigger("liszt:updated");
+			// call change function to set initial school url
+			$("#school-select").chosen().change();
+		});
 	});
 	
+	// go to school survey form
+	$("#open-survey").click(function() {
+		schoolurl = $("#school-select option:selected").val();
+		window.location = schoolurl;
+	});
+	
+	// call change function to load initial schools
+	$("#district-select").chosen().change();
+	
+});
 </script>
 
 {% endblock %}
 
 {% block body %}
-	<h2>
-		{% blocktrans %}
-		Available districts and schools:
-		{% endblocktrans %}
-	</h2>
+<div class="row">
+	<div class="span8 columns">
 
-	<ul id="collapser">
-	
-	{% for district in districts %}
-	
-		<li><span class="large loud">{{ district.name }}</span>
-			<ul>
-			{% for school in district.school_set.select_related %}
-			
-				<li><a href="{{ district.slug }}/{{ school.slug }}">{{ school.name }}</a></li>
-			
-			{% endfor %}
-			</ul>
-		</li>
-	{% endfor %}
-	
-	</ul>
+		<h2>{% trans "Please select your school district:" %}</h2>
 
+		<div class="input index">
+			<select id="district-select" class="chzn-select" style="width: 350px;" tabindex="1">
+				{% for district in districts %}<option value="{{ district.districtid }}">{{ district.distname }}</option> {% endfor %}
+			</select>
+		</div>
+	</div>
+	
+	<div class="span8 columns">
+		<h2>{% trans "Please select your school:" %}</h2>
+		
+			<div class="input index">
+				<select id="school-select" class="chzn-select" style="width: 350px;" tabindex="2"></select>
+			</div>
+	</div>
+	
+	<div class="span8 columns offset8">
+		<a id="open-survey" href="#" class="btn primary" tabindex="3">Open School Survey Form</a>
+	</div>
+	
+	
+</div>
 {% endblock %}

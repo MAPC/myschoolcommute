@@ -2,22 +2,18 @@ from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from django.forms.models import inlineformset_factory
-from survey.models import School, Survey, SurveyForm, Child, ChildForm, District
+from django.utils import simplejson
 
-from django.template import RequestContext
+from django.forms.models import inlineformset_factory
+
+from survey.models import School, Survey, SurveyForm, Child, ChildForm, District
 
 def index(request):
     
     # get all districts with active school surveys
     districts = District.objects.filter(school__survey_active=True).distinct()
     
-    return render_to_response('survey/index.html', {
-            'districts': districts,
-            'MEDIA_URL': settings.MEDIA_URL,
-            },
-            context_instance=RequestContext(request)
-        )
+    return render_to_response('survey/index.html', locals(), context_instance=RequestContext(request))
     
 def district(request, district_slug):
     
@@ -28,6 +24,25 @@ def district(request, district_slug):
             'MEDIA_URL': settings.MEDIA_URL,
             },
             context_instance=RequestContext(request))
+
+def get_schools(request, districtid):
+    """
+    Returns all schools for given district as JSON
+    """
+    
+    # check if district exists
+    district = get_object_or_404(District.objects, districtid=districtid)
+    
+    schools = School.objects.filter(districtid=district)
+    
+    response = {}
+    
+    for school in schools:
+        response[school.id] = dict(name=school.name, url=school.get_absolute_url())
+
+    return HttpResponse(simplejson.dumps(response), mimetype='application/json')   
+    
+    
 
 def form(request, school_slug, **kwargs):
     
