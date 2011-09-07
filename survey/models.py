@@ -1,10 +1,10 @@
 from django.contrib.gis.db import models
 from django.db.models import permalink
-from django.forms import ModelForm, HiddenInput, TextInput, IntegerField, CharField, ChoiceField
-# lazy translation as default on model
+
+# lazy translation
 from django.utils.translation import ugettext_lazy as _
 
-# workaround for South custom fields issues 
+# south introspection rules 
 try:
     from south.modelsinspector import add_introspection_rules
     add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.PointField'])
@@ -12,6 +12,7 @@ try:
     add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.MultiLineStringField'])
 except ImportError:
     pass
+
 
 class District(models.Model):
     """ School Districts """
@@ -32,8 +33,9 @@ class District(models.Model):
     class Meta:
         ordering = ['distname']
 
+
 class School(models.Model):
-    """ Schools """
+    """ School """
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, blank=True, null=True)
     
@@ -66,6 +68,7 @@ class School(models.Model):
     @permalink
     def get_absolute_url(self):
         return ('survey_school_form', None, { 'school_slug': self.slug, 'district_slug': self.districtid.slug})
+
         
 class Street(models.Model):
     """
@@ -81,8 +84,12 @@ class Street(models.Model):
     
     def __unicode__(self):
         return self.name
+ 
              
 class Survey(models.Model):
+    """
+    Survey base questions.
+    """
     school = models.ForeignKey('School')
     street = models.CharField(max_length=50, blank=True, null=True)
     cross_st = models.CharField('Cross street', max_length=50, blank=True, null=True)
@@ -96,29 +103,6 @@ class Survey(models.Model):
     def __unicode__(self):
         return u'%s' % (self.id)
 
-# Forms
-
-class SurveyForm(ModelForm):
-    street = CharField(label=_('Name of your street'),
-                    widget = TextInput(attrs={'size': '30'}),
-                    required=False,)
-    cross_st = CharField(label=_('Name of nearest cross-street'),
-                    widget = TextInput(attrs={'size': '30'}),
-                         required=False,)
-    nr_vehicles = IntegerField(label=_('How many vehicles do you have in your household?'), 
-                               widget = TextInput(attrs={'size': '2'}),
-                               required=False,)
-    nr_licenses = IntegerField(label=_('How many people in your household have a driver\'s license?'),
-                               widget = TextInput(attrs={'size': '2'}),
-                               required=False,)
-
-    class Meta:
-        model = Survey
-        exclude = ('school', 'ip')
-        
-        widgets = {
-            'location': HiddenInput(),         
-        }
 
 CHILD_GRADES = (
             ('', '--'),
@@ -169,25 +153,4 @@ class Child(models.Model):
     def __unicode__(self):
         return u'%s' % (self.id)
     
-class ChildForm(ModelForm):
-    grade = ChoiceField(label=_('What grade is your child in? (<span class="required_field">required</span>)'),
-                      choices=CHILD_GRADES,
-                      required=True,
-                      initial='',)
-    to_school = ChoiceField(label=_('How does your child get TO school on most days? (<span class="required_field">required</span>)'),
-                      choices=CHILD_MODES,
-                      required=True,)
-    dropoff = ChoiceField(label=_('Do you usually drop off your child on your way to work or another destination?'),
-                      choices=CHILD_DROPOFF,
-                      required=False,
-                      initial='',)
-    from_school = ChoiceField(label=_('How does your child get home FROM school on most days? (<span class="required_field">required</span>)'),
-                      choices=CHILD_MODES,
-                      required=True,)
-    pickup = ChoiceField(label=_('Do you usually pick up your child on your way from work or another origin?'),
-                      choices=CHILD_DROPOFF,
-                      required=False,
-                      initial='',)
-    
-    class Meta:
-        model = Child
+

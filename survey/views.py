@@ -6,7 +6,8 @@ from django.utils import simplejson
 
 from django.forms.models import inlineformset_factory
 
-from survey.models import School, Survey, SurveyForm, Child, ChildForm, District, Street
+from survey.models import School, Survey, Child, District, Street
+from survey.forms import SurveyForm, ChildForm
 
 def index(request):
     
