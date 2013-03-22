@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
-from django.views.generic.simple import direct_to_template
+from django.views.generic import TemplateView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -10,11 +10,8 @@ urlpatterns = patterns('',
     # Example:
     # (r'^walkboston/', include('walkboston.foo.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     
     # Translation app
     (r'^rosetta/', include('rosetta.urls')),
@@ -23,7 +20,7 @@ urlpatterns = patterns('',
     (r'^$', 'survey.views.index'),
     
     # static pages
-    (r'^about/$', direct_to_template, {'template': 'survey/about.html'}),
+    (r'^about/$', TemplateView(template_name='survey/about.html')),
     
     # district
     (r'^(?P<district_slug>[-\w]+)/$', 'survey.views.district'),
