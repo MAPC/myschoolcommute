@@ -7,6 +7,7 @@ http://myschoolcommute.org/
 Scope: collect transportation mode and location information per child and school in anonymous parent survey
 
 MAPC Project team: Tim Reardon, Jamila Henderson, Christian Spanring
+
 Applied GeoSolutions Project team: Matthew Hanson, Pavel Dorovskoy
 
 Usage
