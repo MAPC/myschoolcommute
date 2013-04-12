@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     (r'^$', 'survey.views.index'),
     
     # static pages
-    (r'^about/$', TemplateView(template_name='survey/about.html')),
+    (r'^about/$', TemplateView.as_view(template_name='survey/about.html')),
     
     # district
     (r'^(?P<district_slug>[-\w]+)/$', 'survey.views.district'),

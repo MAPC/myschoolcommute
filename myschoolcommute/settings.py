@@ -3,6 +3,8 @@ import os
 
 _ = lambda s: s
 
+CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_TOOLBAR = DEBUG
@@ -34,6 +36,10 @@ LANGUAGES = (
     ('km', _('Khmer')),
     ('zh', _('Chinese')),
     ('ar', _('Arabic')),
+)
+
+LANGUAGES = (
+    ('en', _('English')),
 )
 
 SITE_ID = 1
@@ -96,6 +102,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.core.context_processors.i18n',
     'django.contrib.auth.context_processors.auth',
+    "django.core.context_processors.media",
     'django.core.context_processors.static',
 )
 
@@ -106,7 +113,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-   'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'myschoolcommute.urls'
@@ -115,6 +123,14 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+)
+
+STATICFILES_DIRS = (
+    os.path.join(CURRENT_PATH, "static_common"),
+)
+
+LOCALE_PATHS = (
+    os.path.join(CURRENT_PATH, "locale"),
 )
 
 INSTALLED_APPS = (

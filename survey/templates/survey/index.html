@@ -45,12 +45,12 @@ $(document).ready(function() {
 
 {% block body %}
 <div class="row">
-	
-	<div class="span16 columns">
+	<div class="span12 columns">
 		<p><img src="{{ STATIC_URL }}img/header.jpg" width="940" height="160" alt="MySchoolCommute.org" /></p>
 	</div>
-	
-	<div class="span16 columns">
+</div>
+<div class="row">
+	<div class="span12 columns">
 		<p>We'd like to learn how students get to and from school in order to help plan safe and healthy walking options for students.</p>
 		<p>This 3-minute parent survey was developed by the <a href="" title="Metropolitan Area Planning Council">Metropolitan Area Planning Council (MAPC)</a>, 
 			the regional planning agency for Metro Boston, and <a href="http://www.walkboston.org/" title="WalkBoston">WalkBoston</a>, a nonprofit organization, as an innovative and simple web tool that schools can use 
@@ -61,10 +61,10 @@ $(document).ready(function() {
 			additional information please click here for more information or contact MAPC.
 		</p>
 	</div>
-	
-	<div class="span8 columns">
-
-		<h2>{% trans "Please select your school district:" %}</h2>
+</div>
+<div class="row">
+	<div class="span6 columns">
+		<h3>{% trans "Please select your school district" %}</h3>
 		<p>Scroll or start typing your district name</p>
 		<div class="input index">
 			<select id="district-select" class="chzn-select" style="width: 350px;" tabindex="1">
@@ -73,18 +73,18 @@ $(document).ready(function() {
 		</div>
 	</div>
 	
-	<div class="span8 columns">
-		<h2>{% trans "Please select your school:" %}</h2>
+	<div class="span6 columns">
+		<h3>{% trans "Please select your school" %}</h3>
 		<p>Scroll or start typing your school name</p>		
 		<div class="input index">
 			<select id="school-select" class="chzn-select" style="width: 350px;" tabindex="2"></select>
 		</div>
 	</div>
-	
-	<div class="span8 columns offset8">
-		<a id="open-survey" href="#" class="btn primary large" tabindex="3">Open School Survey Form</a>
+</div>
+<div class="row">
+	<div class="span8 columns offset6">
+		<br/>
+		<a id="open-survey" href="#" class="btn btn-primary large" tabindex="3">Open School Survey Form</a>
 	</div>
-	
-	
 </div>
 {% endblock %}
