@@ -38,14 +38,14 @@ if __name__ == '__main__':
                     updated_schools.append(f)
                     print "Update:", props['name'], props['schid'], props['objectid'], props['status']
                     print "Old:", obj.name, obj.schid, obj.pk
-                    #save object id
+                    
+                    #save object id to UPDATE
                     f['properties']['id'] = obj.pk
 
                 else:
                     print "New:", props['name'], props['schid'], props['objectid']
 
         sid = transaction.savepoint()
-
         try:
             schools = list(School.objects.exclude(pk__in=school_ids))
             print "Deleted schools: %d" % len(schools)
