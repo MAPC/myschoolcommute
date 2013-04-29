@@ -38,7 +38,7 @@ if __name__ == '__main__':
                     updated_schools.append(f)
                     print "Update:", props['name'], props['schid'], props['objectid'], props['status']
                     print "Old:", obj.name, obj.schid, obj.pk
-                    
+
                     #save object id to UPDATE
                     f['properties']['id'] = obj.pk
 
@@ -65,5 +65,7 @@ if __name__ == '__main__':
                 school.save()
 
             transaction.savepoint_commit(sid)
-        except:
+        except Exception, e:
+            print str(e)
             transaction.savepoint_rollback(sid)
+            print "Database import rolled back"
