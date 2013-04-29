@@ -15,8 +15,7 @@ from survey.models import School, District, Street
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 
-if __name__ == '__main__':
-
+def update_schools():    
     new_schools = []
     updated_schools = []
 
@@ -69,3 +68,6 @@ if __name__ == '__main__':
             print str(e)
             transaction.savepoint_rollback(sid)
             print "Database import rolled back"
+if __name__ == '__main__':
+
+    update_schools()
