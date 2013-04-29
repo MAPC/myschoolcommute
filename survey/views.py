@@ -26,6 +26,13 @@ def district(request, district_slug):
             },
             context_instance=RequestContext(request))
 
+def schools(request):
+    
+    # get all districts with active school surveys
+    districts = District.objects.filter(school__survey_active=True).distinct()
+    
+    return render_to_response('survey/index.html', locals(), context_instance=RequestContext(request))
+
 def get_schools(request, districtid):
     """
     Returns all schools for given district as JSON

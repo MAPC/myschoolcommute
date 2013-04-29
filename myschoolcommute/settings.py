@@ -217,7 +217,7 @@ if DEBUG_TOOLBAR:
 
 # import local settings
 try:
-    from local_settings import *
+    execfile(os.path.join(CURRENT_PATH,'local_settings.py'))
 except ImportError:
     pass
 
