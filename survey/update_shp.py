@@ -68,6 +68,7 @@ def update_schools():
             print str(e)
             transaction.savepoint_rollback(sid)
             print "Database import rolled back"
+            
 if __name__ == '__main__':
 
     update_schools()
