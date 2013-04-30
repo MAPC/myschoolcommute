@@ -57,7 +57,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
                 <li><a href="/about/">{% trans "About" %}</a></li>
-                <li><a href="/schools/">Schools</a></li>
+                <li><a href="/districts/">Schools</a></li>
                 <li><a href="/surveys/">Surveys</a></li>
                 {% for lang in LANGUAGES %}
                     {% ifequal lang.0 LANGUAGE_CODE %}
@@ -75,7 +75,7 @@
 
     <div class="main container {{ LANGUAGE_CODE }}">
     
-    {% block body %}{% endblock %}
+    {% block container %}{% endblock %}
     
     </div>
     
