@@ -89,7 +89,11 @@
     </div>
 
     <div class="main container {{ LANGUAGE_CODE }}">
-        {% block container %}{% endblock %}
+        <div class="row">
+            <div class="span12 ">
+                {% block container %}{% endblock %}
+            </div>
+        </div>
     </div>
     
     <hr>

@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     # custom admin pages
     url(r'^districts/$', 'survey.views.district_list', name='district_list'),
     url(r'^(?P<district_slug>[-\w]+)/(?P<school_slug>[-\w]+)/edit/$', 'survey.views.school_edit', name='school_edit'),
+    url(r'^(?P<school_id>\d+)/walkshed.png$', 'survey.maps.school_walkshed', name='school_map'),
 
     # district
     (r'^(?P<district_slug>[-\w]+)/$', 'survey.views.district'),
