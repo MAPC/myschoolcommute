@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block container %}
+
+	<h2>Districts</h2>
+	
+	<ul>
+	{% for district in districts %}
+	
+		<li><a href="/{{ district.slug }}/">{{ district.distname }}</a></li>
+	
+	{% endfor %}
+	</ul>
+	
+{% endblock %}

@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block body %}
+{% block container %}
 
-	<h2>{{ district.name }}</h2>
+	<h2>{{ district.distname }}</h2>
 	
 	<ul>
 	{% for school in district.school_set.select_related %}
 	
-		<li><a href="{{ school.slug }}">{{ school.name }}</a></li>
+		<li><a href="{{ school.slug }}/edit/">{{ school.name }}</a></li>
 	
 	{% endfor %}
 	</ul>
