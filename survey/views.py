@@ -26,12 +26,30 @@ def district(request, district_slug):
             },
             context_instance=RequestContext(request))
 
-def schools(request):
+def district_list(request):
     
     # get all districts with active school surveys
     districts = District.objects.filter(school__survey_active=True).distinct()
     
-    return render_to_response('survey/index.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('survey/district_list.html', locals(), context_instance=RequestContext(request))
+
+def school_edit(request, district_slug, school_slug, **kwargs):
+    
+    # check if district exists
+    district = get_object_or_404(District.objects, slug__iexact=district_slug)
+    
+    # get school in district
+    school = get_object_or_404(School.objects, districtid=district, slug__iexact=school_slug)
+    
+    # translate to lat/lon
+    school.geometry.transform(4326)
+
+    return render_to_response('survey/school_edit.html', {
+            'school' : school, 
+            'district' : district
+        },
+        context_instance=RequestContext(request)
+    )
 
 def get_schools(request, districtid):
     """

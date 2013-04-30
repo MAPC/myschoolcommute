@@ -22,6 +22,10 @@ urlpatterns = patterns('',
     # static pages
     (r'^about/$', TemplateView.as_view(template_name='survey/about.html')),
     
+    # custom admin pages
+    url(r'^districts/$', 'survey.views.district_list', name='district_list'),
+    url(r'^(?P<district_slug>[-\w]+)/(?P<school_slug>[-\w]+)/edit/$', 'survey.views.school_edit', name='school_edit'),
+
     # district
     (r'^(?P<district_slug>[-\w]+)/$', 'survey.views.district'),
     url(r'^(?P<districtid>[-\w]+)/schools/$', 'survey.views.get_schools', name='disctrict_get_schools'),
@@ -29,9 +33,6 @@ urlpatterns = patterns('',
     
     # school
     url(r'^(?P<district_slug>[-\w]+)/(?P<school_slug>[-\w]+)/$', 'survey.views.form', name='survey_school_form'),
-
-    # schools
-    url(r'^schools/$', 'survey.views.schools', name='view_schools'), 
 )
 
 
