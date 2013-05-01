@@ -21,10 +21,15 @@ $(document).ready(function(){
     var school_loc = [{{ school.geometry.y }}, {{ school.geometry.x }}];
 
     var map = L.map('map').setView(school_loc, 13);
+
     L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
         maxZoom: 18,
         subdomains: '123',
         attribution: "Imagery Copyright (c) <a href='http://MapQuest.com'>MapQuest</a>"
+    }).addTo(map);
+    
+    L.tileLayer('http://{{request.META.HTTP_HOST}}/{{school.pk}}/{z}/{y}/{x}/walkshed.png', {
+        maxZoom: 18
     }).addTo(map);
 
     var circle = L.circle(school_loc, 100, {
@@ -64,7 +69,7 @@ $(document).ready(function(){
 
     <div class='span9'>
         <div id="map"></div>
-        <img src='{% url "school_map" school.pk %}'>
+        <!--<img src='{% url "school_sheds" school.pk %}'>-->
     </div>
 </div>
 {% endblock %}
