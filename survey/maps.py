@@ -56,12 +56,12 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600):
 
     school = School.objects.get(pk=school_id)
     point = school.geometry
-    circle = point.buffer(2000.0)
+    circle = point.buffer(2500.0)
     circle.transform(900913)
 
     m = mapnik.Map(int(width), int(height), "+init=epsg:900913")
     #m.background = mapnik.Color('steelblue')
-    
+    '''
     s = mapnik.Style()
     r = mapnik.Rule()
     line_symbolizer = mapnik.LineSymbolizer(mapnik.Color(BLUE), 1)
@@ -79,7 +79,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600):
     layer.datasource = ds
     layer.styles.append('top')
     m.layers.append(layer)
-    
+    '''
     if bbox is None:
         bbox = mapnik.Envelope(*circle.extent)
     m.zoom_to_box(bbox)
@@ -92,7 +92,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600):
 
     csv_string = cache.get(key)
     if csv_string is None:
-        cache.get(key+"working")
+        cache.set(key+"working", True)
         paths = NetworkBike.objects.filter(geometry__bboverlaps=circle)
 
         csv_string = 'wkt,Name\n'
