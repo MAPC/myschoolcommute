@@ -96,6 +96,10 @@ class Survey(models.Model):
     nr_vehicles = models.IntegerField('Number of Vehicles', blank=True, null=True)
     nr_licenses = models.IntegerField('Number of License', blank=True, null=True)
     ip = models.IPAddressField('IP Address', blank=True, null=True)
+    distance = models.FloatField(null=True)
+    created = models.DateTimeField(auto_now_add=True, editable=False, null=True)
+    modified = models.DateTimeField(auto_now=True, null=True)
+
     # GeoDjango
     location = models.PointField(geography=True, blank=True, null=True, default='POINT(0 0)') # default SRS 4326
     objects = models.GeoManager()
