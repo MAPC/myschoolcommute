@@ -1,10 +1,14 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
+from django.core.cache import cache, get_cache
 
 import ModestMaps
 import pickle
 import mapnik
 import mimetypes
+import math
+import time
 
 from models import School
 
@@ -27,19 +31,35 @@ class NetworkBike(models.Model):
     class Meta:
         db_table = 'survey_network_bike'
 
-def school_sheds(request, school_id, alpha=1.0):
-    width = 800
-    height = 800
+def num2deg(xtile, ytile, zoom):
+    n = 2.0 ** zoom
+    lon_deg = xtile / n * 360.0 - 180.0
+    lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
+    lat_deg = math.degrees(lat_rad)
+    return [lon_deg,lat_deg]
+
+def school_tms(request, school_id, zoom, column, row):
+    nw = num2deg(int(row), int(column), int(zoom))
+    se = num2deg(int(row)+1, int(column)+1, int(zoom))
+    nw_p = Point(nw[0], nw[1], srid=4326)
+    se_p = Point(se[0], se[1], srid=4326)
+    nw_p.transform(900913)
+    se_p.transform(900913)
+    bbox = mapnik.Envelope(se_p.x, se_p.y, nw_p.x, nw_p.y)
+    return school_sheds(request, school_id, bbox, 256, 256)
+
+def school_sheds(request, school_id, bbox=None, width=800, height=600):
     format = 'png'
+    alpha = 1.0
 
     background = False
 
     school = School.objects.get(pk=school_id)
     point = school.geometry
     circle = point.buffer(2000.0)
-    circle.transform(4326)
+    circle.transform(900913)
 
-    m = mapnik.Map(int(width), int(height), "+init=epsg:4326")
+    m = mapnik.Map(int(width), int(height), "+init=epsg:900913")
     #m.background = mapnik.Color('steelblue')
     
     s = mapnik.Style()
@@ -55,15 +75,32 @@ def school_sheds(request, school_id, alpha=1.0):
     csv_string = 'wkt,Name\n"%s","test"\n' % wkt
     ds = mapnik.Datasource(type="csv",inline=csv_string)
 
-    layer = mapnik.Layer('main')
+    layer = mapnik.Layer('main', '+init=epsg:900913')
     layer.datasource = ds
     layer.styles.append('top')
     m.layers.append(layer)
     
-    bbox = mapnik.Envelope(*circle.extent)
+    if bbox is None:
+        bbox = mapnik.Envelope(*circle.extent)
     m.zoom_to_box(bbox)
 
-    paths = NetworkWalk.objects.filter(geometry__bboverlaps=circle)
+    key = 'school'+str(school_id)
+    working = cache.get(key+"working")
+    while working:
+        time.sleep(0.5)
+        working = cache.get(key+"working")
+
+    csv_string = cache.get(key)
+    if csv_string is None:
+        cache.get(key+"working")
+        paths = NetworkBike.objects.filter(geometry__bboverlaps=circle)
+
+        csv_string = 'wkt,Name\n'
+        for line in paths:
+            csv_string += '"%s","test"\n' % line.geometry.wkt
+
+        cache.set(key, csv_string)
+        cache.delete(key+"working")
 
     s = mapnik.Style()
     r = mapnik.Rule()
@@ -73,10 +110,6 @@ def school_sheds(request, school_id, alpha=1.0):
     r.symbols.append(line_symbolizer)
     s.rules.append(r)
     m.append_style("bot",s)
-    
-    csv_string = 'wkt,Name\n'
-    for line in paths:
-        csv_string += '"%s","test"\n' % line.geometry.wkt
 
     ds = mapnik.Datasource(type="csv",inline=csv_string.encode('ascii'))
     layer = mapnik.Layer('bg', '+init=epsg:900914')
