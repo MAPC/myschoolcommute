@@ -1,0 +1,17 @@
+{% extends "accounts/index.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Create an account  {{block.super}}{% endblock %}
+
+{% block head_extra %}
+{{ block.super }}
+{{ profile_form.media }}
+{% endblock%}
+
+{% block content %}
+
+<legend>Register</legend>
+<br/>
+{% csrf_token %}
+{% crispy user_form %}
+
+{% endblock %}

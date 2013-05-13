@@ -1,0 +1,22 @@
+{% extends "accounts/index.html" %}
+
+{% block title %}Profile of {{username}}{% endblock %}
+
+{% block content %}
+      <h2>{{username}}</h2>
+      <br/>
+
+<table cellpadding='3'>
+{% for f in user_f %}
+	{% if f.data %}
+    <tr><td><b>{{ f.label|capfirst }}</b></td> <td> {{f.data}}</td></tr>
+    {% endif %}
+{% endfor %}
+
+{% for f in profile.get_all_fields %}
+    <tr><td><b>{{ f.label|capfirst }}{% if f.label %} {%endif%}</b></td> 
+    <td>{{f.value}}</td></tr>
+{% endfor %}
+
+</table>
+{% endblock %}

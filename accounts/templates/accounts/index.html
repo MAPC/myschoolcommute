@@ -1,0 +1,51 @@
+{# This template holds the things that appear on all account pages #}
+{% extends 'base.html' %}
+
+{% block container %}
+<div class='row-fluid'>
+    <div class='span3'>
+        <div class='well sidebar-nav'>
+            <ul class="nav nav-list">
+                <li class="nav-header">Account</li>
+                {{text}}
+                {% if user.is_authenticated %}
+                {% if request.path == "/inputs/" %}class="active"{% endif %}
+                <li {% if request.path == "/accounts/users/"%}class="active"{% endif %}>
+                    <a href='/accounts/users/'><i class="icon-th-list"></i> View Users</a>
+                </li>
+                <li {% if request.path == "/accounts/profile/"%}class="active"{% endif %}>
+                    <a href="/accounts/profile/{{request.user.username}}/"><i class="icon-user"></i> View Profile</a>
+                </li>
+                <li {% if request.path == "/accounts/edit/"%}class="active"{% endif %}>
+                    <a href='/accounts/edit/'><i class="icon-pencil"></i> Edit Profile</a>
+                </li>
+                <li {% if request.path == "/accounts/password/"%}class="active"{% endif %}>
+                    <a href='/accounts/password/change/'><i class="icon-pencil"></i> Change Password</a>
+                </li>
+                <li {% if request.path == "/accounts/logout/"%}class="active"{% endif %}>
+                    <a href="/accounts/logout/"><i class="icon-off"></i> Log out</a>
+                </li>
+                {% else %}
+                <li {% if request.path == "/accounts/login/"%}class="active"{% endif %}>
+                    <a href='/accounts/login/'>Log In</a>
+                </li>
+                <li {% if request.path == "/accounts/register/"%}class="active"{% endif %}>
+                    <a href='/accounts/register/'>Register</a>
+                </li>
+                <li {% if request.path == "/accounts/reset/"%}class="active"{% endif %}>
+                    <a href='/accounts/reset/'>Reset Password</a>
+                </li>
+                {% endif %}
+                {% if user.is_staff %}
+                <li class="nav-header">Staff Actions</li>
+           		<li><a href="/admin/">Administer</a></li>
+           		{% endif %}
+            </ul>    
+        </div>
+    </div>
+    <div class='span9'>
+        {% block content %}{{content}}{% endblock %}
+    </div>
+</div>
+{% endblock %}
+

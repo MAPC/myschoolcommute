@@ -1,0 +1,14 @@
+{% extends "accounts/index.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Edit Account {{block.super}}{% endblock %}
+
+{% block head_extra %}
+{{ block.super }}
+{{ profile_form.media }}
+{% endblock%}
+
+{% block content %}
+    <legend>Edit Account</legend>
+    {% crispy user_form %}
+    {% crispy profile_form %}
+{% endblock %}

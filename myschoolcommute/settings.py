@@ -147,8 +147,10 @@ INSTALLED_APPS = (
     'rosetta',
     'localeurl',
     'dbgettext',
+    'crispy_forms',
     
     # myschoolcommute apps
+    'accounts',
     'survey',
 )
 

@@ -1,0 +1,14 @@
+{% extends 'accounts/index.html' %}
+{% block title %}Users {{block.super}}{% endblock %}
+{% block content %}
+<h2>Users</h2>
+<br/>
+<table class="table table-striped">
+	<thead>
+		<tr><th><b>Username</b></th> <th><b>Name<b></th> <th><b>Last login<b></th> </tr>
+	</thead>
+{% for o in object_list %}
+<tr><td><b><a href="{% url "user_detail" o.username %}">{{o.username}}</a></b></td> <td>{{o.first_name}} {{o.last_name}}</td> <td>{{o.last_login|date:"jS F Y H:i"}}</td></tr>
+{% endfor %}
+</table>
+{% endblock %}

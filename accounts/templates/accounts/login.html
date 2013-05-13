@@ -1,0 +1,8 @@
+{% extends 'accounts/index.html' %}
+{% block title %}Log in {{block.super}}{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<legend>Log in</legend>
+{% crispy form %}
+{% endblock %}

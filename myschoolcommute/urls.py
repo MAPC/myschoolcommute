@@ -15,7 +15,10 @@ urlpatterns = patterns('',
     
     # Translation app
     (r'^rosetta/', include('rosetta.urls')),
-    
+
+    #Accounts
+    (r'^accounts/', include('accounts.urls')),
+
     # district/school list on front-page
     (r'^$', 'survey.views.index'),
     
