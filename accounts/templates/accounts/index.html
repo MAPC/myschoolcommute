@@ -10,29 +10,29 @@
                 {{text}}
                 {% if user.is_authenticated %}
                 {% if request.path == "/inputs/" %}class="active"{% endif %}
-                <li {% if request.path == "/accounts/users/"%}class="active"{% endif %}>
+                <li {% if "/accounts/users/" in request.path %}class="active"{% endif %}>
                     <a href='/accounts/users/'><i class="icon-th-list"></i> View Users</a>
                 </li>
-                <li {% if request.path == "/accounts/profile/"%}class="active"{% endif %}>
+                <li {% if "/accounts/profile/" in request.path %}class="active"{% endif %}>
                     <a href="/accounts/profile/{{request.user.username}}/"><i class="icon-user"></i> View Profile</a>
                 </li>
-                <li {% if request.path == "/accounts/edit/"%}class="active"{% endif %}>
+                <li {% if "/accounts/edit/" in request.path %}class="active"{% endif %}>
                     <a href='/accounts/edit/'><i class="icon-pencil"></i> Edit Profile</a>
                 </li>
-                <li {% if request.path == "/accounts/password/"%}class="active"{% endif %}>
+                <li {% if "/accounts/password/" in request.path %}class="active"{% endif %}>
                     <a href='/accounts/password/change/'><i class="icon-pencil"></i> Change Password</a>
                 </li>
-                <li {% if request.path == "/accounts/logout/"%}class="active"{% endif %}>
+                <li {% if "/accounts/logout/" in request.path %}class="active"{% endif %}>
                     <a href="/accounts/logout/"><i class="icon-off"></i> Log out</a>
                 </li>
                 {% else %}
-                <li {% if request.path == "/accounts/login/"%}class="active"{% endif %}>
+                <li {% if "/accounts/login/" in request.path %}class="active"{% endif %}>
                     <a href='/accounts/login/'>Log In</a>
                 </li>
-                <li {% if request.path == "/accounts/register/"%}class="active"{% endif %}>
+                <li {% if "/accounts/register/" in request.path %}class="active"{% endif %}>
                     <a href='/accounts/register/'>Register</a>
                 </li>
-                <li {% if request.path == "/accounts/reset/"%}class="active"{% endif %}>
+                <li {% if "/accounts/reset/" in request.path %}class="active"{% endif %}>
                     <a href='/accounts/reset/'>Reset Password</a>
                 </li>
                 {% endif %}

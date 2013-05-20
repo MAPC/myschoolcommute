@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from models import Profile
@@ -60,23 +60,25 @@ class RegistrationForm(forms.Form):
                                 label=_("Username"),
                                 error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })
     
-    first_name = forms.CharField(max_length=30, label=_("First name"), required=False)
-    last_name = forms.CharField(max_length=30, label=_("Last name"), required=False)
-    
-    email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
-                                                               maxlength=75)),
-                             label=_("Email address"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
                                 label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict, render_value=False),
                                 label=_("Password (again)"))
+
+    first_name = forms.CharField(max_length=30, label=_("First name"), required=True)
+    last_name = forms.CharField(max_length=30, label=_("Last name"), required=True)
     
+    email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
+                                                               maxlength=75)),
+                             label=_("Email address"))    
+
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
-        self.helper.add_input(Submit('submit', 'Create the account'))
+        self.helper.form_tag = False
+        #self.helper.add_input(Submit('submit', 'Create the account'))
 
     def clean_username(self):
         """
@@ -123,35 +125,39 @@ class RegistrationForm(forms.Form):
         if commit:
             u.save()
         return u
-    #class Meta:
-    #    model = Profile
-    #    exclude = ('user')
-        
-class UserForm(InitModelForm):
 
+class UserForm(InitModelForm):
+    '''
+    admin_group = forms.ChoiceField(choices=(
+            (1, "District Officials"),
+            (2, "MassRIDES"),
+            (3, "Site Staff")
+        )
+    )
+    '''
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
+        self.helper.form_tag = False
 
     class Meta:
         model = User
-        fields = ('first_name','last_name','email')
+        fields = ('first_name','last_name','email',)
 
 class ProfileForm(InitModelForm):
-#    place = forms.ModelChoiceField(Workplace.objects, widget=AddSelect)
+    admin_group = forms.ModelChoiceField(
+        queryset=Group.objects.all()
+    )
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
-        self.helper.add_input(Submit('submit', 'Save profile'))
+        self.helper.form_tag = False
 
     class Meta:
         model = Profile
         exclude = ('user')
-
-#    class Media:
-#        js = ["/media/admin/js/admin/RelatedObjectLookups.js"]

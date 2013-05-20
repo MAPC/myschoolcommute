@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.forms import ValidationError
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Field, Layout, Fieldset, ButtonHolder, Submit
+
 def index(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/accounts/profile/')
@@ -40,6 +43,7 @@ def register(request):
         profile_form = ProfileForm()
         user_form = RegistrationForm()
 
+    profile_form.helper.add_input(Submit('submit', 'Create the account'))
     return render_to_response("accounts/register.html", {
         'user_form' : user_form, 'profile_form': profile_form
     }, context_instance=RequestContext(request))
@@ -54,7 +58,7 @@ def profile_authed(request):
 def profile(request, username):
     if request.user.is_authenticated():
         u = User.objects.get(username=username)
-        p = Profile.objects.get(user=u)
+        p = Profile.objects.get_or_create(user=u)
 
         user_form = UserForm(instance=u)      
         user_form.merge_from_initial()
@@ -69,8 +73,12 @@ def profile(request, username):
         return HttpResponseRedirect('/')
 
 @login_required
-def profile_edit(request):
-    p = request.user.get_profile()
+def profile_edit(request, username=None):
+    if username is None:
+        p = request.user.get_profile()
+        username = request.user.username
+    else:
+        p = Profile.objects.get(user__username=username)
 
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
@@ -78,28 +86,15 @@ def profile_edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             p = profile_form.save()
-            return HttpResponseRedirect(reverse('user_detail', args=[request.user.username]))
+
+            return HttpResponseRedirect(reverse('user_detail', args=[username]))
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=p)
-        
+
+    profile_form.helper.add_input(Submit('submit', 'Save account'))
+
     return render_to_response("accounts/edit.html", {
         'user_form' : user_form, 'profile_form': profile_form
     }, context_instance=RequestContext(request) )
 
-def add_place(request):
-    if request.method == "POST":
-        form = WorkplaceForm(request.POST)
-        if form.is_valid():
-            try:
-                new = form.save()
-            except ValidationError, error:
-                new = None
-            if new:
-                return HttpResponse('<script type="text/javascript">opener.dismissAddAnotherPopup(window, "%s", "%s");</script>' % \
-                        (escape(new._get_pk_val()), escape(new)))
-    else:
-        form = WorkplaceForm()
-    
-    context = {'form':form, 'field':'place'}
-    return render_to_response("add_popup.html", context)

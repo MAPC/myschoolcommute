@@ -8,10 +8,11 @@
 {% endblock%}
 
 {% block content %}
-
-<legend>Register</legend>
-<br/>
-{% csrf_token %}
-{% crispy user_form %}
-
+    <legend>Register</legend>
+    <br/>
+    <form class='form-horizontal' action="." method="POST">
+        {% csrf_token %}
+        {% crispy user_form %}
+        {% crispy profile_form %}
+    </form>
 {% endblock %}

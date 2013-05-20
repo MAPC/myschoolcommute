@@ -4,13 +4,14 @@ from django.contrib.auth.models import User
 from fields import CountryField
 from django.template.loader import render_to_string
 
+from survey.models import District, School
+
 class Profile(models.Model):
     user = models.ForeignKey(User, unique=True, verbose_name='user')
-    telephone = models.CharField(max_length=20, null=True, blank=True)
-    address1 = models.CharField(max_length=50, null=True, blank=True, verbose_name='Address')
-    address2 = models.CharField(max_length=50, null=True, blank=True, verbose_name='')
-    city = models.CharField(max_length=50, null=True, blank=True)
-    postal = models.CharField(max_length=10, null=True, blank=True, verbose_name='ZIP code')
+    telephone = models.CharField(max_length=20, null=True, blank=False)
+    official_title = models.CharField(max_length=50, null=True, blank=False)
+    district = models.ForeignKey(District, null=True, blank=False)
+    school = models.ForeignKey(School, null=True, blank=True)
 
     def get_all_fields(self):
         """Returns a list of all field names on the instance."""
@@ -30,14 +31,11 @@ class Profile(models.Model):
 
             # only display fields with values and skip some fields entirely
             if f.editable and value and f.name not in ('id', 'status', 'user', 'complete') :
-
-                fields.append(
-                  {
+                fields.append({
                    'label':f.verbose_name, 
                    'name':f.name, 
                    'value':value,
-                  }
-                )
+                })
         return fields
     
     def __unicode__(self):

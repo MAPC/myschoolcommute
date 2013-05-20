@@ -9,6 +9,10 @@
 
 {% block content %}
     <legend>Edit Account</legend>
-    {% crispy user_form %}
-    {% crispy profile_form %}
+    <br/>
+    <form class="form-horizontal" method="post" action=".">
+        {% csrf_token %}
+        {% crispy user_form %}
+        {% crispy profile_form %}
+    </form>
 {% endblock %}
