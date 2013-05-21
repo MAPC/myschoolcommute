@@ -12,6 +12,17 @@
     <br/>
     <form class="form-horizontal" method="post" action=".">
         {% csrf_token %}
+        {% if request.user.username != user.username and perms.user.can_change %}
+        <div class="control-group">
+            <label class="control-label" for="is_active"><b>Is Active</b></label>
+            <div class="controls">
+                <label class="checkbox">
+                    <input type="checkbox" id="is_active" name='is_active' {% if user.is_active %}checked="checked"{% endif %} >
+                    Check here if a new user registration and save the account.
+                </label>
+            </div>
+        </div>
+        {% endif %}
         {% crispy user_form %}
         {% crispy profile_form %}
     </form>

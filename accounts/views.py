@@ -7,9 +7,11 @@ from models import Profile
 from forms import LoginForm, RegistrationForm, ProfileForm, UserForm
 from django.utils.html import escape
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.urlresolvers import reverse
 from django.forms import ValidationError
+from django.core.mail import send_mail, mail_managers, mail_admins
+from django.conf import settings
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Field, Layout, Fieldset, ButtonHolder, Submit
@@ -28,17 +30,21 @@ def register(request):
     if request.method == 'POST':
         user_form = RegistrationForm(request.POST)
         profile_form = ProfileForm(request.POST)
+
         if user_form.is_valid() and profile_form.is_valid():
             new_user = user_form.save()
             p = Profile.objects.get(user=new_user)
             profile_form = ProfileForm(request.POST, instance=p)
             profile_form.save()
             
-            user = authenticate(username=request.POST['username'], password=request.POST['password1'])
-            if user is not None:
-                login(request,user)
+            users_page = 'http://'+ request.META['HTTP_HOST'] + reverse('user_list')
+            approve_page = 'http://'+ request.META['HTTP_HOST']  + reverse('user_edit', args=[new_user.username])
+            message = "New user registration!\n\n%s\n%s, %s\nActivate user: %s\nView all users: %s" % (
+                new_user.username, new_user.first_name, new_user.last_name, approve_page, users_page,
+            )
+            mail_admins('myschoolcommute.com new user '+new_user.username, message)
                 
-            return HttpResponseRedirect("/accounts/profile/")
+            return HttpResponseRedirect("/accounts/register/success/")
     else:
         profile_form = ProfileForm()
         user_form = RegistrationForm()
@@ -48,6 +54,9 @@ def register(request):
         'user_form' : user_form, 'profile_form': profile_form
     }, context_instance=RequestContext(request))
 
+def register_success(request):
+    return render_to_response("accounts/register_success.html", 
+        context_instance=RequestContext(request))
 
 def profile_authed(request):
     if request.user.is_authenticated():
@@ -76,25 +85,30 @@ def profile(request, username):
 def profile_edit(request, username=None):
     if username is None:
         p = request.user.get_profile()
-        username = request.user.username
+        user = request.user
     else:
-        p = Profile.objects.get(user__username=username)
+        user = User.objects.get(username=username)
+        p = user.get_profile()
 
     if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
+        user_form = UserForm(request.POST, instance=user)
         profile_form = ProfileForm(request.POST, instance=p)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             p = profile_form.save()
 
-            return HttpResponseRedirect(reverse('user_detail', args=[username]))
+            if 'is_active' in request.POST and request.user.has_perm(user):
+                user.is_active = True
+                user.save()
+
+            return HttpResponseRedirect(reverse('user_detail', args=[user.username]))
     else:
-        user_form = UserForm(instance=request.user)
+        user_form = UserForm(instance=user)
         profile_form = ProfileForm(instance=p)
 
     profile_form.helper.add_input(Submit('submit', 'Save account'))
 
     return render_to_response("accounts/edit.html", {
-        'user_form' : user_form, 'profile_form': profile_form
+        'user_form' : user_form, 'profile_form': profile_form, 'user': user
     }, context_instance=RequestContext(request) )
 

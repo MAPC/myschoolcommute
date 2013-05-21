@@ -5,13 +5,21 @@
 <br/>
 <table class="table table-striped">
 	<thead>
-		<tr><th><b>Username</b></th> <th><b>Name<b></th> <th><b>Last login<b></th> </tr>
+		<tr>
+            {% if perms.user.can_change %}
+            <th><b>Is activated</b></th>
+            {% endif %}
+            <th><b>Username</b></th> <th><b>Name<b></th> <th><b>Last login<b></th> 
+        </tr>
 	</thead>
 {% for o in object_list %}
 <tr>
+    {% if perms.user.can_change %}
+    <td><b>{{o.is_active}}</b></td>
+    {% endif %}
     <td>
         {% if perms.user.can_change %}
-        <a href='{% url "profile_edit" o.username %}'><i class="icon-pencil"></i></a>
+        <a href='{% url "user_edit" o.username %}'><i class="icon-pencil"></i></a>
         {% endif %}
         <strong><a href="{% url "user_detail" o.username %}">{{o.username}}</a></strong>
 

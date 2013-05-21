@@ -72,6 +72,10 @@ class RegistrationForm(forms.Form):
                                                                maxlength=75)),
                              label=_("Email address"))    
 
+    group = forms.ModelChoiceField(
+        queryset=Group.objects.all(), help_text="Which admin group are you in?"
+    )
+
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
 
@@ -121,20 +125,25 @@ class RegistrationForm(forms.Form):
                                      password = self.cleaned_data['password1'])
         u.first_name = self.cleaned_data['first_name']
         u.last_name = self.cleaned_data['last_name']
-        u.is_active = True
+        u.is_active = False
+
+        group = self.cleaned_data['group']
+
         if commit:
             u.save()
+            u.groups.add(group)
+        else:
+            old_save_m2m = u.save_m2m
+            def save_m2m():
+                old_save_m2m()
+                u.groups.add(group)
+            u.save_m2m = save_m2m
         return u
 
 class UserForm(InitModelForm):
-    '''
-    admin_group = forms.ChoiceField(choices=(
-            (1, "District Officials"),
-            (2, "MassRIDES"),
-            (3, "Site Staff")
-        )
-    )
-    '''
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
+    email = forms.CharField(required=True)
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
 
@@ -147,13 +156,8 @@ class UserForm(InitModelForm):
         fields = ('first_name','last_name','email',)
 
 class ProfileForm(InitModelForm):
-    admin_group = forms.ModelChoiceField(
-        queryset=Group.objects.all()
-    )
-
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
-
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
         self.helper.form_tag = False

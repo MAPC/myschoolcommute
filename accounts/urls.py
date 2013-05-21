@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     (r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'accounts/logout.html'}),
     
     url(r'^register/$', register, name='register'),
-    url(r'^register/success/$', register, name='register_success'),
+    url(r'^register/success/$', register_success, name='register_success'),
     
     (r'^password/change/$', 'django.contrib.auth.views.password_change', {'template_name': 'accounts/password_change_form.html'}),
     (r'^password/done/$', 'django.contrib.auth.views.password_change_done', {'template_name': 'accounts/password_change_done.html'}),
@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     
     (r'^profile/$', profile_authed),
     url(r'^edit/$', profile_edit),
-    url(r'^edit/(?P<username>\w+)/$', profile_edit, name='profile_edit'),
+    url(r'^edit/(?P<username>\w+)/$', profile_edit, name='user_edit'),
     url(r'^profile/(?P<username>\w+)/$', profile ,name='user_detail'),
     
     url(r'^users/$', 
