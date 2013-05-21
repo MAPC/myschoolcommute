@@ -100,6 +100,12 @@ def profile_edit(request, username=None):
             if 'is_active' in request.POST and request.user.has_perm(user):
                 user.is_active = True
                 user.save()
+                send_mail(
+                    "Your myschoolcommute.com account has been approved",
+                    "You may login at http://%s/%s" % (request.META['HTTP_HOST'], reverse('login'),),
+                    settings.SERVER_EMAIL,
+                    [request.user.email]
+                )
 
             return HttpResponseRedirect(reverse('user_detail', args=[user.username]))
     else:
