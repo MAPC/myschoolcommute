@@ -3,11 +3,12 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
+from django.db.models import Count
 
 from django.forms.models import inlineformset_factory
 
 from survey.models import School, Survey, Child, District, Street
-from survey.forms import SurveyForm, ChildForm
+from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
 
 def index(request):
     
@@ -29,7 +30,10 @@ def district(request, district_slug):
 def district_list(request):
     
     # get all districts with active school surveys
-    districts = District.objects.filter(school__survey_active=True).distinct()
+    districts = District.objects.filter(school__survey_active=True)
+    districts = districts.annotate(school_count=Count('school'))
+    districts = districts.annotate(survey_count=Count('school__survey'))
+    districts = districts.distinct()
     
     return render_to_response('survey/district_list.html', locals(), context_instance=RequestContext(request))
 
@@ -40,13 +44,20 @@ def school_edit(request, district_slug, school_slug, **kwargs):
     
     # get school in district
     school = get_object_or_404(School.objects, districtid=district, slug__iexact=school_slug)
-    
+        
     # translate to lat/lon
     school.geometry.transform(4326)
 
+    school_form = SchoolForm(instance=school)
+
+    surveys = Survey.objects.filter(school=school)
+
     return render_to_response('survey/school_edit.html', {
             'school' : school, 
-            'district' : district
+            'district' : district,
+            'school_form': school_form,
+            'report_form': ReportForm(),
+            'surveys': surveys
         },
         context_instance=RequestContext(request)
     )

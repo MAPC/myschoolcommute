@@ -5,12 +5,19 @@
 
 	<h2>Districts</h2>
 	
-	<ul>
+	<table class='table table-hover'>
+		<thead>
+			<tr><th>District name</th><th>Number of Schools</th><th>Number of Surveys</th></tr>
+		</thead>
 	{% for district in districts %}
 	
-		<li><a href="/{{ district.slug }}/">{{ district.distname }}</a></li>
+		<tr>
+			<td><a href="/{{ district.slug }}/">{{ district.distname }}</a></td>
+			<td>{{ district.school_count }}</td>
+			<td>{{ district.survey_count }}</td>
+		</tr>
 	
 	{% endfor %}
-	</ul>
-	
+	</table>
+
 {% endblock %}

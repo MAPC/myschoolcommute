@@ -12,6 +12,8 @@ import time
 
 from models import School
 
+from myschoolcommute.local_settings import DATABASES
+
 BLUE = "#0088CC"
 GRAY = "#DDDDDD"
 
@@ -50,21 +52,25 @@ def school_tms(request, school_id, zoom, column, row):
 
 def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326):
     format = 'png'
-    alpha = 1.0
-
-    background = False
 
     school = School.objects.get(pk=school_id)
     point = school.geometry
     circle = point.buffer(500.0)
 
     m = mapnik.Map(int(width), int(height), "+init=epsg:"+str(srid))
-    #m.background = mapnik.Color('steelblue')
+    if bbox is None:
+        circle.transform(srid)
+        bbox = mapnik.Box2d(*circle.extent)
+    m.zoom_to_box(bbox)
+
+    m.background = mapnik.Color('steelblue')
+
     '''
+    # styles
     s = mapnik.Style()
     r = mapnik.Rule()
     line_symbolizer = mapnik.LineSymbolizer(mapnik.Color(BLUE), 1)
-    line_symbolizer.fill_opacity = float(alpha)
+    line_symbolizer.fill_opacity = float(1.0)
     r.symbols.append(line_symbolizer)
     s.rules.append(r)
     m.append_style('top',s)
@@ -79,12 +85,9 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326
     layer.styles.append('top')
     m.layers.append(layer)
     '''
-    if bbox is None:
-        circle.transform(srid)
-        bbox = mapnik.Box2d(*circle.extent)
-    m.zoom_to_box(bbox)
 
     '''
+    # caching
     key = "school"+str(school_id)
     working = cache.get(key+"working")
     while working:
@@ -115,14 +118,29 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326
     m.append_style("bot",s)
 
     #ds = mapnik.Datasource(type="csv",inline=csv_string.encode('ascii'))
-    layer = mapnik.Layer('bg', '+init=epsg:900914')
+    layer = mapnik.Layer('bg', '+init=epsg:%s' % srid)
     #layer.datasource = ds
 
-    #query = "select * from survey_network_walk' JOIN (select * from driving_distance("
-    #    + "'select id, miles from survey_network_walk', %s"
+    query = """select * from network_walk' JOIN 
+                (select * from 
+                    driving_distance(
+                        'select id, miles from survey_network_walk', 
+                        %s , 6, false, false
+                    )
+                ) as route""" % school_id
 
-    layer.datasource = mapnik.PostGIS(host='localhost',user='mysc',password='SuperHappyFunSlide',dbname='mysc',
-        table='survey_network_walk', extent=bbox)
+    query = """SELECT * FROM 
+                (select * from 
+                    driving_distance(
+                        'SELECT ogc_fid as id,source,target,miles AS cost FROM network_walk'
+                        , %s, 6, false, false
+                    )
+                ) AS route""" % query
+
+    db = DATABASES['default']['NAME']
+    usr = DATABASES['default']['USER']
+    pwd = DATABASES['default']['PASSWORD']
+    layer.datasource = mapnik.PostGIS(host='localhost',user=usr,password=pwd,dbname=db, table=query, extent=bbox)
 
     layer.styles.append('bot')
     m.layers.append(layer)

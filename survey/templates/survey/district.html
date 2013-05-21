@@ -5,12 +5,19 @@
 
 	<h2>{{ district.distname }}</h2>
 	
-	<ul>
+	<table class='table table-hover'>
+		<thead>
+			<tr><th>School name</th><th>Number of surveys</th><th>Is Active</th></tr>
+		</thead>
 	{% for school in district.school_set.select_related %}
 	
-		<li><a href="{{ school.slug }}/edit/">{{ school.name }}</a></li>
+		<tr>
+			<td><a href="{{ school.slug }}/edit/">{{ school.name }}</a></td>
+			<td>{{ school.survey_set.count }}</td>
+			<td>{{ school.survey_active }}</td>
+		</tr>
 	
 	{% endfor %}
-	</ul>
+	</table>
 	
 {% endblock %}

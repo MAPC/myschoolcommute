@@ -13,6 +13,8 @@ ADMINS = (
     ('Pavel', 'pavel@appliedgeosolutions.com'),
 )
 
+SERVER_EMAIL = 'admin@appliedgeosolutions.com'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -217,6 +219,7 @@ if DEBUG_TOOLBAR:
         'debug_toolbar.panels.logger.LoggingPanel',
     )
 
+AUTH_PROFILE_MODULE = 'accounts.Profile'
 # import local settings
 try:
     execfile(os.path.join(CURRENT_PATH,'local_settings.py'))
