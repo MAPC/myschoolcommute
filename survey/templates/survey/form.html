@@ -228,8 +228,7 @@ $(document).ready(function() {
  
 <p>
 {% blocktrans with school.name as schoolname %}
-{{ schoolname }} would like to learn how students get to and from school in order to plan safe and healthy walking options for students. 
-The survey will take less than 3 minutes to complete. Please complete one survey for <em>each</em> child at this school.
+Your child’s school is conducting a survey to learn how students get to school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. Please complete one survey for each child at this school. If you already completed a paper survey, do not complete this online form. If you have questions, please contact a school administrator or call Safe Routes to School at 857-368-8650.
 {% endblocktrans %}
 </p>
 
@@ -243,13 +242,16 @@ The survey will take less than 3 minutes to complete. Please complete one survey
 
 	<fieldset>
 		
-		<p class="question_title">{% trans "What street do you live on?" %} (<span class="required_field">required</span>)</p>
-
+		<p class="question_title">{% trans "What is your approximate home location?" %} (<span class="required_field">required</span>)</p>
+		<p>
+			{% blocktrans %}
+			(If a child's home location or commute is not the same every day, choose the option that reflects the <em>most common</em> location and travel pattern.)
+			{% endblocktrans %}
+		</p
 		<p>
 			{% blocktrans %}								
 			Please drag and drop the yellow home-marker to an intersection on your street, near your home:
 			{% endblocktrans %}
-			
 		</p>
 		
 		<div id="map_canvas">map div</div>

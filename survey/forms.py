@@ -61,7 +61,7 @@ class ChildForm(ModelForm):
         model = Child
 
 class SchoolForm(ModelForm):
-
+    
     def __init__(self, *args, **kwargs):
         super(SchoolForm, self).__init__(*args, **kwargs)
 
