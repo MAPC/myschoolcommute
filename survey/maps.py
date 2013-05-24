@@ -63,9 +63,8 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326
         bbox = mapnik.Box2d(*circle.extent)
     m.zoom_to_box(bbox)
 
-    m.background = mapnik.Color('steelblue')
+    #m.background = mapnik.Color('steelblue')
 
-    '''
     # styles
     s = mapnik.Style()
     r = mapnik.Rule()
@@ -80,11 +79,10 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326
     csv_string = 'wkt,Name\n"%s","test"\n' % wkt
     ds = mapnik.Datasource(type="csv",inline=csv_string)
 
-    layer = mapnik.Layer('main', '+init=epsg:'+srid)
+    layer = mapnik.Layer('circle', '+init=epsg:'+str(srid))
     layer.datasource = ds
     layer.styles.append('top')
     m.layers.append(layer)
-    '''
 
     '''
     # caching
@@ -107,42 +105,49 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326
         cache.delete(key+"working")
     '''
 
+    layer = mapnik.Layer('main', '+init=epsg:'+str(900914))
+
+    closest_street =  """ (select ogc_fid from survey_network_bike order by  
+        st_transform((select geometry from survey_school where id = %d), 900914) 
+        <-> geometry  
+        asc limit 1) """ % int(school_id)
+
+    query = """select * from survey_network_walk
+                JOIN
+                (SELECT * FROM 
+                   driving_distance(
+                        'SELECT ogc_fid as id,source,target,miles AS cost FROM survey_network_walk'
+                        , %s, 1, false, false
+                    )) AS route
+                ON
+                survey_network_walk.ogc_fid = route.vertex_id""" % closest_street
+
+    streets = NetworkWalk.objects.raw(query)
+    csv_string = "wkt,Name\n"
+    for line in streets:
+        csv_string += '"%s","test"\n' % line.geometry.wkt
+    ds = mapnik.Datasource(type="csv",inline=csv_string.encode('ascii'))
+    layer.dataset = ds
+
     # Apply styles
     s = mapnik.Style()
     r = mapnik.Rule()
-    line_symbolizer = mapnik.LineSymbolizer(mapnik.Color('black'),0.8)
-    #polygon_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color('rgb(70%,70%,70%)'))
-    #r.symbols.append(polygon_symbolizer)
+    line_symbolizer = mapnik.LineSymbolizer(mapnik.Color('black'), 0.8)
+    point_symbolizer = mapnik.PointSymbolizer()
+
     r.symbols.append(line_symbolizer)
+    r.symbols.append(point_symbolizer)
+
+    #t = mapnik.TextSymbolizer(mapnik.Expression('[ogc_fid]'), 'DejaVu Sans Book', 10, mapnik.Color('black'))
+    #t.halo_fill = mapnik.Color('white')
+    #t.halo_radius = 1
+    #t.label_placement = mapnik.label_placement.LINE_PLACEMENT
+    #r.symbols.append(t)
+
     s.rules.append(r)
-    m.append_style("bot",s)
 
-    #ds = mapnik.Datasource(type="csv",inline=csv_string.encode('ascii'))
-    layer = mapnik.Layer('bg', '+init=epsg:%s' % srid)
-    #layer.datasource = ds
-
-    query = """select * from network_walk' JOIN 
-                (select * from 
-                    driving_distance(
-                        'select id, miles from survey_network_walk', 
-                        %s , 6, false, false
-                    )
-                ) as route""" % school_id
-
-    query = """SELECT * FROM 
-                (select * from 
-                    driving_distance(
-                        'SELECT ogc_fid as id,source,target,miles AS cost FROM network_walk'
-                        , %s, 6, false, false
-                    )
-                ) AS route""" % query
-
-    db = DATABASES['default']['NAME']
-    usr = DATABASES['default']['USER']
-    pwd = DATABASES['default']['PASSWORD']
-    layer.datasource = mapnik.PostGIS(host='localhost',user=usr,password=pwd,dbname=db, table=query, extent=bbox)
-
-    layer.styles.append('bot')
+    m.append_style("main",s)
+    layer.styles.append('main')
     m.layers.append(layer)
 
     # Render to image
@@ -153,4 +158,5 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326
     response['Content-length'] = str(len(im))
     response['Content-Type'] = mimetypes.types_map['.'+format]
     response.write(im)
+
     return response
