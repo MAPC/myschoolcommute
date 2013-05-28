@@ -74,6 +74,9 @@ class RegistrationForm(forms.Form):
 
     group = forms.ModelChoiceField(
         queryset=Group.objects.all(), help_text="Which admin group are you in?"
+        #Hide group selection, comment out below to re-enable
+        , initial = Group.objects.get(name="District Officials")
+        , widget = forms.HiddenInput()
     )
 
     def __init__(self, *args, **kwargs):

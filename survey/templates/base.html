@@ -90,7 +90,6 @@
                 <li {% if 'accounts' in request.path %}class='active'{% endif %}><a href="/accounts/">Accounts</a></li>
                 <li><a href="/districts/">Districts</a></li>
                 <li><a href="/{{request.user.get_profile.district.slug}}/">Schools</a></li>
-                <li><a href="/surveys/">Surveys</a></li>
                 {% endif %}
             </ul>
           </div><!--/.nav-collapse -->

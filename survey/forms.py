@@ -60,8 +60,15 @@ class ChildForm(ModelForm):
     class Meta:
         model = Child
 
+YES_OR_NO = (
+    (True, 'Yes'),
+    (False, 'No')
+)
+
 class SchoolForm(ModelForm):
-    
+    survey_active = forms.TypedChoiceField(
+        choices=YES_OR_NO, widget=forms.RadioSelect, coerce=bool, label="Is survey active?"
+    )
     def __init__(self, *args, **kwargs):
         super(SchoolForm, self).__init__(*args, **kwargs)
 
@@ -71,7 +78,7 @@ class SchoolForm(ModelForm):
 
     class Meta:
         model = School
-        fields = ("name", "survey_active", "principal", "phone", "fax", "survey_incentive", )
+        fields = ("name", "survey_active", "survey_incentive", )
 
 class ReportForm(forms.Form):
     start_date = forms.DateField(widget=forms.DateInput(format = '%m/%d/%Y'), input_formats=('%m/%d/%Y',))
