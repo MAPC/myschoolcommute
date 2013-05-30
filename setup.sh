@@ -10,6 +10,9 @@ apt-get -y install libmapnik mapnik-utils python-mapnik
 #Routing
 apt-get -y install postgresql-9.1-pgrouting 
 
+#R
+apt-get -y r-base-core r-cran-dbi
+
 #Python requirements
 easy_install pip
 pip install -r requirements.txt
