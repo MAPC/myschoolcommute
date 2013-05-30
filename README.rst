@@ -1,30 +1,34 @@
-==============================
-Walk Boston Parent Survey Form
-==============================
+============================
+Safe Routes To School Survey
+============================
 
-http://myschoolcommute.org/
+http://www.masaferoutessurvey.com/
 
 Scope: collect transportation mode and location information per child and school in anonymous parent survey
 
-MAPC Project team: Tim Reardon, Jamila Henderson, Christian Spanring
+MAPC Project team: Tim Reardon, Clay Martin, Jamila Henderson, Christian Spanring
 
 Applied GeoSolutions Project team: Matthew Hanson, Pavel Dorovskoy
 
 Usage
 =====
 
-Install requirements
+Execute setup.sh to install system dependencies.  
+
+Install Python requirements
 
 :: 
 
-  $ pip install -r requirements.txt
+  $ pip install -r requirements.txt 
 
-Get submodules (bootstrap CSS framework)
+Install R requirements:
 
 ::
 
-  $ git submodule init
-  $ git submodule update
+    $ sudo R
+    > chooseCRANmirror()
+    > install.packages(c("RPostgreSQL", "ggplot2", "knitr", "Hmisc", "reshape2", "plyr", "scales"))
+    > q()
 
 Update translations
 
@@ -36,4 +40,4 @@ Update translations
 
 ----
 
-Copyright 2011 MAPC
+Copyright 2013 MAPC
