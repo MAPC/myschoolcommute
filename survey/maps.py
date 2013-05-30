@@ -21,6 +21,8 @@ GRAY = "#DDDDDD"
 LAVENDER = "#E6E6FA"
 PURPLE = "#9370DB"
 VIOLET = "#9400D3"
+PEACHPUFF = "#FFDAB9"
+LIGHTCYAN = "#E0FFFF"
 
 class NetworkWalk(models.Model):
     ogc_fid = models.IntegerField(primary_key=True)
@@ -88,11 +90,15 @@ def paths_sql(school_id, network='survey_network_walk', miles=1.5):
 
 def get_sheds(school_id):    
     query = paths_sql(school_id, miles=1.5)
-    cursor = connection.cursor()
+    bike_query = paths_sql(school_id, 'survey_network_bike', miles=2.0)
 
+    cursor = connection.cursor()
     hull_query = """ 
     WITH paths as (%s)
     SELECT ST_AsText(
+        ST_Union(array(select ST_BUFFER(geometry, 100) from (%s) as BIKE))
+    ),
+    ST_AsText(
         ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 1.5))
     ),
     ST_AsText(
@@ -100,19 +106,19 @@ def get_sheds(school_id):
     ),
     ST_AsText(
         ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 0.5))
-    )""" % (query,)
+    )""" % (query, bike_query)
     
     cursor.execute(hull_query)
     row = cursor.fetchone()
 
-    return {1.5:row[0], 1.0:row[1], 0.5:row[2]}
+    return {2.0: row[0], 1.5:row[1], 1.0:row[2], 0.5:row[3]}
 
 def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=900914):
     format = 'png'
 
     school = School.objects.get(pk=school_id)
     point = school.geometry
-    circle = point.buffer(2500.0)
+    circle = point.buffer(3000.0)
 
     m = mapnik.Map(int(width), int(height), "+init=epsg:"+str(srid))
     if bbox is None:
@@ -124,7 +130,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=9009
 
     # styles for main
     s = mapnik.Style()
-    for name, color in (('0.5',VIOLET), ('1.0',PURPLE), ('1.5', LAVENDER)):
+    for name, color in (('0.5',VIOLET), ('1.0',PURPLE), ('1.5', LAVENDER), ('2.0', LIGHTCYAN)):
         r = mapnik.Rule()
         r.filter = mapnik.Filter("[name] = "+name)
         line_symbolizer = mapnik.LineSymbolizer()
@@ -159,11 +165,12 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=9009
     sheds = get_sheds(school_id)
 
     csv_string = 'wkt,name\n'
-    for key, wkt in sheds.items():
+    for key, wkt in reversed(sorted(sheds.items(), key=lambda a: a[0])):
         g = GEOSGeometry(wkt)
         g.srid = 900914
         g.transform(srid)
         csv_string += '"%s","%s"\n' % (g.wkt, str(key))
+        print key
 
     layer = mapnik.Layer('paths', "+init=epsg:"+str(srid))
     ds = mapnik.Datasource(type="csv",inline=csv_string.encode('ascii'))
