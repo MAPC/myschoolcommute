@@ -5,22 +5,21 @@
 {{block.super}}
 <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
 <script src="{{ STATIC_URL }}js/bootstrap-datepicker.js"></script>
+
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
 <!--[if lte IE 8]>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
 <![endif]-->
 <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+    
+<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+<script src="{{ STATIC_URL }}js/Leaflet.Google.js"></script>
+
 <style type='text/css'>
     #map { height: 350px; padding-bottom:1em;}
 </style>
 
 <script type="text/javascript">
-
-var LAVENDER = "#E6E6FA";
-var PURPLE = "#9370DB";
-var VIOLET = "#9400D3";
-var PEACHPUFF = "#FFDAB9";
-var LIGHTCYAN = "#E0FFFF";
 
 var color_map = {
     '2.0': "00FFFF",
@@ -34,12 +33,11 @@ $(document).ready(function(){
 
     var map = L.map('map').setView(school_loc, 13);
 
-    
-    L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
+    var mq = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
         maxZoom: 18,
         subdomains: '123',
         attribution: "Imagery Copyright (c) <a href='http://MapQuest.com'>MapQuest</a>"
-    }).addTo(map);
+    });
     
     /*
     L.tileLayer('http://{{request.META.HTTP_HOST}}/{{school.pk}}/{z}/{y}/{x}/walkshed.png', {
@@ -50,6 +48,10 @@ $(document).ready(function(){
         maxZoom: 18
     }).addTo(map);
     */
+
+    var ggl = new L.Google('ROADMAP');
+    map.addLayer(ggl);
+    map.addControl(new L.Control.Layers( {'MapQuest':mq, 'Google':ggl}, {}));
 
     var paths;
 
