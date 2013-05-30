@@ -69,6 +69,7 @@ class SchoolForm(ModelForm):
     survey_active = forms.TypedChoiceField(
         choices=YES_OR_NO, widget=forms.RadioSelect, coerce=bool, label="Is survey active?"
     )
+    survey_incentive = forms.CharField(label="Survey Form Message")
     def __init__(self, *args, **kwargs):
         super(SchoolForm, self).__init__(*args, **kwargs)
 

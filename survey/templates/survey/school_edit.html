@@ -37,39 +37,29 @@ $(document).ready(function(){
         maxZoom: 18
     }).addTo(map);
     */
-    var states = [{
-        "type": "Feature",
-        "properties": {"party": "Republican"},
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [[
-                [-104.05, 48.99],
-                [-97.22,  48.98],
-                [-96.58,  45.94],
-                [-104.03, 45.94],
-                [-104.05, 48.99]
-            ]]
-        }
-    }, {
-        "type": "Feature",
-        "properties": {"party": "Democrat"},
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [[
-                [-109.05, 41.00],
-                [-102.06, 40.99],
-                [-102.03, 36.99],
-                [-109.04, 36.99],
-                [-109.05, 41.00]
-            ]]
-        }
-    }];
+
+    var myStyle = {
+        "color": "red",
+        "weight": 5,
+        "opacity": 0.65
+    };
+
+    var paths;
 
     $.getJSON('/{{school.pk}}/walkshed.geojson',function(data){
-        L.geoJson(data).addTo(map);
+        paths = L.geoJson(data, {
+            stlye: function(feature) {
+                console.log(featre.properties);
+                if (feature.properties.cost < 0.5) {
+                    return {color: "#ff0000"};
+                }else{
+                    return {color: "#0000ff"};
+                }
+            }
+        }).addTo(map);
     });
 
-    var circle = L.circle(school_loc, 100, {
+    var circle = L.circle(school_loc, 50, {
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5
