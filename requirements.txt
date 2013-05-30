@@ -5,3 +5,8 @@ django-debug-toolbar
 django-localeurl==1.5
 django-rosetta==0.6.2
 psycopg2==2.4.2
+django-crispy-forms
+#GIS
+shapely
+gdal
+fiona

@@ -4,7 +4,6 @@ from django.contrib.gis.geos import Point, GEOSGeometry
 from django.core.cache import cache, get_cache
 from django.db import connection
 
-import ModestMaps
 import pickle
 import mapnik
 import mimetypes
