@@ -110,8 +110,9 @@ def get_sheds(school_id):
     
     cursor.execute(hull_query)
     row = cursor.fetchone()
-
-    return {2.0: row[0], 1.5:row[1], 1.0:row[2], 0.5:row[3]}
+    data = {2.0: row[0], 1.5:row[1], 1.0:row[2], 0.5:row[3]}
+    
+    return data
 
 def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=900914):
     format = 'png'
@@ -235,33 +236,18 @@ def walks(request, zoom, column, row):
     return response
 
 def school_sheds_json(request, school_id):    
-    query = paths_sql(school_id, miles=1.5)
-    cursor = connection.cursor()
+    sheds = get_sheds(school_id)
 
-    hull_query = """ 
-    WITH paths as (%s)
-    SELECT ST_AsText(
-        ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 1.5))
-    ),
-    ST_AsText(
-        ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 1))
-    ),
-    ST_AsText(
-        ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 0.5))
-    )""" % (query,)
-    
-    cursor.execute(hull_query)
-    row = cursor.fetchone()
     features = []
-    for col in row:
-        geometry = GEOSGeometry(col)
+    for dist, wkt in sheds.items():
+        geometry = GEOSGeometry(wkt)
         geometry.srid = 900914
         geometry.transform(4326)
         features.append(""" {
             "type": "Feature",
             "geometry": %s,
-            "properties": {"id": %d, "cost": %f}
-        }""" % (geometry.geojson, 0, 0))
+            "properties": {"distance": "%0.1f"}
+        }""" % (geometry.geojson, dist))
 
     json_text = """{
     "type": "FeatureCollection",

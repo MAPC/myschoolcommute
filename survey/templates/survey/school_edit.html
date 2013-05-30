@@ -16,6 +16,19 @@
 
 <script type="text/javascript">
 
+var LAVENDER = "#E6E6FA";
+var PURPLE = "#9370DB";
+var VIOLET = "#9400D3";
+var PEACHPUFF = "#FFDAB9";
+var LIGHTCYAN = "#E0FFFF";
+
+var color_map = {
+    '2.0': "00FFFF",
+    '1.5': "#6600CC",
+    '1.0': "#9966FF",
+    '0.5': "#FF33FF"
+};
+
 $(document).ready(function(){
     var school_loc = [{{ school.geometry.y }}, {{ school.geometry.x }}];
 
@@ -38,23 +51,17 @@ $(document).ready(function(){
     }).addTo(map);
     */
 
-    var myStyle = {
-        "color": "red",
-        "weight": 5,
-        "opacity": 0.65
-    };
-
     var paths;
 
     $.getJSON('/{{school.pk}}/walkshed.geojson',function(data){
         paths = L.geoJson(data, {
-            stlye: function(feature) {
-                console.log(featre.properties);
-                if (feature.properties.cost < 0.5) {
-                    return {color: "#ff0000"};
-                }else{
-                    return {color: "#0000ff"};
-                }
+            style: function(feature) {
+                console.log(feature.properties);
+                return {
+                    color: color_map[feature.properties.distance],
+                    weight: 1,
+                    opacity: 0.3
+                };
             }
         }).addTo(map);
     });
