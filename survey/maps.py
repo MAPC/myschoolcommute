@@ -18,6 +18,10 @@ from myschoolcommute.local_settings import DATABASES
 BLUE = "#0088CC"
 GRAY = "#DDDDDD"
 
+LAVENDER = "#E6E6FA"
+PURPLE = "#9370DB"
+VIOLET = "#9400D3"
+
 class NetworkWalk(models.Model):
     ogc_fid = models.IntegerField(primary_key=True)
     geometry = models.LineStringField(srid=900914)
@@ -82,7 +86,28 @@ def paths_sql(school_id, network='survey_network_walk', miles=1.5):
 
     return query
 
-def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326):
+def get_sheds(school_id):    
+    query = paths_sql(school_id, miles=1.5)
+    cursor = connection.cursor()
+
+    hull_query = """ 
+    WITH paths as (%s)
+    SELECT ST_AsText(
+        ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 1.5))
+    ),
+    ST_AsText(
+        ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 1.0))
+    ),
+    ST_AsText(
+        ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 0.5))
+    )""" % (query,)
+    
+    cursor.execute(hull_query)
+    row = cursor.fetchone()
+
+    return {1.5:row[0], 1.0:row[1], 0.5:row[2]}
+
+def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=900914):
     format = 'png'
 
     school = School.objects.get(pk=school_id)
@@ -97,44 +122,19 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326
 
     #m.background = mapnik.Color('steelblue')
 
-    # cirlcle style
-    s = mapnik.Style()
-    r = mapnik.Rule()
-    line_symbolizer = mapnik.LineSymbolizer(mapnik.Color(BLUE), 0.5)
-    line_symbolizer.fill_opacity = float(1.0)
-    r.symbols.append(line_symbolizer)
-    s.rules.append(r)
-    m.append_style('circle',s)
-
     # styles for main
     s = mapnik.Style()
-    r = mapnik.Rule()
-    line_symbolizer = mapnik.LineSymbolizer()
-    poly_symbolizer = mapnik.PolygonSymbolizer()
-
-    r.symbols.append(line_symbolizer)
-    r.symbols.append(poly_symbolizer)
-
-    t = mapnik.TextSymbolizer(mapnik.Expression('[cost]'), 'DejaVu Sans Book', 10, mapnik.Color('black'))
-    t.halo_fill = mapnik.Color('white')
-    t.halo_radius = 1
-    t.label_placement = mapnik.label_placement.LINE_PLACEMENT
-    r.symbols.append(t)
-    s.rules.append(r)
+    for name, color in (('0.5',VIOLET), ('1.0',PURPLE), ('1.5', LAVENDER)):
+        r = mapnik.Rule()
+        r.filter = mapnik.Filter("[name] = "+name)
+        line_symbolizer = mapnik.LineSymbolizer()
+        poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color(color))
+        r.symbols.append(line_symbolizer)
+        r.symbols.append(poly_symbolizer)
+        s.rules.append(r)
     m.append_style("paths",s)
-
     #styles end
-    '''
-    wkt = circle.wkt.encode('ascii')
 
-    csv_string = 'wkt,Name\n"%s","test"\n' % wkt
-    ds = mapnik.Datasource(type="csv",inline=csv_string)
-
-    layer = mapnik.Layer('circle', '+init=epsg:'+str(srid))
-    layer.datasource = ds
-    layer.styles.append('circle')
-    m.layers.append(layer)
-    '''
     '''
     # caching
     key = "school"+str(school_id)
@@ -156,41 +156,14 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326
         cache.delete(key+"working")
     '''
 
-    query = paths_sql(school_id, 'survey_network_walk', 1.5)
+    sheds = get_sheds(school_id)
 
-    print query
-
-    time1 = time.time()
-    streets = list(NetworkWalk.objects.raw(query))
-    time2 = time.time()
-    print 'Query function took %0.3f ms' % ((time2-time1)*1000.0)
-
-    csv_string = "wkt,Name,cost\n"
-
-    polys_05 = []
-    polys_1 = []
-    polys_15 = []
-    for line in streets:
-        line.geometry.transform(srid)
-        ls = geometry.LineString(line.geometry)
-        polys_05.append(ls)
-        
-        #csv_string += '"%s","%d","%f"\n' % (ls.wkt, line.pk, line.cost)
-
-    time1 = time.time()
-    poly = None
-    for ls in polys_05:
-        buffered = ls.buffer(0.0007)
-        try:
-            poly =  poly.union(buffered)
-        except Exception, e:
-            print str(e)
-            poly = buffered
-
-    time2 = time.time()
-    print 'Union function took %0.3f ms' % ((time2-time1)*1000.0)
-
-    csv_string += '"%s","%s","%f"\n' % (poly.wkt, "0.5", 0)
+    csv_string = 'wkt,name\n'
+    for key, wkt in sheds.items():
+        g = GEOSGeometry(wkt)
+        g.srid = 900914
+        g.transform(srid)
+        csv_string += '"%s","%s"\n' % (g.wkt, str(key))
 
     layer = mapnik.Layer('paths', "+init=epsg:"+str(srid))
     ds = mapnik.Datasource(type="csv",inline=csv_string.encode('ascii'))
@@ -206,8 +179,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=4326
     response['Content-length'] = str(len(im))
     response['Content-Type'] = mimetypes.types_map['.'+format]
     response.write(im)
-    time3 = time.time()
-    print 'Rendering function took %0.3f ms' % ((time3-time2)*1000.0)
+
     return response
 
 def walks(request, zoom, column, row):
