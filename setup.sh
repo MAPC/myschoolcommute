@@ -4,7 +4,7 @@ add-apt-repository -y ppa:mapnik/nightly-trunk
 apt-add-repository -y ppa:georepublic/pgrouting
 apt-get update
 #GeoDjango
-apt-get -y install postgis binutils libproj-dev gdal-bin
+apt-get -y install postgis binutils libproj-dev gdal-bin libgdal-dev
 #Mapnik
 apt-get -y install libmapnik mapnik-utils python-mapnik
 #Routing
