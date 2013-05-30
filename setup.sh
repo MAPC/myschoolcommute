@@ -1,4 +1,4 @@
-sudo apt-get install -y python-software-properties
+apt-get install -y python-software-properties
 add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
 add-apt-repository -y ppa:mapnik/nightly-trunk
 apt-add-repository -y ppa:georepublic/pgrouting
