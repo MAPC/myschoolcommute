@@ -20,41 +20,41 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	
-	// check if cookies are enabled
-	$.cookie('test_cookie', 'testing', { path: '/' });
-	if ($.cookie('test_cookie') !== 'testing') {
-		alert("Please allow cookies for this site in your browser, otherwise the survey form might not work. Thank you!");
-	}
+    
+    // check if cookies are enabled
+    $.cookie('test_cookie', 'testing', { path: '/' });
+    if ($.cookie('test_cookie') !== 'testing') {
+        alert("Please allow cookies for this site in your browser, otherwise the survey form might not work. Thank you!");
+    }
 
 {% if school %}
 
-	// setting marker location
-	var school = [{{ school.geometry.y }}, {{ school.geometry.x }}];
-	
-	// parsing hidden home location field
-	var homeCoord = $("#id_location")
-	.val()
-	.substr(7, ($("#id_location").val().length - 8))
-	.split(" ");
-	
-	// if we have a home location, render it
-	if (parseFloat(homeCoord[0]) === 0) {
-		var home = new L.LatLng({{ school.geometry.y }}+0.002, {{ school.geometry.x }}-0.002);
-	} else {
-		var home = new L.LatLng(homeCoord[1], homeCoord[0]);
-	}
-	// setting school id
-	$("#id_school").val({{ school.id }});
-	
+    // setting marker location
+    var school = [{{ school.geometry.y }}, {{ school.geometry.x }}];
+    
+    // parsing hidden home location field
+    var homeCoord = $("#id_location")
+    .val()
+    .substr(7, ($("#id_location").val().length - 8))
+    .split(" ");
+    
+    // if we have a home location, render it
+    if (parseFloat(homeCoord[0]) === 0) {
+        var home = new L.LatLng({{ school.geometry.y }}+0.002, {{ school.geometry.x }}-0.002);
+    } else {
+        var home = new L.LatLng(homeCoord[1], homeCoord[0]);
+    }
+    // setting school id
+    $("#id_school").val({{ school.id }});
+    
 {% else %}
 
-	var school = new L.LatLng(42.34, -71.0);
-	var home = new L.LatLng(42.335, -70.995);
-	
+    var school = new L.LatLng(42.34, -71.0);
+    var home = new L.LatLng(42.335, -70.995);
+    
 {% endif %}
  
-	var map = L.map('map_canvas').setView(school, 14);
+    var map = L.map('map_canvas').setView(school, 14);
 
     var roads = new L.Google('ROADMAP');
     var sat = new L.Google('HYBRID');
@@ -70,139 +70,139 @@ $(document).ready(function() {
         popupAnchor: [0, -30]
     });
 
-	var markerSchool = L.marker(school, {
-		icon: iconSchool, title: "Your school"
-	}).addTo(map);
+    var markerSchool = L.marker(school, {
+        icon: iconSchool, title: "Your school"
+    }).addTo(map);
 
-	var iconHome = L.icon({
+    var iconHome = L.icon({
         iconUrl: "{{ STATIC_URL }}img/home.png",
         iconSize: [32, 37],
         iconAnchor: [16, 37],
         popupAnchor: [0, -30]
     });
 
-	var markerHome = null;
+    var markerHome = null;
 
-	var saveLocation = function(latlng){
-		// write loc coord to hidden geometry field (in WGS84)
-		$("#id_location").val("POINT (" + latlng.lng + " " +  latlng.lat + ")");
-		// validate location
-		validation["marker"] = true;
+    var saveLocation = function(latlng){
+        // write loc coord to hidden geometry field (in WGS84)
+        $("#id_location").val("POINT (" + latlng.lng + " " +  latlng.lat + ")");
+        // validate location
+        validation["marker"] = true;
 
-		console.log($("#id_location").val());
-	};
+        console.log($("#id_location").val());
+    };
 
-	map.on('click', function(e) {
-		saveLocation(e.latlng);
+    map.on('click', function(e) {
+        saveLocation(e.latlng);
 
-		if (markerHome != null)
-			map.removeLayer(markerHome);
-		
-		markerHome = L.marker(e.latlng, {
-			icon: iconHome, draggable: true, title: "Your approximate home location"
-		}).addTo(map);
+        if (markerHome != null)
+            map.removeLayer(markerHome);
+        
+        markerHome = L.marker(e.latlng, {
+            icon: iconHome, draggable: true, title: "Your approximate home location"
+        }).addTo(map);
 
-		markerHome.on('dragend', function(e){
-			saveLocation(markerHome.getLatLng());
-		});
-	});
-	
-	/***********************
-	 *  children formsets  *
-	 ***********************/
-	
-	var nrChildForms = $("#id_child_set-TOTAL_FORMS").val() - 1;
-	
-	// child-form counter
-	// FIXME: count childforms, otherwise errorform breaks
-	var childCount = 0;
-	
-	// form validation: min information is location and child mode
-	var validation = {
-		"formerror":{% if formerror %} true {% else %} false {% endif %},
-		"marker": false // location not set
-	};
-	
-	$("#surveyform").submit(function() {
-		// check location field
-		if ($("#id_location").val() === "POINT (0.0000000000000000 0.0000000000000000)") {
-			validation.marker = false;
-		} else {
-			// required for django validation error page-reload
-			validation.marker = true;
-		}
-		
-      	// no location provided, harder to check with django form validation
-		if (validation.marker === false && ($("#id_street").val() === "" || $("#id_cross_st").val() === "")) {
-			alert("Please provide your street information.");
-	      	return false;
-		}
+        markerHome.on('dragend', function(e){
+            saveLocation(markerHome.getLatLng());
+        });
+    });
+    
+    /***********************
+     *  children formsets  *
+     ***********************/
+    
+    var nrChildForms = $("#id_child_set-TOTAL_FORMS").val() - 1;
+    
+    // child-form counter
+    // FIXME: count childforms, otherwise errorform breaks
+    var childCount = 0;
+    
+    // form validation: min information is location and child mode
+    var validation = {
+        "formerror":{% if formerror %} true {% else %} false {% endif %},
+        "marker": false // location not set
+    };
+    
+    $("#surveyform").submit(function() {
+        // check location field
+        if ($("#id_location").val() === "POINT (0.0000000000000000 0.0000000000000000)") {
+            validation.marker = false;
+        } else {
+            // required for django validation error page-reload
+            validation.marker = true;
+        }
+        
+        // no location provided, harder to check with django form validation
+        if (validation.marker === false && ($("#id_street").val() === "" || $("#id_cross_st").val() === "")) {
+            alert("Please provide your street information.");
+            return false;
+        }
    });
-		
-	// dropoff detail functionality
-	$.fn.dropoffDetails = function(child) {
-		// reset and hide id_child_set-0-dropoff_to|_from fieldset
-    	$("#id_child_set-" + child + "-dropoff, #id_child_set-" + child + "-pickup")
-    	.each(function(index) {
-    		$(this).parentsUntil("#id_child_set-" + child).hide();
-    	});
-		// bind change event to travelmode fields
-		$(this).change(function() {
-			// check for direction if child pickup or dropoff
-    		direction = ($(this).attr("id").indexOf("from_school") >= 0) ? "pickup" : "dropoff";
-			// check if selected value is in list of modes
-			if ( $.inArray($(this).val(), ["fv", "cp"]) >= 0 ) { // show additional question
-				$("#id_child_set-" + child + "-" + direction).parentsUntil("#id_child_set-" + child).show(500);				
-			} else { // hide and clear value
-				$("#id_child_set-" + child + "-" + direction).parentsUntil("#id_child_set-" + child).hide(500);
-				$("#id_child_set-" + child + "-" + direction).val("");
-			}
-		});
-	}
-	
-	// FIXME: create a function for checking dropoff/pickup options
-	
-	// add another child
-	$("#button_addchild").click(function() {
-		
-		// clone last child-form
-		var $childformClone = $("#id_child_set-" + childCount).clone();
-		
-		// update form attributes in clone to new child
-    	$childformClone
-		.attr("id", "id_child_set-" + (childCount+1))
-		.find("input,select,label")
-		.each(function(index) {
-			if ($(this).is("select") || $(this).is("input")) {
-				newId = $(this).attr("id").replace("id_child_set-" + childCount,"id_child_set-" + (childCount+1));
-				newName = $(this).attr("name").replace("child_set-" + childCount,"child_set-" + (childCount+1));
-				$(this)
-				.attr("id", newId)
-				.attr("name", newName);    				
-			}
-			if ($(this).is("label")) {
-				newAttr = $(this).attr("for").replace("id_child_set-" + childCount,"id_child_set-" + (childCount+1));
-				$(this).attr("for", newAttr);
-			}
-		});
-		
-		// append clone to page
-		$childformClone.appendTo("#children").slideDown(500);
-		$('html, body').animate({
-			scrollTop: $childformClone.offset().top - 50 
-		}, 500);
-		// bind dropoffDetail function to cloned form
-		$("#id_child_set-" + (childCount+1) + "-from_school, #id_child_set-" + (childCount+1) + "-to_school").dropoffDetails(childCount+1);
-		// increase counter
-		childCount++;
-		// update management form number (form-id count starts at, real number at 1, that's why it must be +1)
-		$("#id_child_set-TOTAL_FORMS").val(childCount+1);
-		// don't submit form
-		return false;
-	});	
-	
-	// catch django form validation error page-reload
-	// bind dropoffDetail function to start form
+        
+    // dropoff detail functionality
+    $.fn.dropoffDetails = function(child) {
+        // reset and hide id_child_set-0-dropoff_to|_from fieldset
+        $("#id_child_set-" + child + "-dropoff, #id_child_set-" + child + "-pickup")
+        .each(function(index) {
+            $(this).parentsUntil("#id_child_set-" + child).hide();
+        });
+        // bind change event to travelmode fields
+        $(this).change(function() {
+            // check for direction if child pickup or dropoff
+            direction = ($(this).attr("id").indexOf("from_school") >= 0) ? "pickup" : "dropoff";
+            // check if selected value is in list of modes
+            if ( $.inArray($(this).val(), ["fv", "cp"]) >= 0 ) { // show additional question
+                $("#id_child_set-" + child + "-" + direction).parentsUntil("#id_child_set-" + child).show(500);             
+            } else { // hide and clear value
+                $("#id_child_set-" + child + "-" + direction).parentsUntil("#id_child_set-" + child).hide(500);
+                $("#id_child_set-" + child + "-" + direction).val("");
+            }
+        });
+    }
+    
+    // FIXME: create a function for checking dropoff/pickup options
+    
+    // add another child
+    $("#button_addchild").click(function() {
+        
+        // clone last child-form
+        var $childformClone = $("#id_child_set-" + childCount).clone();
+        
+        // update form attributes in clone to new child
+        $childformClone
+        .attr("id", "id_child_set-" + (childCount+1))
+        .find("input,select,label")
+        .each(function(index) {
+            if ($(this).is("select") || $(this).is("input")) {
+                newId = $(this).attr("id").replace("id_child_set-" + childCount,"id_child_set-" + (childCount+1));
+                newName = $(this).attr("name").replace("child_set-" + childCount,"child_set-" + (childCount+1));
+                $(this)
+                .attr("id", newId)
+                .attr("name", newName);                 
+            }
+            if ($(this).is("label")) {
+                newAttr = $(this).attr("for").replace("id_child_set-" + childCount,"id_child_set-" + (childCount+1));
+                $(this).attr("for", newAttr);
+            }
+        });
+        
+        // append clone to page
+        $childformClone.appendTo("#children").slideDown(500);
+        $('html, body').animate({
+            scrollTop: $childformClone.offset().top - 50 
+        }, 500);
+        // bind dropoffDetail function to cloned form
+        $("#id_child_set-" + (childCount+1) + "-from_school, #id_child_set-" + (childCount+1) + "-to_school").dropoffDetails(childCount+1);
+        // increase counter
+        childCount++;
+        // update management form number (form-id count starts at, real number at 1, that's why it must be +1)
+        $("#id_child_set-TOTAL_FORMS").val(childCount+1);
+        // don't submit form
+        return false;
+    }); 
+    
+    // catch django form validation error page-reload
+    // bind dropoffDetail function to start form
     if (!validation.formerror) $("#id_child_set-0-from_school, #id_child_set-0-to_school").dropoffDetails(0);
     
     // random order of modes
@@ -211,19 +211,19 @@ $(document).ready(function() {
     // hide and show optional street intersection fields
     $("#intersection_fields").hide();
     $("#intersection_fields_link").click(function () {
-    	$("#intersection_fields").toggle(500);
-		return false;
+        $("#intersection_fields").toggle(500);
+        return false;
     });
     
     // simple street type-ahead to limit street options
     // FIXME: replace with chosen UI, upstreams to django model/form change to choice-field
-	$.getJSON("/" + {{ school.districtid.districtid }} + "/streets/", function(streets) {
-		$("input#id_street, input#id_cross_st").autocomplete({
-			source: streets,
-			minLength: 3
-		});
-	});
-	
+    $.getJSON("/" + {{ school.districtid.districtid }} + "/streets/", function(streets) {
+        $("input#id_street, input#id_cross_st").autocomplete({
+            source: streets,
+            minLength: 3
+        });
+    });
+    
     
 });
 
@@ -234,136 +234,195 @@ $(document).ready(function() {
 {% block container %}
 
 {% if school %}
-	
-<h2>{{ school.name }}</h2>
+<div class='row-fluid'>
+    <h2>{{ school.name }}</h2>
 
-<h3>
-	{% trans "Travel to School Survey" %} 
-</h3>
+    <h3>
+        {% trans "Travel to School Survey" %} 
+    </h3>
 
-<h4>
-	{% trans "Dear Parent or Guardian," %}
-</h4>
- 
-<p>
-{% blocktrans with school.name as schoolname %}
-Your child’s school is conducting a survey to learn how students get to school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. Please complete one survey for each child at this school. If you already completed a paper survey, do not complete this online form. If you have questions, please contact a school administrator or call Safe Routes to School at 857-368-8650.
-{% endblocktrans %}
-</p>
+    <h4>
+        {% trans "Dear Parent or Guardian," %}
+    </h4>
+     
+    <p>
+    {% blocktrans with school.name as schoolname %}
+    Your child’s school is conducting a survey to learn how students get to school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. Please complete one survey for each child at this school. If you already completed a paper survey, do not complete this online form. If you have questions, please contact a school administrator or call Safe Routes to School at 857-368-8650.
+    {% endblocktrans %}
+    </p>
 
-<p>{% trans "We appreciate your time and effort!" %}</p>
+    <p>{% trans "We appreciate your time and effort!" %}</p>
+</div>
+<div class='row-fluid'>
+    <form id="surveyform" action="." method="POST" class='form-inline span12'>
+        
+        {% csrf_token %}
+        
+        {{ surveyformset.management_form }}
 
-<form id="surveyform" action="." method="POST">
-	
-	{% csrf_token %}
-	
-	{{ surveyformset.management_form }}
+        <fieldset>
+            
+            <p class="question_title">
+                {% trans "What is your approximate home location?" %} (<span class="required_field">required</span>)
+            </p>
+            <p>
+                {% blocktrans %}
+                (If a child's home location or commute is not the same every day, choose the option that reflects the <em>most common</em> location and travel pattern.)
+                {% endblocktrans %}
+            </p
+            <p>
+                {% blocktrans %}                                
+                Please click the map at an intersection on your street, near your home:
+                {% endblocktrans %}
+            </p>
+            
+            <div id="map_canvas">map div</div>
+            <p id="map_legend" class="small">
+                <img src="{{ STATIC_URL }}img/home.png" height="27" alt="Home marker" > ... {% blocktrans %}your home{% endblocktrans %} 
+                <img src="{{ STATIC_URL }}img/school.png" height="27" alt="Home marker" > ... {{ school.name }}
+            </p>
+            
+            <p>
+                <a href="#" id="intersection_fields_link">
+                    {% trans "...or tell us the street intersection closest to your home." %}
+                </a>
+            </p>
+            <div id="intersection_fields">
+                <div class="control-group">
+                    <div class="controls">
+                        {{ surveyform.street.errors }}
+                        <label class="control-label span6" for="id_street">{% trans surveyform.street.label %}</label>
+                        {{ surveyform.street }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        {{ surveyform.cross_st.errors }}
+                        <label class="control-label span6" for="id_cross_st">{% trans surveyform.cross_st.label %}</label>
+                        {{ surveyform.cross_st }}
+                    </div>
+                </div>
+            </div>
+            
+            {{ surveyform.location }}
+            
+        </fieldset>
+        
+        <div id="children">
+        
+            {% for form in surveyformset.forms %}
+            
+            <fieldset id="id_child_set-0">
 
-	<fieldset>
-		
-		<p class="question_title">{% trans "What is your approximate home location?" %} (<span class="required_field">required</span>)</p>
-		<p>
-			{% blocktrans %}
-			(If a child's home location or commute is not the same every day, choose the option that reflects the <em>most common</em> location and travel pattern.)
-			{% endblocktrans %}
-		</p
-		<p>
-			{% blocktrans %}								
-			Please drag and drop the yellow home-marker to an intersection on your street, near your home:
-			{% endblocktrans %}
-		</p>
-		
-		<div id="map_canvas">map div</div>
-		<p id="map_legend" class="small"><img src="{{ STATIC_URL }}img/home.png" height="20" alt="Home marker" > ... {% blocktrans %}your home{% endblocktrans %} <img src="{{ STATIC_URL }}img/school.png" height="20" alt="Home marker" > ... {{ school.name }}</p>
-		
-		<p><a href="#" id="intersection_fields_link">{% trans "...or tell us the street intersection closest to your home." %}</a></p>
-		
-		<div id="intersection_fields">
-			<div class="clearfix">
-				{{ surveyform.street.errors }}
-				<label>{% trans surveyform.street.label %}:</label> <div class="input">{{ surveyform.street }}</div>
-			</div>
-			<div class="clearfix">
-				{{ surveyform.cross_st.errors }}
-				<label>{% trans surveyform.cross_st.label %}:</label><div class="input">{{ surveyform.cross_st }}</div>
-			</div>
-		</div>
-		
-		{{ surveyform.location }}
-		
-	</fieldset>
-	
-	<div id="children">
-	
-		{% for form in surveyformset.forms %}
-		
-			<fieldset id="id_child_set-0">
+                {% for field in form %}
+                    {% if not field.is_hidden %}
+                        {% if field.errors %}
+                            <div class="alert-message block-message error">
+                            {% for error in field.errors %}
+                                {{ error|escape }}<br />
+                            {% endfor %}
+                                <div class="control-group error">
+                                    <div class="controls">
+                                        <label class='control-label span6' for="{{field.auto_id}}">
+                                            {{ field.label|safe }}
+                                        </label>
+                                        {{ field }}
+                                        {% if field.field.required %}
+                                        <span class='help-inline'>(<span class="required_field">required</span>)</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class='control-label span6' for="{{field.auto_id}}">
+                                        {{ field.label|safe }}
+                                    </label>
+                                    {{ field }}
+                                    {% if field.field.required %}
+                                    <span class='help-inline'>(<span class="required_field">required</span>)</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
 
-			{% for field in form %}
-			
-				{% if not field.is_hidden %}
-				
-					{% if field.errors %}
-						<div class="alert-message block-message error">
-						{% for error in field.errors %}
-							{{ error|escape }}<br />
-						{% endfor %}
-							<label>{{ field.label|safe }}</label><div class="input">{{ field }}</div>
-						</div>
-					{% else %}
-						<div class="clearfix">
-							<label>{{ field.label|safe }}</label><div class="input">{{ field }}</div>
-						</div>
-					{% endif %}
-				
-				{% else %}
-					{{ field }}
-				{% endif %}
-			{% endfor %}
+            </fieldset>
+            
+            {% endfor %}
+        
+        </div>
+        
+        <p><button id="button_addchild" class="btn">{% trans "Add another child at this school" %}</button></p>
 
-			</fieldset>
-		
-		{% endfor %}
-	
-	</div>
-	
-	<button id="button_addchild" class="btn">{% trans "Add another child at this school" %}</button>
+        <fieldset>
 
-	<fieldset>
+        {% if surveyform.nr_vehicles.errors %}
+            <div class="alert-message block-message error">
+            {% for error in surveyform.nr_vehicles.errors %}
+                {{ error|escape }}<br />
+            {% endfor %}
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="" class="control-label span6">
+                            {% trans surveyform.nr_vehicles.label %}
+                        </label>
+                        {{ surveyform.nr_vehicles }}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="clearfix">
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="{{ surveyform.nr_vehicles.auto_id }}" class="control-label span6">
+                            {% trans surveyform.nr_vehicles.label %}
+                        </label>
+                        {{ surveyform.nr_vehicles }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
-	{% if surveyform.nr_vehicles.errors %}
-		<div class="alert-message block-message error">
-		{% for error in surveyform.nr_vehicles.errors %}
-		    {{ error|escape }}<br />
-		{% endfor %}
-			<label>{% trans surveyform.nr_vehicles.label %}</label><div class="input">{{ surveyform.nr_vehicles }}</div>
-		</div>
-	{% else %}
-		<div class="clearfix">
-			<label>{% trans surveyform.nr_vehicles.label %}</label><div class="input">{{ surveyform.nr_vehicles }}</div>
-		</div>
-	{% endif %}
+        {% if surveyform.nr_licenses.errors %}
+            <div class="alert-message block-message error">
+            {% for error in surveyform.nr_licenses.errors %}
+                {{ error|escape }}<br />
+            {% endfor %}
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="{{ surveyform.nr_licenses.auto_id }}" class="control-label span6">
+                            {% trans surveyform.nr_licenses.label %}
+                        </label>
+                        {{ surveyform.nr_licenses }}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="clearfix">
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="{{ surveyform.nr_licenses.auto_id }}" class="control-label span6">
+                            {% trans surveyform.nr_licenses.label %}
+                        </label>
+                        {{ surveyform.nr_licenses }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+                    
+        </fieldset>
+        
+        <div class="center">
+            <button id="button_submit" type="submit" class="btn btn-primary">{% trans "Submit Survey" %}</button>
+        </div>
 
-	{% if surveyform.nr_licenses.errors %}
-		<div class="alert-message block-message error">
-		{% for error in surveyform.nr_licenses.errors %}
-		    {{ error|escape }}<br />
-		{% endfor %}
-			<label>{% trans surveyform.nr_licenses.label %}</label><div class="input">{{ surveyform.nr_licenses }}</div>
-		</div>
-	{% else %}
-		<div class="clearfix">
-			<label>{% trans surveyform.nr_licenses.label %}</label><div class="input">{{ surveyform.nr_licenses }}</div>
-		</div>
-	{% endif %}
-				
-	</fieldset>
-	
-	<button id="button_submit" type="submit" class="btn large btn-primary">{% trans "Submit Survey" %}</button>
-	
-
-</form>
-
+    </form>
+</div>
 {% endif %}
 
 {% endblock %}

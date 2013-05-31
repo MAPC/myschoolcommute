@@ -38,18 +38,18 @@ class ChildForm(ModelForm):
     """
     Sub-form for collecting information for each child in given school.
     """
-    grade = ChoiceField(label=_('What grade is your child in? (<span class="required_field">required</span>)'),
+    grade = ChoiceField(label=_('What grade is your child in?'),
                       choices=CHILD_GRADES,
                       required=True,
                       initial='',)
-    to_school = ChoiceField(label=_('How does your child get TO school on most days? (<span class="required_field">required</span>)'),
+    to_school = ChoiceField(label=_('How does your child get TO school on most days?'),
                       choices=CHILD_MODES,
                       required=True,)
     dropoff = ChoiceField(label=_('Do you usually drop off your child on your way to work or another destination?'),
                       choices=CHILD_DROPOFF,
                       required=False,
                       initial='',)
-    from_school = ChoiceField(label=_('How does your child get home FROM school on most days? (<span class="required_field">required</span>)'),
+    from_school = ChoiceField(label=_('How does your child get home FROM school on most days?'),
                       choices=CHILD_MODES,
                       required=True,)
     pickup = ChoiceField(label=_('Do you usually pick up your child on your way from work or another origin?'),
