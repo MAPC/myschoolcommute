@@ -11,7 +11,7 @@ from survey.models import School, Survey, Child, District, Street
 from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
 
 def index(request):
-    
+
     # get all districts with active school surveys
     districts = District.objects.filter(school__survey_active=True).distinct()
     
@@ -28,7 +28,7 @@ def district(request, district_slug):
             context_instance=RequestContext(request))
 
 def district_list(request):
-    
+
     # get all districts with active school surveys
     districts = District.objects.filter(school__survey_active=True)
     districts = districts.annotate(school_count=Count('school'))
@@ -53,8 +53,8 @@ def school_edit(request, district_slug, school_slug, **kwargs):
     surveys = Survey.objects.filter(school=school)
 
     return render_to_response('survey/school_edit.html', {
-            'school' : school, 
-            'district' : district,
+            'school': school, 
+            'district': district,
             'school_form': school_form,
             'report_form': ReportForm(),
             'surveys': surveys
@@ -102,39 +102,39 @@ def form(request, district_slug, school_slug, **kwargs):
     
     # check if district exists
     district = get_object_or_404(District.objects, slug__iexact=district_slug)
-    
+
     # get school in district
     school = get_object_or_404(School.objects, districtid=district, slug__iexact=school_slug)
-    
+
     # translate to lat/lon
     school.geometry.transform(4326)
-       
+
     survey = Survey()   
-       
+
     SurveyFormset = inlineformset_factory(Survey, Child, form=ChildForm, extra=1, can_delete=False)
-    
+
     if request.method == 'POST':
+
         surveyform = SurveyForm(request.POST, instance=survey)
         surveyformset = SurveyFormset(request.POST, instance=survey)
         survey.school = school
         survey.ip = request.META['REMOTE_ADDR']
-        
-        
+
         if surveyformset.is_valid() and surveyform.is_valid():
             surveyform.save()
             surveyformset.save()
-            
+
             return render_to_response('survey/thanks.html', {
                 },
                 context_instance=RequestContext(request)
             )
-            
+
         else:
             return render_to_response('survey/form.html', {
-                'formerror': True,
-                'school' : school, 
-                'surveyform' : surveyform,
-                'surveyformset' : surveyformset,
+                    'formerror': True,
+                    'school': school, 
+                    'surveyform': surveyform,
+                    'surveyformset': surveyformset,
                 },
                 context_instance=RequestContext(request)
             )
@@ -143,9 +143,9 @@ def form(request, district_slug, school_slug, **kwargs):
         surveyformset = SurveyFormset(instance=survey)
 
         return render_to_response('survey/form.html', {
-            'school' : school, 
-            'surveyform' : surveyform,
-            'surveyformset' : surveyformset,
+            'school': school,
+            'surveyform': surveyform,
+            'surveyformset': surveyformset,
             },
             context_instance=RequestContext(request)
         )

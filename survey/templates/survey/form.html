@@ -14,7 +14,7 @@
 <![endif]-->
 <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
     
-<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false&language={{ LANGUAGE_CODE }}"></script>
+<script src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false&amp;language={{ LANGUAGE_CODE }}"></script>
 <script src="{{ STATIC_URL }}js/Leaflet.Google.js"></script>
 
 <script type="text/javascript">
@@ -291,14 +291,14 @@ $(document).ready(function() {
                 <div class="control-group">
                     <div class="controls">
                         {{ surveyform.street.errors }}
-                        <label class="control-label span6" for="id_street">{% trans surveyform.street.label %}</label>
+                        <label class="control-label span6 pull-left" for="id_street">{% trans surveyform.street.label %}</label>
                         {{ surveyform.street }}
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
                         {{ surveyform.cross_st.errors }}
-                        <label class="control-label span6" for="id_cross_st">{% trans surveyform.cross_st.label %}</label>
+                        <label class="control-label span6 pull-left" for="id_cross_st">{% trans surveyform.cross_st.label %}</label>
                         {{ surveyform.cross_st }}
                     </div>
                 </div>
@@ -309,43 +309,30 @@ $(document).ready(function() {
         </fieldset>
         
         <div id="children">
-        
+            
             {% for form in surveyformset.forms %}
             
             <fieldset id="id_child_set-0">
 
                 {% for field in form %}
                     {% if not field.is_hidden %}
-                        {% if field.errors %}
-                            <div class="alert-message block-message error">
-                            {% for error in field.errors %}
-                                {{ error|escape }}<br />
-                            {% endfor %}
-                                <div class="control-group error">
-                                    <div class="controls">
-                                        <label class='control-label span6' for="{{field.auto_id}}">
-                                            {{ field.label|safe }}
-                                        </label>
-                                        {{ field }}
-                                        {% if field.field.required %}
-                                        <span class='help-inline'>(<span class="required_field">required</span>)</span>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        {% else %}
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label class='control-label span6' for="{{field.auto_id}}">
-                                        {{ field.label|safe }}
-                                    </label>
-                                    {{ field }}
+                        <div class="control-group {% if field.errors %}error{% endif %}">
+                            <div class="controls">
+                                <label class="control-label span6 pull-left" for="{{field.auto_id}}">
+                                    {{ field.label|safe }}
+                                </label>
+                                {{ field }}
+                                <span class='help-inline'>
+                                {% for error in field.errors %}
+                                    <span>{{ error|escape }}</span>
+                                {% empty %}
                                     {% if field.field.required %}
-                                    <span class='help-inline'>(<span class="required_field">required</span>)</span>
+                                    (<span class="required_field">required</span>)
                                     {% endif %}
-                                </div>
+                                {% endfor %}
+                                </span>
                             </div>
-                        {% endif %}
+                        </div>
                     {% else %}
                         {{ field }}
                     {% endif %}
@@ -360,61 +347,32 @@ $(document).ready(function() {
         <p><button id="button_addchild" class="btn">{% trans "Add another child at this school" %}</button></p>
 
         <fieldset>
-
-        {% if surveyform.nr_vehicles.errors %}
-            <div class="alert-message block-message error">
-            {% for error in surveyform.nr_vehicles.errors %}
-                {{ error|escape }}<br />
-            {% endfor %}
-                <div class="control-group">
-                    <div class="controls">
-                        <label for="" class="control-label span6">
-                            {% trans surveyform.nr_vehicles.label %}
-                        </label>
-                        {{ surveyform.nr_vehicles }}
-                    </div>
+            <div class="control-group {% if surveyform.nr_vehicles.errors %}error{% endif %}">
+                <div class="controls">
+                    <label for="{{ surveyform.nr_vehicles.auto_id }}" class="control-label span6">
+                        {% trans surveyform.nr_vehicles.label %}
+                    </label>
+                    {{ surveyform.nr_vehicles }}
+                    <span class='help-inline'>            
+                        {% for error in surveyform.nr_vehicles.errors %}
+                            {{ error|escape }}.&nbsp;
+                        {% endfor %}
+                    </span>
                 </div>
             </div>
-        {% else %}
-            <div class="clearfix">
-                <div class="control-group">
-                    <div class="controls">
-                        <label for="{{ surveyform.nr_vehicles.auto_id }}" class="control-label span6">
-                            {% trans surveyform.nr_vehicles.label %}
-                        </label>
-                        {{ surveyform.nr_vehicles }}
-                    </div>
+            <div class="control-group {% if surveyform.nr_licenses.errors %}error{% endif %}">
+                <div class="controls">
+                    <label for="{{ surveyform.nr_licenses.auto_id }}" class="control-label span6">
+                        {% trans surveyform.nr_licenses.label %}
+                    </label>
+                    {{ surveyform.nr_licenses }}
+                    <span class='help-inline'>            
+                    {% for error in surveyform.nr_licenses.errors %}
+                        {{ error|escape }}.&nbsp;
+                    {% endfor %}
+                    </span>
                 </div>
             </div>
-        {% endif %}
-
-        {% if surveyform.nr_licenses.errors %}
-            <div class="alert-message block-message error">
-            {% for error in surveyform.nr_licenses.errors %}
-                {{ error|escape }}<br />
-            {% endfor %}
-                <div class="control-group">
-                    <div class="controls">
-                        <label for="{{ surveyform.nr_licenses.auto_id }}" class="control-label span6">
-                            {% trans surveyform.nr_licenses.label %}
-                        </label>
-                        {{ surveyform.nr_licenses }}
-                    </div>
-                </div>
-            </div>
-        {% else %}
-            <div class="clearfix">
-                <div class="control-group">
-                    <div class="controls">
-                        <label for="{{ surveyform.nr_licenses.auto_id }}" class="control-label span6">
-                            {% trans surveyform.nr_licenses.label %}
-                        </label>
-                        {{ surveyform.nr_licenses }}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-                    
         </fieldset>
         
         <div class="center">
