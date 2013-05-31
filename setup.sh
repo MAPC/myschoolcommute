@@ -8,7 +8,7 @@ apt-get -y install postgis binutils libproj-dev gdal-bin libgdal-dev
 #Mapnik
 apt-get -y install libmapnik mapnik-utils python-mapnik
 #Routing
-apt-get -y install postgresql-9.1-pgrouting 
+apt-get -y install gaul-devel postgresql-9.1-pgrouting postgresql-9.1-pgrouting-dd postgresql-9.1-pgrouting-tsp
 
 #R
 apt-get -y r-base-core r-cran-dbi
