@@ -16,12 +16,12 @@ class SurveyForm(ModelForm):
     """
     street = CharField(
         label=_('Name of your street'),
-        widget=TextInput(attrs={'size': '30', "autocomplete":"off"}),
+        widget=TextInput(attrs={'size': '30', "autocomplete": "off"}),
         required=False,
     )
     cross_st = CharField(
         label=_('Name of nearest cross-street'),
-        widget=TextInput(attrs={'size': '30', "autocomplete":"off"}),
+        widget=TextInput(attrs={'size': '30', "autocomplete": "off"}),
         required=False,
     )
     nr_vehicles = IntegerField(
@@ -42,6 +42,11 @@ class SurveyForm(ModelForm):
         widgets = {
             'location': HiddenInput(),
         }
+
+    def clean(self):
+        cleaned_data = super(SurveyForm, self).clean()
+        #TODO: Check if two streets return location
+        return cleaned_data
 
 
 class ChildForm(ModelForm):

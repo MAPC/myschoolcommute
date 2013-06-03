@@ -67,17 +67,17 @@ def paths_sql(school_id, network='survey_network_walk', miles=1.5):
         (SELECT geometry FROM survey_school WHERE id = %d), 900914
     )""" % int(school_id)
 
-    closest_street =  """( 
-        SELECT source from {0} ORDER BY 
-        {1} <-> geometry  
+    closest_street =  """(
+        SELECT source from {0} ORDER BY
+        {1} <-> geometry
         asc limit 1
     )""".format(network, school)
 
     query = """SELECT ogc_fid, geometry, route.cost from {0} as w
                 JOIN
-                (SELECT * FROM 
+                (SELECT * FROM
                    driving_distance(
-                        'SELECT ogc_fid as id, source, target, miles AS cost 
+                        'SELECT ogc_fid as id, source, target, miles AS cost
                          FROM {0}
                          WHERE geometry && ST_Buffer(ST_Envelope({1}), 8000)'
                         , {2}, {3}, false, false
@@ -88,12 +88,12 @@ def paths_sql(school_id, network='survey_network_walk', miles=1.5):
 
     return query
 
-def get_sheds(school_id):    
+def get_sheds(school_id):
     query = paths_sql(school_id, miles=1.5)
     bike_query = paths_sql(school_id, 'survey_network_bike', miles=2.0)
 
     cursor = connection.cursor()
-    hull_query = """ 
+    hull_query = """
     WITH paths as (%s)
     SELECT ST_AsText(
         ST_Union(array(select ST_BUFFER(geometry, 100) from (%s) as BIKE))
@@ -107,11 +107,11 @@ def get_sheds(school_id):
     ST_AsText(
         ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 0.5))
     )""" % (query, bike_query)
-    
+
     cursor.execute(hull_query)
     row = cursor.fetchone()
     data = {2.0: row[0], 1.5:row[1], 1.0:row[2], 0.5:row[3]}
-    
+
     return data
 
 def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=900914):
@@ -235,7 +235,7 @@ def walks(request, zoom, column, row):
     response.write(im)
     return response
 
-def school_sheds_json(request, school_id):    
+def school_sheds_json(request, school_id):
     sheds = get_sheds(school_id)
 
     features = []
@@ -256,7 +256,7 @@ def school_sheds_json(request, school_id):
     return HttpResponse(json_text)
 
 
-def school_paths_json(request, school_id):    
+def school_paths_json(request, school_id):
     query = paths_sql(school_id, miles=1.5)
 
     streets = NetworkWalk.objects.raw(query)

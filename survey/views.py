@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
 from django.db.models import Count
+from django.db.models import Q
 
 from django.forms.models import inlineformset_factory
 
@@ -114,6 +115,7 @@ def school_streets(request, school_id, query=None):
 
     return HttpResponse(simplejson.dumps(data), mimetype='application/json')
 
+
 def school_crossing(request, school_id, street, query=None):
 
     school = School.objects.get(pk=school_id)
@@ -129,6 +131,33 @@ def school_crossing(request, school_id, street, query=None):
     data = [row['st_name_2'].title() for row in list(streets)]
 
     return HttpResponse(simplejson.dumps(data), mimetype='application/json')
+
+
+def intersection(request, school_id, street1, street2=None):
+    school = School.objects.get(pk=school_id)
+    school_circle = school.geometry.buffer(5000)
+
+    intersections = Intersection.objects.filter(geometry__intersects=school_circle)
+    intersections = intersections.filter(st_name_1__iexact=street1)
+
+    if street2 is not None:
+        intersections = intersections.filter(st_name_2__iexact=street2)
+
+    features = []
+    for f in list(intersections.distinct()):
+        f.geometry.transform(4326)
+        features.append(""" {
+            "type": "Feature",
+            "geometry": %s,
+            "properties": {"id": %d, "street1": "%s", "street2": "%s"}
+        }""" % (f.geometry.geojson, f.pk, f.st_name_1.title(), f.st_name_2.title()))
+
+    json_text = """{
+    "type": "FeatureCollection",
+    "features": [%s]
+    }""" % ((",\n").join(features))
+    return HttpResponse(json_text)
+
 
 def form(request, district_slug, school_slug, **kwargs):
 

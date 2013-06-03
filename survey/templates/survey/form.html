@@ -19,6 +19,9 @@
 
 <script type="text/javascript">
 
+var set_home = null;
+var intersections = null;
+
 $(document).ready(function() {
 
     // check if cookies are enabled
@@ -83,28 +86,32 @@ $(document).ready(function() {
 
     var markerHome = null;
 
-    var saveLocation = function(latlng){
+    var save_location = function(latlng){
         // write loc coord to hidden geometry field (in WGS84)
         $("#id_location").val("POINT (" + latlng.lng + " " +  latlng.lat + ")");
         // validate location
         validation["marker"] = true;
-
-        console.log($("#id_location").val());
     };
 
-    map.on('click', function(e) {
-        saveLocation(e.latlng);
+    set_home = function(latlng){
+        if (intersections)
+            map.removeLayer(intersections);
+        save_location(latlng);
 
         if (markerHome != null)
             map.removeLayer(markerHome);
 
-        markerHome = L.marker(e.latlng, {
+        markerHome = L.marker(latlng, {
             icon: iconHome, draggable: true, title: "Your approximate home location"
         }).addTo(map);
 
         markerHome.on('dragend', function(e){
-            saveLocation(markerHome.getLatLng());
+            save_location(markerHome.getLatLng());
         });
+    }
+
+    map.on('click', function(e) {
+        set_home(e.latlng);
     });
 
     /***********************
@@ -215,25 +222,68 @@ $(document).ready(function() {
         return false;
     });
 
+    var view_intersections = function(){
+        var street1 = $('#id_street').val();
+        var street2 = $('#id_cross_st').val();
+        if (street2 != "")
+            street2 += '/';
+        $.getJSON('/{{school.pk}}/intersection/'+street1+'/'+street2, function(data){
+            if (intersections != null)
+                map.removeLayer(intersections);
+            console.log(data.features.length);
+            if (data.features.length == 1){
+                var coord = data.features[0]['geometry']['coordinates'];
+                var ll = new L.LatLng(coord[1], coord[0]);
+                set_home(ll);
+            }else if (data.features.length > 1){
+                intersections = L.geoJson(data,{
+                    onEachFeature: function (feature, layer) {
+                        var msg = "<h4>Intersection between</h4>";
+                        msg += feature.properties.street1 + " and ";
+                        msg += feature.properties.street2;
+                        var lon = feature.geometry.coordinates[0];
+                        var lat = feature.geometry.coordinates[1];
+                        var js = 'set_home(new L.LatLng('+lat+','+lon+')); return false;';
+                        msg += '<br/><a class="btn btn-small" href="#" onClick="'+js+'">Make Home</a>';
+                        layer.bindPopup(msg);
+                    }
+                }).addTo(map);
+                var bounds = map.getBounds();
+                bounds.extend(intersections.getBounds())
+                map.fitBounds(bounds);
+            }
+        });
+    }
+
     $('#id_street').typeahead({
         source: function(query, process){
             $.getJSON('/{{school.pk}}/streets/'+query+'/', function(data){
-                console.log(data);
                 process(data);
             });
         }
     });
+
     $('#id_cross_st').typeahead({
         minLength: 0,
         source: function(query, process){
             var street = $('#id_street').val();
             console.log(query);
             $.getJSON('/{{school.pk}}/crossing/'+street+'/'+query+'/', function(data){
-                console.log(data);
                 process(data);
             });
         }
     });
+
+    $('#id_street').on('change', function(){
+        var street1 = $('#id_street').val();
+        var street2 = $('#id_cross_st').val();
+        if (street2.length > 0){
+            $('#id_cross_st').val("");
+        }
+        view_intersections();
+    });
+
+    $('#id_cross_st').on('change', view_intersections);
 
 });
 
