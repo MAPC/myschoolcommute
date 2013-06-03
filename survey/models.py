@@ -4,7 +4,7 @@ from django.db.models import permalink
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
 
-# south introspection rules 
+# south introspection rules
 try:
     from south.modelsinspector import add_introspection_rules
     add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.PointField'])
@@ -23,13 +23,13 @@ class District(models.Model):
     endgrade = models.CharField(max_length=2)
     distcode4 = models.CharField(max_length=4)
     distcode8 = models.CharField(max_length=8)
-    
+
     geometry = models.MultiPolygonField(srid=26986)
     objects = models.GeoManager()
-    
+
     def __unicode__(self):
         return self.distname
-    
+
     class Meta:
         ordering = ['distname']
 
@@ -38,7 +38,7 @@ class School(models.Model):
     """ School """
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, blank=True, null=True)
-    
+
     schid = models.CharField('School ID', max_length=8, blank=True, null=True, unique=True)
     address = models.CharField(max_length=150, blank=True, null=True)
     town_mail = models.CharField(max_length=25, blank=True, null=True)
@@ -49,27 +49,27 @@ class School(models.Model):
     phone = models.CharField(max_length=15, blank=True, null=True)
     fax = models.CharField(max_length=15, blank=True, null=True)
     grades = models.CharField(max_length=70, blank=True, null=True)
-    schl_type = models.CharField(max_length=3, blank=True, null=True)     
+    schl_type = models.CharField(max_length=3, blank=True, null=True)
     districtid = models.ForeignKey('District', blank=True, null=True)
-    
+
     survey_incentive = models.TextField(blank=True, null=True)
     survey_active = models.BooleanField('Is Survey School')
-    
+
     # GeoDjango
     geometry = models.PointField(srid=26986)
     objects = models.GeoManager()
-    
+
     def __unicode__(self):
         return self.name
-    
+
     class Meta:
         ordering = ['name']
-        
+
     @permalink
     def get_absolute_url(self):
-        return ('survey_school_form', None, { 'school_slug': self.slug, 'district_slug': self.districtid.slug})
+        return ('survey_school_form', None, {'school_slug': self.slug, 'district_slug': self.districtid.slug})
 
-        
+
 class Street(models.Model):
     """
     Streets to be returned as type-ahead in street-fields
@@ -78,14 +78,33 @@ class Street(models.Model):
     """
     name = models.CharField(max_length=240)
     districtid = models.ForeignKey('District', blank=True, null=True)
-    
+
     geometry = models.MultiLineStringField(srid=26986)
     objects = models.GeoManager()
-    
+
     def __unicode__(self):
         return self.name
- 
-             
+
+
+class Intersection(models.Model):
+    ogc_fid = models.IntegerField(primary_key=True)
+    geometry = models.GeometryField(null=True, blank=True, srid=900914)
+    st_name_1 = models.CharField(max_length=50, blank=True)
+    st_name_2 = models.CharField(max_length=50, blank=True)
+    town = models.CharField(max_length=50, blank=True)
+    town_id = models.IntegerField(null=True, blank=True)
+    lat = models.FloatField(null=True, blank=True)
+    lon = models.FloatField(null=True, blank=True, db_column='long')
+
+    objects = models.GeoManager()
+
+    class Meta:
+        db_table = 'survey_intersection'
+
+    def __unicode__(self):
+        return "% - %" % (self.st_name_1, self.st_name_2, )
+
+
 class Survey(models.Model):
     """
     Survey base questions.
@@ -104,7 +123,7 @@ class Survey(models.Model):
     # GeoDjango
     location = models.PointField(geography=True, blank=True, null=True, default='POINT(0 0)') # default SRS 4326
     objects = models.GeoManager()
-    
+
     def __unicode__(self):
         return u'%s' % (self.id)
 
@@ -125,7 +144,7 @@ CHILD_GRADES = (
             ('10', '10'),
             ('11', '11'),
             ('12', '12'),
-            )
+        )
 
 CHILD_MODES = (
             ('', '--'),
@@ -136,26 +155,26 @@ CHILD_MODES = (
             ('cp', _('Carpool (with children from other families)')),
             ('t', _('Transit (city bus, subway, etc.)')),
             ('o', _('Other (skateboard, scooter, inline skates, etc.)'))
-            )
+        )
 
 CHILD_DROPOFF = (
             ('', '--'),
             ('yes', _('Yes')),
             ('no', _('No')),
-            )
-    
+        )
+
 class Child(models.Model):
     survey = models.ForeignKey('Survey')
     grade = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_GRADES)
     to_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)
     dropoff = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
-    from_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)    
+    from_school = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_MODES)
     pickup = models.CharField(max_length=3, blank=True, null=True, choices=CHILD_DROPOFF)
-    
+
     class Meta:
         verbose_name_plural = 'Children'
-        
+
     def __unicode__(self):
         return u'%s' % (self.id)
-    
+
 

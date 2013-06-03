@@ -276,6 +276,14 @@ def school_paths_json(request, school_id):
     }""" % ((",\n").join(features))
     return HttpResponse(json_text)
 
+def RunR():
+    import rpy2.robjects as r
+    from myschoolcommute import settings
+    r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
+    r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
+    r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
+    r.r("source('R_files/compile.R')")
+
 if __name__ == '__main__':
     sys.path.append(os.path.realpath(".."))
     from django.core.management import setup_environ

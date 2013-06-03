@@ -42,6 +42,7 @@ LANGUAGES = (
 
 LANGUAGES = (
     ('en', _('English')),
+    ('es', _('Spanish')),
 )
 
 SITE_ID = 1
@@ -200,7 +201,7 @@ DATABASES = {
 }
 
 # django-rosetta
-BING_APP_ID = "AvQh4U_JeRMU5slrkmC_G13aFsnvH39acsrIcqE9XuDgbTD8LNCYMafmvLG6FpC5"
+BING_APP_ID = "V7en8/gVWILlccOB4JA5e8LDvYUhd6WhI1v74WknTXY"
 ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS = True
 
 # django-debug-toolbar

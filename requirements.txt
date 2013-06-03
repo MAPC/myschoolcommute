@@ -3,6 +3,7 @@ Fiona==0.14
 GDAL==1.9.1
 Shapely==1.2.17
 South==0.8.1
+django-autocomplete-light==1.2.0
 django-crispy-forms==1.2.8
 django-dbgettext==0.1
 django-debug-toolbar==0.9.4

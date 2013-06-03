@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
 <![endif]-->
 <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
-    
-<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+<script src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"></script>
 <script src="{{ STATIC_URL }}js/Leaflet.Google.js"></script>
 
 <style type='text/css'>
@@ -38,12 +37,12 @@ $(document).ready(function(){
         subdomains: '123',
         attribution: "Imagery Copyright (c) <a href='http://MapQuest.com'>MapQuest</a>"
     });
-    
+
     /*
     L.tileLayer('http://{{request.META.HTTP_HOST}}/{{school.pk}}/{z}/{y}/{x}/walkshed.png', {
         maxZoom: 18
     }).addTo(map);
-    
+
     L.tileLayer('http://{{request.META.HTTP_HOST}}/walk/{z}/{y}/{x}/walk.png', {
         maxZoom: 18
     }).addTo(map);
@@ -90,7 +89,7 @@ $(document).ready(function(){
     <div class='span3'>
         <div class='well'>
             <p><h4>Summary</h4></p>
-            
+
             <p>{{ surveys.count_day }} surveys in past 24 hours</p>
             <p>{{ surveys.count_week }} surveys in past week</p>
             <p>{{ surveys.count }} surveys in total</p>
