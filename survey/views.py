@@ -101,7 +101,7 @@ def get_streets(request, districtid):
 def school_streets(request, school_id, query=None):
 
     school = School.objects.get(pk=school_id)
-    school_circle = school.geometry.buffer(4000)
+    school_circle = school.geometry.buffer(5000)
 
     intersections = Intersection.objects.filter(geometry__intersects=school_circle)
 
@@ -117,7 +117,7 @@ def school_streets(request, school_id, query=None):
 def school_crossing(request, school_id, street, query=None):
 
     school = School.objects.get(pk=school_id)
-    school_circle = school.geometry.buffer(4000)
+    school_circle = school.geometry.buffer(5000)
 
     intersections = Intersection.objects.filter(geometry__intersects=school_circle)
 
