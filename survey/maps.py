@@ -4,6 +4,7 @@ from django.contrib.gis.geos import Point, GEOSGeometry
 from django.core.cache import cache, get_cache
 from django.db import connection
 
+import os
 import pickle
 import mapnik
 import mimetypes
@@ -11,7 +12,7 @@ import math
 import time
 from shapely import ops, geometry
 
-from models import School
+from models import School, Survey
 
 from myschoolcommute.local_settings import DATABASES
 
@@ -24,6 +25,7 @@ VIOLET = "#9400D3"
 PEACHPUFF = "#FFDAB9"
 LIGHTCYAN = "#E0FFFF"
 
+
 class NetworkWalk(models.Model):
     ogc_fid = models.IntegerField(primary_key=True)
     geometry = models.LineStringField(srid=900914)
@@ -31,6 +33,7 @@ class NetworkWalk(models.Model):
 
     class Meta:
         db_table = 'walks'
+
 
 class NetworkBike(models.Model):
     ogc_fid = models.IntegerField(primary_key=True)
@@ -40,12 +43,14 @@ class NetworkBike(models.Model):
     class Meta:
         db_table = 'survey_network_bike'
 
+
 def num2deg(xtile, ytile, zoom):
     n = 2.0 ** zoom
     lon_deg = xtile / n * 360.0 - 180.0
     lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
     lat_deg = math.degrees(lat_rad)
-    return [lon_deg,lat_deg]
+    return [lon_deg, lat_deg]
+
 
 def tms(zoom, column, row):
     nw = num2deg(int(row), int(column), int(zoom))
@@ -57,9 +62,11 @@ def tms(zoom, column, row):
     bbox = mapnik.Envelope(se_p.x, se_p.y, nw_p.x, nw_p.y)
     return bbox
 
+
 def school_tms(request, school_id, zoom, column, row):
     bbox = rms(zoom, column, row)
     return school_sheds(request, school_id, bbox, 256, 256, 3857)
+
 
 def paths_sql(school_id, network='survey_network_walk', miles=1.5):
 
@@ -67,7 +74,7 @@ def paths_sql(school_id, network='survey_network_walk', miles=1.5):
         (SELECT geometry FROM survey_school WHERE id = %d), 900914
     )""" % int(school_id)
 
-    closest_street =  """(
+    closest_street = """(
         SELECT source from {0} ORDER BY
         {1} <-> geometry
         asc limit 1
@@ -87,6 +94,7 @@ def paths_sql(school_id, network='survey_network_walk', miles=1.5):
     """.format(network, school, closest_street, miles)
 
     return query
+
 
 def get_sheds(school_id):
     query = paths_sql(school_id, miles=1.5)
@@ -114,6 +122,7 @@ def get_sheds(school_id):
 
     return data
 
+
 def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=900914):
     format = 'png'
 
@@ -131,7 +140,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=9009
 
     # styles for main
     s = mapnik.Style()
-    for name, color in (('0.5',VIOLET), ('1.0',PURPLE), ('1.5', LAVENDER), ('2.0', LIGHTCYAN)):
+    for name, color in (('0.5', VIOLET), ('1.0', PURPLE), ('1.5', LAVENDER), ('2.0', LIGHTCYAN)):
         r = mapnik.Rule()
         r.filter = mapnik.Filter("[name] = "+name)
         line_symbolizer = mapnik.LineSymbolizer()
@@ -139,7 +148,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=9009
         r.symbols.append(line_symbolizer)
         r.symbols.append(poly_symbolizer)
         s.rules.append(r)
-    m.append_style("paths",s)
+    m.append_style("paths", s)
     #styles end
 
     '''
@@ -174,13 +183,19 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=9009
         print key
 
     layer = mapnik.Layer('paths', "+init=epsg:"+str(srid))
-    ds = mapnik.Datasource(type="csv",inline=csv_string.encode('ascii'))
+    ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
     layer.datasource = ds
     layer.styles.append('paths')
     m.layers.append(layer)
 
+    csv_string = "wkt,name\n"
+    surveys = Survey.objects.filter(school=school)
+    for survey in surveys:
+        survey.location.transform(srid)
+        csv_string += '"%s","%s"\n' % (survey.location.wkt, survey.pk)
+
     # Render to image
-    im = mapnik.Image(m.width,m.height)
+    im = mapnik.Image(m.width, m.height)
     mapnik.render(m, im)
     im = im.tostring(str(format))
     response = HttpResponse()
@@ -189,6 +204,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=9009
     response.write(im)
 
     return response
+
 
 def walks(request, zoom, column, row):
     format = 'png'
@@ -276,14 +292,20 @@ def school_paths_json(request, school_id):
     }""" % ((",\n").join(features))
     return HttpResponse(json_text)
 
-def RunR():
+
+def RunR(school_id, date1, date2):
     import rpy2.robjects as r
     from myschoolcommute import settings
     print settings.DATABASES
     r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
     r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
     r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
-    r.r("source('R_files/compile.R')")
+    r.r("ORG_CODE <- '%s'" % school_id)
+    r.r("DATE1 <- '%s'" % date1)
+    r.r("DATE2 <- '%s'" % date2)
+    #r.r("BUFF_DIST <- '%s'" % 1)
+    r.r("load('R/.RData')")
+    r.r("source('R/compile.R')")
 
 if __name__ == '__main__':
     sys.path.append(os.path.realpath(".."))

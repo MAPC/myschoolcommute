@@ -16,15 +16,12 @@ from django.conf import settings
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Field, Layout, Fieldset, ButtonHolder, Submit
 
+
 def index(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/accounts/profile/')
     else:
         return HttpResponseRedirect('/accounts/login/')
-
-def logout(request):
-    logout(request)
-    return HttpResponseRedirect('/')
 
 def register(request):
     if request.method == 'POST':
@@ -36,14 +33,14 @@ def register(request):
             p = Profile.objects.get(user=new_user)
             profile_form = ProfileForm(request.POST, instance=p)
             profile_form.save()
-            
-            users_page = 'http://'+ request.META['HTTP_HOST'] + reverse('user_list')
-            approve_page = 'http://'+ request.META['HTTP_HOST']  + reverse('user_edit', args=[new_user.username])
+
+            users_page = 'http://' + request.META['HTTP_HOST'] + reverse('user_list')
+            approve_page = 'http://' + request.META['HTTP_HOST'] + reverse('user_edit', args=[new_user.username])
             message = "New user registration!\n\n%s\n%s, %s\nActivate user: %s\nView all users: %s" % (
                 new_user.username, new_user.first_name, new_user.last_name, approve_page, users_page,
             )
             mail_admins('myschoolcommute.com new user '+new_user.username, message)
-                
+
             return HttpResponseRedirect("/accounts/register/success/")
     else:
         profile_form = ProfileForm()
@@ -54,9 +51,11 @@ def register(request):
         'user_form' : user_form, 'profile_form': profile_form
     }, context_instance=RequestContext(request))
 
+
 def register_success(request):
-    return render_to_response("accounts/register_success.html", 
+    return render_to_response("accounts/register_success.html",
         context_instance=RequestContext(request))
+
 
 def profile_authed(request):
     if request.user.is_authenticated():
@@ -64,22 +63,24 @@ def profile_authed(request):
     else:
         return HttpResponseRedirect('/accounts/login/')
 
+
 def profile(request, username):
     if request.user.is_authenticated():
         u = User.objects.get(username=username)
         p = Profile.objects.get_or_create(user=u)
 
-        user_form = UserForm(instance=u)      
+        user_form = UserForm(instance=u)
         user_form.merge_from_initial()
 
         return render_to_response('accounts/profile.html',
         {
             'username': u.username,
-            'user_f': user_form, 
+            'user_f': user_form,
             'profile': p,
         }, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/')
+
 
 @login_required
 def profile_edit(request, username=None):
@@ -102,9 +103,9 @@ def profile_edit(request, username=None):
                 user.save()
                 send_mail(
                     "Your myschoolcommute.com account has been approved",
-                    "You may login at http://%s/%s" % (request.META['HTTP_HOST'], reverse('login'),),
+                    "You may login at http://mysc.appliedgeosolutions.com/%s" % (reverse('login'),),
                     settings.SERVER_EMAIL,
-                    [request.user.email]
+                    [user.email]
                 )
 
             return HttpResponseRedirect(reverse('user_detail', args=[user.username]))

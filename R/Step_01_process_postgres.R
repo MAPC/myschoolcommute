@@ -13,7 +13,7 @@ drv <- dbDriver("PostgreSQL")
 ch <- dbConnect(drv, 
                 host='localhost',
                 port='5432', 
-                dbname=dbname2,
+                dbname=dbname,
                 user=dbuser,
                 password=dbpasswd)
 DF <- dbSendQuery(ch,"select * from survey_child_survey")
