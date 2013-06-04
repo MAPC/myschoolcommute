@@ -100,6 +100,9 @@ def get_streets(request, districtid):
 
 
 def school_streets(request, school_id, query=None):
+    """
+    Returns initial list of unique streets within 5000 meters of school
+    """
 
     school = School.objects.get(pk=school_id)
     school_circle = school.geometry.buffer(5000)
@@ -117,6 +120,10 @@ def school_streets(request, school_id, query=None):
 
 
 def school_crossing(request, school_id, street, query=None):
+    """
+    Returns list of unique streets within 5000 meters of school crossing
+    another street, by name
+    """
 
     school = School.objects.get(pk=school_id)
     school_circle = school.geometry.buffer(5000)
@@ -134,6 +141,10 @@ def school_crossing(request, school_id, street, query=None):
 
 
 def intersection(request, school_id, street1, street2=None):
+    """
+    Returns intersection GeoJSON based on at least one crossing street
+    """
+
     school = School.objects.get(pk=school_id)
     school_circle = school.geometry.buffer(5000)
 
@@ -170,44 +181,44 @@ def form(request, district_slug, school_slug, **kwargs):
     # translate to lat/lon
     school.geometry.transform(4326)
 
-    survey = Survey()
-
     SurveyFormset = inlineformset_factory(Survey, Child, form=ChildForm, extra=1, can_delete=False)
+
+    formerror = False
 
     if request.method == 'POST':
 
-        surveyform = SurveyForm(request.POST, instance=survey)
-        surveyformset = SurveyFormset(request.POST, instance=survey)
-        survey.school = school
-        survey.ip = request.META['REMOTE_ADDR']
+        surveyform = SurveyForm(request.POST)
 
-        if surveyformset.is_valid() and surveyform.is_valid():
-            surveyform.save()
-            surveyformset.save()
+        if surveyform.is_valid():
+            survey = surveyform.save(commit=False)
+            survey.school = school
+            survey.ip = request.META['REMOTE_ADDR']
 
-            return render_to_response('survey/thanks.html', {
-                },
-                context_instance=RequestContext(request)
-            )
+            surveyformset = SurveyFormset(request.POST, instance=survey)
+            if surveyformset.is_valid():
+                survey.save()
+                surveyformset.save()
 
+                return render_to_response(
+                    'survey/thanks.html',
+                    context_instance=RequestContext(request)
+                )
+            else:
+                surveyformset = SurveyFormset(request.POST, instance=Survey())
+                formerror = True
         else:
-            return render_to_response('survey/form.html', {
-                    'formerror': True,
-                    'school': school,
-                    'surveyform': surveyform,
-                    'surveyformset': surveyformset,
-                },
-                context_instance=RequestContext(request)
-            )
+            formerror = True
     else:
+        survey = Survey()
         surveyform = SurveyForm(instance=survey)
         surveyformset = SurveyFormset(instance=survey)
 
-        return render_to_response('survey/form.html', {
+    return render_to_response('survey/form.html', {
+            'formerror': formerror,
             'school': school,
             'surveyform': surveyform,
             'surveyformset': surveyformset,
-            },
-            context_instance=RequestContext(request)
-        )
+        },
+        context_instance=RequestContext(request)
+    )
 

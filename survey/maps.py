@@ -279,6 +279,7 @@ def school_paths_json(request, school_id):
 def RunR():
     import rpy2.robjects as r
     from myschoolcommute import settings
+    print settings.DATABASES
     r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
     r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
     r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
