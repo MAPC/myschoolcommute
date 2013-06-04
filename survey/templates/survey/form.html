@@ -238,13 +238,13 @@ $(document).ready(function() {
             }else if (data.features.length > 1){
                 intersections = L.geoJson(data,{
                     onEachFeature: function (feature, layer) {
-                        var msg = "<h4>Intersection between</h4>";
+                        var msg = "<h4>Intersection</h4>";
                         msg += feature.properties.street1 + " and ";
                         msg += feature.properties.street2;
                         var lon = feature.geometry.coordinates[0];
                         var lat = feature.geometry.coordinates[1];
                         var js = 'set_home(new L.LatLng('+lat+','+lon+')); return false;';
-                        msg += '<br/><a class="btn btn-small" href="#" onClick="'+js+'">Make Home</a>';
+                        msg += '<p><a class="btn btn-small" href="#" onClick="'+js+'">Make Home</a></p>';
                         layer.bindPopup(msg);
                     }
                 }).addTo(map);

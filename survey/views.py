@@ -11,12 +11,14 @@ from django.forms.models import inlineformset_factory
 from survey.models import School, Survey, Child, District, Street, Intersection
 from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
 
+
 def index(request):
 
     # get all districts with active school surveys
     districts = District.objects.filter(school__survey_active=True).distinct()
 
     return render_to_response('survey/index.html', locals(), context_instance=RequestContext(request))
+
 
 def district(request, district_slug):
 
@@ -28,6 +30,7 @@ def district(request, district_slug):
             },
             context_instance=RequestContext(request))
 
+
 def district_list(request):
 
     # get all districts with active school surveys
@@ -37,6 +40,7 @@ def district_list(request):
     districts = districts.distinct()
 
     return render_to_response('survey/district_list.html', locals(), context_instance=RequestContext(request))
+
 
 def school_edit(request, district_slug, school_slug, **kwargs):
 
@@ -62,6 +66,7 @@ def school_edit(request, district_slug, school_slug, **kwargs):
         },
         context_instance=RequestContext(request)
     )
+
 
 def get_schools(request, districtid):
     """
