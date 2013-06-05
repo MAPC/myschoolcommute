@@ -53,10 +53,14 @@ class School(models.Model):
     districtid = models.ForeignKey('District', blank=True, null=True)
 
     survey_incentive = models.TextField(blank=True, null=True)
-    survey_active = models.BooleanField('Is Survey School')
+    survey_active = models.BooleanField('Is survey active?')
 
     # GeoDjango
     geometry = models.PointField(srid=26986)
+    shed_05 = models.MultiPolygonField(srid=26986, null=True, blank=True)
+    shed_10 = models.MultiPolygonField(srid=26986, null=True, blank=True)
+    shed_15 = models.MultiPolygonField(srid=26986, null=True, blank=True)
+    shed_20 = models.MultiPolygonField(srid=26986, null=True, blank=True)
     objects = models.GeoManager()
 
     def __unicode__(self):

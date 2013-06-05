@@ -1,10 +1,11 @@
+import os, sys
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.gis.db import models
-from django.contrib.gis.geos import Point, GEOSGeometry
+from django.contrib.gis.geos import Point, GEOSGeometry, MultiPolygon
 from django.core.cache import cache, get_cache
 from django.db import connection
 
-import os
 import pickle
 import mapnik
 import mimetypes
@@ -118,10 +119,9 @@ def get_sheds(school_id):
 
     cursor.execute(hull_query)
     row = cursor.fetchone()
-    data = {2.0: row[0], 1.5:row[1], 1.0:row[2], 0.5:row[3]}
+    data = {2.0: row[0], 1.5: row[1], 1.0: row[2], 0.5: row[3]}
 
     return data
-
 
 def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=900914):
     format = 'png'
@@ -151,32 +151,17 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=9009
     m.append_style("paths", s)
     #styles end
 
-    '''
-    # caching
-    key = "school"+str(school_id)
-    working = cache.get(key+"working")
-    while working:
-        time.sleep(0.5)
-        working = cache.get(key+"working")
-
-    csv_string = cache.get(key)
-    if csv_string is None:
-        cache.set(key+"working", True)
-        paths = NetworkWalk.objects.filter(geometry__bboverlaps=circle)
-
-        csv_string = "wkt,Name\n"
-        for line in paths:
-            csv_string += '"%s","test"\n' % line.geometry.wkt
-
-        cache.set(key, csv_string)
-        cache.delete(key+"working")
-    '''
-
-    sheds = get_sheds(school_id)
+    sheds = {
+        0.5: school.shed_05,
+        1.0: school.shed_10,
+        1.5: school.shed_15,
+        2.0: school.shed_20
+    }
 
     csv_string = 'wkt,name\n'
-    for key, wkt in reversed(sorted(sheds.items(), key=lambda a: a[0])):
-        g = GEOSGeometry(wkt)
+    for key, g in reversed(sorted(sheds.items(), key=lambda a: a[0])):
+        if g is None:
+            continue
         g.srid = 900914
         g.transform(srid)
         csv_string += '"%s","%s"\n' % (g.wkt, str(key))
@@ -217,7 +202,6 @@ def walks(request, zoom, column, row):
     s = mapnik.Style()
     r = mapnik.Rule()
     line_symbolizer = mapnik.LineSymbolizer(mapnik.Color('black'), 0.8)
-    point_symbolizer = mapnik.PointSymbolizer()
 
     r.symbols.append(line_symbolizer)
     #r.symbols.append(point_symbolizer)
@@ -228,7 +212,7 @@ def walks(request, zoom, column, row):
     t.label_placement = mapnik.label_placement.LINE_PLACEMENT
     r.symbols.append(t)
 
-    m.append_style("main",s)
+    m.append_style("main", s)
 
     query = 'survey_walk'
     db = DATABASES['default']['NAME']
@@ -236,13 +220,13 @@ def walks(request, zoom, column, row):
     pwd = DATABASES['default']['PASSWORD']
 
     layer = mapnik.Layer('bg', '+init=epsg:3857')
-    layer.datasource = mapnik.PostGIS(host='localhost',user=usr,password=pwd,dbname=db, table=query, extent=bbox)
+    layer.datasource = mapnik.PostGIS(host='localhost', user=usr, password=pwd, dbname=db, table=query, extent=bbox)
 
     layer.styles.append('main')
     m.layers.append(layer)
 
     # Render to image
-    im = mapnik.Image(m.width,m.height)
+    im = mapnik.Image(m.width, m.height)
     mapnik.render(m, im)
     im = im.tostring(str(format))
     response = HttpResponse()
@@ -251,19 +235,27 @@ def walks(request, zoom, column, row):
     response.write(im)
     return response
 
+
 def school_sheds_json(request, school_id):
-    sheds = get_sheds(school_id)
+    school = School.objects.get(pk=school_id)
+    sheds = {
+        0.5: school.shed_05,
+        1.0: school.shed_10,
+        1.5: school.shed_15,
+        2.0: school.shed_20
+    }
 
     features = []
-    for dist, wkt in sheds.items():
-        geometry = GEOSGeometry(wkt)
-        geometry.srid = 900914
-        geometry.transform(4326)
+    for dist, geom in sheds.items():
+        if geom is None:
+            continue
+
+        geom.transform(4326)
         features.append(""" {
             "type": "Feature",
             "geometry": %s,
             "properties": {"distance": "%0.1f"}
-        }""" % (geometry.geojson, dist))
+        }""" % (geom.geojson, dist))
 
     json_text = """{
     "type": "FeatureCollection",
@@ -307,9 +299,37 @@ def RunR(school_id, date1, date2):
     r.r("load('R/.RData')")
     r.r("source('R/compile.R')")
 
-if __name__ == '__main__':
-    sys.path.append(os.path.realpath(".."))
-    from django.core.management import setup_environ
-    from myschoolcommute import settings
 
-    setup_environ(settings)
+def update_schools_sheds():
+    schools = School.objects.filter(id__gt=30).order_by('id')
+    for s in schools:
+        sheds = get_sheds(s.id)
+        print s.id
+        s.shed_05 = MultiPolygon(GEOSGeometry(sheds[0.5]))
+        s.shed_10 = MultiPolygon(GEOSGeometry(sheds[1.0]))
+        s.shed_15 = MultiPolygon(GEOSGeometry(sheds[1.5]))
+        s.shed_20 = MultiPolygon(GEOSGeometry(sheds[2.0]))
+
+        g = s.shed_20.difference(s.shed_15)
+        try:
+            s.shed_20 = g
+        except TypeError:
+            if g.area == 0:
+                s.shed_20 = None
+
+        g = s.shed_15.difference(s.shed_10)
+        try:
+            s.shed_15 = g
+        except TypeError:
+            if g.area == 0:
+                s.shed_15 = None
+
+        g = s.shed_15.difference(s.shed_10)
+        try:
+            s.shed_15 = g
+        except TypeError:
+            if g.area == 0:
+                s.shed_15 = None
+
+        s.save()
+

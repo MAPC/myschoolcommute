@@ -103,7 +103,7 @@ def profile_edit(request, username=None):
                 user.save()
                 send_mail(
                     "Your myschoolcommute.com account has been approved",
-                    "You may login at http://mysc.appliedgeosolutions.com/%s" % (reverse('login'),),
+                    "You may login at http://%s/%s" % (request.META['HTTP_HOST'], reverse('login'),),
                     settings.SERVER_EMAIL,
                     [user.email]
                 )

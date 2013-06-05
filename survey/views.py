@@ -5,11 +5,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
 from django.db.models import Count
 from django.db.models import Q
-
 from django.forms.models import inlineformset_factory
+
+from datetime import datetime, timedelta
 
 from survey.models import School, Survey, Child, District, Street, Intersection
 from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
+
 
 
 def index(request):
@@ -53,16 +55,24 @@ def school_edit(request, district_slug, school_slug, **kwargs):
     # translate to lat/lon
     school.geometry.transform(4326)
 
-    school_form = SchoolForm(instance=school)
+    if request.method == 'POST':
+        school_form = SchoolForm(request.POST, instance=school)
+        if school_form.is_valid():
+            school = school_form.save()
+    else:
+        school_form = SchoolForm(instance=school)
 
     surveys = Survey.objects.filter(school=school)
-
+    count_day = surveys.filter(created__gte=datetime.today() - timedelta(hours=24)).count()
+    count_week = surveys.filter(created__gte=datetime.today() - timedelta(days=7)).count()
     return render_to_response('survey/school_edit.html', {
             'school': school,
             'district': district,
             'school_form': school_form,
             'report_form': ReportForm(),
-            'surveys': surveys
+            'surveys': surveys,
+            'count_day': count_day,
+            'count_week': count_week
         },
         context_instance=RequestContext(request)
     )

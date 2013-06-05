@@ -90,8 +90,8 @@ $(document).ready(function(){
         <div class='well'>
             <p><h4>Summary</h4></p>
 
-            <p>{{ surveys.count_day }} surveys in past 24 hours</p>
-            <p>{{ surveys.count_week }} surveys in past week</p>
+            <p>{{ count_day }} surveys in past 24 hours</p>
+            <p>{{ count_week }} surveys in past week</p>
             <p>{{ surveys.count }} surveys in total</p>
             <p>{% if school.survey_active %}
                 Survey is <strong>active</strong>

@@ -93,7 +93,7 @@ YES_OR_NO = (
 
 class SchoolForm(ModelForm):
     survey_active = forms.TypedChoiceField(
-        choices=YES_OR_NO, widget=forms.RadioSelect, coerce=bool, label="Is survey active?"
+        choices=YES_OR_NO, widget=forms.RadioSelect
     )
     survey_incentive = forms.CharField(label="Survey Form Message")
 
@@ -118,5 +118,5 @@ class ReportForm(forms.Form):
 
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
-        self.helper.add_input(Submit('submit', 'Generate Report'))
+        #self.helper.add_input(Submit('submit', 'Generate Report'))
         self.helper.add_input(Submit('submit', 'Download Raw Data'))
