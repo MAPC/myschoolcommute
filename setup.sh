@@ -1,6 +1,6 @@
 apt-get install -y python-software-properties
 add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
-add-apt-repository -y ppa:mapnik/nightly-trunk
+add-apt-repository -y ppa:mapnik/v2.1.0
 apt-add-repository -y ppa:georepublic/pgrouting
 apt-get update
 #GeoDjango

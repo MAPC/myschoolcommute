@@ -4,11 +4,11 @@
 {% block javascript %}
 <link rel="stylesheet" href="{{ STATIC_URL }}js/chosen/chosen.css">
 <script src="{{ STATIC_URL }}js/chosen/chosen.jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">	
+<script type="text/javascript">
 $(document).ready(function() {
-	
-	// initiate chosen dropdown UIs	
-	$(".chzn-select").chosen();	
+
+	// initiate chosen dropdown UIs
+	$(".chzn-select").chosen();
 
 	// get schools for selected district
 	$("#district-select").chosen().change(function(e) {
@@ -27,17 +27,17 @@ $(document).ready(function() {
 			$("#school-select").chosen().change();
 		});
 	});
-	
+
 	// go to school survey form
 	$("#open-survey").click(function() {
 		schoolurl = $("#school-select option:selected").val();
 		window.location = schoolurl;
 		return false;
 	});
-	
+
 	// call change function to load initial schools
 	$("#district-select").chosen().change();
-	
+
 });
 </script>
 
@@ -51,16 +51,16 @@ $(document).ready(function() {
 </div>
 <div class="row-fluid">
 	<div class="span12 columns">
-		<p>We'd like to learn how students get to and from school in order to help plan safe and healthy Safe Routes to School initiatives for students in your community.</p>
-		<p>The survey will take less than 3 minutes to complete.  All responses are voluntary and confidential.</p>
+		<p>{% blocktrans %}We'd like to learn how students get to and from school in order to help plan safe and healthy Safe Routes to School initiatives for students in your community.{% endblocktrans %}</p>
+		<p>{% blocktrans %}The survey will take less than 3 minutes to complete. All responses are voluntary and confidential.{% endblocktrans %}</p>
 
 		<button type="button" class="btn btn-link" data-toggle="collapse" data-target="#about">
 			More information about the survey...
 		</button>
 		<div id="about" class="collapse">
-		    <p>The Massachusetts Safe Routes to School (SRTS) program partners with schools throughout the Commonwealth  to help reduce traffic congestion and air pollution near schools while increasing the health, safety, and physical activity of students. Evaluating trends in how students and families travel to school is a key component to building a successful Safe Routes to School program.  Parent responses to this survey provide valuable information and help determine how we can improve the environment around the school, target investments, track progress toward goals and ultimately develop local programs that benefit students, parents and our communities.
-		    </p>  
-			<p>To learn more about your school’s efforts or to find out how to get involved, visit MassDOT’s Safe Routes to School Program at <a href='http://www.commute.com/schools/'>http://www.commute.com/schools/</a> or call us at 857-368-8638.
+		    <p>{% blocktrans %}The Massachusetts Safe Routes to School (SRTS) program partners with schools throughout the Commonwealth  to help reduce traffic congestion and air pollution near schools while increasing the health, safety, and physical activity of students. Evaluating trends in how students and families travel to school is a key component to building a successful Safe Routes to School program.  Parent responses to this survey provide valuable information and help determine how we can improve the environment around the school, target investments, track progress toward goals and ultimately develop local programs that benefit students, parents and our communities.{% endblocktrans %}
+		    </p>
+			<p>{% blocktrans %}To learn more about your school’s efforts or to find out how to get involved, visit MassDOT’s Safe Routes to School Program at <a href='http://www.commute.com/schools/'>http://www.commute.com/schools/</a> or call us at 857-368-8638.{% endblocktrans %}
 			</p>
 		</div>
 		<br/>
@@ -77,10 +77,10 @@ $(document).ready(function() {
 			</select>
 		</div>
 	</div>
-	
+
 	<div class="span6 columns">
 		<h3>{% trans "Please select your school" %}</h3>
-		<p>Scroll or start typing your school name</p>		
+		<p>Scroll or start typing your school name</p>
 		<div class="input index">
 			<select id="school-select" class="chzn-select" style="width: 350px;" tabindex="2"></select>
 		</div>
@@ -89,7 +89,7 @@ $(document).ready(function() {
 <div class="row-fluid">
 	<div class="span8 columns offset6">
 		<br/>
-		<a id="open-survey" href="#" class="btn btn-primary large" tabindex="3">Open School Survey Form</a>
+		<a id="open-survey" href="#" class="btn btn-primary large" tabindex="3">{% trans "Open School Survey Form" %}</a>
 	</div>
 </div>
 {% endblock %}
