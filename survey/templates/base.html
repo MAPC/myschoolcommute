@@ -1,5 +1,4 @@
 {% load i18n %}
-{% load localeurl_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +35,12 @@
           padding-left: 5px;
           padding-right: 5px;
         }
+        body {
+          padding-top: 0;
+        }
+      }
+      body {
+        padding-top: 60px;
       }
     </style>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
@@ -66,7 +71,7 @@
     -->
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top too-high">
       <div class="navbar-inner">
         <div class="container">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -74,21 +79,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/">Massachusetts Safe Routes to School Survey</a>
+          <a class="brand" href="{% url 'home' %}">Massachusetts Safe Routes to School Survey</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-                <li><a href="/about/">{% trans "About" %}</a></li>
-                {% for lang in LANGUAGES %}
-                    {% ifequal lang.0 LANGUAGE_CODE %}
-                        <li class="active"><a href="#">{% trans lang.1 %}</a></li>
-                    {% else %}
-                        <li><a href="{{ request.path|chlocale:lang.0 }}">{% trans lang.1 %}</a></li>
-                    {% endifequal %}
+                <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
+                {% for lang_code, lang_name in LANGUAGES %}
+                    <li {% ifequal lang_code LANGUAGE_CODE %}class="active"{% endifequal %}>
+                      {% language lang_code %}
+                        <a href="{% url 'home' %}">{% trans lang_name %}</a>
+                      {% endlanguage %}
+                    </li>
                 {% endfor %}
                 {% if request.user.is_authenticated %}
                 <li {% if 'accounts' in request.path %}class='active'{% endif %}><a href="/accounts/">Accounts</a></li>
-                <li><a href="/districts/">Districts</a></li>
-                <li><a href="/{{request.user.get_profile.district.slug}}/">Schools</a></li>
+                <li><a href="{% url 'district_list' %}">Districts</a></li>
+                <li><a href="{% url 'school_list' request.user.get_profile.district.slug %}">Schools</a></li>
                 {% endif %}
             </ul>
           </div><!--/.nav-collapse -->
@@ -107,7 +112,11 @@
     <hr>
     <footer>
       {% trans "Questions? Please contact" %} <a href="mailto:admin@myschoolcommute.org?subject=MySchoolCommute.org%20Website%20Question">admin@myschoolcommute.org</a><br />
-      Are you an adminsitrator? <a href='/accounts/login/'>Log in</a> or <a href='/accounts/register/'>Register</a><br/>
+      {% if request.user.is_authenticated %}
+        <a href='{% url 'accounts' %}'>Administration Account</a>
+      {% else %}
+        Are you an adminsitrator? <a href='/accounts/login/'>Log in</a> or <a href='/accounts/register/'>Register</a>
+      {% endif %}<br/>
             &copy; <a href="http://www.mapc.org" title="Metropolitan Area Planning Council">MAPC</a> 2011
     </footer>
 

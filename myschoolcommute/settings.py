@@ -40,11 +40,6 @@ LANGUAGES = (
     ('ar', _('Arabic')),
 )
 
-LANGUAGES = (
-    ('en', _('English')),
-    ('es', _('Spanish')),
-)
-
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -110,13 +105,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'localeurl.middleware.LocaleURLMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    #'localeurl.middleware.LocaleURLMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
@@ -148,7 +143,7 @@ INSTALLED_APPS = (
 
     'south',
     'rosetta',
-    'localeurl',
+    #'localeurl',
     'dbgettext',
     'crispy_forms',
 

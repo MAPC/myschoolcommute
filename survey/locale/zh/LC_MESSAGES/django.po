@@ -1,0 +1,226 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-05 20:58-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: forms.py:18
+msgid "Name of your street"
+msgstr "您的街道名称"
+
+#: forms.py:23
+msgid "Name of nearest cross-street"
+msgstr "最近的跨街的名称"
+
+#: forms.py:28
+msgid "How many vehicles do you have in your household?"
+msgstr "你有多少车辆在您的家庭吗？"
+
+#: forms.py:33
+msgid "How many people in your household have a driver's license?"
+msgstr "有多少人在你的家庭有驾驶执照吗？"
+
+#: forms.py:57
+msgid "What grade is your child in?"
+msgstr "什么档次的是你的孩子吗？"
+
+#: forms.py:63
+msgid "How does your child get TO school on most days?"
+msgstr "请问你的孩子在大多数日子上学？"
+
+#: forms.py:68
+msgid ""
+"Do you usually drop off your child on your way to work or another "
+"destination?"
+msgstr "你通常落你的孩子自己的方式工作或其他目的？"
+
+#: forms.py:74
+msgid "How does your child get home FROM school on most days?"
+msgstr "请问你的孩子回家，学校在大多数日子吗？"
+
+#: forms.py:79
+msgid ""
+"Do you usually pick up your child on your way from work or another origin?"
+msgstr "你拿起你的孩子用自己的方式工作或其他来源的吗？"
+
+#: models.py:155
+msgid "Walk"
+msgstr "走"
+
+#: models.py:156
+msgid "Bike"
+msgstr "自行车"
+
+#: models.py:157
+msgid "School Bus"
+msgstr "校车"
+
+#: models.py:158
+msgid "Family Vehicle (only children in your family)"
+msgstr "家庭车辆（只有在你的家庭的孩子）"
+
+#: models.py:159
+msgid "Carpool (with children from other families)"
+msgstr "拼车（与其他家庭的孩子）"
+
+#: models.py:160
+msgid "Transit (city bus, subway, etc.)"
+msgstr "运输（城市公交车，地铁等）"
+
+#: models.py:161
+msgid "Other (skateboard, scooter, inline skates, etc.)"
+msgstr "其他（滑板，滑板，直排轮滑鞋，等等）"
+
+#: models.py:166
+msgid "Yes"
+msgstr "是"
+
+#: models.py:167
+msgid "No"
+msgstr "没有"
+
+#: templates/base.html:79
+msgid "About"
+msgstr "关于"
+
+#: templates/base.html:107
+msgid "Questions? Please contact"
+msgstr "有问题吗？请联系"
+
+#: templates/survey/about.html:7
+msgid "About the Massachusetts Safe Routes to School Program"
+msgstr "关于学校课程马萨诸塞州的安全路线"
+
+#: templates/survey/form.html:300
+msgid "Travel to School Survey"
+msgstr "旅游学校调查"
+
+#: templates/survey/form.html:304
+msgid "Dear Parent or Guardian,"
+msgstr "亲爱的家长或监护人，"
+
+#: templates/survey/form.html:308
+msgid ""
+"Your child’s school is conducting a survey to learn how students get to "
+"school. This information  will be used to plan safe and healthy "
+"transportation choices for all students. The survey will take less than 3 "
+"minutes to complete. All responses are voluntary and confidential. Please "
+"complete one survey for each child at this school. If you already completed "
+"a paper survey, do not complete this online form. If you have questions, "
+"please contact a school administrator or call Safe Routes to School at "
+"857-368-8650."
+msgstr ""
+"您孩子的学校进行了一次调查，以了解学生如何去学校。这些信息将被用于计划为所有学生的安全和健康的运输选择。这项调查将需要不到3分钟就可以完成。所有的反应是自愿和保密的。请为每个孩子在这所学校完成的一项调查。如果你已经完成了纸质的调查，不完成这个网上表格。如果您有任何疑问，请联系学校管理员或致电857-368-8650学校的安全路线。"
+
+#: templates/survey/form.html:311
+msgid "We appreciate your time and effort!"
+msgstr "我们非常感谢您的时间和精力！"
+
+#: templates/survey/form.html:323
+msgid "What is your approximate home location?"
+msgstr "近似​​归属位置是什么？"
+
+#: templates/survey/form.html:326
+msgid ""
+"If a child's home location or commute is not the same every day, choose the "
+"option that reflects the <em>most common</em> location and travel pattern."
+msgstr ""
+"如果一个孩子的家庭所在地或改判是不是每天都一样，选择的选项反映的\\u003cem\\u003e的最常见的\\u003c/ EM "
+"\\u003e位置和交通模式。"
+
+#: templates/survey/form.html:329
+msgid "Please click the map at an intersection on your street, near your home"
+msgstr "请点击地图在街道上的一个十字路口，你家附近"
+
+#: templates/survey/form.html:334
+msgid "your home"
+msgstr "你的家"
+
+#: templates/survey/form.html:340
+msgid "...or tell us the street intersection closest to your home."
+msgstr "或者告诉我们离您家最近的路口。"
+
+#: templates/survey/form.html:404
+msgid "Add another child at this school"
+msgstr "添加另一个孩子在这所学校"
+
+#: templates/survey/form.html:442
+msgid "Submit Survey"
+msgstr "提交调查"
+
+#: templates/survey/index.html:54
+msgid ""
+"We'd like to learn how students get to and from school in order to help plan"
+" safe and healthy Safe Routes to School initiatives for students in your "
+"community."
+msgstr "我们想了解学生如何从学校学校学生在你的社区的举措，以帮助计划，安全和健康的安全路线。"
+
+#: templates/survey/index.html:55
+msgid ""
+"The survey will take less than 3 minutes to complete. All responses are "
+"voluntary and confidential."
+msgstr "这项调查将需要不到3分钟就可以完成。所有的反应是自愿和保密的。"
+
+#: templates/survey/index.html:58
+msgid "More information about the survey..."
+msgstr "有关统计调查的更多信息..."
+
+#: templates/survey/index.html:61
+msgid ""
+"The Massachusetts Safe Routes to School (SRTS) program partners with schools"
+" throughout the Commonwealth  to help reduce traffic congestion and air "
+"pollution near schools while increasing the health, safety, and physical "
+"activity of students. Evaluating trends in how students and families travel "
+"to school is a key component to building a successful Safe Routes to School "
+"program.  Parent responses to this survey provide valuable information and "
+"help determine how we can improve the environment around the school, target "
+"investments, track progress toward goals and ultimately develop local "
+"programs that benefit students, parents and our communities."
+msgstr ""
+"马萨诸塞州（ "
+"SRTS）学校计划的合作伙伴，整个英联邦，以帮助减少学校附近的交通拥堵和空气污染，同时增加了健康，安全和学生的身体活动与学校的安全路线。评估如何前往学校的学生和家庭的趋势，是建立一个成功的安全路线学校计划的一个关键组成部分。家长响应这项调查提供了宝贵的信息，并帮助确定我们如何能够改善周围环境的学校，确定投资目标，跟踪目标进展，并最终发展本地节目，受益学生，家长和社区。"
+
+#: templates/survey/index.html:63
+msgid ""
+"To learn more about your school’s efforts or to find out how to get "
+"involved, visit MassDOT’s Safe Routes to School Program at <a "
+"href='http://www.commute.com/schools/'>http://www.commute.com/schools/</a> "
+"or call us at 857-368-8638."
+msgstr ""
+"要了解更多有关学校的努力或找出如何涉足访问MassDOT的“学校计划在安全路线\\u003ca "
+"href='http://www.commute.com/schools/'\\u003e http://www.commute .COM /学校/ "
+"\\u003c / a\\u003e或致电857-368-8638 。"
+
+#: templates/survey/index.html:67
+#, fuzzy
+msgid "Take the Survey"
+msgstr "旅游学校调查"
+
+#: templates/survey/index.html:72
+msgid "Please select your school district"
+msgstr "请选择您的学区"
+
+#: templates/survey/index.html:82
+msgid "Please select your school"
+msgstr "请选择你的学校"
+
+#: templates/survey/index.html:92
+msgid "Open School Survey Form"
+msgstr "开放学校调查表"
+
+#: templates/survey/thanks.html:6
+msgid "Thank you!"
+msgstr "谢谢你！"

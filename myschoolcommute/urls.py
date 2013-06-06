@@ -1,28 +1,29 @@
 from django.conf.urls import patterns, url, include
+from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 from django.views.generic import TemplateView
 
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = i18n_patterns('',
     # Example:
     # (r'^walkboston/', include('walkboston.foo.urls')),
-
-    (r'^admin/', include(admin.site.urls)),
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    #url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Translation app
-    (r'^rosetta/', include('rosetta.urls')),
+    url(r'^rosetta/', include('rosetta.urls')),
 
     #Accounts
-    (r'^accounts/', include('accounts.urls')),
+    url(r'^accounts/', include('accounts.urls')),
 
     # district/school list on front-page
-    (r'^$', 'survey.views.index'),
+    url(r'^$', 'survey.views.index', name='home'),
 
     # static pages
-    (r'^about/$', TemplateView.as_view(template_name='survey/about.html')),
+    url(r'^about/$', TemplateView.as_view(template_name='survey/about.html'), name='about'),
 
     # custom admin pages
     url(r'^districts/$', 'survey.views.district_list', name='district_list'),
@@ -33,7 +34,7 @@ urlpatterns = patterns('',
     url(r'^walk/(?P<zoom>\d+)/(?P<column>\d+)/(?P<row>\d+)/walk.png$', 'survey.maps.walks', name='walk_tms'),
 
     # district
-    (r'^(?P<district_slug>[-\w]+)/$', 'survey.views.district'),
+    url(r'^(?P<district_slug>[-\w]+)/$', 'survey.views.district', name='school_list'),
     url(r'^(?P<districtid>[-\w]+)/schools/$', 'survey.views.get_schools', name='disctrict_get_schools'),
     url(r'^(?P<districtid>[-\w]+)/streets/$', 'survey.views.get_streets', name='disctrict_get_streets'),
 
