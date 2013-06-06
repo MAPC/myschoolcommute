@@ -1,5 +1,4 @@
 *.pyc
 local_settings.py
-myschoolcommute/locale/*
 myschoolcommute/static/*
 myschoolcommute/media/*
