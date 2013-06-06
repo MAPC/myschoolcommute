@@ -37,6 +37,7 @@ def district_list(request):
 
     # get all districts with active school surveys
     districts = District.objects.filter(school__survey_active=True)
+    districts = District.objects.all()
     districts = districts.annotate(school_count=Count('school'))
     districts = districts.annotate(survey_count=Count('school__survey'))
     districts = districts.distinct()
