@@ -9,7 +9,7 @@
 		<thead>
 			<tr><th>School name</th><th>Number of surveys</th><th>Is Active</th></tr>
 		</thead>
-	{% for school in district.school_set.select_related %}
+	{% for school in district.school_set.all %}
 	
 		<tr>
 			<td><a href="{{ school.slug }}/edit/">{{ school.name }}</a></td>

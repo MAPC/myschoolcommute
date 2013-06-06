@@ -5,7 +5,6 @@ from models import Profile
 from django.contrib.gis import admin
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
-from olwidget.widgets import EditableMap
 from django.contrib.auth.forms import AuthenticationForm
 
 from crispy_forms.helper import FormHelper
