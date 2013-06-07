@@ -199,6 +199,13 @@ DATABASES = {
 #BING_APP_ID = "V7en8/gVWILlccOB4JA5e8LDvYUhd6WhI1v74WknTXY"
 #ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS = True
 
+AUTH_PROFILE_MODULE = 'accounts.Profile'
+# import local settings
+try:
+    execfile(os.path.join(CURRENT_PATH,'local_settings.py'))
+except ImportError:
+    pass
+
 # django-debug-toolbar
 if DEBUG_TOOLBAR:
     def always_show(request): return True
@@ -219,11 +226,4 @@ if DEBUG_TOOLBAR:
         'debug_toolbar.panels.signals.SignalDebugPanel',
         'debug_toolbar.panels.logger.LoggingPanel',
     )
-
-AUTH_PROFILE_MODULE = 'accounts.Profile'
-# import local settings
-try:
-    execfile(os.path.join(CURRENT_PATH,'local_settings.py'))
-except ImportError:
-    pass
 
