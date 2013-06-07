@@ -29,7 +29,7 @@ LIGHTCYAN = "#E0FFFF"
 
 class NetworkWalk(models.Model):
     ogc_fid = models.IntegerField(primary_key=True)
-    geometry = models.LineStringField(srid=900914)
+    geometry = models.LineStringField(srid=26986)
     objects = models.GeoManager()
 
     class Meta:
@@ -38,7 +38,7 @@ class NetworkWalk(models.Model):
 
 class NetworkBike(models.Model):
     ogc_fid = models.IntegerField(primary_key=True)
-    geometry = models.LineStringField(srid=900914)
+    geometry = models.LineStringField(srid=26986)
     objects = models.GeoManager()
 
     class Meta:
@@ -72,7 +72,7 @@ def school_tms(request, school_id, zoom, column, row):
 def paths_sql(school_id, network='survey_network_walk', miles=1.5):
 
     school = """st_transform(
-        (SELECT geometry FROM survey_school WHERE id = %d), 900914
+        (SELECT geometry FROM survey_school WHERE id = %d), 26986
     )""" % int(school_id)
 
     closest_street = """(
@@ -123,7 +123,7 @@ def get_sheds(school_id):
 
     return data
 
-def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=900914):
+def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=26986):
     format = 'png'
 
     school = School.objects.get(pk=school_id)
@@ -162,7 +162,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=9009
     for key, g in reversed(sorted(sheds.items(), key=lambda a: a[0])):
         if g is None:
             continue
-        g.srid = 900914
+        g.srid = 26986
         g.transform(srid)
         csv_string += '"%s","%s"\n' % (g.wkt, str(key))
         print key
