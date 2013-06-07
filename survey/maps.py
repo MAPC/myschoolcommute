@@ -176,17 +176,18 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=2698
 
     # styles for schools
     school_colors = (
-        ('0.5', "blue"),
-        ('1.0', "green"),
-        ('1.5', "yellow"),
-        ('2.0', "red"),
-        ('2.5', 'lightgray'),
+        ('w', "blue"),
+        ('cp', "purple"),
+        ('sb', "yellow"),
+        ('fv', "red"),
+        ('t', 'violet'),
+        ('none', 'lightgrey'),
     )
 
     s = mapnik.Style()
     for name, color in school_colors:
         r = mapnik.Rule()
-        r.filter = mapnik.Filter("[name] = "+name)
+        r.filter = mapnik.Filter("[name] = '"+name+"'")
         line_symbolizer = mapnik.LineSymbolizer()
         poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color(color))
         r.symbols.append(line_symbolizer)
@@ -194,19 +195,13 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=2698
         s.rules.append(r)
     m.append_style("surveys", s)
 
-    def get_name(point):
-        for key, shed in sheds.items():
-            shed.transform(srid)
-            if shed.contains(point):
-                return "%0.1f" % key
-        return "2.5"
-
     csv_string = "wkt,name\n"
     surveys = Survey.objects.filter(school=school)
     for survey in surveys:
         survey.location.transform(srid)
-        name = get_name(survey.location)
-        print name
+        name = "none"
+        for c in survey.child_set.all():
+            name = str(c.to_school)
         school_circle = survey.location.buffer(50)
         csv_string += '"%s","%s"\n' % (school_circle.wkt, name)
 
