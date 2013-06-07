@@ -138,7 +138,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=2698
 
     #m.background = mapnik.Color('steelblue')
 
-    # styles for main
+    # styles for sheds
     s = mapnik.Style()
     for name, color in (('0.5', VIOLET), ('1.0', PURPLE), ('1.5', LAVENDER), ('2.0', LIGHTCYAN)):
         r = mapnik.Rule()
@@ -148,7 +148,8 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=2698
         r.symbols.append(line_symbolizer)
         r.symbols.append(poly_symbolizer)
         s.rules.append(r)
-    m.append_style("paths", s)
+    m.append_style("sheds", s)
+
     #styles end
 
     sheds = {
@@ -165,19 +166,55 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=2698
         g.srid = 26986
         g.transform(srid)
         csv_string += '"%s","%s"\n' % (g.wkt, str(key))
-        print key
 
-    layer = mapnik.Layer('paths', "+init=epsg:"+str(srid))
+    layer = mapnik.Layer('sheds', "+init=epsg:"+str(srid))
     ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
     layer.datasource = ds
-    layer.styles.append('paths')
+    layer.styles.append('sheds')
     m.layers.append(layer)
+
+
+    # styles for schools
+    school_colors = (
+        ('0.5', "blue"),
+        ('1.0', "green"),
+        ('1.5', "yellow"),
+        ('2.0', "red"),
+        ('2.5', 'gray'),
+    )
+
+    s = mapnik.Style()
+    for name, color in school_colors:
+        r = mapnik.Rule()
+        r.filter = mapnik.Filter("[name] = "+name)
+        line_symbolizer = mapnik.LineSymbolizer()
+        poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color(color))
+        r.symbols.append(line_symbolizer)
+        r.symbols.append(poly_symbolizer)
+        s.rules.append(r)
+    m.append_style("surveys", s)
+
+    def get_name(point):
+        for key, shed in sheds.items():
+            shed.transform(srid)
+            if shed.contains(point):
+                return "%0.1f" % key
+        return "2.5"
 
     csv_string = "wkt,name\n"
     surveys = Survey.objects.filter(school=school)
     for survey in surveys:
         survey.location.transform(srid)
-        csv_string += '"%s","%s"\n' % (survey.location.wkt, survey.pk)
+        name = get_name(survey.location)
+        print name
+        school_circle = survey.location.buffer(50)
+        csv_string += '"%s","%s"\n' % (school_circle.wkt, name)
+
+    layer = mapnik.Layer('surveys', "+init=epsg:"+str(srid))
+    ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
+    layer.datasource = ds
+    layer.styles.append('surveys')
+    m.layers.append(layer)
 
     # Render to image
     im = mapnik.Image(m.width, m.height)
