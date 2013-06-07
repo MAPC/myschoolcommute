@@ -180,7 +180,7 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=2698
         ('1.0', "green"),
         ('1.5', "yellow"),
         ('2.0', "red"),
-        ('2.5', 'gray'),
+        ('2.5', 'lightgray'),
     )
 
     s = mapnik.Style()

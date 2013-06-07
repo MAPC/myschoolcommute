@@ -92,7 +92,7 @@ class Street(models.Model):
 
 class Intersection(models.Model):
     ogc_fid = models.IntegerField(primary_key=True)
-    geometry = models.GeometryField(null=True, blank=True, srid=900914)
+    geometry = models.GeometryField(null=True, blank=True, srid=26986)
     st_name_1 = models.CharField(max_length=50, blank=True)
     st_name_2 = models.CharField(max_length=50, blank=True)
     town = models.CharField(max_length=50, blank=True)
