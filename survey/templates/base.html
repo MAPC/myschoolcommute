@@ -80,6 +80,15 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="{% url 'home' %}">Massachusetts Safe Routes to School Survey</a>
+          {% if request.user.is_authenticated %}
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+                <li {% if 'accounts' in request.path %}class='active'{% endif %}><a href="/accounts/">Accounts</a></li>
+                <li><a href="{% url 'district_list' %}">Districts</a></li>
+                <li><a href="{% url 'school_list' request.user.get_profile.district.slug %}">Schools</a></li>
+            </ul>
+          </div>
+          {% endif %}
           <div class="nav-collapse collapse">
             <ul class="nav">
                 <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
@@ -90,11 +99,6 @@
                       {% endlanguage %}
                     </li>
                 {% endfor %}
-                {% if request.user.is_authenticated %}
-                <li {% if 'accounts' in request.path %}class='active'{% endif %}><a href="/accounts/">Accounts</a></li>
-                <li><a href="{% url 'district_list' %}">Districts</a></li>
-                <li><a href="{% url 'school_list' request.user.get_profile.district.slug %}">Schools</a></li>
-                {% endif %}
             </ul>
           </div><!--/.nav-collapse -->
         </div>
