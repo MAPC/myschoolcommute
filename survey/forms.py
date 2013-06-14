@@ -37,7 +37,7 @@ class SurveyForm(ModelForm):
 
     class Meta:
         model = Survey
-        exclude = ('school', 'ip', 'created', 'modified', 'distance')
+        exclude = ('school', 'ip', 'created', 'modified', 'distance', 'user')
 
         widgets = {
             'location': HiddenInput(),

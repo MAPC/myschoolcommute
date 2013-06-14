@@ -13,7 +13,6 @@ from survey.models import School, Survey, Child, District, Street, Intersection
 from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
 
 
-
 def index(request):
 
     # get all districts with active school surveys
@@ -208,6 +207,7 @@ def form(request, district_slug, school_slug, **kwargs):
         if surveyform.is_valid():
             survey = surveyform.save(commit=False)
             survey.school = school
+            survey.update_distance()
             survey.ip = request.META['REMOTE_ADDR']
 
             surveyformset = SurveyFormset(request.POST, instance=survey)

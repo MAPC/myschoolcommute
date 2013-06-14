@@ -1,5 +1,6 @@
 from django.contrib.gis.db import models
 from django.db.models import permalink
+from django.contrib.auth.models import User
 
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
@@ -113,7 +114,7 @@ class Survey(models.Model):
     """
     Survey base questions.
     """
-    school = models.ForeignKey('School')
+    school = models.ForeignKey(School)
     street = models.CharField(max_length=50, blank=True, null=True)
     cross_st = models.CharField('Cross street', max_length=50, blank=True, null=True)
     nr_vehicles = models.IntegerField('Number of Vehicles', blank=True, null=True)
@@ -124,12 +125,21 @@ class Survey(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False, null=True)
     modified = models.DateTimeField(auto_now=True, null=True)
 
+    user = models.ForeignKey(User, null=True)
     # GeoDjango
     location = models.PointField(geography=True, blank=True, null=True, default='POINT(0 0)') # default SRS 4326
     objects = models.GeoManager()
 
     def __unicode__(self):
         return u'%s' % (self.id)
+
+    def update_distance(self):
+        from survey.maps import get_driving_distance
+
+        try:
+            self.distance = get_driving_distance(self.school.geometry, self.location)
+        except:
+            pass
 
 
 CHILD_GRADES = (

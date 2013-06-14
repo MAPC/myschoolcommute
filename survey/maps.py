@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point, GEOSGeometry, MultiPolygon
 from django.core.cache import cache, get_cache
+from django.utils import simplejson
 from django.db import connection
 
 import pickle
@@ -11,9 +12,10 @@ import mapnik
 import mimetypes
 import math
 import time
+import urllib
 from shapely import ops, geometry
 
-from models import School, Survey
+from survey.models import School, Survey
 
 from myschoolcommute.local_settings import DATABASES
 
@@ -331,6 +333,30 @@ def RunR(school_id, date1, date2):
     r.r("load('R/.RData')")
     r.r("source('R/compile.R')")
 
+
+def get_driving_distance(src, dst):
+    '''
+    Returns driving distance between geometries in miles
+    '''
+    url = 'http://maps.googleapis.com/maps/api/directions/json'
+    src.transform(4326)
+    dst.transform(4326)
+    params = urllib.urlencode({
+        'sensor': 'false',
+        'origin': "%f,%f" % (src.y, src.x),
+        'destination': "%f,%f" % (dst.y, dst.x)
+    })
+
+    response = urllib.urlopen(url+'?'+params).read()
+    data = simplejson.loads(response)
+    meters = data['routes'][0]['legs'][0]['distance']['value']
+    miles = meters * 0.000621371
+    return miles
+
+def test_driving_distance():
+    from survey.models import Survey
+    s = Survey.objects.all().order_by("id")[308]
+    return get_driving_distance(s.location, s.school.geometry)
 
 def update_schools_sheds():
     schools = School.objects.filter(id__gt=30).order_by('id')
