@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-05 20:58-0400\n"
+"POT-Creation-Date: 2013-06-14 19:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,47 +57,47 @@ msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr "هل عادة ما تلتقط طفلك في طريقك إلى العمل أو الأصل آخر؟"
 
-#: models.py:155
+#: models.py:165
 msgid "Walk"
 msgstr "سير"
 
-#: models.py:156
+#: models.py:166
 msgid "Bike"
 msgstr "دراجة هوائية"
 
-#: models.py:157
+#: models.py:167
 msgid "School Bus"
 msgstr "الحافلة المدرسية"
 
-#: models.py:158
+#: models.py:168
 msgid "Family Vehicle (only children in your family)"
 msgstr "سيارة عائلية (الأطفال فقط في عائلتك )"
 
-#: models.py:159
+#: models.py:169
 msgid "Carpool (with children from other families)"
 msgstr "مرافقي طريق ( مع أطفال من عائلات أخرى )"
 
-#: models.py:160
+#: models.py:170
 msgid "Transit (city bus, subway, etc.)"
 msgstr "العبور ( باص ، مترو الانفاق ، الخ.)"
 
-#: models.py:161
+#: models.py:171
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "أخرى ( لوح التزلج ، سكوتر ، التزلج على الجليد مضمنة ، الخ.)"
 
-#: models.py:166
+#: models.py:176
 msgid "Yes"
 msgstr "نعم"
 
-#: models.py:167
+#: models.py:177
 msgid "No"
 msgstr "لا"
 
-#: templates/base.html:79
+#: templates/base.html:94
 msgid "About"
 msgstr "حول"
 
-#: templates/base.html:107
+#: templates/base.html:118
 msgid "Questions? Please contact"
 msgstr "الأسئلة؟ يرجى الاتصال"
 
@@ -114,15 +114,10 @@ msgid "Dear Parent or Guardian,"
 msgstr "عزيزي الوالد أو ولي الأمر ،"
 
 #: templates/survey/form.html:308
+#, fuzzy
 msgid ""
-"Your child’s school is conducting a survey to learn how students get to "
-"school. This information  will be used to plan safe and healthy "
-"transportation choices for all students. The survey will take less than 3 "
-"minutes to complete. All responses are voluntary and confidential. Please "
-"complete one survey for each child at this school. If you already completed "
-"a paper survey, do not complete this online form. If you have questions, "
-"please contact a school administrator or call Safe Routes to School at "
-"857-368-8650."
+"\n"
+"Your child’s school is conducting a survey to learn how students get to and from school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. "
 msgstr ""
 "مدرسة طفلك إجراء مسح لمعرفة كيفية الحصول على الطلاب إلى المدرسة . وسيتم "
 "استخدام هذه المعلومات للتخطيط ل خيارات نقل آمنة و صحية لجميع الطلاب . وسوف "
@@ -132,14 +127,14 @@ msgstr ""
 "على مدير المدرسة أو استدعاء طرق آمنة لل مدرسة في 857-368-8650 ."
 
 #: templates/survey/form.html:311
-msgid "We appreciate your time and effort!"
-msgstr "ونحن نقدر الوقت والجهد !"
+msgid ""
+"If more than one child attends this school, use the \"Add Another Child\" "
+"feature to report additional students. "
+msgstr ""
+"إذا أكثر من طفل واحد يحضر هذه المدرسة ، واستخدام \" إضافة طفل آخر \" ميزة أن"
+" يقدم الطلاب إضافية ."
 
-#: templates/survey/form.html:323
-msgid "What is your approximate home location?"
-msgstr "ما هو منزلك موقع تقريبي ؟"
-
-#: templates/survey/form.html:326
+#: templates/survey/form.html:312 templates/survey/form.html.py:333
 msgid ""
 "If a child's home location or commute is not the same every day, choose the "
 "option that reflects the <em>most common</em> location and travel pattern."
@@ -148,39 +143,58 @@ msgstr ""
 "الذي يعكس \\u003cEM\\u003e الأكثر شيوعا \\u003c/ EM \\u003e الموقع و نمط "
 "السفر."
 
-#: templates/survey/form.html:329
+#: templates/survey/form.html:313
+msgid ""
+"If you already completed a paper survey, do not complete this online form. "
+msgstr "إذا كنت أنجزت بالفعل مسح ورقة ، لا تستكمل هذا النموذج على الانترنت."
+
+#: templates/survey/form.html:314
+msgid ""
+"If you have questions, please contact a school administrator or call Safe "
+"Routes to School at 857-368-8650."
+msgstr ""
+"إذا كان لديك أسئلة، يرجى الاتصال على مدير المدرسة أو استدعاء طرق آمنة لل "
+"مدرسة في 857-368-8650 ."
+
+#: templates/survey/form.html:318
+msgid "We appreciate your time and effort!"
+msgstr "ونحن نقدر الوقت والجهد !"
+
+#: templates/survey/form.html:330
+msgid "What is your approximate home location?"
+msgstr "ما هو منزلك موقع تقريبي ؟"
+
+#: templates/survey/form.html:336
 msgid "Please click the map at an intersection on your street, near your home"
 msgstr "الرجاء الضغط على الخريطة عند تقاطع على شارعك ، بالقرب من منزلك"
 
-#: templates/survey/form.html:334
+#: templates/survey/form.html:341
 msgid "your home"
 msgstr "منزلك"
 
-#: templates/survey/form.html:340
+#: templates/survey/form.html:347
 msgid "...or tell us the street intersection closest to your home."
 msgstr "... أو تخبرنا تقاطع شارع الأقرب إلى منزلك ."
 
-#: templates/survey/form.html:404
+#: templates/survey/form.html:411
 msgid "Add another child at this school"
 msgstr "أضف طفل آخر في هذه المدرسة"
 
-#: templates/survey/form.html:442
+#: templates/survey/form.html:449
 msgid "Submit Survey"
 msgstr "يقدم المسح"
 
 #: templates/survey/index.html:54
 msgid ""
-"We'd like to learn how students get to and from school in order to help plan"
-" safe and healthy Safe Routes to School initiatives for students in your "
-"community."
-msgstr ""
-"نحن نرغب في معرفة كيفية الحصول على الطلاب من وإلى المدرسة من أجل المساعدة في"
-" خطة آمنة وصحية طرق آمنة ل مبادرات المدارس للطلاب في مجتمعك ."
+"Would you like to help create safe routes to school for students in your "
+"community?"
+msgstr "هل ترغب في مساعدة إنشاء مسارات آمنة إلى المدرسة للطلاب في مجتمعك ؟"
 
 #: templates/survey/index.html:55
+#, fuzzy
 msgid ""
-"The survey will take less than 3 minutes to complete. All responses are "
-"voluntary and confidential."
+"The survey takes less than 3 minutes and will help your school plan for more"
+" transportation choices. All responses are voluntary and confidential."
 msgstr ""
 "وسوف يستخدم المسح يستغرق أقل من 3 دقائق لإكمال. جميع الردود الطوعية والسرية "
 "."
@@ -242,3 +256,11 @@ msgstr "فتح نموذج المسح مدرسة"
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "شكرا لك!"
+
+#~ msgid ""
+#~ "We'd like to learn how students get to and from school in order to help plan"
+#~ " safe and healthy Safe Routes to School initiatives for students in your "
+#~ "community."
+#~ msgstr ""
+#~ "نحن نرغب في معرفة كيفية الحصول على الطلاب من وإلى المدرسة من أجل المساعدة في"
+#~ " خطة آمنة وصحية طرق آمنة ل مبادرات المدارس للطلاب في مجتمعك ."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-05 20:58-0400\n"
+"POT-Creation-Date: 2013-06-14 19:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,47 +63,47 @@ msgstr ""
 "តើអ្នក ជាធម្មតា មកយក កូន របស់អ្នកនៅលើ វិធីដែល បានមកពី ការងារឬ ប្រភពដើម "
 "របស់អ្នក មួយផ្សេងទៀត ?"
 
-#: models.py:155
+#: models.py:165
 msgid "Walk"
 msgstr "ដើរ"
 
-#: models.py:156
+#: models.py:166
 msgid "Bike"
 msgstr "ជិះកង់"
 
-#: models.py:157
+#: models.py:167
 msgid "School Bus"
 msgstr "រថយន្តក្រុង សាលា"
 
-#: models.py:158
+#: models.py:168
 msgid "Family Vehicle (only children in your family)"
 msgstr "យានយន្ត គ្រួសារ ( កុមារដែល មានតែ នៅក្នុង ក្រុមគ្រួសារ របស់អ្នក)"
 
-#: models.py:159
+#: models.py:169
 msgid "Carpool (with children from other families)"
 msgstr "Carpool (ជាមួយ កុមារមកពីគ្រួសារ ផ្សេងទៀត)"
 
-#: models.py:160
+#: models.py:170
 msgid "Transit (city bus, subway, etc.)"
 msgstr "ផ្លាស់ប្តូរ ( ទីក្រុង ឡានក្រុង រថភ្លើងក្រោមដី , ជាដើម)"
 
-#: models.py:161
+#: models.py:171
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "ផ្សេងទៀត ( skateboard scooter , skates ក្នុងតួ ជាដើម)"
 
-#: models.py:166
+#: models.py:176
 msgid "Yes"
 msgstr "បាទ"
 
-#: models.py:167
+#: models.py:177
 msgid "No"
 msgstr "គ្មាន"
 
-#: templates/base.html:79
+#: templates/base.html:94
 msgid "About"
 msgstr "អំពី"
 
-#: templates/base.html:107
+#: templates/base.html:118
 msgid "Questions? Please contact"
 msgstr "សំណួរ ? សូម ទំនាក់ទំនងមកការិយាល័យទំនាក់ទំនង"
 
@@ -120,15 +120,10 @@ msgid "Dear Parent or Guardian,"
 msgstr "សូមគោរព មាតាបិតា ឬ អាណាព្យាបាល ,"
 
 #: templates/survey/form.html:308
+#, fuzzy
 msgid ""
-"Your child’s school is conducting a survey to learn how students get to "
-"school. This information  will be used to plan safe and healthy "
-"transportation choices for all students. The survey will take less than 3 "
-"minutes to complete. All responses are voluntary and confidential. Please "
-"complete one survey for each child at this school. If you already completed "
-"a paper survey, do not complete this online form. If you have questions, "
-"please contact a school administrator or call Safe Routes to School at "
-"857-368-8650."
+"\n"
+"Your child’s school is conducting a survey to learn how students get to and from school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. "
 msgstr ""
 "សាលារៀន របស់កូនអ្នក គឺត្រូវបាន ធ្វើ ការស្ទង់មតិ ទៅ រៀនពីរបៀប ទទួលបាន សិស្ស "
 "ទៅ សាលារៀន។ ព័ត៌មាននេះនឹង ត្រូវបានប្រើដើម្បី មានជម្រើស មានគម្រោង ដឹកជញ្ជូន "
@@ -141,14 +136,14 @@ msgstr ""
 "857-368-8650 ។"
 
 #: templates/survey/form.html:311
-msgid "We appreciate your time and effort!"
-msgstr "យើង ពេញចិត្តក្នុងការស្តាប់ ពេលវេលា និងការខំប្រឹងប្រែង របស់អ្នក!"
+msgid ""
+"If more than one child attends this school, use the \"Add Another Child\" "
+"feature to report additional students. "
+msgstr ""
+"ប្រសិនបើមាន ច្រើនជាងមួយ កូន ទៅរៀន នេះ ប្រើ \"បន្ថែម កុមារ មួយទៀត \" "
+"លក្ខណៈពិសេស ដើម្បី រាយការណ៍អំពី សិស្ស បន្ថែមទៀត។"
 
-#: templates/survey/form.html:323
-msgid "What is your approximate home location?"
-msgstr "ទីតាំង ផ្ទះរបស់អ្នក ប្រហាក់ប្រហែល គឺជាអ្វី?"
-
-#: templates/survey/form.html:326
+#: templates/survey/form.html:312 templates/survey/form.html.py:333
 msgid ""
 "If a child's home location or commute is not the same every day, choose the "
 "option that reflects the <em>most common</em> location and travel pattern."
@@ -157,41 +152,63 @@ msgstr ""
 "ជ្រើស ជម្រើសដែល ឆ្លុះបញ្ចាំងពីការ ទូទៅបំផុត \\u003cem\\u003e \\u003c/ Em "
 "\\u003e ទីតាំង និងលំនាំ ការធ្វើដំណើរ នេះ។"
 
-#: templates/survey/form.html:329
+#: templates/survey/form.html:313
+msgid ""
+"If you already completed a paper survey, do not complete this online form. "
+msgstr ""
+"ប្រសិនបើអ្នក បានបញ្ចប់ ការស្ទង់មតិ រួចទៅហើយ ក្រដាស មួយ មិន បំពេញ សំណុំបែបបទ "
+"នេះ នៅលើបណ្ដាញ ។"
+
+#: templates/survey/form.html:314
+msgid ""
+"If you have questions, please contact a school administrator or call Safe "
+"Routes to School at 857-368-8650."
+msgstr ""
+"ប្រសិនបើលោកអ្នក មានសំណួរ សូម ទាក់ទងអ្នកគ្រប់គ្រង សាលារៀន មួយ ឬ ហៅទូរស័ព្ទទៅ "
+"ទស្សនៈកិច្ចសិក្សា ដោយសុវត្ថិភាពដើម្បីឱ្យ សាលា នៅ 857-368-8650 ។"
+
+#: templates/survey/form.html:318
+msgid "We appreciate your time and effort!"
+msgstr "យើង ពេញចិត្តក្នុងការស្តាប់ ពេលវេលា និងការខំប្រឹងប្រែង របស់អ្នក!"
+
+#: templates/survey/form.html:330
+msgid "What is your approximate home location?"
+msgstr "ទីតាំង ផ្ទះរបស់អ្នក ប្រហាក់ប្រហែល គឺជាអ្វី?"
+
+#: templates/survey/form.html:336
 msgid "Please click the map at an intersection on your street, near your home"
 msgstr ""
 "សូម ចុចលើ ផែនទី នៅចំនុចប្រសព្វ នៅលើ ចិញ្ចើមផ្លូវ របស់អ្នក នៅជិត ផ្ទះរបស់អ្នក"
 
-#: templates/survey/form.html:334
+#: templates/survey/form.html:341
 msgid "your home"
 msgstr "ផ្ទះរបស់អ្នក"
 
-#: templates/survey/form.html:340
+#: templates/survey/form.html:347
 msgid "...or tell us the street intersection closest to your home."
 msgstr "... ឬ ប្រាប់យើង ប្រសព្វ ផ្លូវ ជិត ផ្ទះរបស់អ្នក។"
 
-#: templates/survey/form.html:404
+#: templates/survey/form.html:411
 msgid "Add another child at this school"
 msgstr "បញ្ចូល កុមារ នៅសាលា នេះ មួយផ្សេងទៀត"
 
-#: templates/survey/form.html:442
+#: templates/survey/form.html:449
 msgid "Submit Survey"
 msgstr "ដាក់ស្នើ ការស្ទង់មតិ"
 
 #: templates/survey/index.html:54
 msgid ""
-"We'd like to learn how students get to and from school in order to help plan"
-" safe and healthy Safe Routes to School initiatives for students in your "
-"community."
+"Would you like to help create safe routes to school for students in your "
+"community?"
 msgstr ""
-"យើងចង់ រៀនពីរបៀប ទទួលបាន សិស្ស ទៅនិងមកពី សាលារៀន នៅក្នុង គោលបំណង "
-"ដើម្បីជួយដល់ ែផនការ មានសុវត្ថិភាពនិង មានសុខភាពល្អ មានផ្លូវ "
-"មានសុវត្ថិភាពដើម្បី ផ្តួចផ្តើម សម្រាប់ សិស្ស សាលា នៅក្នុង សហគមន៍របស់អ្នក។"
+"តើអ្នកចង់ ដើម្បីជួយ បង្កើត ផ្លូវ មានសុវត្ថភាព សម្រាប់សាលារៀនដើម្បី "
+"សិស្សនិស្សិត នៅក្នុងសហគមន៍ របស់អ្នកទេ?"
 
 #: templates/survey/index.html:55
+#, fuzzy
 msgid ""
-"The survey will take less than 3 minutes to complete. All responses are "
-"voluntary and confidential."
+"The survey takes less than 3 minutes and will help your school plan for more"
+" transportation choices. All responses are voluntary and confidential."
 msgstr ""
 "ការស្ទង់មតិ នេះនឹង យក តិចជាង 3 នាទីដើម្បី បញ្ចប់។ ការឆ្លើយតប ទាំងអស់គឺ "
 "ការស្ម័គ្រចិត្ត និង ជាការសំងាត់។"
@@ -257,3 +274,12 @@ msgstr "សាលា ទម្រង់ បើកចំហ ការស្ទង
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "សូមអរគុណ!"
+
+#~ msgid ""
+#~ "We'd like to learn how students get to and from school in order to help plan"
+#~ " safe and healthy Safe Routes to School initiatives for students in your "
+#~ "community."
+#~ msgstr ""
+#~ "យើងចង់ រៀនពីរបៀប ទទួលបាន សិស្ស ទៅនិងមកពី សាលារៀន នៅក្នុង គោលបំណង "
+#~ "ដើម្បីជួយដល់ ែផនការ មានសុវត្ថិភាពនិង មានសុខភាពល្អ មានផ្លូវ "
+#~ "មានសុវត្ថិភាពដើម្បី ផ្តួចផ្តើម សម្រាប់ សិស្ស សាលា នៅក្នុង សហគមន៍របស់អ្នក។"

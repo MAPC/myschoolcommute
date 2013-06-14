@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-05 20:58-0400\n"
+"POT-Creation-Date: 2013-06-14 19:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,47 +57,47 @@ msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr "Bạn có thường đón em trên đường từ nơi làm việc hay nguồn gốc khác?"
 
-#: models.py:155
+#: models.py:165
 msgid "Walk"
 msgstr "đi bộ"
 
-#: models.py:156
+#: models.py:166
 msgid "Bike"
 msgstr "xe đạp"
 
-#: models.py:157
+#: models.py:167
 msgid "School Bus"
 msgstr "Xe buýt trường học"
 
-#: models.py:158
+#: models.py:168
 msgid "Family Vehicle (only children in your family)"
 msgstr "Xe gia đình ( chỉ có trẻ em trong gia đình của bạn )"
 
-#: models.py:159
+#: models.py:169
 msgid "Carpool (with children from other families)"
 msgstr "Đi chung xe ( với trẻ em từ các gia đình khác )"
 
-#: models.py:160
+#: models.py:170
 msgid "Transit (city bus, subway, etc.)"
 msgstr "Vận chuyển ( xe buýt thành phố , tàu điện ngầm , vv )"
 
-#: models.py:161
+#: models.py:171
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "Khác ( ván trượt , xe tay ga, giày trượt nội tuyến , vv )"
 
-#: models.py:166
+#: models.py:176
 msgid "Yes"
 msgstr "vâng"
 
-#: models.py:167
+#: models.py:177
 msgid "No"
 msgstr "không"
 
-#: templates/base.html:79
+#: templates/base.html:94
 msgid "About"
 msgstr "về"
 
-#: templates/base.html:107
+#: templates/base.html:118
 msgid "Questions? Please contact"
 msgstr "Câu hỏi ? Vui lòng liên hệ"
 
@@ -114,15 +114,10 @@ msgid "Dear Parent or Guardian,"
 msgstr "Thưa quý phụ huynh hoặc người giám hộ ,"
 
 #: templates/survey/form.html:308
+#, fuzzy
 msgid ""
-"Your child’s school is conducting a survey to learn how students get to "
-"school. This information  will be used to plan safe and healthy "
-"transportation choices for all students. The survey will take less than 3 "
-"minutes to complete. All responses are voluntary and confidential. Please "
-"complete one survey for each child at this school. If you already completed "
-"a paper survey, do not complete this online form. If you have questions, "
-"please contact a school administrator or call Safe Routes to School at "
-"857-368-8650."
+"\n"
+"Your child’s school is conducting a survey to learn how students get to and from school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. "
 msgstr ""
 "Trường của con quý vị đang tiến hành một cuộc khảo sát để tìm hiểu cách sinh"
 " viên đến trường . Thông tin này sẽ được sử dụng để có kế hoạch lựa chọn vận"
@@ -134,14 +129,14 @@ msgstr ""
 "hoặc gọi tuyến đường an toàn để học tại 857-368-8650 ."
 
 #: templates/survey/form.html:311
-msgid "We appreciate your time and effort!"
-msgstr "Chúng tôi đánh giá cao thời gian và nỗ lực của bạn !"
+msgid ""
+"If more than one child attends this school, use the \"Add Another Child\" "
+"feature to report additional students. "
+msgstr ""
+"Nếu có nhiều hơn một đứa trẻ theo học trường này , sử dụng \" Thêm Một trẻ "
+"em \" tính năng để báo cáo thêm học sinh ."
 
-#: templates/survey/form.html:323
-msgid "What is your approximate home location?"
-msgstr "Vị trí nhà gần đúng của bạn là gì?"
-
-#: templates/survey/form.html:326
+#: templates/survey/form.html:312 templates/survey/form.html.py:333
 msgid ""
 "If a child's home location or commute is not the same every day, choose the "
 "option that reflects the <em>most common</em> location and travel pattern."
@@ -150,42 +145,64 @@ msgstr ""
 " , chọn tùy chọn phản ánh \\u003cem\\u003e phổ biến nhất \\u003c/ em\\u003e "
 "vị trí và mô hình du lịch ."
 
-#: templates/survey/form.html:329
+#: templates/survey/form.html:313
+msgid ""
+"If you already completed a paper survey, do not complete this online form. "
+msgstr ""
+"Nếu bạn đã hoàn thành một cuộc khảo sát giấy, không hoàn thành mẫu trực "
+"tuyến này ."
+
+#: templates/survey/form.html:314
+msgid ""
+"If you have questions, please contact a school administrator or call Safe "
+"Routes to School at 857-368-8650."
+msgstr ""
+"Nếu bạn có thắc mắc , xin vui lòng liên hệ với quản trị trường hoặc gọi "
+"tuyến đường an toàn để học tại 857-368-8650 ."
+
+#: templates/survey/form.html:318
+msgid "We appreciate your time and effort!"
+msgstr "Chúng tôi đánh giá cao thời gian và nỗ lực của bạn !"
+
+#: templates/survey/form.html:330
+msgid "What is your approximate home location?"
+msgstr "Vị trí nhà gần đúng của bạn là gì?"
+
+#: templates/survey/form.html:336
 msgid "Please click the map at an intersection on your street, near your home"
 msgstr ""
 "Vui lòng bấm vào bản đồ tại một ngã tư trên đường phố của bạn , gần nhà của "
 "bạn"
 
-#: templates/survey/form.html:334
+#: templates/survey/form.html:341
 msgid "your home"
 msgstr "nhà của bạn"
 
-#: templates/survey/form.html:340
+#: templates/survey/form.html:347
 msgid "...or tell us the street intersection closest to your home."
 msgstr "... hoặc cho chúng tôi biết các ngã tư đường phố gần nhà quý vị ."
 
-#: templates/survey/form.html:404
+#: templates/survey/form.html:411
 msgid "Add another child at this school"
 msgstr "Thêm một đứa trẻ ở trường này"
 
-#: templates/survey/form.html:442
+#: templates/survey/form.html:449
 msgid "Submit Survey"
 msgstr "trình điều tra"
 
 #: templates/survey/index.html:54
 msgid ""
-"We'd like to learn how students get to and from school in order to help plan"
-" safe and healthy Safe Routes to School initiatives for students in your "
-"community."
+"Would you like to help create safe routes to school for students in your "
+"community?"
 msgstr ""
-"Chúng tôi muốn tìm hiểu cách học sinh có được đến trường để giúp kế hoạch an"
-" toàn và lành mạnh tuyến đường an toàn cho các sáng kiến ​​trường học cho "
-"các sinh viên trong cộng đồng của bạn ."
+"Bạn có muốn giúp tạo ra các tuyến đường an toàn cho học sinh trong cộng đồng"
+" của bạn ?"
 
 #: templates/survey/index.html:55
+#, fuzzy
 msgid ""
-"The survey will take less than 3 minutes to complete. All responses are "
-"voluntary and confidential."
+"The survey takes less than 3 minutes and will help your school plan for more"
+" transportation choices. All responses are voluntary and confidential."
 msgstr ""
 "Cuộc khảo sát sẽ mất ít hơn 3 phút để hoàn thành . Tất cả các câu trả lời là"
 " tự nguyện và bảo mật."
@@ -250,3 +267,12 @@ msgstr "Mở Mẫu khảo sát học"
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "Cảm ơn bạn!"
+
+#~ msgid ""
+#~ "We'd like to learn how students get to and from school in order to help plan"
+#~ " safe and healthy Safe Routes to School initiatives for students in your "
+#~ "community."
+#~ msgstr ""
+#~ "Chúng tôi muốn tìm hiểu cách học sinh có được đến trường để giúp kế hoạch an"
+#~ " toàn và lành mạnh tuyến đường an toàn cho các sáng kiến ​​trường học cho "
+#~ "các sinh viên trong cộng đồng của bạn ."

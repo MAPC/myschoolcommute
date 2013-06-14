@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-05 20:58-0400\n"
+"POT-Creation-Date: 2013-06-14 19:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,47 +56,47 @@ msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr "你拿起你的孩子用自己的方式工作或其他来源的吗？"
 
-#: models.py:155
+#: models.py:165
 msgid "Walk"
 msgstr "走"
 
-#: models.py:156
+#: models.py:166
 msgid "Bike"
 msgstr "自行车"
 
-#: models.py:157
+#: models.py:167
 msgid "School Bus"
 msgstr "校车"
 
-#: models.py:158
+#: models.py:168
 msgid "Family Vehicle (only children in your family)"
 msgstr "家庭车辆（只有在你的家庭的孩子）"
 
-#: models.py:159
+#: models.py:169
 msgid "Carpool (with children from other families)"
 msgstr "拼车（与其他家庭的孩子）"
 
-#: models.py:160
+#: models.py:170
 msgid "Transit (city bus, subway, etc.)"
 msgstr "运输（城市公交车，地铁等）"
 
-#: models.py:161
+#: models.py:171
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "其他（滑板，滑板，直排轮滑鞋，等等）"
 
-#: models.py:166
+#: models.py:176
 msgid "Yes"
 msgstr "是"
 
-#: models.py:167
+#: models.py:177
 msgid "No"
 msgstr "没有"
 
-#: templates/base.html:79
+#: templates/base.html:94
 msgid "About"
 msgstr "关于"
 
-#: templates/base.html:107
+#: templates/base.html:118
 msgid "Questions? Please contact"
 msgstr "有问题吗？请联系"
 
@@ -113,27 +113,20 @@ msgid "Dear Parent or Guardian,"
 msgstr "亲爱的家长或监护人，"
 
 #: templates/survey/form.html:308
+#, fuzzy
 msgid ""
-"Your child’s school is conducting a survey to learn how students get to "
-"school. This information  will be used to plan safe and healthy "
-"transportation choices for all students. The survey will take less than 3 "
-"minutes to complete. All responses are voluntary and confidential. Please "
-"complete one survey for each child at this school. If you already completed "
-"a paper survey, do not complete this online form. If you have questions, "
-"please contact a school administrator or call Safe Routes to School at "
-"857-368-8650."
+"\n"
+"Your child’s school is conducting a survey to learn how students get to and from school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. "
 msgstr ""
 "您孩子的学校进行了一次调查，以了解学生如何去学校。这些信息将被用于计划为所有学生的安全和健康的运输选择。这项调查将需要不到3分钟就可以完成。所有的反应是自愿和保密的。请为每个孩子在这所学校完成的一项调查。如果你已经完成了纸质的调查，不完成这个网上表格。如果您有任何疑问，请联系学校管理员或致电857-368-8650学校的安全路线。"
 
 #: templates/survey/form.html:311
-msgid "We appreciate your time and effort!"
-msgstr "我们非常感谢您的时间和精力！"
+msgid ""
+"If more than one child attends this school, use the \"Add Another Child\" "
+"feature to report additional students. "
+msgstr "如果不止一个孩子就读这所学校，使用“添加另一个孩子”功能，其他学生报告。"
 
-#: templates/survey/form.html:323
-msgid "What is your approximate home location?"
-msgstr "近似​​归属位置是什么？"
-
-#: templates/survey/form.html:326
+#: templates/survey/form.html:312 templates/survey/form.html.py:333
 msgid ""
 "If a child's home location or commute is not the same every day, choose the "
 "option that reflects the <em>most common</em> location and travel pattern."
@@ -141,37 +134,56 @@ msgstr ""
 "如果一个孩子的家庭所在地或改判是不是每天都一样，选择的选项反映的\\u003cem\\u003e的最常见的\\u003c/ EM "
 "\\u003e位置和交通模式。"
 
-#: templates/survey/form.html:329
+#: templates/survey/form.html:313
+msgid ""
+"If you already completed a paper survey, do not complete this online form. "
+msgstr "如果你已经完成了纸质的调查，不完成这个网上表格。"
+
+#: templates/survey/form.html:314
+msgid ""
+"If you have questions, please contact a school administrator or call Safe "
+"Routes to School at 857-368-8650."
+msgstr "如果您有任何疑问，请联系学校管理员或致电857-368-8650学校的安全路线。"
+
+#: templates/survey/form.html:318
+msgid "We appreciate your time and effort!"
+msgstr "我们非常感谢您的时间和精力！"
+
+#: templates/survey/form.html:330
+msgid "What is your approximate home location?"
+msgstr "近似​​归属位置是什么？"
+
+#: templates/survey/form.html:336
 msgid "Please click the map at an intersection on your street, near your home"
 msgstr "请点击地图在街道上的一个十字路口，你家附近"
 
-#: templates/survey/form.html:334
+#: templates/survey/form.html:341
 msgid "your home"
 msgstr "你的家"
 
-#: templates/survey/form.html:340
+#: templates/survey/form.html:347
 msgid "...or tell us the street intersection closest to your home."
 msgstr "或者告诉我们离您家最近的路口。"
 
-#: templates/survey/form.html:404
+#: templates/survey/form.html:411
 msgid "Add another child at this school"
 msgstr "添加另一个孩子在这所学校"
 
-#: templates/survey/form.html:442
+#: templates/survey/form.html:449
 msgid "Submit Survey"
 msgstr "提交调查"
 
 #: templates/survey/index.html:54
 msgid ""
-"We'd like to learn how students get to and from school in order to help plan"
-" safe and healthy Safe Routes to School initiatives for students in your "
-"community."
-msgstr "我们想了解学生如何从学校学校学生在你的社区的举措，以帮助计划，安全和健康的安全路线。"
+"Would you like to help create safe routes to school for students in your "
+"community?"
+msgstr "你想在你的社区学校为学生创造安全路由？"
 
 #: templates/survey/index.html:55
+#, fuzzy
 msgid ""
-"The survey will take less than 3 minutes to complete. All responses are "
-"voluntary and confidential."
+"The survey takes less than 3 minutes and will help your school plan for more"
+" transportation choices. All responses are voluntary and confidential."
 msgstr "这项调查将需要不到3分钟就可以完成。所有的反应是自愿和保密的。"
 
 #: templates/survey/index.html:58
@@ -224,3 +236,9 @@ msgstr "开放学校调查表"
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "谢谢你！"
+
+#~ msgid ""
+#~ "We'd like to learn how students get to and from school in order to help plan"
+#~ " safe and healthy Safe Routes to School initiatives for students in your "
+#~ "community."
+#~ msgstr "我们想了解学生如何从学校学校学生在你的社区的举措，以帮助计划，安全和健康的安全路线。"

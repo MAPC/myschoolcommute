@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-05 20:58-0400\n"
+"POT-Creation-Date: 2013-06-14 19:14-0400\n"
 "PO-Revision-Date: 2013-06-05 19:46-0500\n"
 "Last-Translator: Pavel Dorovskoy <pavel@appliedgeosolutions.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,47 +61,47 @@ msgstr ""
 "Anjeneral ou vin chèche pitit ou sou wout ou soti nan travay oswa orijin yon"
 " lòt?"
 
-#: models.py:155
+#: models.py:165
 msgid "Walk"
 msgstr "mache"
 
-#: models.py:156
+#: models.py:166
 msgid "Bike"
 msgstr "bisiklèt"
 
-#: models.py:157
+#: models.py:167
 msgid "School Bus"
 msgstr "Otobis Lekòl"
 
-#: models.py:158
+#: models.py:168
 msgid "Family Vehicle (only children in your family)"
 msgstr "Veyikil Fanmi ( timoun sèlman nan fanmi an)"
 
-#: models.py:159
+#: models.py:169
 msgid "Carpool (with children from other families)"
 msgstr "Vwayaje nan Menm Machin (ak timoun ki soti nan lòt fanmi )"
 
-#: models.py:160
+#: models.py:170
 msgid "Transit (city bus, subway, etc.)"
 msgstr "Transit ( vil la otobis, tren , elatriye)"
 
-#: models.py:161
+#: models.py:171
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "Lòt ( skateboard , scooter , aliye woulèt , elatriye)"
 
-#: models.py:166
+#: models.py:176
 msgid "Yes"
 msgstr "Wi"
 
-#: models.py:167
+#: models.py:177
 msgid "No"
 msgstr "Pa gen"
 
-#: templates/base.html:79
+#: templates/base.html:94
 msgid "About"
 msgstr "Konsènan"
 
-#: templates/base.html:107
+#: templates/base.html:118
 msgid "Questions? Please contact"
 msgstr "Kesyon? tanpri kontakte"
 
@@ -118,15 +118,10 @@ msgid "Dear Parent or Guardian,"
 msgstr "Chè Paran oswa Gadyen ,"
 
 #: templates/survey/form.html:308
+#, fuzzy
 msgid ""
-"Your child’s school is conducting a survey to learn how students get to "
-"school. This information  will be used to plan safe and healthy "
-"transportation choices for all students. The survey will take less than 3 "
-"minutes to complete. All responses are voluntary and confidential. Please "
-"complete one survey for each child at this school. If you already completed "
-"a paper survey, do not complete this online form. If you have questions, "
-"please contact a school administrator or call Safe Routes to School at "
-"857-368-8650."
+"\n"
+"Your child’s school is conducting a survey to learn how students get to and from school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. "
 msgstr ""
 "Lekòl pitit ou a ap fè yon sondaj aprann kijan elèv yo ka nan lekòl la. Pral"
 " itilize enfòmasyon sa a pou gen plan pou chwa sekirite ak an sante transpò "
@@ -137,14 +132,14 @@ msgstr ""
 " Wout Lekòl an Sekirite nan 857-368-8650 ."
 
 #: templates/survey/form.html:311
-msgid "We appreciate your time and effort!"
-msgstr "Nou apresye tan ou ak efò !"
+msgid ""
+"If more than one child attends this school, use the \"Add Another Child\" "
+"feature to report additional students. "
+msgstr ""
+"Si plis pase yon timoun ale lekòl sa a, sèvi ak \" Add yon lòt timoun \" "
+"karakteristik nan fè rapò elèv yo adisyonèl."
 
-#: templates/survey/form.html:323
-msgid "What is your approximate home location?"
-msgstr "Ki sa ki se kote lakay apwoksimatif ou a?"
-
-#: templates/survey/form.html:326
+#: templates/survey/form.html:312 templates/survey/form.html.py:333
 msgid ""
 "If a child's home location or commute is not the same every day, choose the "
 "option that reflects the <em>most common</em> location and travel pattern."
@@ -153,42 +148,62 @@ msgstr ""
 "opsyon a ki reflete \\u003cem\\u003e ki pi komen \\u003c la / em \\u003e "
 "kote ak modèl vwayaj."
 
-#: templates/survey/form.html:329
+#: templates/survey/form.html:313
+msgid ""
+"If you already completed a paper survey, do not complete this online form. "
+msgstr "Si ou deja fè yon sondaj sou papye , pa ranpli fòm sa a sou entènèt."
+
+#: templates/survey/form.html:314
+msgid ""
+"If you have questions, please contact a school administrator or call Safe "
+"Routes to School at 857-368-8650."
+msgstr ""
+"Si w gen kesyon , tanpri kontakte yon administratè lekòl oswa rele Wout "
+"Lekòl an Sekirite nan 857-368-8650 ."
+
+#: templates/survey/form.html:318
+msgid "We appreciate your time and effort!"
+msgstr "Nou apresye tan ou ak efò !"
+
+#: templates/survey/form.html:330
+msgid "What is your approximate home location?"
+msgstr "Ki sa ki se kote lakay apwoksimatif ou a?"
+
+#: templates/survey/form.html:336
 msgid "Please click the map at an intersection on your street, near your home"
 msgstr ""
 "Tanpri klike kat jeyografik la nan yon entèseksyon ki nan lari ou a, tou pre"
 " lakay ou"
 
-#: templates/survey/form.html:334
+#: templates/survey/form.html:341
 msgid "your home"
 msgstr "lakay ou"
 
-#: templates/survey/form.html:340
+#: templates/survey/form.html:347
 msgid "...or tell us the street intersection closest to your home."
 msgstr "... oswa di nou entèseksyon an lari ki pi pre lakay ou."
 
-#: templates/survey/form.html:404
+#: templates/survey/form.html:411
 msgid "Add another child at this school"
 msgstr "Ajoute yon lòt pitit nan lekòl sa a"
 
-#: templates/survey/form.html:442
+#: templates/survey/form.html:449
 msgid "Submit Survey"
 msgstr "soumèt Sondaj"
 
 #: templates/survey/index.html:54
 msgid ""
-"We'd like to learn how students get to and from school in order to help plan"
-" safe and healthy Safe Routes to School initiatives for students in your "
-"community."
+"Would you like to help create safe routes to school for students in your "
+"community?"
 msgstr ""
-"Nou ta renmen aprann kijan elèv yo ale ak sòti nan lekòl yo nan lòd yo ede "
-"nan plan Wout sekirite ak an sante san danje nan inisyativ Lekòl pou elèv ki"
-" nan kominote w la."
+"Èske ou ta renmen ede kreye wout ki an sekirite nan lekòl la pou elèv ki nan"
+" kominote ou a?"
 
 #: templates/survey/index.html:55
+#, fuzzy
 msgid ""
-"The survey will take less than 3 minutes to complete. All responses are "
-"voluntary and confidential."
+"The survey takes less than 3 minutes and will help your school plan for more"
+" transportation choices. All responses are voluntary and confidential."
 msgstr ""
 "Sondaj la ap pran mwens pase 3 minit. Tout repons yo se volontè ak "
 "konfidansyèl ."
@@ -251,3 +266,12 @@ msgstr "Open School Survey Fòm"
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "Mèsi!"
+
+#~ msgid ""
+#~ "We'd like to learn how students get to and from school in order to help plan"
+#~ " safe and healthy Safe Routes to School initiatives for students in your "
+#~ "community."
+#~ msgstr ""
+#~ "Nou ta renmen aprann kijan elèv yo ale ak sòti nan lekòl yo nan lòd yo ede "
+#~ "nan plan Wout sekirite ak an sante san danje nan inisyativ Lekòl pou elèv ki"
+#~ " nan kominote w la."
