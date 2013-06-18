@@ -3,21 +3,22 @@
 
 {% block container %}
 
-	<h2>{{ district.distname }}</h2>
-	
-	<table class='table table-hover'>
-		<thead>
-			<tr><th>School name</th><th>Number of surveys</th><th>Is Active</th></tr>
-		</thead>
-	{% for school in district.school_set.all %}
-	
-		<tr>
-			<td><a href="{{ school.slug }}/edit/">{{ school.name }}</a></td>
-			<td>{{ school.survey_set.count }}</td>
-			<td>{{ school.survey_active }}</td>
-		</tr>
-	
-	{% endfor %}
-	</table>
-	
+    <h2>{{ district.distname }}</h2>
+
+    <table class='table table-hover'>
+        <thead>
+            <tr><th>School name</th><th>Number of surveys</th><th>Is Active</th><th>Batch Entry</th></tr>
+        </thead>
+    {% for school in district.school_set.all %}
+
+        <tr>
+            <td><a href="{{ school.slug }}/edit/">{{ school.name }}</a></td>
+            <td>{{ school.survey_set.count }}</td>
+            <td>{{ school.survey_active }}</td>
+            <td><a class='btn btn-small' href="{{ school.slug }}/batch/">Begin Entry</a></td>
+        </tr>
+
+    {% endfor %}
+    </table>
+
 {% endblock %}

@@ -353,10 +353,12 @@ def get_driving_distance(src, dst):
     miles = meters * 0.000621371
     return miles
 
+
 def test_driving_distance():
     from survey.models import Survey
     s = Survey.objects.all().order_by("id")[308]
     return get_driving_distance(s.location, s.school.geometry)
+
 
 def update_schools_sheds():
     schools = School.objects.filter(id__gt=30).order_by('id')

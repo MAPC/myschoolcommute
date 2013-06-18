@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}Survey - {{block.super}}{% endblock %}
+
 {% block javascript %}
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
@@ -329,9 +331,6 @@ Your child’s school is conducting a survey to learn how students get to and fr
             <p class="question_title">
                 {% trans "What is your approximate home location?" %} (<span class="required_field">required</span>)
             </p>
-            <p>
-                ({% blocktrans %}If a child's home location or commute is not the same every day, choose the option that reflects the <em>most common</em> location and travel pattern.{% endblocktrans %})
-            </p
             <p>
                 {% blocktrans %}Please click the map at an intersection on your street, near your home{% endblocktrans %}:
             </p>

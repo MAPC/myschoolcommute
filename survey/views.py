@@ -238,3 +238,58 @@ def form(request, district_slug, school_slug, **kwargs):
         context_instance=RequestContext(request)
     )
 
+def batch_form(request, district_slug, school_slug, **kwargs):
+
+    # check if district exists
+    district = get_object_or_404(District.objects, slug__iexact=district_slug)
+
+    # get school in district
+    school = get_object_or_404(School.objects, districtid=district, slug__iexact=school_slug)
+
+    # translate to lat/lon
+    school.geometry.transform(4326)
+
+    SurveyFormset = inlineformset_factory(Survey, Child, form=ChildForm, extra=1, can_delete=False)
+
+    formerror = False
+
+    message = "New survey"
+    if request.method == 'POST':
+
+        surveyform = SurveyForm(request.POST)
+
+        if surveyform.is_valid():
+            survey = surveyform.save(commit=False)
+            survey.school = school
+            survey.update_distance()
+            survey.ip = request.META['REMOTE_ADDR']
+
+            surveyformset = SurveyFormset(request.POST, instance=survey)
+            if surveyformset.is_valid():
+                survey.save()
+                surveyformset.save()
+
+                #Done. Make new form.
+                message = "Survey submitted. New Entry."
+                survey = Survey()
+                surveyform = SurveyForm(instance=survey)
+                surveyformset = SurveyFormset(instance=survey)
+            else:
+                surveyformset = SurveyFormset(request.POST, instance=Survey())
+                formerror = True
+        else:
+            formerror = True
+    else:
+        survey = Survey()
+        surveyform = SurveyForm(instance=survey)
+        surveyformset = SurveyFormset(instance=survey)
+
+    return render_to_response('survey/batch.html', {
+            'message': message,
+            'formerror': formerror,
+            'school': school,
+            'surveyform': surveyform,
+            'surveyformset': surveyformset,
+        },
+        context_instance=RequestContext(request)
+    )
