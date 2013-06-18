@@ -6,6 +6,7 @@ from django.utils import simplejson
 from django.db.models import Count
 from django.db.models import Q
 from django.forms.models import inlineformset_factory
+from django.contrib.auth.decorators import login_required
 
 from datetime import datetime, timedelta
 
@@ -43,7 +44,7 @@ def district_list(request):
 
     return render_to_response('survey/district_list.html', locals(), context_instance=RequestContext(request))
 
-
+@login_required
 def school_edit(request, district_slug, school_slug, **kwargs):
 
     # check if district exists
@@ -238,6 +239,7 @@ def form(request, district_slug, school_slug, **kwargs):
         context_instance=RequestContext(request)
     )
 
+@login_required
 def batch_form(request, district_slug, school_slug, **kwargs):
 
     # check if district exists
@@ -260,6 +262,7 @@ def batch_form(request, district_slug, school_slug, **kwargs):
 
         if surveyform.is_valid():
             survey = surveyform.save(commit=False)
+            survey.user = request.user
             survey.school = school
             survey.update_distance()
             survey.ip = request.META['REMOTE_ADDR']
