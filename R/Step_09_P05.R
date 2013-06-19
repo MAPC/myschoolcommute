@@ -1,5 +1,4 @@
 ############### Begin GHG Section ###################
-source("calculate_GHG.R")
 
 ghgBufferDFgeneric <- data.frame(Buffer = buffers,
                                  Students = 0,

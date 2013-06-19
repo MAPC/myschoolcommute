@@ -24,7 +24,7 @@ b_dft <- as.data.frame(t(b_df[c("Estimate","Count","Pct")]))
 b_dft[1,] <- round(b_dft[1,],0)
 b_dft[nrow(b_dft),] <- addPct(b_dft[nrow(b_dft),])
 b_dft <- as.data.frame(lapply(b_dft,as.character))
-b_dft <- cbind(c("Estimated Total","Surveyed Students","Percent of Students"),b_dft)
+b_dft <- cbind(c("Est Total","Surveyed","Percent"),b_dft)
 names(b_dft) <- c("",levels(b_df$Buffer))
 
 

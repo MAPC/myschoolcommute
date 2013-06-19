@@ -66,6 +66,22 @@ def tms(zoom, column, row):
     return bbox
 
 
+def mapnik_extent(geometry):
+    extent = list(geometry.extent)
+    bbox_ratio = (extent[2] - extent[0]) / (extent[3] - extent[1])
+
+    if bbox_ratio < 1:
+        offset = (extent[0] - extent[2]) * (1 - bbox_ratio) / 2
+        extent[2] = extent[2] - offset
+        extent[0] = extent[0] + offset
+
+    elif bbox_ratio > 1:
+        offset = (extent[3] - extent[1]) * (bbox_ratio - 1) / 2
+        extent[1] = extent[1] - offset
+        extent[3] = extent[3] + offset
+    return extent
+
+
 def school_tms(request, school_id, zoom, column, row):
     bbox = rms(zoom, column, row)
     return school_sheds(request, school_id, bbox, 256, 256, 3857)
@@ -125,9 +141,7 @@ def get_sheds(school_id):
 
     return data
 
-def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=26986):
-    format = 'png'
-
+def school_sheds(request=None, school_id=None, bbox=None, width=800, height=600, srid=26986):
     school = School.objects.get(pk=school_id)
     point = school.geometry
     circle = point.buffer(3000.0)
@@ -216,13 +230,57 @@ def school_sheds(request, school_id, bbox=None, width=800, height=600, srid=2698
     # Render to image
     im = mapnik.Image(m.width, m.height)
     mapnik.render(m, im)
-    im = im.tostring(str(format))
+    im = im.tostring('png')
+
     response = HttpResponse()
     response['Content-length'] = str(len(im))
-    response['Content-Type'] = mimetypes.types_map['.'+format]
+    response['Content-Type'] = mimetypes.types_map['.png']
     response.write(im)
 
     return response
+
+
+def save_sheds(filename, school_id):
+    response = school_sheds(school_id=school_id)
+
+    output = open(filename, "wb")
+    output.write(response.content)
+    output.close()
+
+
+def save_sheds2(filename, school_id, width=600, height=800):
+    import StringIO
+    import Image
+    import urllib2
+    import io
+
+    school = School.objects.get(pk=school_id)
+    point = school.geometry
+    circle = point.buffer(3000.0)
+    circle.transform(4326)
+    extent = mapnik_extent(circle)
+
+    response = school_sheds(school_id=school_id, width=width, height=height)
+
+    shed_buff = StringIO.StringIO()
+    shed_buff.write(response.content)
+    shed_buff.seek(0)
+    shed_img = Image.open(shed_buff)
+
+    url = "http://vmap0.tiles.osgeo.org/wms/vmap0?LAYERS=basic"
+    url += "&SRS=EPSG%3A4326&FORMAT=image%2Fpng&"
+    url += "SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&"
+    url += "BBOX=%s&WIDTH=%d&HEIGHT=%d" % (",".join(map(str, extent)), width, height,)
+
+    print url
+
+    fd = urllib2.urlopen(url)
+    fd_content = fd.read()
+    back = Image.open(StringIO.StringIO(fd_content))
+
+    back.paste(shed_img, (0,0), shed_img)
+
+    back.save(filename)
 
 
 def walks(request, zoom, column, row):
@@ -320,18 +378,30 @@ def school_paths_json(request, school_id):
 
 
 def RunR(school_id, date1, date2):
+    rdir = 'R'
+    workdir = 'figuretest'
+    wdir = os.path.join(rdir,workdir)
+    if not os.path.exists(wdir): os.makedirs(wdir)
+    save_sheds(os.path.join(wdir,'map.png'),school_id)
+    curpath = os.getcwd()
+    os.chdir(rdir)
     import rpy2.robjects as r
     from myschoolcommute import settings
-    print settings.DATABASES
+    #print settings.DATABASES
     r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
     r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
     r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
     r.r("ORG_CODE <- '%s'" % school_id)
     r.r("DATE1 <- '%s'" % date1)
     r.r("DATE2 <- '%s'" % date2)
+    r.r("WORKDIR <- '%s'" % wdir)
     #r.r("BUFF_DIST <- '%s'" % 1)
-    r.r("load('R/.RData')")
-    r.r("source('R/compile.R')")
+    try:
+        r.r("load('.RData')")
+        r.r("source('compile.R')")
+    except:
+        pass
+    os.chdir(curpath)
 
 
 def get_driving_distance(src, dst):

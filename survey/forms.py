@@ -118,5 +118,5 @@ class ReportForm(forms.Form):
 
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
-        #self.helper.add_input(Submit('submit', 'Generate Report'))
+        self.helper.add_input(Submit('submit', 'Generate Report'))
         self.helper.add_input(Submit('submit', 'Download Raw Data'))

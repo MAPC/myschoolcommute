@@ -1,4 +1,9 @@
 \documentclass[12pt,letterpaper]{report}
+\usepackage[margin=0.5in]{geometry}
+% \setlength{\columnsep}{1cm}
+\usepackage{caption}
+\usepackage{multicol}
+% \captionsetup{skip=0pt}
 \renewcommand{\familydefault}{\sfdefault}
 \newcommand{\factoid}[1]{\flushleft{\large{#1}}}
 \newenvironment{itemize*}%
@@ -12,14 +17,18 @@
 %\usepackage[utf8]{inputenc}
 \usepackage{siunitx,booktabs}
 
-\sisetup{
-    group-digits=true,
-    group-separator={\,},
-}
+% \addtolength{\parskip}{-5mm}
+
+%\sisetup{
+%    group-digits=true,
+%    group-separator={,},
+%}
 \usepackage{graphicx}
 \usepackage{lipsum}
 %\usepackage{titlesec}
 \begin{document}
+\begin{multicols}{2}
+\thispagestyle{empty}
 
 <<echo=FALSE>>=
 read_chunk("process_postgres_chunks.R")
@@ -27,9 +36,15 @@ read_chunk("process_postgres_chunks.R")
 
 
 {\flushleft   
-\includegraphics[height=32 mm]{KidsAreCommutersToo_TitleImage}
+\includegraphics[height=20 mm]{2010SRTSLogo}
+\newline
+\newline
+\includegraphics[height=12 mm]{MassDOT_Logo_Color}
+\newline
+\newline
+
   {
-    MySchoolCommute.org\\
+    MASafeRoutesSurvey.org\\
     Survey Report\\
     % Survey Report\\[.2 cm]
     \Sexpr{School_Name}\\ 
@@ -45,41 +60,48 @@ This report will help your school plan safe transportation options for all stude
 \item increasing safety, or
 \item tracking progress towards community goals,
 \end{itemize*}
-then this information can help you identify the right strategies and best opportunities 
-for new projects and investments. 
+then this information can help you identify the right strategies and best opportunities for new projects and investments. 
 
 \subsection*{How to Read This Report}
 This report measures distance to school in terms of walksheds and bikesheds. A \emph{walkshed} includes all the homes within a certain distance to school, based on mapped sidewalks, pedestrian paths, and low volume roadways. We define walksheds for 0.5, 1.0, and 1.5 mile walking distances to school. A \emph{bikeshed} of 2.0 miles also includes multi-use paths and on-road cycle facilities, where mapped. For a map of the walksheds and bikesheds, see the back cover or last page of the report. Where "walkshed" is used alone, it always includes the bikeshed of the same distance.
-\newpage
-\section*{Survey Statistics}
-{\factoid Survey Dates: \emph{Beginning Date} to \emph{End date}}
-{\factoid Responses Received: \Sexpr{sampleSize}}
-{\factoid School-wide Participation Rate: \Sexpr{surveyPct}\%}
 
-<<g_dfg,echo=FALSE, fig.height = 5, fig.align="center",fig.pos='H',fig.cap="Labels show participation rate for each grade. Total enrollment (Completed + No Response) is current as of October, 2013, per Department of Elementary and Secondary Education.">>=
+\section*{Survey Statistics}
+\begin{itemize*}
+\item Survey Dates: \emph{Beginning Date} to \emph{End date}
+\item Responses Received: \Sexpr{sampleSize}
+\item School-wide Participation Rate: \Sexpr{surveyPct}\%
+\end{itemize*}
+\vspace*{0 cm}
+{\flushleft The figure below shows the survey participation rate for each grade. Total enrollment (complete + No Response) is current as of October, 2013, per Department of Elementary and Secondary Education. Survey responses from each grade were used to estimate the distance and travel choice for the entire grade.The higher the participation rate, the more reliable the survey results are.}
+<<g_dfg,echo=FALSE, fig.height = 5, fig.align="center",fig.pos='H'>>=
 @
 
-Survey responses from each grade were used to estimate the distance and travel choice for the entire grade.The higher the participation rate, the more reliable the survey results are.
-
-\newpage
 \section*{Student Proximity}
-{\factoid Average Distance to School: \Sexpr{avgDistToSchool} miles}
-{\factoid Percent within 1.0 Mile Walkshed: \Sexpr{pctWithinOneMile}\%}
-{\factoid Percent within 2.0 Mile Bikeshed: \Sexpr{pctWithinTwoMile}\%}
-<<b_dfg, echo=FALSE,eval=TRUE, results="asis",fig.height = 5, fig.align="center",fig.pos='H',fig.cap="Surveyed and Estimated Student Totals by Walkshed">>=
+\begin{itemize*}
+\item  Average Distance to School: \Sexpr{avgDistToSchool} miles
+\item  Within 1.0 Mile Walkshed: \Sexpr{pctWithinOneMile}\%
+\item  Within 2.0 Mile Bikeshed: \Sexpr{pctWithinTwoMile}\%
+\end{itemize*}
+
+{\flushleft The chart and table below show the number of students surveyed and the total estimated students by walkshed. Student totals by buffer are estimated assuming that the proportion of surveyed students within each buffer and grade is proportional to the enrolled students within each buffer and grade.}
+<<b_dfg, echo=FALSE,eval=TRUE, results="asis",fig.height = 5, fig.align="center",fig.pos='H'>>=
 @
 
 <<b_dft, echo=FALSE,eval=TRUE, results="asis">>=
 @
 
-\newpage
+\thispagestyle{empty}
 \section*{Student Travel Choices}
-{\factoid Percent of Trips Made by Car: \Sexpr{carTripPct}\%}
-{\factoid Percent of Trips Made by Walking\textbackslash Biking: \Sexpr{walkTripPct}\%}
-\newline
+\begin{itemize*}
+\item Trips Made by Family Vehicle\textbackslash Carpool: \Sexpr{carTripPct}\%
+\item Trips Made by Walking\textbackslash Biking: \Sexpr{walkTripPct}\%
+\end{itemize*}
+
+% {\textb Pct Trips Made by Family Vehicle\textbackslash Carpool:} \Sexpr{carTripPct}\% \newline
+% \textb{Pct Trips Made by Walking\textbackslash Biking:} \Sexpr{walkTripPct}\%\newline
 {\flushleft The chart below shows what percent of trips are made by each travel mode in the morning and afternoon.}
 
-<<modeByTime, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H', fig.cap="Mode share estimates are based on responses received for each grade.">>=
+<<modeByTime, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H'>>=
 @
 
 Walk share is \Sexpr{walkMorningvAfternoon} in the afternoon than it is in the evening: 
@@ -89,8 +111,14 @@ Walk share is \Sexpr{walkMorningvAfternoon} in the afternoon than it is in the e
 <<mByBuffer, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H'>>=
 @
 
-<<modeByBufferTable, echo=FALSE,eval=TRUE, results="asis">>=
+<<modeByBufferTableMorning, echo=FALSE,eval=TRUE, results="asis">>=
 @
+
+\thispagestyle{empty}
+
+<<modeByBufferTableAfternoon, echo=FALSE,eval=TRUE, results="asis">>=
+@
+
 
 % # 
 % # <<modeDFMorningWideTable, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H',results="asis">>=
@@ -98,14 +126,18 @@ Walk share is \Sexpr{walkMorningvAfternoon} in the afternoon than it is in the e
 % 
 % \Sexpr{busEligibleDrivenPct}\% of students who are "Bus Eligible" are currently being driven to school, generating \Sexpr{busEligibleDrivenCount} drop-offs each morning.
 % 
-\newpage
 \section*{Greenhouse Gas Emissions}
-{\factoid Per-student GHG emissions within one mile: \Sexpr{round(ghgPerCap10Buffer,0)} kg}
-{\factoid Per-student GHG emissions beyond one mile: \Sexpr{round(ghgPerCap10PlusBuffer,0)} kg}
+\begin{itemize*}
+\item Per-student GHGs within 1 mile: \Sexpr{round(ghgPerCap10Buffer,0)} kg
+\item Per-student GHGs beyond 1 mile: \Sexpr{round(ghgPerCap10PlusBuffer,0)} kg
+\end{itemize*}
 
+{\flushleft GHG emissions per student vary by walk/bikeshed. The following table shows total and per student GHG emissions, and the percent of total GHG emissions by walk/bikeshed for \Sexpr{School_Name}}. 
 <<ghgTableSchool,  echo=FALSE, eval=TRUE, results="asis">>=
 @
 % 
+
+\thispagestyle{empty}
 \section*{How Your School Compares}
 <<pSaggLatex,  echo=FALSE, eval=TRUE, results="asis">>=
 @
@@ -152,4 +184,7 @@ Walk share is \Sexpr{walkMorningvAfternoon} in the afternoon than it is in the e
 % 
 % <<ghgTableSchoolAllSch,  echo=FALSE, eval=TRUE, results="asis">>=
 % @
+\end{multicols}
+\newpage
+\includegraphics[height=200 mm]{figure/map}
 \end{document}
