@@ -66,11 +66,13 @@ def school_edit(request, district_slug, school_slug, **kwargs):
     surveys = Survey.objects.filter(school=school)
     count_day = surveys.filter(created__gte=datetime.today() - timedelta(hours=24)).count()
     count_week = surveys.filter(created__gte=datetime.today() - timedelta(days=7)).count()
+
+    report_form = ReportForm()
     return render_to_response('survey/school_edit.html', {
             'school': school,
             'district': district,
             'school_form': school_form,
-            'report_form': ReportForm(),
+            'report_form': report_form,
             'surveys': surveys,
             'count_day': count_day,
             'count_week': count_week

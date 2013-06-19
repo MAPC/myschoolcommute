@@ -1,0 +1,2014 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-color="#c2c8cc" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
+
+<Parameters>
+  <Parameter name="bounds">-76.9922,40.313,-66.2695,47.8721</Parameter>
+  <Parameter name="center">-71.0602,42.3609,13</Parameter>
+  <Parameter name="format">png</Parameter>
+  <Parameter name="minzoom">6</Parameter>
+  <Parameter name="maxzoom">18</Parameter>
+  <Parameter name="name"><![CDATA[MAPC Basemap]]></Parameter>
+  <Parameter name="description"><![CDATA[A neutral background map for MAPC online maps.]]></Parameter>
+</Parameters>
+
+<FontSet name="fontset-0">
+  <Font face-name="Franklin Gothic Book Regular"/>
+  <Font face-name="Helvetica Neue Regular"/>
+  <Font face-name="Arial Regular"/>
+  <Font face-name="DejaVu Sans Book"/>
+</FontSet>
+<FontSet name="fontset-1">
+  <Font face-name="Franklin Gothic Medium Regular"/>
+  <Font face-name="Helvetica Neue Medium"/>
+  <Font face-name="Arial Bold"/>
+  <Font face-name="DejaVu Sans Bold"/>
+</FontSet>
+<FontSet name="fontset-2">
+  <Font face-name="Franklin Gothic Book Italic"/>
+  <Font face-name="Helvetica Neue Italic"/>
+  <Font face-name="Arial Italic"/>
+  <Font face-name="DejaVu Sans Oblique"/>
+</FontSet>
+<Style name="newengland" filter-mode="first" >
+  <Rule>
+    <PolygonSymbolizer fill="#edece2" />
+  </Rule>
+</Style>
+<Layer name="newengland"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>newengland</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM boundary_ne_states ) AS boundary_ne_states]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="nonmapctown" filter-mode="first" >
+  <Rule>
+    <PolygonSymbolizer fill="#edece2" />
+  </Rule>
+</Style>
+<Layer name="nonmapctown"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>nonmapctown</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM boundary_non_mapc_town ) AS boundary_non_mapc_town]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[boundarynonmapctown]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="mapctown" filter-mode="first" >
+  <Rule>
+    <PolygonSymbolizer fill="#edece2" />
+  </Rule>
+</Style>
+<Layer name="mapctown"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>mapctown</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM boundary_mapc_town ) AS boundary_mapc_town]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[boundarymapctown]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="openspace" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <PolygonSymbolizer fill-opacity="1" fill="#d8dfd2" />
+  </Rule>
+</Style>
+<Layer name="openspace"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>openspace</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM open_space ) AS open_space]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="mapctownboundary" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="2" stroke="#c4c0b1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="1" stroke="#c4c0b1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <LineSymbolizer stroke="#c4c0b1" stroke-width="0.5" />
+  </Rule>
+</Style>
+<Layer name="mapctownboundary"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>mapctownboundary</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM boundary_mapc_town ) AS boundary_mapc_town]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[boundary2]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="nonmapcboundary" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="2" stroke="#c4c0b1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="1" stroke="#c4c0b1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <LineSymbolizer stroke="#c4c0b1" stroke-width="0.5" />
+  </Rule>
+</Style>
+<Layer name="nonmapcboundary"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>nonmapcboundary</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM boundary_non_mapc_town ) AS boundary_non_mapc_town]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[boundary2nonmapc]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="hydropoly" filter-mode="first" >
+  <Rule>
+    <PolygonSymbolizer fill-opacity="1" fill="#c2c8cc" />
+  </Rule>
+</Style>
+<Layer name="hydropoly"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>hydropoly</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM hydro_poly ) AS hydro_poly]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[hydropoly]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="hydro_arc" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <Filter>([arc_code] = 4)</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#a6afb5" />
+  </Rule>
+</Style>
+<Layer name="hydro_arc"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>hydro_arc</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * FROM hydro_arc) AS hydro_arc]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="id"><![CDATA[hydro_arc]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="roads_tunnels" filter-mode="first" >
+</Style>
+<Style name="roads_tunnels-stroke" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke="#f2f2f2" stroke-width="9" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke="#f2f2f2" stroke-width="7" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke="#f2f2f2" stroke-width="5" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke="#f2f2f2" stroke-width="2.5" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke="#f2f2f2" stroke-width="2" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke="#f2f2f2" stroke-width="1.5" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke="#f2f2f2" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="9" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="2" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="9" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="2" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="8.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="6.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="4.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="6" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="4" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="3" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+</Style>
+<Style name="roads_tunnels-outline" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-dasharray="5, 5" stroke-width="9.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-dasharray="5, 5" stroke-width="7.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-dasharray="5, 5" stroke-width="5.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-dasharray="5, 5" stroke="#939598" stroke-width="3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="9.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="7.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="5.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="2.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="9.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="7.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="5.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="2.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="7" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="2" />
+  </Rule>
+</Style>
+<Layer name="roads_tunnels"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>roads_tunnels-outline</StyleName>
+    <StyleName>roads_tunnels-stroke</StyleName>
+    <StyleName>roads_tunnels</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM roads WHERE facilityty in (3,11) ) AS roads]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[roads]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="trails" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <LineSymbolizer stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+</Style>
+<Layer name="trails"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>trails</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * from trails where path_type IN ('E', 'U', 'T')) AS trails]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="buildings" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <LineSymbolizer stroke="#d0cdb3" stroke-width="0.5" />
+    <PolygonSymbolizer fill-opacity="1" fill="#f7f6f2" />
+  </Rule>
+</Style>
+<Layer name="buildings"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>buildings</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM buildings ) AS buildings]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[buildings]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="roads" filter-mode="first" >
+</Style>
+<Style name="roads-stroke" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="9" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="2.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="2" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="9" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="2" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="9" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="2" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="8.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="6.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="4.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="6" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="4" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="3" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+</Style>
+<Style name="roads-outline" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="9.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="7.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="5.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="9.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="7.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="5.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="2.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="9.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="7.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="5.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="2.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="7" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="2" />
+  </Rule>
+</Style>
+<Layer name="roads"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>roads-outline</StyleName>
+    <StyleName>roads-stroke</StyleName>
+    <StyleName>roads</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM roads WHERE facilityty in (0,1,5,6,7,8,9,10) ) AS roads]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[roads]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="roads_bridges" filter-mode="first" >
+</Style>
+<Style name="roads_bridges-stroke" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="9" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="2.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="2" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="9" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="2" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="9" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="2" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="8.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="6.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="4.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="6" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="4" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="3" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linecap="round" stroke="#ffffff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+</Style>
+<Style name="roads_bridges-outline" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="9.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="7.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke-width="5.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 1)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="3" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="9.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="7.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke-width="5.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="2.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="9.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="7.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke-width="5.5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="2.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="7" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#939598" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <LineSymbolizer stroke="#939598" stroke-width="2" />
+  </Rule>
+</Style>
+<Layer name="roads_bridges"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>roads_bridges-outline</StyleName>
+    <StyleName>roads_bridges-stroke</StyleName>
+    <StyleName>roads_bridges</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM roads WHERE facilityty in (2,4)) AS roads]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[roads]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="bostonneighborhood" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <LineSymbolizer stroke="#c4c0b1" stroke-width="1" stroke-opacity="0.5" />
+    <TextSymbolizer size="24" character-spacing="20" opacity="0.2" fontset-name="fontset-0" allow-overlap="false" placement="interior" wrap-width="50" line-spacing="5" fill="#777777" halo-fill="#edece2" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <LineSymbolizer stroke="#c4c0b1" stroke-width="1" stroke-opacity="0.5" />
+    <TextSymbolizer size="18" opacity="0.2" character-spacing="8" fontset-name="fontset-0" allow-overlap="false" placement="interior" wrap-width="50" line-spacing="5" fill="#777777" halo-fill="#edece2" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <LineSymbolizer stroke="#c4c0b1" stroke-width="1" stroke-opacity="0.5" />
+    <TextSymbolizer size="16" character-spacing="6" fontset-name="fontset-0" allow-overlap="false" opacity="0.5" placement="interior" wrap-width="50" line-spacing="5" fill="#777777" halo-fill="#edece2" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <LineSymbolizer stroke="#c4c0b1" stroke-width="1" stroke-opacity="0.5" />
+    <TextSymbolizer fontset-name="fontset-0" allow-overlap="false" size="14" character-spacing="2" opacity="0.5" placement="interior" wrap-width="50" line-spacing="5" fill="#777777" halo-fill="#edece2" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="bostonneighborhood"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>bostonneighborhood</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM boundary_boston_neighborhood WHERE name NOT IN ('Harbor Islands','Central') ) AS boundary_boston_neighborhood]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[bostonneighborhood]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="commuterline-ticks" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <LineSymbolizer stroke="#cccccc" stroke-width="3.5" stroke-dasharray="1, 4" />
+  </Rule>
+</Style>
+<Style name="commuterline" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="0.75" stroke="#cccccc" />
+  </Rule>
+</Style>
+<Layer name="commuterline"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>commuterline</StyleName>
+    <StyleName>commuterline-ticks</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM comm_rail_line ) AS comm_rail_line]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[commuterline]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="rapidtransit" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="2" stroke="#bfbfbf" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="1" stroke="#bfbfbf" />
+  </Rule>
+</Style>
+<Layer name="rapidtransit"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>rapidtransit</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM mbta_rapid_line ) AS mbta_rapid_line]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[rapidtransit]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="non_mapc_town_label" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <TextSymbolizer size="32" character-spacing="20" opacity="0.2" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <TextSymbolizer size="28" opacity="0.2" character-spacing="8" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <TextSymbolizer size="24" character-spacing="6" opacity="0.35" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <TextSymbolizer size="20" opacity="0.35" character-spacing="4" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <TextSymbolizer size="16" opacity="0.5" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-1" size="12" halo-radius="0" opacity="0.75" allow-overlap="false" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-0" text-transform="capitalize" allow-overlap="false" size="10" fill="#777777" halo-fill="#edece2" halo-radius="1" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-0" allow-overlap="false" size="10" fill="#777777" halo-fill="#edece2" halo-radius="1" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="non_mapc_town_label"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>non_mapc_town_label</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM boundary_non_mapc_town ) AS boundary_non_mapc_town]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[non_mapc_town_label]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="mapc_label_points" filter-mode="first" >
+</Style>
+<Style name="mapc_label_points-notboston" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-0" size="10" allow-overlap="false" fill="#777777" halo-fill="#edece2" halo-radius="1" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Style name="mapc_label_points-boston" filter-mode="first" >
+  <Rule>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([town] = 'Boston')</Filter>
+    <TextSymbolizer fontset-name="fontset-0" size="12" fill="#777777" halo-fill="#edece2" halo-radius="1" allow-overlap="false" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="mapc_label_points"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>mapc_label_points-boston</StyleName>
+    <StyleName>mapc_label_points-notboston</StyleName>
+    <StyleName>mapc_label_points</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM mapc_town_labelpoints ) AS mapc_town_labelpoints]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[mapc_label_points]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="mapc_labels" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <TextSymbolizer size="32" character-spacing="20" opacity="0.2" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <TextSymbolizer size="28" opacity="0.2" character-spacing="8" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <TextSymbolizer size="24" character-spacing="6" opacity="0.35" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <TextSymbolizer size="20" opacity="0.35" character-spacing="4" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <TextSymbolizer size="16" opacity="0.5" allow-overlap="true" fontset-name="fontset-1" halo-radius="0" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-1" size="12" halo-radius="0" opacity="0.75" allow-overlap="false" fill="#777777" halo-fill="#edece2" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-0" allow-overlap="false" size="10" fill="#777777" halo-fill="#edece2" halo-radius="1" text-transform="capitalize" ><![CDATA[[town]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="mapc_labels"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>mapc_labels</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM mapc_town_centroids ) AS mapc_town_centroids]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[mapc_labels]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="commrailstation" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <TextSymbolizer vertical-alignment="top" justify-alignment="left" dx="5" dy="-5" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" fontset-name="fontset-2" ><![CDATA[[station]]]></TextSymbolizer>
+    <PointSymbolizer file="icons/commRail_small_light.png" allow-overlap="true" />
+  </Rule>
+</Style>
+<Layer name="commrailstation"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>commrailstation</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM comm_rail_station ) AS comm_rail_station]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[commrailstation]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="mbtarapidstation" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <Filter>([line] != 'SILVER')</Filter>
+    <TextSymbolizer vertical-alignment="top" justify-alignment="left" dx="6" dy="-6" minimum-padding="5" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" fontset-name="fontset-2" ><![CDATA[[station]]]></TextSymbolizer>
+    <PointSymbolizer file="icons/mbta_icon_xtraSmall_light.png" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([line] != 'SILVER')</Filter>
+    <PointSymbolizer file="icons/mbta_icon_xtraSmall_light.png" allow-overlap="true" />
+  </Rule>
+</Style>
+<Layer name="mbtarapidstation"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>mbtarapidstation</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM mbta_rapid_station ) AS mbta_rapid_station]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[mbtarapidstation]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="road_shields" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 4) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="400" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 4) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="120" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 4) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="80" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 4) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 4)</Filter>
+    <ShieldSymbolizer minimum-distance="400" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 4)</Filter>
+    <ShieldSymbolizer minimum-distance="120" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 4)</Filter>
+    <ShieldSymbolizer minimum-distance="80" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 4)</Filter>
+    <ShieldSymbolizer fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 3) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="400" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 3) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="120" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 3) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="80" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 3) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 3)</Filter>
+    <ShieldSymbolizer minimum-distance="400" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 3)</Filter>
+    <ShieldSymbolizer minimum-distance="120" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 3)</Filter>
+    <ShieldSymbolizer minimum-distance="80" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 3)</Filter>
+    <ShieldSymbolizer fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 2) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="400" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 2) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="120" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 2) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="80" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 2) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 2)</Filter>
+    <ShieldSymbolizer minimum-distance="400" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 2)</Filter>
+    <ShieldSymbolizer minimum-distance="120" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 2)</Filter>
+    <ShieldSymbolizer minimum-distance="80" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 2)</Filter>
+    <ShieldSymbolizer fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 1) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="400" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 1) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="120" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 1) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="80" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 1) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 1)</Filter>
+    <ShieldSymbolizer minimum-distance="400" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 1)</Filter>
+    <ShieldSymbolizer minimum-distance="120" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 1)</Filter>
+    <ShieldSymbolizer minimum-distance="80" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 1)</Filter>
+    <ShieldSymbolizer fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 5) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="400" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 5) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="120" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 5) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="80" file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 5) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer file="icons/state_shield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 5)</Filter>
+    <ShieldSymbolizer minimum-distance="400" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 5)</Filter>
+    <ShieldSymbolizer minimum-distance="120" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 5)</Filter>
+    <ShieldSymbolizer minimum-distance="80" fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 3) and ([class] = 5)</Filter>
+    <ShieldSymbolizer fontset-name="fontset-0" size="9" fill="#777777" file="icons/state_shield.png" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 1) and ([class] = 1) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="400" file="icons/interstateShield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 1) and ([class] = 1) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="120" file="icons/interstateShield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 1) and ([class] = 1) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="80" file="icons/interstateShield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 1) and ([class] = 1) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer file="icons/interstateShield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 1) and ([class] = 1)</Filter>
+    <ShieldSymbolizer minimum-distance="400" fontset-name="fontset-0" size="9" fill="#777777" file="icons/interstateShield_narrow.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 1) and ([class] = 1)</Filter>
+    <ShieldSymbolizer minimum-distance="120" fontset-name="fontset-0" size="9" fill="#777777" file="icons/interstateShield_narrow.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 1) and ([class] = 1)</Filter>
+    <ShieldSymbolizer minimum-distance="80" fontset-name="fontset-0" size="9" fill="#777777" file="icons/interstateShield_narrow.png" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 1) and ([class] = 1)</Filter>
+    <ShieldSymbolizer fontset-name="fontset-0" size="9" fill="#777777" file="icons/interstateShield_narrow.png" minimum-distance="40" dx="0.5" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 2) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="400" file="icons/usHighwayShield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" dy="-1" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 2) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="120" file="icons/usHighwayShield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" dy="-1" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 2) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer minimum-distance="80" file="icons/usHighwayShield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" dx="0.5" dy="-1" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 2) and ([length] &gt; 2)</Filter>
+    <ShieldSymbolizer file="icons/usHighwayShield_wide.png" fontset-name="fontset-0" size="9" fill="#777777" minimum-distance="40" dx="0.5" dy="-1" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([admin_type] = 2)</Filter>
+    <ShieldSymbolizer minimum-distance="400" fontset-name="fontset-0" size="9" fill="#777777" file="icons/usHighwayShield_narrow.png" dx="0.5" dy="-1" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([admin_type] = 2)</Filter>
+    <ShieldSymbolizer minimum-distance="120" fontset-name="fontset-0" size="9" fill="#777777" file="icons/usHighwayShield_narrow.png" dx="0.5" dy="-1" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([admin_type] = 2)</Filter>
+    <ShieldSymbolizer minimum-distance="80" fontset-name="fontset-0" size="9" fill="#777777" file="icons/usHighwayShield_narrow.png" dx="0.5" dy="-1" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([admin_type] = 2)</Filter>
+    <ShieldSymbolizer fontset-name="fontset-0" size="9" fill="#777777" file="icons/usHighwayShield_narrow.png" minimum-distance="40" dx="0.5" dy="-1" placement="line" ><![CDATA[[rt_number]]]></ShieldSymbolizer>
+  </Rule>
+</Style>
+<Layer name="road_shields"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>road_shields</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT *, CHAR_LENGTH(rt_number) as length FROM roads WHERE ( facilityty IN (1,2,3,4,5,6) AND map_label_txt NOT ILIKE 'Public Aly%' AND map_label_txt NOT ILIKE '%Hov Ln%'  AND map_label_txt NOT LIKE 'Sr-2' AND map_label_txt NOT ILIKE '%ramp%' AND map_label_txt NOT ILIKE '%connector%' AND map_label_txt NOT ILIKE '%extension%'AND map_label_txt NOT ILIKE '%bypass%' AND admin_type > 0) ORDER BY ST_Length(geom) DESC) AS road_labels]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[road_shields]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+       <Parameter name="multiple_geometries"><![CDATA[true]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="road_labels" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 1) and ([admin_type] = 0)</Filter>
+    <TextSymbolizer size="12" minimum-distance="200" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 1) and ([admin_type] = 0)</Filter>
+    <TextSymbolizer size="11" minimum-distance="250" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 1) and ([admin_type] = 0)</Filter>
+    <TextSymbolizer minimum-distance="250" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" size="10" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 1) and ([admin_type] = 0)</Filter>
+    <TextSymbolizer fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" size="10" minimum-distance="100" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <TextSymbolizer size="12" minimum-distance="200" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <TextSymbolizer size="11" minimum-distance="250" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <TextSymbolizer minimum-distance="250" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" size="10" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 3)</Filter>
+    <TextSymbolizer fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" size="10" minimum-distance="100" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <TextSymbolizer size="12" minimum-distance="200" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <TextSymbolizer size="11" minimum-distance="250" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <TextSymbolizer minimum-distance="250" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" size="10" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([class] = 2)</Filter>
+    <TextSymbolizer fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" size="10" minimum-distance="100" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <TextSymbolizer size="12" minimum-distance="200" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <TextSymbolizer size="11" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-distance="100" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 4)</Filter>
+    <TextSymbolizer fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" size="10" minimum-distance="100" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <TextSymbolizer size="12" minimum-distance="200" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <TextSymbolizer size="11" fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" minimum-distance="100" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([class] = 5)</Filter>
+    <TextSymbolizer fontset-name="fontset-0" placement="line" fill="#777777" halo-fill="#ffffff" halo-radius="1.5" size="10" minimum-distance="100" minimum-padding="20" allow-overlap="false" ><![CDATA[[map_label_txt]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="road_labels"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>road_labels</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT *, CHAR_LENGTH(rt_number) as length FROM roads WHERE ( facilityty IN (1,2,3,4,5,6) AND map_label_txt NOT ILIKE '%Hov Ln%'  AND map_label_txt NOT LIKE 'Sr-2' AND map_label_txt NOT ILIKE '%ramp%' AND map_label_txt NOT ILIKE '%connector%' AND map_label_txt NOT ILIKE '%extension%'AND map_label_txt NOT ILIKE '%bypass%') ORDER BY ST_Length(geom) DESC) AS road_labels]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[road_labels]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+       <Parameter name="multiple_geometries"><![CDATA[true]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="openspace_labels" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-2" size="11" character-spacing="3" minimum-distance="70" wrap-width="50" minimum-path-length="100" fill="#777777" text-transform="capitalize" line-spacing="5" ><![CDATA[[site_name]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="openspace_labels"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>openspace_labels</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM open_space WHERE site_name NOT LIKE 'undefined' ) AS open_space]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[openspace_labels]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="hydrolabels" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-2" size="11" character-spacing="3" placement="interior" minimum-padding="5" wrap-width="100" minimum-path-length="100" fill="#777777" text-transform="capitalize" line-spacing="5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="hydrolabels"
+  srs="+proj=lcc +lat_1=42.68333333333333 +lat_2=41.71666666666667 +lat_0=41 +lon_0=-71.5 +x_0=200000 +y_0=750000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs">
+    <StyleName>hydrolabels</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM hydro_poly WHERE name NOT LIKE 'undefined') AS hydro_poly]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="user"><![CDATA[mapc]]></Parameter>
+       <Parameter name="password"><![CDATA[mapc]]></Parameter>
+       <Parameter name="dbname"><![CDATA[basemap]]></Parameter>
+       <Parameter name="id"><![CDATA[hydrolabels]]></Parameter>
+       <Parameter name="project"><![CDATA[basemap]]></Parameter>
+       <Parameter name="srs"><![CDATA[null]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>

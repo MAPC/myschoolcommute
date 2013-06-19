@@ -83,7 +83,7 @@ def mapnik_extent(geometry):
 
 
 def school_tms(request, school_id, zoom, column, row):
-    bbox = rms(zoom, column, row)
+    bbox = tms(zoom, column, row)
     return school_sheds(request, school_id, bbox, 256, 256, 3857)
 
 
@@ -141,12 +141,15 @@ def get_sheds(school_id):
 
     return data
 
-def school_sheds(request=None, school_id=None, bbox=None, width=800, height=600, srid=26986):
+def school_sheds(request=None, school_id=None, bbox=None, width=600, height=800, srid=3857):
     school = School.objects.get(pk=school_id)
     point = school.geometry
     circle = point.buffer(3000.0)
 
     m = mapnik.Map(int(width), int(height), "+init=epsg:"+str(srid))
+
+    mapnik.load_map(m, os.path.dirname(__file__)+"/basemap/basemap.xml")
+
     if bbox is None:
         circle.transform(srid)
         bbox = mapnik.Box2d(*circle.extent)
@@ -159,8 +162,10 @@ def school_sheds(request=None, school_id=None, bbox=None, width=800, height=600,
     for name, color in (('0.5', VIOLET), ('1.0', PURPLE), ('1.5', LAVENDER), ('2.0', LIGHTCYAN)):
         r = mapnik.Rule()
         r.filter = mapnik.Filter("[name] = "+name)
-        line_symbolizer = mapnik.LineSymbolizer()
-        poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color(color))
+        c = mapnik.Color(color)
+        c.a = 200
+        line_symbolizer = mapnik.LineSymbolizer(c, 1)
+        poly_symbolizer = mapnik.PolygonSymbolizer(c)
         r.symbols.append(line_symbolizer)
         r.symbols.append(poly_symbolizer)
         s.rules.append(r)
@@ -379,7 +384,7 @@ def school_paths_json(request, school_id):
 
 def RunR(school_id, date1, date2):
     rdir = 'R'
-    workdir = 'figuretest'
+    workdir = 'figure'
     wdir = os.path.join(rdir,workdir)
     if not os.path.exists(wdir): os.makedirs(wdir)
     save_sheds(os.path.join(wdir,'map.png'),school_id)

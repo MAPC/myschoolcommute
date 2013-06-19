@@ -185,6 +185,6 @@ Walk share is \Sexpr{walkMorningvAfternoon} in the afternoon than it is in the e
 % <<ghgTableSchoolAllSch,  echo=FALSE, eval=TRUE, results="asis">>=
 % @
 \end{multicols}
-\newpage
-\includegraphics[height=200 mm]{figure/map}
+%\newpage
+%\includegraphics[height=120 mm]{figure/map}
 \end{document}
