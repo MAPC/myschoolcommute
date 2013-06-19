@@ -164,7 +164,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=600, height=800,
         r.filter = mapnik.Filter("[name] = "+name)
         c = mapnik.Color(color)
         c.a = 200
-        line_symbolizer = mapnik.LineSymbolizer(c, 1)
+        line_symbolizer = mapnik.LineSymbolizer(mapnik.Color("gray"), 1)
         poly_symbolizer = mapnik.PolygonSymbolizer(c)
         r.symbols.append(line_symbolizer)
         r.symbols.append(poly_symbolizer)
