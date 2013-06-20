@@ -141,7 +141,7 @@ def get_sheds(school_id):
 
     return data
 
-def school_sheds(request=None, school_id=None, bbox=None, width=600, height=800, srid=3857):
+def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700, srid=3857):
     school = School.objects.get(pk=school_id)
     point = school.geometry
     circle = point.buffer(3000.0)
@@ -163,7 +163,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=600, height=800,
         r = mapnik.Rule()
         r.filter = mapnik.Filter("[name] = "+name)
         c = mapnik.Color(color)
-        c.a = 200
+        c.a = 80
         line_symbolizer = mapnik.LineSymbolizer(mapnik.Color("gray"), 1)
         poly_symbolizer = mapnik.PolygonSymbolizer(c)
         r.symbols.append(line_symbolizer)
