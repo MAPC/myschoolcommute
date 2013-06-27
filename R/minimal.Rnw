@@ -186,4 +186,6 @@ Walk share is \Sexpr{walkTripMorningPct}\% in the morning and \Sexpr{walkTripAft
 % <<ghgTableSchoolAllSch,  echo=FALSE, eval=TRUE, results="asis">>=
 % @
 \end{multicols}
+\newpage
+\includegraphics{figure/map.png}
 \end{document}
