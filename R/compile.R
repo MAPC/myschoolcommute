@@ -6,13 +6,12 @@ library(ggplot2)
 library(scales)
 library(knitr)
 library(Hmisc)
-source("Step_01_process_postgres.R")
-source("calculate_GHG.R")
-source("Step_03_P01.R")
-source("Step_04_P02.R")
-source("Step_05_P02.R")
-source("Step_06_P03.R")
-source("Step_07_P04.R")
-source("Step_08_P04.R")
-source("Step_09_P05.R")
+
+source("generate_report.R")
 knit2pdf("minimal.Rnw")
+#school_name_no_space <- gsub("\\s","",School_Name)
+#file.rename("minimal.pdf",paste("Reports/",
+#                                paste(school_name_no_space,".pdf",sep=""),
+#                                sep=""))
+
+

@@ -383,26 +383,31 @@ def school_paths_json(request, school_id):
 
 
 def RunR(school_id, date1, date2):
+    school = School.objects.get(id=school_id)
+    org_code = school.schid
     rdir = 'R'
     workdir = 'figure'
-    wdir = os.path.join(rdir,workdir)
-    if not os.path.exists(wdir): os.makedirs(wdir)
-    save_sheds(os.path.join(wdir,'map.png'),school_id)
+    wdir = os.path.join(rdir, workdir)
+    if not os.path.exists(wdir):
+        os.makedirs(wdir)
+    save_sheds(os.path.join(wdir, 'map.png'), school_id)
     curpath = os.getcwd()
     os.chdir(rdir)
     import rpy2.robjects as r
     from myschoolcommute import settings
+    print 'ORG_CODE=',org_code
     #print settings.DATABASES
     r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
     r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
     r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
-    r.r("ORG_CODE <- '%s'" % school_id)
+    r.r("ORG_CODE <- '%s'" % org_code)
     r.r("DATE1 <- '%s'" % date1)
     r.r("DATE2 <- '%s'" % date2)
     r.r("WORKDIR <- '%s'" % wdir)
     #r.r("BUFF_DIST <- '%s'" % 1)
     try:
         r.r("load('.RData')")
+        r.r("print(ORG_CODE)")
         r.r("source('compile.R')")
     except:
         pass

@@ -19,14 +19,15 @@
 
 % \addtolength{\parskip}{-5mm}
 
-%\sisetup{
-%    group-digits=true,
-%    group-separator={,},
-%}
+% \sisetup{
+%     group-digits=true,
+%     group-separator={,},
+% }
 \usepackage{graphicx}
 \usepackage{lipsum}
 %\usepackage{titlesec}
 \begin{document}
+% \SweaveOpts{concordance=TRUE}
 \begin{multicols}{2}
 \thispagestyle{empty}
 
@@ -53,7 +54,7 @@ read_chunk("process_postgres_chunks.R")
 }
 
 \section*{Introduction}
-This report will help your school plan safe transportation options for all students. It contains the results of a survey conducted at \Sexpr{School_Name} from \emph{first month}, \emph{first year} to \emph{last month}, \emph{last year}. Participating parents provided information about how students travel to school and their approximate home location. If your school is interested in 
+This report will help your school plan safe transportation options for all students. It contains the results of a survey conducted at \Sexpr{School_Name} from \Sexpr{start_month} \Sexpr{start_year} to \Sexpr{end_month} \Sexpr{end_year}. Participating parents provided information about how students travel to school and their approximate home location. If your school is interested in 
 \begin{itemize*}
 \item reducing traffic congestion,
 \item encouraging walking and biking,
@@ -67,12 +68,13 @@ This report measures distance to school in terms of walksheds and bikesheds. A \
 
 \section*{Survey Statistics}
 \begin{itemize*}
-\item Survey Dates: \emph{Beginning Date} to \emph{End date}
+\item Survey Dates: \Sexpr{start_date} to \Sexpr{end_date}
 \item Responses Received: \Sexpr{sampleSize}
 \item School-wide Participation Rate: \Sexpr{surveyPct}\%
 \end{itemize*}
 \vspace*{0 cm}
-{\flushleft The figure below shows the survey participation rate for each grade. Total enrollment (complete + No Response) is current as of October, 2013, per Department of Elementary and Secondary Education. Survey responses from each grade were used to estimate the distance and travel choice for the entire grade.The higher the participation rate, the more reliable the survey results are.}
+{\flushleft The figure below shows the survey participation rate for each grade. Total enrollment (Complete + No Response) is current as of October, 2013, per Department of Elementary and Secondary Education. Survey responses from each grade were used to estimate the distance and travel choice for the entire grade.The higher the participation rate, the more reliable the survey results are.}
+
 <<g_dfg,echo=FALSE, fig.height = 5, fig.align="center",fig.pos='H'>>=
 @
 
@@ -83,7 +85,7 @@ This report measures distance to school in terms of walksheds and bikesheds. A \
 \item  Within 2.0 Mile Bikeshed: \Sexpr{pctWithinTwoMile}\%
 \end{itemize*}
 
-{\flushleft The chart and table below show the number of students surveyed and the total estimated students by walkshed. Student totals by buffer are estimated assuming that the proportion of surveyed students within each buffer and grade is proportional to the enrolled students within each buffer and grade.}
+{\flushleft The chart and table below show the number of students surveyed and the total estimated students by walkshed. Student totals by walkshed are estimated assuming that the proportion of surveyed students within each walkshed and grade is proportional to the enrolled students within each walkshed and grade.}
 <<b_dfg, echo=FALSE,eval=TRUE, results="asis",fig.height = 5, fig.align="center",fig.pos='H'>>=
 @
 
@@ -104,8 +106,7 @@ This report measures distance to school in terms of walksheds and bikesheds. A \
 <<modeByTime, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H'>>=
 @
 
-Walk share is \Sexpr{walkMorningvAfternoon} in the afternoon than it is in the evening: 
-\Sexpr{walkTripAfternoonPct}\% versus \Sexpr{walkTripMorningPct}\%. \Sexpr{modeByTimeText}
+Walk share is \Sexpr{walkTripMorningPct}\% in the morning and \Sexpr{walkTripAfternoonPct}\% in the afternoon. \Sexpr{modeByTimeText}
 
 
 <<mByBuffer, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H'>>=
@@ -185,6 +186,4 @@ Walk share is \Sexpr{walkMorningvAfternoon} in the afternoon than it is in the e
 % <<ghgTableSchoolAllSch,  echo=FALSE, eval=TRUE, results="asis">>=
 % @
 \end{multicols}
-\newpage
-\includegraphics{figure/map}
 \end{document}
