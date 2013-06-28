@@ -395,7 +395,6 @@ def RunR(school_id, date1, date2):
     os.chdir(rdir)
     import rpy2.robjects as r
     from myschoolcommute import settings
-    print 'ORG_CODE=',org_code
     #print settings.DATABASES
     r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
     r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])

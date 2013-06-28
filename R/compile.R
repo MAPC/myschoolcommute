@@ -9,9 +9,7 @@ library(Hmisc)
 
 source("generate_report.R")
 knit2pdf("minimal.Rnw")
-school_name_no_space <- gsub("\\s","",School_Name)
-file.rename("minimal.pdf",paste("Reports/",
-                                paste(school_name_no_space,".pdf",sep=""),
-                                sep=""))
-
-
+#school_name_no_space <- gsub("\\s","",School_Name)
+#file.rename("minimal.pdf",paste("Reports/",
+#                                paste(school_name_no_space,".pdf",sep=""),
+#                                sep=""))

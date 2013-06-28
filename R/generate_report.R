@@ -30,7 +30,8 @@ ch <- dbConnect(drv,
                 user=dbuser,
                 password=dbpasswd)
 #df_all <- dbSendQuery(ch,"select * from temp_child")
-df_all <- dbSendQuery(ch,"select * from survey_child_survey")
+sql <- paste("SELECT * FROM survey_child_survey WHERE created BETWEEN timestamp '",DATE1,"' AND timestamp '",DATE2,"'")
+df_all <- dbSendQuery(ch,sql)
 df_all <- fetch(df_all,n=-1)
 dbDisconnect(ch) # disconnect from PostGres database
 
@@ -48,8 +49,6 @@ df <- df_all[df_all$schi == ORG_CODE,]
 # check if Enrollment table contains ORG_CODE; if not
 # create pdf 'ORG_CODE.pdf' with error message to user
 # and terminate application
-print("ORG_CODE")
-print(ORG_CODE)
 if (!(ORG_CODE %in% Enrollment$ORG.CODE)){
   knit2pdf("compile_no_school_code.Rnw")
   file.rename("compile_no_school_code.pdf",paste("Reports/",paste(ORG_CODE,".pdf",sep=""),sep=""))
@@ -91,7 +90,7 @@ DF <- df
 # survey start and end dates are based on the created and current_time columns
 # start_date is the minimum value in created column
 # end_date is the maximum value in current_time column
-date_list <- survey_dates(DF,"created","current_time")
+date_list <- survey_dates(DF,"created","created")
 start_date <- date_list$start_date
 start_month <- date_list$start_month
 start_year <- date_list$start_year
