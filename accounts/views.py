@@ -40,15 +40,19 @@ def register(request):
             message = "New user registration!\n\n%s\n%s, %s\nActivate user: %s\nView all users: %s" % (
                 new_user.username, new_user.first_name, new_user.last_name, approve_page, users_page,
             )
-            #mail_admins('myschoolcommute.com new user '+new_user.username, message)
-            g = Group.objects.get(name="MassRIDES Staff")
-            emails = [u.email for u in g.user_set.all()]
-            send_mail(
-                'myschoolcommute.com new user '+new_user.username,
-                message,
-                settings.SERVER_EMAIL,
-                emails
-            )
+            try:
+                g = Group.objects.get(name="MassRIDES Staff")
+                emails = [u.email for u in g.user_set.all()]
+                send_mail(
+                    'myschoolcommute.com new user '+new_user.username,
+                    message,
+                    settings.SERVER_EMAIL,
+                    emails
+                )
+            except:
+                #Problem finding group or emailing
+                mail_admins('myschoolcommute.com new user '+new_user.username, message)
+
             return HttpResponseRedirect("/accounts/register/success/")
     else:
         profile_form = ProfileForm()
