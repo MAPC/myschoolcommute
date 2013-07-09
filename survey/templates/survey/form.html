@@ -9,6 +9,9 @@
 <script src="{{ STATIC_URL }}js/jquery.shuffle.js" type="text/javascript"></script>
 <script src="{{ STATIC_URL }}js/jquery.cookie.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="{{ STATIC_URL }}js/chosen/chosen.css">
+<script src="{{ STATIC_URL }}js/chosen/chosen.jquery.js" type="text/javascript"></script>
+
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
 <!--[if lte IE 8]>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
@@ -22,6 +25,7 @@
 
 var set_home = null;
 var intersections = null;
+var map = null;
 
 $(document).ready(function() {
 
@@ -58,7 +62,7 @@ $(document).ready(function() {
 
 {% endif %}
 
-    var map = L.map('map_canvas').setView(school, 14);
+    map = L.map('map_canvas').setView(school, 14);
 
     var roads = new L.Google('ROADMAP');
     var sat = new L.Google('HYBRID');
@@ -220,42 +224,11 @@ $(document).ready(function() {
     $("#intersection_fields").hide();
     $("#intersection_fields_link").click(function () {
         $("#intersection_fields").toggle(500);
+        init_streets();
         return false;
     });
 
-    var view_intersections = function(){
-        var street1 = $('#id_street').val();
-        var street2 = $('#id_cross_st').val();
-        if (street2 != "")
-            street2 += '/';
-        $.getJSON('/{{school.pk}}/intersection/'+street1+'/'+street2, function(data){
-            if (intersections != null)
-                map.removeLayer(intersections);
-            console.log(data.features.length);
-            if (data.features.length == 1){
-                var coord = data.features[0]['geometry']['coordinates'];
-                var ll = new L.LatLng(coord[1], coord[0]);
-                set_home(ll);
-            }else if (data.features.length > 1){
-                intersections = L.geoJson(data,{
-                    onEachFeature: function (feature, layer) {
-                        var msg = "<h4>Intersection</h4>";
-                        msg += feature.properties.street1 + " and ";
-                        msg += feature.properties.street2;
-                        var lon = feature.geometry.coordinates[0];
-                        var lat = feature.geometry.coordinates[1];
-                        var js = 'set_home(new L.LatLng('+lat+','+lon+')); return false;';
-                        msg += '<p><a class="btn btn-small" href="#" onClick="'+js+'">Make Home</a></p>';
-                        layer.bindPopup(msg);
-                    }
-                }).addTo(map);
-                var bounds = map.getBounds();
-                bounds.extend(intersections.getBounds())
-                map.fitBounds(bounds);
-            }
-        });
-    }
-
+    /*
     $('#id_street').typeahead({
         source: function(query, process){
             $.getJSON('/{{school.pk}}/streets/'+query+'/', function(data){
@@ -285,8 +258,106 @@ $(document).ready(function() {
     });
 
     $('#id_cross_st').on('change', view_intersections);
+    */
 
+    // initiate chosen dropdown UIs
+    //$(".chzn-select").chosen();
 });
+
+var view_intersections = function(){
+    var street1 = $('#id_street').val();
+    if (street1 == ''){
+        return;
+    }
+    var street2 = $('#id_cross_st').val();
+    if (street2){
+        street2 += '/';
+    }else{
+        street2 = '';
+    }
+    $.getJSON('/{{LANGUAGE_CODE}}/{{school.pk}}/intersection/'+street1+'/'+street2, function(data){
+        if (intersections != null)
+            map.removeLayer(intersections);
+        console.log(data.features.length);
+        if (data.features.length == 1){
+            var coord = data.features[0]['geometry']['coordinates'];
+            var ll = new L.LatLng(coord[1], coord[0]);
+            set_home(ll);
+            var bounds = map.getBounds();
+            bounds.extend(ll)
+            map.fitBounds(bounds);
+        }else if (data.features.length > 1){
+            intersections = L.geoJson(data,{
+                onEachFeature: function (feature, layer) {
+                    var msg = "<h4>Intersection</h4>";
+                    msg += feature.properties.street1 + " and ";
+                    msg += feature.properties.street2;
+                    var lon = feature.geometry.coordinates[0];
+                    var lat = feature.geometry.coordinates[1];
+                    var js = 'set_home(new L.LatLng('+lat+','+lon+')); return false;';
+                    msg += '<p><a class="btn btn-small" href="#" onClick="'+js+'">Make Home</a></p>';
+                    layer.bindPopup(msg);
+                }
+            }).addTo(map);
+            var bounds = map.getBounds();
+            bounds.extend(intersections.getBounds())
+            map.fitBounds(bounds);
+        }
+    });
+}
+
+var update_cross = function(e) {
+    var street = $('#id_street').val();
+    if (street == ''){
+        return;
+    }
+    var q = $("#id_cross_st option:selected").val();
+    if (!q){
+        q = '';
+    }
+    // get schools for given district-id
+    $.getJSON('/{{LANGUAGE_CODE}}/{{school.pk}}/crossing/'+street+'/'+q+'/', function(streets) {
+        // clear previouse dropdown options
+        $("#id_cross_st option").remove();
+        // append new schools to dropdown
+        $("<option value=''></option>").appendTo("#id_street");
+        $.each(streets, function(id, street) {
+            $("<option value='" + street + "'>" + street + "</option>").appendTo("#id_cross_st");
+        });
+        $("#id_cross_st").trigger("liszt:updated");
+    });
+};
+
+var select_opts = {
+    allow_single_deselect: true,
+    disable_search_threshold: 10
+}
+
+var init_streets = function(){
+    $("#id_street").chosen(select_opts).change(function(e) {
+        var q = $("#id_street option:selected").val();
+        if (q == undefined){
+            q = '';
+        }
+
+        $("#id_cross_st option:selected").val(null)
+        view_intersections();
+        update_cross();
+    });
+
+    $.getJSON("/{{LANGUAGE_CODE}}/{{school.pk}}/streets//", function(streets) {
+        // append new schools to dropdown
+        $("<option value=''></option>").appendTo("#id_street");
+        $.each(streets, function(id, street) {
+            $("<option value='" + street + "'>" + street + "</option>").appendTo("#id_street");
+        });
+        $("#id_street").trigger("liszt:updated");
+    });
+
+    $("#id_cross_st").chosen(select_opts).change(view_intersections);
+
+    $("#id_street").chosen().change();
+}
 
 </script>
 

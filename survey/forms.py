@@ -14,25 +14,23 @@ class SurveyForm(ModelForm):
     """
     Parent Survey Form for collecting basic household information.
     """
-    street = CharField(
+    street = ChoiceField(
         label=_('Name of your street'),
-        widget=TextInput(attrs={'size': '30', "autocomplete": "off"}),
-        required=False,
+        required=False
     )
-    cross_st = CharField(
+    cross_st = ChoiceField(
         label=_('Name of nearest cross-street'),
-        widget=TextInput(attrs={'size': '30', "autocomplete": "off"}),
-        required=False,
+        required=False
     )
-    nr_vehicles = IntegerField(
+    nr_vehicles = ChoiceField(
         label=_('How many vehicles do you have in your household?'),
-        widget=TextInput(attrs={'size': '2'}),
-        required=False,
+        choices=[(i, str(i)) for i in range(10)],
+        required=False
     )
-    nr_licenses = IntegerField(
+    nr_licenses = ChoiceField(
         label=_('How many people in your household have a driver\'s license?'),
-        widget=TextInput(attrs={'size': '2'}),
-        required=False,
+        choices=[(i, str(i)) for i in range(10)],
+        required=False
     )
 
     class Meta:
@@ -95,7 +93,7 @@ class SchoolForm(ModelForm):
     survey_active = forms.TypedChoiceField(
         choices=YES_OR_NO, widget=forms.RadioSelect
     )
-    survey_incentive = forms.CharField(label="Survey Form Message", required=False)
+    #survey_incentive = forms.CharField(label="Survey Form Message", required=False)
 
     def __init__(self, *args, **kwargs):
         super(SchoolForm, self).__init__(*args, **kwargs)
@@ -106,7 +104,7 @@ class SchoolForm(ModelForm):
 
     class Meta:
         model = School
-        fields = ("name", "survey_active", "survey_incentive", )
+        fields = ("name", "survey_active", )
 
 
 class ReportForm(forms.Form):
@@ -118,5 +116,6 @@ class ReportForm(forms.Form):
 
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
+        self.helper.form_method = 'get'
         self.helper.add_input(Submit('submit', 'Generate Report'))
-        self.helper.add_input(Submit('submit', 'Download Raw Data'))
+        #self.helper.add_input(Submit('submit', 'Download Raw Data'))

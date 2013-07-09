@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block javascript %}
-<link rel="stylesheet" href="{{ STATIC_URL }}js/chosen/chosen.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}js/chosen/chosen.min.css">
 <script src="{{ STATIC_URL }}js/chosen/chosen.jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     // get schools for selected district
     $("#district-select").chosen().change(function(e) {
-        districtid = $("#district-select option:selected").val();
+        var districtid = $("#district-select option:selected").val();
         // get schools for given district-id
         $.getJSON("/{{LANGUAGE_CODE}}/" + districtid + "/schools/", function(schools) {
             // clear previouse dropdown options
@@ -60,7 +60,7 @@ $(document).ready(function() {
         <div id="about" class="collapse">
             <p>{% blocktrans %}The Massachusetts Safe Routes to School (SRTS) program partners with schools throughout the Commonwealth  to help reduce traffic congestion and air pollution near schools while increasing the health, safety, and physical activity of students. Evaluating trends in how students and families travel to school is a key component to building a successful Safe Routes to School program.  Parent responses to this survey provide valuable information and help determine how we can improve the environment around the school, target investments, track progress toward goals and ultimately develop local programs that benefit students, parents and our communities.{% endblocktrans %}
             </p>
-            <p>{% blocktrans %}To learn more about your school’s efforts or to find out how to get involved, visit MassDOT’s Safe Routes to School Program at <a href='http://www.commute.com/schools/'>http://www.commute.com/schools/</a> or call us at 857-368-8638.{% endblocktrans %}
+            <p>{% blocktrans %}To learn more about your school’s efforts or to find out how to get involved, visit MassDOT’s Safe Routes to School Program at <a href='http://www.commute.com/schools/'>www.commute.com/schools/</a> or call us at 857-368-8638.{% endblocktrans %}
             </p>
         </div>
         <br/>
@@ -72,7 +72,7 @@ $(document).ready(function() {
         <h3>{% trans "Please select your school district" %}</h3>
         <p>Scroll or start typing your district name</p>
         <div class="input index">
-            <select id="district-select" class="chzn-select" style="width: 340px;" tabindex="1">
+            <select id="district-select" class="chzn-select" style="width: 350px;">
                 {% for district in districts %}<option value="{{ district.districtid }}">{{ district.distname }}</option> {% endfor %}
             </select>
         </div>

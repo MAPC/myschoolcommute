@@ -1,15 +1,11 @@
-from django.conf.urls import patterns, url, include
+from django.conf.urls import url, include
 from django.conf.urls.i18n import i18n_patterns
-from django.conf import settings
 from django.views.generic import TemplateView
 
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = i18n_patterns('',
-    # Example:
-    # (r'^walkboston/', include('walkboston.foo.urls')),
-    #url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
@@ -45,9 +41,9 @@ urlpatterns = i18n_patterns('',
     url(r'^(?P<district_slug>[-\w]+)/(?P<school_slug>[-\w]+)/$', 'survey.views.form', name='survey_school_form'),
 
     #Typeahead
-    url(r'^(?P<school_id>\d+)/streets/(?P<query>[\s\w]+)/$', 'survey.views.school_streets'),
+    url(r'^(?P<school_id>\d+)/streets/(?P<query>[\s\w]*)/?$', 'survey.views.school_streets'),
     url(r'^(?P<school_id>\d+)/crossing/(?P<street>[\s\w]+)/$', 'survey.views.school_crossing' ),
-    url(r'^(?P<school_id>\d+)/crossing/(?P<street>[\s\w]+)/(?P<query>[\s\w]+)/$', 'survey.views.school_crossing' ),
+    url(r'^(?P<school_id>\d+)/crossing/(?P<street>[\s\w]+)/(?P<query>[\s\w]*)/$', 'survey.views.school_crossing' ),
     url(r'^(?P<school_id>\d+)/intersection/(?P<street1>[\s\w]+)/$', 'survey.views.intersection' ),
     url(r'^(?P<school_id>\d+)/intersection/(?P<street1>[\s\w]+)/(?P<street2>[\s\w]+)/$', 'survey.views.intersection' ),
 )

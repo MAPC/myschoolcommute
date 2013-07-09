@@ -3,8 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
-from django.db.models import Count
-from django.db.models import Q
+from django.db.models import Count, Q, Max, Min
 from django.forms.models import inlineformset_factory
 from django.contrib.auth.decorators import login_required
 
@@ -12,6 +11,8 @@ from datetime import datetime, timedelta
 
 from survey.models import School, Survey, Child, District, Street, Intersection
 from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
+
+from maps import RunR
 
 
 def index(request):
@@ -44,6 +45,7 @@ def district_list(request):
 
     return render_to_response('survey/district_list.html', locals(), context_instance=RequestContext(request))
 
+
 @login_required
 def school_edit(request, district_slug, school_slug, **kwargs):
 
@@ -60,6 +62,25 @@ def school_edit(request, district_slug, school_slug, **kwargs):
         school_form = SchoolForm(request.POST, instance=school)
         if school_form.is_valid():
             school = school_form.save()
+    elif request.method == 'GET' and len(request.GET) > 0:
+        form = ReportForm(request.GET)
+        if form.is_valid():
+            path = RunR(
+                school.pk,
+                form.cleaned_data['start_date'],
+                form.cleaned_data['end_date']
+            )
+            f = open(path, 'rb')
+            content = f.read()
+            f.close()
+
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+            response['Content-Length'] = len(content)
+            response['content'] = content
+            return response
+        else:
+            school_form = SchoolForm(instance=school)
     else:
         school_form = SchoolForm(instance=school)
 
@@ -67,7 +88,11 @@ def school_edit(request, district_slug, school_slug, **kwargs):
     count_day = surveys.filter(created__gte=datetime.today() - timedelta(hours=24)).count()
     count_week = surveys.filter(created__gte=datetime.today() - timedelta(days=7)).count()
 
-    report_form = ReportForm()
+    initial = {
+        'start_date' : surveys.aggregate(Min('created'))['created__min'],
+        'end_date' : surveys.aggregate(Max('created'))['created__max']
+    }
+    report_form = ReportForm(initial=initial)
     return render_to_response('survey/school_edit.html', {
             'school': school,
             'district': district,
@@ -89,7 +114,7 @@ def get_schools(request, districtid):
     # check if district exists
     district = get_object_or_404(District.objects, districtid=districtid)
 
-    schools = School.objects.filter(districtid=district)
+    schools = School.objects.filter(districtid=district).filter(survey_active=True)
 
     response = {}
 
@@ -134,7 +159,7 @@ def school_streets(request, school_id, query=None):
 
     data = [row['st_name_1'].title() for row in list(streets)]
 
-    return HttpResponse(simplejson.dumps(data), mimetype='application/json')
+    return HttpResponse(simplejson.dumps(sorted(data)), mimetype='application/json')
 
 
 def school_crossing(request, school_id, street, query=None):
@@ -226,6 +251,7 @@ def form(request, district_slug, school_slug, **kwargs):
                 surveyformset = SurveyFormset(request.POST, instance=Survey())
                 formerror = True
         else:
+            surveyformset = SurveyFormset(request.POST, instance=Survey())
             formerror = True
     else:
         survey = Survey()

@@ -1,8 +1,5 @@
 from django.contrib.gis.db import models
-from django import forms
 from django.contrib.auth.models import User
-from fields import CountryField
-from django.template.loader import render_to_string
 
 from survey.models import District, School
 
@@ -33,10 +30,11 @@ class Profile(models.Model):
             # only display fields with values and skip some fields entirely
             if f.editable and value and f.name not in ('id', 'status', 'user', 'complete'):
                 fields.append({
-                   'label': f.verbose_name,
-                   'name': f.name,
-                   'value': value,
+                    'label': f.verbose_name,
+                    'name': f.name,
+                    'value': value,
                 })
+
         return fields
 
     def __unicode__(self):

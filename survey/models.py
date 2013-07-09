@@ -35,6 +35,12 @@ class District(models.Model):
         ordering = ['distname']
 
 
+class CustomManager(models.GeoManager):
+    def get_queryset(self):
+        qs = super(CustomManager, self).get_queryset()
+        return qs.defer('shed_05', 'shed_10', 'shed_15', 'shed_20', 'geometry')
+
+
 class School(models.Model):
     """ School """
     name = models.CharField(max_length=200)
@@ -62,7 +68,7 @@ class School(models.Model):
     shed_10 = models.MultiPolygonField(srid=26986, null=True, blank=True)
     shed_15 = models.MultiPolygonField(srid=26986, null=True, blank=True)
     shed_20 = models.MultiPolygonField(srid=26986, null=True, blank=True)
-    objects = models.GeoManager()
+    objects = CustomManager()
 
     def __unicode__(self):
         return self.name

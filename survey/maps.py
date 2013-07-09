@@ -410,7 +410,9 @@ def RunR(school_id, date1, date2):
         r.r("source('compile.R')")
     except:
         pass
+    pdfpath = os.path.join(os.path.abspath(curpath),'R/minimal.pdf')
     os.chdir(curpath)
+    return pdfpath
 
 
 def get_driving_distance(src, dst):

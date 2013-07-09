@@ -8,7 +8,7 @@ from views import *
 urlpatterns = patterns('',
     url(r'^$', index, name='accounts'),
 
-    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'accounts/login.html', 'authentication_form':LoginForm},name='login'),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'accounts/login.html', 'authentication_form': LoginForm}, name='login'),
     (r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'accounts/logout.html'}),
 
     url(r'^register/$', register, name='register'),
@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     (r'^profile/$', profile_authed),
     url(r'^edit/$', profile_edit),
     url(r'^edit/(?P<username>\w+)/$', profile_edit, name='user_edit'),
-    url(r'^profile/(?P<username>\w+)/$', profile ,name='user_detail'),
+    url(r'^profile/(?P<username>\w+)/$', profile, name='user_detail'),
 
     url(r'^users/$',
         ListView.as_view(
