@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-09 16:11-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: forms.py:18
+msgid "Name of your street"
+msgstr "Tên của đường phố của bạn"
+
+#: forms.py:22
+msgid "Name of nearest cross-street"
+msgstr "Tên của gần nhất qua đường phố"
+
+#: forms.py:26
+msgid "How many vehicles do you have in your household?"
+msgstr "Bao nhiêu phương tiện nào bạn có trong hộ gia đình của bạn ?"
+
+#: forms.py:31
+msgid "How many people in your household have a driver's license?"
+msgstr "Bao nhiêu người trong gia đình của bạn có bằng lái xe ?"
+
+#: forms.py:55
+msgid "What grade is your child in?"
+msgstr "Cấp những gì con bạn đang ở trong ?"
+
+#: forms.py:61
+msgid "How does your child get TO school on most days?"
+msgstr "Làm thế nào để con bạn có được đến trường hầu hết các ngày ?"
+
+#: forms.py:66
+msgid ""
+"Do you usually drop off your child on your way to work or another "
+"destination?"
+msgstr "Bạn thường thả ra con của bạn trên đường đi làm hoặc một điểm đến ?"
+
+#: forms.py:72
+msgid "How does your child get home FROM school on most days?"
+msgstr "Làm thế nào để con bạn về nhà từ trường học trên hầu hết các ngày ?"
+
+#: forms.py:77
+msgid ""
+"Do you usually pick up your child on your way from work or another origin?"
+msgstr "Bạn có thường đón em trên đường từ nơi làm việc hay nguồn gốc khác?"
+
+#: models.py:171
+msgid "Walk"
+msgstr "đi bộ"
+
+#: models.py:172
+msgid "Bike"
+msgstr "xe đạp"
+
+#: models.py:173
+msgid "School Bus"
+msgstr "Xe buýt trường học"
+
+#: models.py:174
+msgid "Family Vehicle (only children in your family)"
+msgstr "Xe gia đình ( chỉ có trẻ em trong gia đình của bạn )"
+
+#: models.py:175
+msgid "Carpool (with children from other families)"
+msgstr "Đi chung xe ( với trẻ em từ các gia đình khác )"
+
+#: models.py:176
+msgid "Transit (city bus, subway, etc.)"
+msgstr "Vận chuyển ( xe buýt thành phố , tàu điện ngầm , vv )"
+
+#: models.py:177
+msgid "Other (skateboard, scooter, inline skates, etc.)"
+msgstr "Khác ( ván trượt , xe tay ga, giày trượt nội tuyến , vv )"
+
+#: models.py:182
+msgid "Yes"
+msgstr "vâng"
+
+#: models.py:183
+msgid "No"
+msgstr "không"
+
+#: templates/base.html:94
+msgid "About"
+msgstr "về"
+
+#: templates/base.html:118
+msgid "Questions? Please contact"
+msgstr "Câu hỏi ? Vui lòng liên hệ"
+
+#: templates/survey/about.html:7
+msgid "About the Massachusetts Safe Routes to School Program"
+msgstr "Về Massachusetts tuyến đường an toàn cho Chương trình học"
+
+#: templates/survey/batch.html:356
+msgid "home"
+msgstr "quê hương"
+
+#: templates/survey/batch.html:450 templates/survey/form.html:483
+msgid "Submit Survey"
+msgstr "trình điều tra"
+
+#: templates/survey/form.html:338
+msgid "Travel to School Survey"
+msgstr "Đi du lịch để điều tra trường"
+
+#: templates/survey/form.html:342
+msgid "Dear Parent or Guardian,"
+msgstr "Thưa quý phụ huynh hoặc người giám hộ ,"
+
+#: templates/survey/form.html:346
+msgid ""
+"Your child’s school is conducting a survey to learn how students get to and "
+"from school. This information  will be used to plan safe and healthy "
+"transportation choices for all students. The survey will take less than 3 "
+"minutes to complete. All responses are voluntary and confidential. "
+msgstr ""
+"Trường của con quý vị đang tiến hành một cuộc khảo sát để học cách học sinh "
+"có được đến trường và về nhà . Thông tin này sẽ được sử dụng để có kế hoạch "
+"lựa chọn vận chuyển an toàn và lành mạnh cho tất cả học sinh . Cuộc khảo sát"
+" sẽ mất ít hơn 3 phút để hoàn thành . Tất cả các câu trả lời là tự nguyện và"
+" bảo mật."
+
+#: templates/survey/form.html:348
+msgid ""
+"If more than one child attends this school, use the \"Add Another Child\" "
+"feature to report additional students. "
+msgstr ""
+"Nếu có nhiều hơn một đứa trẻ theo học trường này , sử dụng \" Thêm Một trẻ "
+"em \" tính năng để báo cáo thêm học sinh ."
+
+#: templates/survey/form.html:349
+msgid ""
+"If a child's home location or commute is not the same every day, choose the "
+"option that reflects the <em>most common</em> location and travel pattern."
+msgstr ""
+"Nếu vị trí nhà hoặc đi lại của một đứa trẻ không phải là giống nhau mỗi ngày"
+" , chọn tùy chọn phản ánh \\u003cem\\u003e phổ biến nhất \\u003c/ em\\u003e "
+"vị trí và mô hình du lịch ."
+
+#: templates/survey/form.html:350
+msgid ""
+"If you already completed a paper survey, do not complete this online form. "
+msgstr ""
+"Nếu bạn đã hoàn thành một cuộc khảo sát giấy, không hoàn thành mẫu trực "
+"tuyến này ."
+
+#: templates/survey/form.html:351
+msgid ""
+"If you have questions, please contact a school administrator or call Safe "
+"Routes to School at 857-368-8650."
+msgstr ""
+"Nếu bạn có thắc mắc , xin vui lòng liên hệ với quản trị trường hoặc gọi "
+"tuyến đường an toàn để học tại 857-368-8650 ."
+
+#: templates/survey/form.html:355
+msgid "We appreciate your time and effort!"
+msgstr "Chúng tôi đánh giá cao thời gian và nỗ lực của bạn !"
+
+#: templates/survey/form.html:367
+msgid "What is your approximate home location?"
+msgstr "Vị trí nhà gần đúng của bạn là gì?"
+
+#: templates/survey/form.html:370
+msgid "Please click the map at an intersection on your street, near your home"
+msgstr ""
+"Vui lòng bấm vào bản đồ tại một ngã tư trên đường phố của bạn , gần nhà của "
+"bạn"
+
+#: templates/survey/form.html:375
+msgid "your home"
+msgstr "nhà của bạn"
+
+#: templates/survey/form.html:381
+msgid "...or tell us the street intersection closest to your home."
+msgstr "... hoặc cho chúng tôi biết các ngã tư đường phố gần nhà quý vị ."
+
+#: templates/survey/form.html:445
+msgid "Add another child at this school"
+msgstr "Thêm một đứa trẻ ở trường này"
+
+#: templates/survey/index.html:54
+msgid ""
+"Would you like to help create safe routes to school for students in your "
+"community?"
+msgstr ""
+"Bạn có muốn giúp tạo ra các tuyến đường an toàn cho học sinh trong cộng đồng"
+" của bạn ?"
+
+#: templates/survey/index.html:55
+msgid ""
+"The survey takes less than 3 minutes and will help your school plan for more"
+" transportation choices. All responses are voluntary and confidential."
+msgstr ""
+"Cuộc khảo sát ít hơn 3 phút và sẽ giúp kế hoạch trường để lựa chọn vận "
+"chuyển hơn . Tất cả các câu trả lời là tự nguyện và bảo mật."
+
+#: templates/survey/index.html:58
+msgid "More information about the survey..."
+msgstr "Thêm thông tin về cuộc điều tra ..."
+
+#: templates/survey/index.html:61
+msgid ""
+"The Massachusetts Safe Routes to School (SRTS) program partners with schools"
+" throughout the Commonwealth  to help reduce traffic congestion and air "
+"pollution near schools while increasing the health, safety, and physical "
+"activity of students. Evaluating trends in how students and families travel "
+"to school is a key component to building a successful Safe Routes to School "
+"program.  Parent responses to this survey provide valuable information and "
+"help determine how we can improve the environment around the school, target "
+"investments, track progress toward goals and ultimately develop local "
+"programs that benefit students, parents and our communities."
+msgstr ""
+"Massachusetts tuyến đường an toàn để học ( SRTS ) đối tác chương trình với "
+"các trường học trên toàn bang để giúp giảm tắc nghẽn giao thông và ô nhiễm "
+"không khí gần trường học trong khi gia tăng sức khỏe , an toàn và hoạt động "
+"thể chất của học sinh. Đánh giá các xu hướng trong cách học sinh và gia đình"
+" đi học là một thành phần quan trọng để xây dựng một thành công tuyến đường "
+"an toàn cho chương trình học . Câu trả lời phụ huynh để khảo sát này cung "
+"cấp thông tin có giá trị và giúp xác định làm thế nào để cải thiện môi "
+"trường xung quanh trường , đầu tư mục tiêu , theo dõi tiến độ thực hiện mục "
+"tiêu và cuối cùng là phát triển các chương trình địa phương sinh lợi ích , "
+"các bậc cha mẹ và cộng đồng của chúng tôi ."
+
+#: templates/survey/index.html:63
+msgid ""
+"To learn more about your school’s efforts or to find out how to get "
+"involved, visit MassDOT’s Safe Routes to School Program at <a "
+"href='http://www.commute.com/schools/'>www.commute.com/schools/</a> or call "
+"us at 857-368-8638."
+msgstr ""
+"Để tìm hiểu thêm về những nỗ lực học của bạn hoặc để tìm hiểu làm thế nào để"
+" tham gia , hãy truy cập tuyến đường an toàn MassDOT của Chương trình học "
+"tại \\u003ca href='http://www.commute.com/schools/'\\u003e www.commute.com /"
+" trường học / \\u003c/ a\\u003e hoặc gọi cho chúng tôi tại 857-368-8638 ."
+
+#: templates/survey/index.html:67
+msgid "Take the Survey"
+msgstr "Đi khảo sát"
+
+#: templates/survey/index.html:72
+msgid "Please select your school district"
+msgstr "Vui lòng chọn khu học chánh"
+
+#: templates/survey/index.html:82
+msgid "Please select your school"
+msgstr "Vui lòng chọn trường học của bạn"
+
+#: templates/survey/index.html:92
+msgid "Open School Survey Form"
+msgstr "Mở Mẫu khảo sát học"
+
+#: templates/survey/thanks.html:6
+msgid "Thank you!"
+msgstr "Cảm ơn bạn!"
