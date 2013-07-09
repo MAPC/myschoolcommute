@@ -227,41 +227,6 @@ $(document).ready(function() {
         init_streets();
         return false;
     });
-
-    /*
-    $('#id_street').typeahead({
-        source: function(query, process){
-            $.getJSON('/{{school.pk}}/streets/'+query+'/', function(data){
-                process(data);
-            });
-        }
-    });
-
-    $('#id_cross_st').typeahead({
-        minLength: 0,
-        source: function(query, process){
-            var street = $('#id_street').val();
-            console.log(query);
-            $.getJSON('/{{school.pk}}/crossing/'+street+'/'+query+'/', function(data){
-                process(data);
-            });
-        }
-    });
-
-    $('#id_street').on('change', function(){
-        var street1 = $('#id_street').val();
-        var street2 = $('#id_cross_st').val();
-        if (street2.length > 0){
-            $('#id_cross_st').val("");
-        }
-        view_intersections();
-    });
-
-    $('#id_cross_st').on('change', view_intersections);
-    */
-
-    // initiate chosen dropdown UIs
-    //$(".chzn-select").chosen();
 });
 
 var view_intersections = function(){
@@ -378,8 +343,7 @@ var init_streets = function(){
     </h4>
 
     <p>
-    {% blocktrans with school.name as schoolname %}
-Your child’s school is conducting a survey to learn how students get to and from school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. {% endblocktrans %}
+    {% blocktrans with school.name as schoolname %}Your child’s school is conducting a survey to learn how students get to and from school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. {% endblocktrans %}
 <ul>
 <li>{% blocktrans %}If more than one child attends this school, use the "Add Another Child" feature to report additional students. {%endblocktrans%}</li>
 <li>{% blocktrans %}If a child's home location or commute is not the same every day, choose the option that reflects the <em>most common</em> location and travel pattern.{%endblocktrans%}</li>

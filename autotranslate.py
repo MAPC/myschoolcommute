@@ -18,6 +18,10 @@ for po_file in po_files:
     for entry in po.untranslated_entries():
         try:
             translation = translator.translate(entry.msgid.encode('utf8'))
+            try:
+                translation = translation.decode('unicode_escape')
+            except:
+                pass
             print translation
             entry.msgstr = translation
         except KeyError:
