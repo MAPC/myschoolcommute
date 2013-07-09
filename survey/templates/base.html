@@ -84,8 +84,10 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
                 <li {% if 'accounts' in request.path %}class='active'{% endif %}><a href="/accounts/">Accounts</a></li>
+                {% if perms.school.can_change %}
                 <li><a href="{% url 'district_list' %}">Districts</a></li>
                 <li><a href="{% url 'school_list' request.user.get_profile.district.slug %}">Schools</a></li>
+                {% endif %}
             </ul>
           </div>
           {% endif %}

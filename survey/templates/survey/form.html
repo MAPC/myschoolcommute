@@ -331,7 +331,7 @@ var init_streets = function(){
 {% block container %}
 
 {% if school %}
-<div class='row-fluid'>
+<div class='row-fluid well'>
     <h2>{{ school.name }}</h2>
 
     <h3>
@@ -364,7 +364,7 @@ var init_streets = function(){
         <fieldset>
 
             <p class="question_title">
-                {% trans "What is your approximate home location?" %} (<span class="required_field">required</span>)
+                <strong>{% trans "What is your approximate home location?" %}</strong> (<span class="required_field">required</span>)
             </p>
             <p>
                 {% blocktrans %}Please click the map at an intersection on your street, near your home{% endblocktrans %}:
@@ -414,7 +414,7 @@ var init_streets = function(){
                         <div class="control-group {% if field.errors %}error{% endif %}">
                             <div class="controls">
                                 <label class="control-label span7 pull-left" for="{{field.auto_id}}">
-                                    {{ field.label|safe }}
+                                    <strong>{{ field.label|safe }}</strong>
                                 </label>
                                 {{ field }}
                                 <span class='help-inline'>
@@ -451,7 +451,7 @@ var init_streets = function(){
             <div class="control-group {% if surveyform.nr_vehicles.errors %}error{% endif %}">
                 <div class="controls">
                     <label for="{{ surveyform.nr_vehicles.auto_id }}" class="control-label span7">
-                        {% trans surveyform.nr_vehicles.label %}
+                        <strong>{% trans surveyform.nr_vehicles.label %}</strong>
                     </label>
                     {{ surveyform.nr_vehicles }}
                     <span class='help-inline'>
@@ -464,7 +464,7 @@ var init_streets = function(){
             <div class="control-group {% if surveyform.nr_licenses.errors %}error{% endif %}">
                 <div class="controls">
                     <label for="{{ surveyform.nr_licenses.auto_id }}" class="control-label span7">
-                        {% trans surveyform.nr_licenses.label %}
+                        <strong>{% trans surveyform.nr_licenses.label %}</strong>
                     </label>
                     {{ surveyform.nr_licenses }}
                     <span class='help-inline'>

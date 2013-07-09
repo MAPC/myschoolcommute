@@ -9,7 +9,7 @@
             {% if perms.user.can_change %}
             <th><b>Is activated</b></th>
             {% endif %}
-            <th><b>Username</b></th> <th><b>Name<b></th> <th><b>Last login<b></th> 
+            <th><b>Username</b></th> <th><b>Name<b></th> <th><b>Last login<b></th>
         </tr>
 	</thead>
 {% for o in object_list %}
@@ -23,8 +23,8 @@
         {% endif %}
         <strong><a href="{% url "user_detail" o.username %}">{{o.username}}</a></strong>
 
-    </td> 
-    <td>{{o.first_name}} {{o.last_name}}</td> 
+    </td>
+    <td>{{o.first_name}} {{o.last_name}}</td>
     <td>{{o.last_login|date:"jS F Y H:i"}}</td>
 </tr>
 {% endfor %}
