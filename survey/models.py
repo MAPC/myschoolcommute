@@ -36,8 +36,8 @@ class District(models.Model):
 
 
 class CustomManager(models.GeoManager):
-    def get_queryset(self):
-        qs = super(CustomManager, self).get_queryset()
+    def get_query_set(self):
+        qs = super(CustomManager, self).get_query_set()
         return qs.defer('shed_05', 'shed_10', 'shed_15', 'shed_20', 'geometry')
 
 

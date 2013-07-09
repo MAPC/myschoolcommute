@@ -28,7 +28,7 @@ class Profile(models.Model):
                     value = None
 
             # only display fields with values and skip some fields entirely
-            if f.editable and value and f.name not in ('id', 'status', 'user', 'complete'):
+            if f.editable and value and f.name not in ('id','user',):
                 fields.append({
                     'label': f.verbose_name,
                     'name': f.name,

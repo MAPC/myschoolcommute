@@ -80,7 +80,7 @@ def profile_authed(request):
 def profile(request, username):
     if request.user.is_authenticated():
         u = User.objects.get(username=username)
-        p = Profile.objects.get_or_create(user=u)
+        p = u.get_profile()
 
         user_form = UserForm(instance=u)
         user_form.merge_from_initial()
@@ -89,7 +89,7 @@ def profile(request, username):
         {
             'username': u.username,
             'user_f': user_form,
-            'profile': p,
+            'profile': p
         }, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/')

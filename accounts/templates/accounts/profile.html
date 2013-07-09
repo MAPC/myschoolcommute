@@ -5,18 +5,17 @@
 {% block content %}
       <h2>{{username}}</h2>
       <br/>
-
-<table cellpadding='3'>
+<dl class="dl-horizontal">
 {% for f in user_f %}
 	{% if f.data %}
-    <tr><td><b>{{ f.label|capfirst }}</b></td> <td> {{f.data}}</td></tr>
+    <dt>{{ f.label|capfirst }}</dt> <dd>{{f.data}}</dd>
     {% endif %}
 {% endfor %}
 
 {% for f in profile.get_all_fields %}
-    <tr><td><b>{{ f.label|capfirst }}{% if f.label %} {%endif%}</b></td> 
-    <td>{{f.value}}</td></tr>
+    <dt>{{ f.label|capfirst }}{% if f.label %} {%endif%}</dt>
+    <dd>{{ f.value }}</dd>
 {% endfor %}
 
-</table>
+</dl>
 {% endblock %}
