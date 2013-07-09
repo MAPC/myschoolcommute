@@ -23,6 +23,7 @@ def index(request):
     else:
         return HttpResponseRedirect('/accounts/login/')
 
+
 def register(request):
     if request.method == 'POST':
         user_form = RegistrationForm(request.POST)
@@ -39,8 +40,15 @@ def register(request):
             message = "New user registration!\n\n%s\n%s, %s\nActivate user: %s\nView all users: %s" % (
                 new_user.username, new_user.first_name, new_user.last_name, approve_page, users_page,
             )
-            mail_admins('myschoolcommute.com new user '+new_user.username, message)
-
+            #mail_admins('myschoolcommute.com new user '+new_user.username, message)
+            g = Group.objects.get(name="MassRIDES Staff")
+            emails = [u.email for u in g.user_set.all()]
+            send_mail(
+                'myschoolcommute.com new user '+new_user.username,
+                message,
+                settings.SERVER_EMAIL,
+                emails
+            )
             return HttpResponseRedirect("/accounts/register/success/")
     else:
         profile_form = ProfileForm()
@@ -54,7 +62,8 @@ def register(request):
 
 def register_success(request):
     return render_to_response("accounts/register_success.html",
-        context_instance=RequestContext(request))
+        context_instance=RequestContext(request)
+    )
 
 
 def profile_authed(request):
