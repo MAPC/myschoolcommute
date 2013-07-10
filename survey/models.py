@@ -28,6 +28,10 @@ class District(models.Model):
     geometry = models.MultiPolygonField(srid=26986)
     objects = models.GeoManager()
 
+    @property
+    def name(self):
+        return self.distname
+
     def __unicode__(self):
         return self.distname
 

@@ -81,15 +81,26 @@
           </button>
           <a class="brand" href="{% url 'home' %}">MASafeRoutesSurvey.com</a>
           {% if request.user.is_authenticated %}
+          {% with profile=request.user.get_profile %}
           <div class="nav-collapse collapse">
             <ul class="nav">
                 <li {% if 'accounts' in request.path %}class='active'{% endif %}><a href="/accounts/">Accounts</a></li>
                 {% if perms.school.can_change %}
                 <li><a href="{% url 'district_list' %}">Districts</a></li>
-                <li><a href="{% url 'school_list' request.user.get_profile.district.slug %}">Schools</a></li>
+                {% endif %}
+                <li {% if request.path|slice:"4:-1" == profile.district.slug %}class='active'{% endif %}>
+                  <a href="{% url 'school_list' profile.district.slug %}">{{profile.district}} Schools</a>
+                </li>
+                {% if profile.school %}
+                <li {% if profile.school.slug in request.path %}class='active'{% endif %}>
+                  <a href="{% url 'school_edit' profile.school.districtid.slug profile.school.slug %}">
+                  {{profile.school.name}}
+                  </a>
+                </li>
                 {% endif %}
             </ul>
           </div>
+          {% endwith %}
           {% endif %}
           <div class="nav-collapse collapse">
             <ul class="nav">

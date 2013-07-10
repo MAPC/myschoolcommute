@@ -14,6 +14,26 @@ from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
 
 from maps import RunR
 
+import os
+import fcntl
+
+class Lock:
+
+    def __init__(self, filename):
+        self.filename = filename
+        # This will create it if it does not exist already
+        self.handle = open(filename, 'w')
+
+    # Bitwise OR fcntl.LOCK_NB if you need a non-blocking lock
+    def acquire(self):
+        fcntl.flock(self.handle, fcntl.LOCK_EX)
+
+    def release(self):
+        fcntl.flock(self.handle, fcntl.LOCK_UN)
+
+    def __del__(self):
+        self.handle.close()
+
 
 def index(request):
 
@@ -65,20 +85,26 @@ def school_edit(request, district_slug, school_slug, **kwargs):
     elif request.method == 'GET' and len(request.GET) > 0:
         form = ReportForm(request.GET)
         if form.is_valid():
-            path = RunR(
-                school.pk,
-                form.cleaned_data['start_date'],
-                form.cleaned_data['end_date']
-            )
-            f = open(path, 'rb')
-            content = f.read()
-            f.close()
+            start = str(form.cleaned_data['start_date'])
+            end = str(form.cleaned_data['end_date'])
+            report_path = "reports/%s/%s_%s_report.pdf" % (school.slug, start, end)
+            full_path = settings.MEDIA_ROOT + '/' + report_path
+            full_url = settings.MEDIA_URL + '/' + report_path
+            try:
+                lock = Lock("/tmp/saferides_report.lock")
+                lock.acquire()
+                path = RunR(
+                    school.pk,
+                    form.cleaned_data['start_date'],
+                    form.cleaned_data['end_date']
+                )
+                dir_name = os.path.dirname(full_path)
+                os.makedirs(dir_name)
+                os.rename(path, full_path)
+            finally:
+                lock.release()
 
-            response = HttpResponse(content_type='application/pdf')
-            response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-            response['Content-Length'] = len(content)
-            response['content'] = content
-            return response
+            return HttpResponseRedirect(full_url)
         else:
             school_form = SchoolForm(instance=school)
     else:
@@ -89,8 +115,8 @@ def school_edit(request, district_slug, school_slug, **kwargs):
     count_week = surveys.filter(created__gte=datetime.today() - timedelta(days=7)).count()
 
     initial = {
-        'start_date' : surveys.aggregate(Min('created'))['created__min'],
-        'end_date' : surveys.aggregate(Max('created'))['created__max']
+        'start_date': surveys.aggregate(Min('created'))['created__min'],
+        'end_date': surveys.aggregate(Max('created'))['created__max']
     }
     report_form = ReportForm(initial=initial)
     return render_to_response('survey/school_edit.html', {
@@ -100,7 +126,9 @@ def school_edit(request, district_slug, school_slug, **kwargs):
             'report_form': report_form,
             'surveys': surveys,
             'count_day': count_day,
-            'count_week': count_week
+            'count_week': count_week,
+            'start_date': initial['start_date'],
+            'end_date': initial['end_date']
         },
         context_instance=RequestContext(request)
     )
