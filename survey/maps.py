@@ -396,7 +396,9 @@ def ForkRunR(school_id, date1, date2):
     save_sheds(os.path.join(wdir, 'map.png'), school_id)
 
     cur_dir = os.path.dirname(os.path.realpath(__file__))
-    subprocess.call([cur_dir+'/runr.py', wdir, rdir, org_code, str(date1), str(date2)])
+    os.chdir(cur_dir)
+    print " ".join(['./runr.py', wdir, rdir, org_code, str(date1), str(date2)])
+    subprocess.call(['./runr.py', wdir, rdir, org_code, str(date1), str(date2)])
 
     pdfpath = os.path.join(rdir, 'minimal.pdf')
     return pdfpath

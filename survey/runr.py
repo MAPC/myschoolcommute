@@ -7,6 +7,7 @@ def RunR(rdir, wdir, org_code, date1, date2):
     from local_settings import DATABASES
 
     os.chdir(rdir)
+
     #print settings.DATABASES
     r.r("dbname <- '%s'" % DATABASES['default']['NAME'])
     r.r("dbuser <- '%s'" % DATABASES['default']['USER'])
@@ -17,13 +18,16 @@ def RunR(rdir, wdir, org_code, date1, date2):
     r.r("WORKDIR <- '%s'" % wdir)
     #r.r("BUFF_DIST <- '%s'" % 1)
 
+    c = r.r('getwd()')
+    #print c
+
     r.r("load('.RData')")
     r.r("print(ORG_CODE)")
     r.r("source('compile.R')")
 
 if __name__ == '__main__':
-    rdir = sys.argv[1]
-    wdir = sys.argv[2]
+    wdir = sys.argv[1]
+    rdir = sys.argv[2]
     org_code = sys.argv[3]
     date1 = sys.argv[4]
     date2 = sys.argv[5]
@@ -36,7 +40,6 @@ if __name__ == '__main__':
             '../myschoolcommute'
         )
     )
-    print proj_path
     sys.path.append(proj_path)
 
     RunR(rdir, wdir, org_code, date1, date2)
