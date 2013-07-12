@@ -67,25 +67,6 @@ class NetworkBike(models.Model):
         db_table = 'survey_network_bike'
 
 
-def num2deg(xtile, ytile, zoom):
-    n = 2.0 ** zoom
-    lon_deg = xtile / n * 360.0 - 180.0
-    lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
-    lat_deg = math.degrees(lat_rad)
-    return [lon_deg, lat_deg]
-
-
-def tms(zoom, column, row):
-    nw = num2deg(int(row), int(column), int(zoom))
-    se = num2deg(int(row)+1, int(column)+1, int(zoom))
-    nw_p = Point(nw[0], nw[1], srid=4326)
-    se_p = Point(se[0], se[1], srid=4326)
-    nw_p.transform(3857)
-    se_p.transform(3857)
-    bbox = mapnik.Envelope(se_p.x, se_p.y, nw_p.x, nw_p.y)
-    return bbox
-
-
 def mapnik_extent(geometry):
     extent = list(geometry.extent)
     bbox_ratio = (extent[2] - extent[0]) / (extent[3] - extent[1])
@@ -100,11 +81,6 @@ def mapnik_extent(geometry):
         extent[1] = extent[1] - offset
         extent[3] = extent[3] + offset
     return extent
-
-
-def school_tms(request, school_id, zoom, column, row):
-    bbox = tms(zoom, column, row)
-    return school_sheds(request, school_id, bbox, 256, 256, 3857)
 
 
 def paths_sql(school_id, network='survey_network_walk', miles=1.5):
@@ -261,6 +237,14 @@ def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700,
         surface.finish()
         tmp_file.seek(0)
         im = tmp_file.read()
+    elif format == 'PDF':
+        from mapnik.printing import PDFPrinter
+        printer = PDFPrinter()
+        tmp_file = tempfile.NamedTemporaryFile()
+        printer.render_map(m, tmp_file.name)
+        printer.finish()
+        tmp_file.seek(0)
+        im = tmp_file.read()
     else:
         im = mapnik.Image(m.width, m.height)
         mapnik.render(m, im)
@@ -280,86 +264,6 @@ def save_sheds(filename, school_id):
     output = open(filename, "wb")
     output.write(response.content)
     output.close()
-
-
-def save_sheds2(filename, school_id, width=600, height=800):
-    import StringIO
-    import Image
-    import urllib2
-    import io
-
-    school = School.objects.get(pk=school_id)
-    point = school.geometry
-    circle = point.buffer(3000.0)
-    circle.transform(4326)
-    extent = mapnik_extent(circle)
-
-    response = school_sheds(school_id=school_id, width=width, height=height)
-
-    shed_buff = StringIO.StringIO()
-    shed_buff.write(response.content)
-    shed_buff.seek(0)
-    shed_img = Image.open(shed_buff)
-
-    url = "http://vmap0.tiles.osgeo.org/wms/vmap0?LAYERS=basic"
-    url += "&SRS=EPSG%3A4326&FORMAT=image%2Fpng&"
-    url += "SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&"
-    url += "BBOX=%s&WIDTH=%d&HEIGHT=%d" % (",".join(map(str, extent)), width, height,)
-
-    print url
-
-    fd = urllib2.urlopen(url)
-    fd_content = fd.read()
-    back = Image.open(StringIO.StringIO(fd_content))
-
-    back.paste(shed_img, (0,0), shed_img)
-
-    back.save(filename)
-
-
-def walks(request, zoom, column, row):
-    format = 'png'
-    bbox = tms(zoom, column, row)
-
-    m = mapnik.Map(256, 256, "+init=epsg:3857")
-    m.zoom_to_box(bbox)
-
-    # styles for main
-    s = mapnik.Style()
-    r = mapnik.Rule()
-    line_symbolizer = mapnik.LineSymbolizer(mapnik.Color('black'), 0.8)
-
-    r.symbols.append(line_symbolizer)
-    #r.symbols.append(point_symbolizer)
-
-    t = mapnik.TextSymbolizer(mapnik.Expression('[fid]'), 'DejaVu Sans Book', 12, mapnik.Color('black'))
-    t.halo_fill = mapnik.Color('white')
-    t.halo_radius = 3
-    t.label_placement = mapnik.label_placement.LINE_PLACEMENT
-    r.symbols.append(t)
-
-    m.append_style("main", s)
-
-    query = 'survey_walk'
-    db = DATABASES['default']['NAME']
-    usr = DATABASES['default']['USER']
-    pwd = DATABASES['default']['PASSWORD']
-
-    layer = mapnik.Layer('bg', '+init=epsg:3857')
-    layer.datasource = mapnik.PostGIS(host='localhost', user=usr, password=pwd, dbname=db, table=query, extent=bbox)
-
-    layer.styles.append('main')
-    m.layers.append(layer)
-
-    # Render to image
-    im = mapnik.Image(m.width, m.height)
-    mapnik.render(m, im)
-    im = im.tostring(str(format))
-    response = HttpResponse()
-    response['Content-length'] = str(len(im))
-    response['Content-Type'] = mimetypes.types_map['.'+format]
-    response.write(im)
-    return response
 
 
 def school_sheds_json(request, school_id):
@@ -382,27 +286,6 @@ def school_sheds_json(request, school_id):
             "geometry": %s,
             "properties": {"distance": "%0.1f"}
         }""" % (geom.geojson, dist))
-
-    json_text = """{
-    "type": "FeatureCollection",
-    "features": [%s]
-    }""" % ((",\n").join(features))
-    return HttpResponse(json_text)
-
-
-def school_paths_json(request, school_id):
-    query = paths_sql(school_id, miles=1.5)
-
-    streets = NetworkWalk.objects.raw(query)
-
-    features = []
-    for f in list(streets):
-        f.geometry.transform(4326)
-        features.append(""" {
-            "type": "Feature",
-            "geometry": %s,
-            "properties": {"id": %d, "cost": %f}
-        }""" % (f.geometry.geojson, f.pk, f.cost))
 
     json_text = """{
     "type": "FeatureCollection",

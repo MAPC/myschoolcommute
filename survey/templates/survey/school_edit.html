@@ -38,16 +38,6 @@ $(document).ready(function(){
         attribution: "Imagery Copyright (c) <a href='http://MapQuest.com'>MapQuest</a>"
     });
 
-    /*
-    L.tileLayer('http://{{request.META.HTTP_HOST}}/{{school.pk}}/{z}/{y}/{x}/walkshed.png', {
-        maxZoom: 18
-    }).addTo(map);
-    /*
-    L.tileLayer('http://{{request.META.HTTP_HOST}}/walk/{z}/{y}/{x}/walk.png', {
-        maxZoom: 18
-    }).addTo(map);
-    */
-
     var ggl = new L.Google('ROADMAP');
     map.addLayer(ggl);
     map.addControl(new L.Control.Layers( {'MapQuest':mq, 'Google':ggl}, {}));
