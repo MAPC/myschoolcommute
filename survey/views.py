@@ -13,13 +13,13 @@ from datetime import datetime, timedelta
 from survey.models import School, Survey, Child, District, Street, Intersection
 from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
 
-from maps import RunR
+from maps import ForkRunR
 
 import os
 import fcntl
 
-class Lock:
 
+class Lock:
     def __init__(self, filename):
         self.filename = filename
         # This will create it if it does not exist already
@@ -92,9 +92,9 @@ def school_edit(request, district_slug, school_slug, **kwargs):
             full_path = settings.MEDIA_ROOT + '/' + report_path
             full_url = settings.MEDIA_URL + '/' + report_path
 
-            lock = Lock("/tmp/saferides_report.lock")
-            lock.acquire()
-            path = RunR(
+            #lock = Lock("/tmp/saferides_report.lock")
+            #lock.acquire()
+            path = ForkRunR(
                 school.pk,
                 form.cleaned_data['start_date'],
                 form.cleaned_data['end_date']
@@ -104,7 +104,7 @@ def school_edit(request, district_slug, school_slug, **kwargs):
                 os.makedirs(dir_name)
             os.rename(path, full_path)
 
-            lock.release()
+            #lock.release()
 
             send_mail(
                 "Your report for school %s, date range %s - %s" % (school, start, end),
@@ -361,3 +361,9 @@ def batch_form(request, district_slug, school_slug, **kwargs):
         },
         context_instance=RequestContext(request)
     )
+
+def testr(request):
+    import rpy2.robjects as r
+    out = r.r("print('TEST')")
+    #out = 'TEST'
+    return HttpResponse(out)
