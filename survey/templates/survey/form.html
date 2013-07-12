@@ -240,7 +240,7 @@ var view_intersections = function(){
     }else{
         street2 = '';
     }
-    $.getJSON('/{{LANGUAGE_CODE}}/{{school.pk}}/intersection/'+street1+'/'+street2, function(data){
+    $.getJSON('/{{school.pk}}/intersection/'+street1+'/'+street2, function(data){
         if (intersections != null)
             map.removeLayer(intersections);
         console.log(data.features.length);
@@ -281,7 +281,7 @@ var update_cross = function(e) {
         q = '';
     }
     // get schools for given district-id
-    $.getJSON('/{{LANGUAGE_CODE}}/{{school.pk}}/crossing/'+street+'/'+q+'/', function(streets) {
+    $.getJSON('/{{school.pk}}/crossing/'+street+'/'+q+'/', function(streets) {
         // clear previouse dropdown options
         $("#id_cross_st option").remove();
         // append new schools to dropdown
@@ -310,7 +310,7 @@ var init_streets = function(){
         update_cross();
     });
 
-    $.getJSON("/{{LANGUAGE_CODE}}/{{school.pk}}/streets//", function(streets) {
+    $.getJSON("/{{school.pk}}/streets/", function(streets) {
         // append new schools to dropdown
         $("<option value=''></option>").appendTo("#id_street");
         $.each(streets, function(id, street) {

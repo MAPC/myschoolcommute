@@ -6,19 +6,20 @@ from django.utils import simplejson
 from django.db.models import Count, Q, Max, Min
 from django.forms.models import inlineformset_factory
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 from datetime import datetime, timedelta
 
 from survey.models import School, Survey, Child, District, Street, Intersection
 from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
 
-from maps import RunR
+from maps import ForkRunR
 
 import os
 import fcntl
 
-class Lock:
 
+class Lock:
     def __init__(self, filename):
         self.filename = filename
         # This will create it if it does not exist already
@@ -90,19 +91,27 @@ def school_edit(request, district_slug, school_slug, **kwargs):
             report_path = "reports/%s/%s_%s_report.pdf" % (school.slug, start, end)
             full_path = settings.MEDIA_ROOT + '/' + report_path
             full_url = settings.MEDIA_URL + '/' + report_path
-            try:
-                lock = Lock("/tmp/saferides_report.lock")
-                lock.acquire()
-                path = RunR(
-                    school.pk,
-                    form.cleaned_data['start_date'],
-                    form.cleaned_data['end_date']
-                )
-                dir_name = os.path.dirname(full_path)
+
+            #lock = Lock("/tmp/saferides_report.lock")
+            #lock.acquire()
+            path = ForkRunR(
+                school.pk,
+                form.cleaned_data['start_date'],
+                form.cleaned_data['end_date']
+            )
+            dir_name = os.path.dirname(full_path)
+            if not os.path.exists(dir_name):
                 os.makedirs(dir_name)
-                os.rename(path, full_path)
-            finally:
-                lock.release()
+            os.rename(path, full_path)
+
+            #lock.release()
+
+            send_mail(
+                "Your report for school %s, date range %s - %s" % (school, start, end),
+                "You may download it at http://%s/%s" % (request.META['HTTP_HOST'], full_url),
+                settings.SERVER_EMAIL,
+                [request.user.email]
+            )
 
             return HttpResponseRedirect(full_url)
         else:

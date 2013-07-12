@@ -6,6 +6,7 @@ from django.contrib.gis.geos import Point, GEOSGeometry, MultiPolygon
 from django.core.cache import cache, get_cache
 from django.utils import simplejson
 from django.db import connection
+from django.conf import settings
 
 import pickle
 import mapnik
@@ -382,36 +383,46 @@ def school_paths_json(request, school_id):
     return HttpResponse(json_text)
 
 
-def RunR(school_id, date1, date2):
-    school = School.objects.get(id=school_id)
-    org_code = school.schid
-    rdir = 'R'
-    workdir = 'figure'
-    wdir = os.path.join(rdir, workdir)
-    if not os.path.exists(wdir):
-        os.makedirs(wdir)
-    save_sheds(os.path.join(wdir, 'map.png'), school_id)
-    curpath = os.getcwd()
-    os.chdir(rdir)
+def RunR(rdir, wdir, org_code, date1, date2):
     import rpy2.robjects as r
-    from myschoolcommute import settings
+    os.chdir(rdir)
     #print settings.DATABASES
-    r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
-    r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
-    r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
+    r.r("dbname <- '%s'" % DATABASES['default']['NAME'])
+    r.r("dbuser <- '%s'" % DATABASES['default']['USER'])
+    r.r("dbpasswd <- '%s'" % DATABASES['default']['PASSWORD'])
     r.r("ORG_CODE <- '%s'" % org_code)
     r.r("DATE1 <- '%s'" % date1)
     r.r("DATE2 <- '%s'" % date2)
     r.r("WORKDIR <- '%s'" % wdir)
     #r.r("BUFF_DIST <- '%s'" % 1)
-    try:
-        r.r("load('.RData')")
-        r.r("print(ORG_CODE)")
-        r.r("source('compile.R')")
-    except:
-        pass
-    pdfpath = os.path.join(os.path.abspath(curpath),'R/minimal.pdf')
-    os.chdir(curpath)
+
+    r.r("load('.RData')")
+    r.r("print('TEST')")
+    r.r("print(ORG_CODE)")
+    r.r("source('compile.R')")
+    sys.exit()
+
+
+def ForkRunR(school_id, date1, date2):
+    from multiprocessing import Process
+
+    school = School.objects.get(id=school_id)
+    org_code = school.schid
+    rdir = os.path.abspath(os.path.join(settings.CURRENT_PATH, '../R'))
+    workdir = 'figure'
+    wdir = os.path.join(rdir, workdir)
+    os.chdir(rdir)
+    if not os.path.exists(wdir):
+        os.makedirs(wdir)
+    save_sheds(os.path.join(wdir, 'map.png'), school_id)
+
+    p = Process(target=RunR, args=(wdir, rdir, org_code, date1, date2,))
+    p.start()
+
+    while p.is_alive():
+        time.sleep(1)
+
+    pdfpath = os.path.join(rdir, 'minimal.pdf')
     return pdfpath
 
 
