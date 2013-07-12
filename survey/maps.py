@@ -10,6 +10,8 @@ from django.conf import settings
 
 import pickle
 import mapnik
+import cairo
+import tempfile
 import mimetypes
 import math
 import time
@@ -28,6 +30,23 @@ PURPLE = "#9370DB"
 VIOLET = "#9400D3"
 PEACHPUFF = "#FFDAB9"
 LIGHTCYAN = "#E0FFFF"
+
+
+class Lock:
+    def __init__(self, filename):
+        self.filename = filename
+        # This will create it if it does not exist already
+        self.handle = open(filename, 'w')
+
+    # Bitwise OR fcntl.LOCK_NB if you need a non-blocking lock
+    def acquire(self):
+        fcntl.flock(self.handle, fcntl.LOCK_EX)
+
+    def release(self):
+        fcntl.flock(self.handle, fcntl.LOCK_UN)
+
+    def __del__(self):
+        self.handle.close()
 
 
 class NetworkWalk(models.Model):
@@ -142,7 +161,8 @@ def get_sheds(school_id):
 
     return data
 
-def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700, srid=3857):
+def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700, srid=3857, format='png'):
+    format = format.encode('ascii')
     school = School.objects.get(pk=school_id)
     point = school.geometry
     circle = point.buffer(3000.0)
@@ -234,20 +254,28 @@ def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700,
     m.layers.append(layer)
 
     # Render to image
-    im = mapnik.Image(m.width, m.height)
-    mapnik.render(m, im)
-    im = im.tostring('png')
+    if format == 'pdf':
+        tmp_file = tempfile.NamedTemporaryFile()
+        surface = cairo.PDFSurface(tmp_file.name, m.width, m.height)
+        mapnik.render(m, surface)
+        surface.finish()
+        tmp_file.seek(0)
+        im = tmp_file.read()
+    else:
+        im = mapnik.Image(m.width, m.height)
+        mapnik.render(m, im)
+        im = im.tostring(format)
 
     response = HttpResponse()
     response['Content-length'] = str(len(im))
-    response['Content-Type'] = mimetypes.types_map['.png']
+    response['Content-Type'] = mimetypes.types_map['.'+format]
     response.write(im)
 
     return response
 
 
 def save_sheds(filename, school_id):
-    response = school_sheds(school_id=school_id)
+    response = school_sheds(school_id=school_id, format='pdf')
 
     output = open(filename, "wb")
     output.write(response.content)
@@ -393,11 +421,11 @@ def ForkRunR(school_id, date1, date2):
     os.chdir(rdir)
     if not os.path.exists(wdir):
         os.makedirs(wdir)
-    save_sheds(os.path.join(wdir, 'map.png'), school_id)
+    save_sheds(os.path.join(wdir, 'map.pdf'), school_id)
 
     cur_dir = os.path.dirname(os.path.realpath(__file__))
     os.chdir(cur_dir)
-    print " ".join(['./runr.py', wdir, rdir, org_code, str(date1), str(date2)])
+    #print " ".join(['./runr.py', wdir, rdir, org_code, str(date1), str(date2)])
     subprocess.call(['./runr.py', wdir, rdir, org_code, str(date1), str(date2)])
 
     pdfpath = os.path.join(rdir, 'minimal.pdf')

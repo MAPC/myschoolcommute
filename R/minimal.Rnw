@@ -187,5 +187,7 @@ Walk share is \Sexpr{walkTripMorningPct}\% in the morning and \Sexpr{walkTripAft
 % @
 \end{multicols}
 \newpage
-\includegraphics{figure/map.png}
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+\fbox{\includegraphics{figure/map.pdf}}
 \end{document}

@@ -45,8 +45,9 @@ urlpatterns += patterns('',
     url(r'^(?P<school_id>\d+)/intersection/(?P<street1>[\s\w]+)/(?P<street2>[\s\w]*)/?$', 'survey.views.intersection' ),
 
     # admin data
-    url(r'^(?P<school_id>\d+)/walkshed.png$', 'survey.maps.school_sheds', name='school_sheds'),
     url(r'^(?P<school_id>\d+)/walkshed.geojson$', 'survey.maps.school_sheds_json', name='sheds_json'),
+    url(r'^(?P<school_id>\d+)/walkshed.png$', 'survey.maps.school_sheds', name='school_sheds'),
+    url(r'^(?P<school_id>\d+)/walkshed.(?P<format>\w+)$', 'survey.maps.school_sheds', name='school_sheds_format'),
     url(r'^(?P<school_id>\d+)/(?P<zoom>\d+)/(?P<column>\d+)/(?P<row>\d+)/walkshed.png$', 'survey.maps.school_tms', name='school_tms'),
     url(r'^walk/(?P<zoom>\d+)/(?P<column>\d+)/(?P<row>\d+)/walk.png$', 'survey.maps.walks', name='walk_tms'),
 )
