@@ -4,6 +4,8 @@ import os, sys
 import rpy2.robjects as r
 
 def RunR(rdir, wdir, org_code, date1, date2):
+    from local_settings import DATABASES
+
     os.chdir(rdir)
     #print settings.DATABASES
     r.r("dbname <- '%s'" % DATABASES['default']['NAME'])
@@ -16,7 +18,6 @@ def RunR(rdir, wdir, org_code, date1, date2):
     #r.r("BUFF_DIST <- '%s'" % 1)
 
     r.r("load('.RData')")
-    r.r("print('TEST')")
     r.r("print(ORG_CODE)")
     r.r("source('compile.R')")
 
@@ -26,6 +27,17 @@ if __name__ == '__main__':
     org_code = sys.argv[3]
     date1 = sys.argv[4]
     date2 = sys.argv[5]
+
+    proj_path = os.path.abspath(
+        os.path.join(
+            os.path.dirname(
+                os.path.realpath(__file__)
+            ),
+            '../myschoolcommute'
+        )
+    )
+    print proj_path
+    sys.path.append(proj_path)
 
     RunR(rdir, wdir, org_code, date1, date2)
     sys.exit()

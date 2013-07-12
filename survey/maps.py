@@ -383,29 +383,8 @@ def school_paths_json(request, school_id):
     return HttpResponse(json_text)
 
 
-def RunR(rdir, wdir, org_code, date1, date2):
-    import rpy2.robjects as r
-    os.chdir(rdir)
-    #print settings.DATABASES
-    r.r("dbname <- '%s'" % DATABASES['default']['NAME'])
-    r.r("dbuser <- '%s'" % DATABASES['default']['USER'])
-    r.r("dbpasswd <- '%s'" % DATABASES['default']['PASSWORD'])
-    r.r("ORG_CODE <- '%s'" % org_code)
-    r.r("DATE1 <- '%s'" % date1)
-    r.r("DATE2 <- '%s'" % date2)
-    r.r("WORKDIR <- '%s'" % wdir)
-    #r.r("BUFF_DIST <- '%s'" % 1)
-
-    r.r("load('.RData')")
-    r.r("print('TEST')")
-    r.r("print(ORG_CODE)")
-    r.r("source('compile.R')")
-    sys.exit()
-
-
 def ForkRunR(school_id, date1, date2):
-    from multiprocessing import Process
-
+    import subprocess
     school = School.objects.get(id=school_id)
     org_code = school.schid
     rdir = os.path.abspath(os.path.join(settings.CURRENT_PATH, '../R'))
@@ -416,11 +395,8 @@ def ForkRunR(school_id, date1, date2):
         os.makedirs(wdir)
     save_sheds(os.path.join(wdir, 'map.png'), school_id)
 
-    p = Process(target=RunR, args=(wdir, rdir, org_code, date1, date2,))
-    p.start()
-
-    while p.is_alive():
-        time.sleep(1)
+    cur_dir = os.path.dirname(os.path.realpath(__file__))
+    subprocess.call([cur_dir+'/runr.py', wdir, rdir, org_code, str(date1), str(date2)])
 
     pdfpath = os.path.join(rdir, 'minimal.pdf')
     return pdfpath
