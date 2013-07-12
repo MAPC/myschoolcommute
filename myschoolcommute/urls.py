@@ -36,6 +36,9 @@ urlpatterns = i18n_patterns('',
 )
 
 urlpatterns += patterns('',
+    # Testing
+    url(r'^testr/$', 'survey.views.testr'),
+
     #Typeahead
     url(r'^(?P<school_id>\d+)/streets/(?P<query>[\s\w]*)/?$', 'survey.views.school_streets'),
     url(r'^(?P<school_id>\d+)/crossing/(?P<street>[\s\w]+)/(?P<query>[\s\w]*)/?$', 'survey.views.school_crossing' ),

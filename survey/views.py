@@ -361,3 +361,9 @@ def batch_form(request, district_slug, school_slug, **kwargs):
         },
         context_instance=RequestContext(request)
     )
+
+def testr(request):
+    import rpy2.robjects as r
+    out = r.r("print('TEST')")
+    #out = 'TEST'
+    return HttpResponse(out)
