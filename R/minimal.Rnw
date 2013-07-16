@@ -36,7 +36,7 @@ read_chunk("process_postgres_chunks.R")
 @
 
 
-{\flushleft   
+{\flushleft
 \includegraphics[height=20 mm]{2010SRTSLogo}
 \newline
 \newline
@@ -48,20 +48,20 @@ read_chunk("process_postgres_chunks.R")
     MASafeRoutesSurvey.org\\
     Survey Report\\
     % Survey Report\\[.2 cm]
-    \Sexpr{School_Name}\\ 
-  }                                 
-\today \\     
+    \Sexpr{School_Name}\\
+  }
+\today \\
 }
 
 \section*{Introduction}
-This report will help your school plan safe transportation options for all students. It contains the results of a survey conducted at \Sexpr{School_Name} from \Sexpr{start_month} \Sexpr{start_year} to \Sexpr{end_month} \Sexpr{end_year}. Participating parents provided information about how students travel to school and their approximate home location. If your school is interested in 
+This report will help your school plan safe transportation options for all students. It contains the results of a survey conducted at \Sexpr{School_Name} from \Sexpr{start_month} \Sexpr{start_year} to \Sexpr{end_month} \Sexpr{end_year}. Participating parents provided information about how students travel to school and their approximate home location. If your school is interested in
 \begin{itemize*}
 \item reducing traffic congestion,
 \item encouraging walking and biking,
 \item increasing safety, or
 \item tracking progress towards community goals,
 \end{itemize*}
-then this information can help you identify the right strategies and best opportunities for new projects and investments. 
+then this information can help you identify the right strategies and best opportunities for new projects and investments.
 
 \subsection*{How to Read This Report}
 This report measures distance to school in terms of walksheds and bikesheds. A \emph{walkshed} includes all the homes within a certain distance to school, based on mapped sidewalks, pedestrian paths, and low volume roadways. We define walksheds for 0.5, 1.0, and 1.5 mile walking distances to school. A \emph{bikeshed} of 2.0 miles also includes multi-use paths and on-road cycle facilities, where mapped. For a map of the walksheds and bikesheds, see the back cover or last page of the report. Where "walkshed" is used alone, it always includes the bikeshed of the same distance.
@@ -121,73 +121,77 @@ Walk share is \Sexpr{walkTripMorningPct}\% in the morning and \Sexpr{walkTripAft
 @
 
 
-% # 
+% #
 % # <<modeDFMorningWideTable, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H',results="asis">>=
 % # @
-% 
+%
 % \Sexpr{busEligibleDrivenPct}\% of students who are "Bus Eligible" are currently being driven to school, generating \Sexpr{busEligibleDrivenCount} drop-offs each morning.
-% 
+%
 \section*{Greenhouse Gas Emissions}
 \begin{itemize*}
 \item Per-student GHGs within 1 mile: \Sexpr{round(ghgPerCap10Buffer,0)} kg
 \item Per-student GHGs beyond 1 mile: \Sexpr{round(ghgPerCap10PlusBuffer,0)} kg
 \end{itemize*}
 
-{\flushleft GHG emissions per student vary by walk/bikeshed. The following table shows total and per student GHG emissions, and the percent of total GHG emissions by walk/bikeshed for \Sexpr{School_Name}}. 
+{\flushleft GHG emissions per student vary by walk/bikeshed. The following table shows total and per student GHG emissions, and the percent of total GHG emissions by walk/bikeshed for \Sexpr{School_Name}}.
 <<ghgTableSchool,  echo=FALSE, eval=TRUE, results="asis">>=
 @
-% 
+%
 
 \thispagestyle{empty}
 \section*{How Your School Compares}
 <<pSaggLatex,  echo=FALSE, eval=TRUE, results="asis">>=
 @
 
-% 
-% 
+%
+%
 % <<modeByBufferTableAllSchools, echo=FALSE, eval=TRUE, results="asis",comment="Counts and percentages of student travel mode by walkshed." >>=
 % @
-% 
-% 
-% \emph{High student proximity is a prerequisite to having a high walk/bike share, but not a guarantee.} Comparison of schoolwide walk/bike share to student proximity identified three general categories of schools which differ in their walk to school and mode shift potential.  In the \emph{High Proximity, High Walk Share} schools, more than 75\% of students live within a mile of school and walk rates exceed 30\%. The \emph{Untapped Walk Potential} schools have similar student proximity but much lower walk rates, suggesting the possibility of substantial mode shift (10 - 20\%) through SRTS programs. The \emph{Dispersed Enrollment, Limited Walk Potential} schools are those where fewer than 60\% of students live within a mile of school; as a result, the schoolwide walk rates rarely exceed 21\%. 
-% 
+%
+%
+% \emph{High student proximity is a prerequisite to having a high walk/bike share, but not a guarantee.} Comparison of schoolwide walk/bike share to student proximity identified three general categories of schools which differ in their walk to school and mode shift potential.  In the \emph{High Proximity, High Walk Share} schools, more than 75\% of students live within a mile of school and walk rates exceed 30\%. The \emph{Untapped Walk Potential} schools have similar student proximity but much lower walk rates, suggesting the possibility of substantial mode shift (10 - 20\%) through SRTS programs. The \emph{Dispersed Enrollment, Limited Walk Potential} schools are those where fewer than 60\% of students live within a mile of school; as a result, the schoolwide walk rates rarely exceed 21\%.
+%
 % \Sexpr{TypeParagraph}
-% 
+%
 % <<walkPotentialPlot, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H',fig.cap="Red indicates dispersed enrollment, limited walk potential; yellow indicates untapped walk potential; green indicates high proximity, high walk share.">>=
 % @
-% 
+%
 % \subsection*{Mode Choice and Time of Day}
 % How students travel to and from school can depend on the time of day. At previously surveyed schools, 50\% of morning trips were family vehicle, non-carpool trips, versus 43\% of afternoon trips. At \Sexpr{School_Name}, \Sexpr{famVehMorningPct}\% of morning trips are family vehicle, non-carpool, versus \Sexpr{famVehAfternoonPct}\% of trips in the afternoon.
-% 
+%
 % <<modeByTime, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H'>>=
 % @
-% 
+%
 % Trip chaining can have a strong influence on the divergence of morning and afternoon mode choice. At other schools, 70\% of morning auto trips (family vehicle and carpool) are made by parents who continue on to work or another destination. There are about 7\% fewer auto trips in the afternoon, but this difference appears to be the result of fewer parents picking up their children on the way home from work. In the afternoon, the percentage of auto trips that are en route drops to 64\%.
-% 
+%
 % At \Sexpr{School_Name}, \Sexpr{autoMorningPct}\% of morning trips are by automobile, versus \Sexpr{autoAfternoonPct}\% of afternoon trips. Enroute trips comprise \Sexpr{enRouteMorningPct}\% of automobile trips in the morning, and \Sexpr{enRouteAfternoonPct}\% of trips in the afternoon.
-% 
+%
 % <<chainByTime, echo=FALSE,fig.width=7,fig.height=5,fig.align="center",fig.pos='H'>>=
 % @
-% 
+%
 % \subsection*{Mode Choice and Vehicle Availability}
 % Vehicle availability can also influence mode choice. \Sexpr{lowVehicleHHsPct}\% of survey responses from \Sexpr{School_Name} indicated that there were more licensed drivers than vehicles in the household or no vehicles at all. Vehicle availability is considered to be low in these households. Among these households, \Sexpr{lowVehicleWalkPctTo}\% and \Sexpr{lowVehicleWalkPctFrom}\% of students walk, bike, or take the bus to and from school in the morning and afternoon, respectively. Among students in high vehicle available households, the corresponding numbers are \Sexpr{highVehicleWalkPctTo}\% and \Sexpr{highVehicleWalkPctFrom}\%.
-% 
+%
 % <<ChainByTimeAndAvail,  echo=FALSE, eval=TRUE, results="asis">>=
 % @
-% 
-% 
+%
+%
 % \section*{GHG Emissions}
-% Students who live farther from school tend to emit more green house gases (GHGs) than students who live closer to school. From previous surveys, annual per-student GHG emissions among students who live more than 1.5 miles from school were 381 kilograms (kg) versus 66 kg for students within one-half mile, an almost six-fold increase. At \Sexpr{School_Name}, students who live more than 1.5 miles from school emit \Sexpr{ghgPerCap15Buffer} kgs per-capita per school year, versus \Sexpr{ghgPerCap05Buffer} kg for students within half a mile of school. 
-% 
+% Students who live farther from school tend to emit more green house gases (GHGs) than students who live closer to school. From previous surveys, annual per-student GHG emissions among students who live more than 1.5 miles from school were 381 kilograms (kg) versus 66 kg for students within one-half mile, an almost six-fold increase. At \Sexpr{School_Name}, students who live more than 1.5 miles from school emit \Sexpr{ghgPerCap15Buffer} kgs per-capita per school year, versus \Sexpr{ghgPerCap05Buffer} kg for students within half a mile of school.
+%
 % <<ghgTableSchool,  echo=FALSE, eval=TRUE, results="asis">>=
 % @
-% 
-% 
+%
+%
 % <<ghgTableSchoolAllSch,  echo=FALSE, eval=TRUE, results="asis">>=
 % @
 \end{multicols}
 \newpage
-\setlength\fboxsep{0pt}
-\setlength\fboxrule{0.5pt}
-\fbox{\includegraphics{figure/map.pdf}}
+\begin{center}
+\centering
+    \setlength\fboxsep{0pt}
+    \setlength\fboxrule{0.5pt}
+    \fbox{\includegraphics[width=1.0\textwidth]{figure/map.pdf}}
+\end{center}
+
 \end{document}

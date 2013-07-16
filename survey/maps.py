@@ -2,7 +2,7 @@ import os, sys
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.gis.db import models
-from django.contrib.gis.geos import Point, GEOSGeometry, MultiPolygon
+from django.contrib.gis.geos import Point, GEOSGeometry, MultiPolygon, Polygon, LinearRing
 from django.core.cache import cache, get_cache
 from django.utils import simplejson
 from django.db import connection
@@ -18,7 +18,7 @@ import time
 import urllib
 from shapely import ops, geometry
 
-from survey.models import School, Survey
+from survey.models import School, Survey, MODE_DICT
 
 from myschoolcommute.local_settings import DATABASES
 
@@ -137,7 +137,12 @@ def get_sheds(school_id):
 
     return data
 
-def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700, srid=3857, format='png'):
+
+def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056, srid=3857, format='png'):
+    '''
+    Default height and width are 'Letter' ratio
+    '''
+
     format = format.encode('ascii')
     school = School.objects.get(pk=school_id)
     point = school.geometry
@@ -191,7 +196,6 @@ def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700,
     layer.styles.append('sheds')
     m.layers.append(layer)
 
-
     # styles for schools
     school_colors = (
         ('w', "blue"),
@@ -205,15 +209,37 @@ def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700,
     s = mapnik.Style()
     for name, color in school_colors:
         r = mapnik.Rule()
-        r.filter = mapnik.Filter("[name] = '"+name+"'")
+        r.filter = mapnik.Expression("[name] = '"+name+"'")
         line_symbolizer = mapnik.LineSymbolizer()
         poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color(color))
         r.symbols.append(line_symbolizer)
         r.symbols.append(poly_symbolizer)
         s.rules.append(r)
+    r = mapnik.Rule()
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 10, mapnik.Color('black'))
+    text_symbolizer.avoid_edges = True
+    #text_symbolizer.halo_fill = mapnik.Color('white')
+    #text_symbolizer.halo_radius = 1
+    text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
+    text_symbolizer.label_placement = mapnik.label_placement.VERTEX_PLACEMENT
+    text_symbolizer.displacement = (5, 0)
+    r.symbols.append(text_symbolizer)
+    s.rules.append(r)
+
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] = 'legend_box'")
+    poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color("white"))
+    poly_symbolizer.fill_opacity = 0.85
+    r.symbols.append(poly_symbolizer)
+    s.rules.append(r)
     m.append_style("surveys", s)
 
-    csv_string = "wkt,name\n"
+    def p2l(pct_x, pct_y):
+        loc_x = bbox.minx + (bbox.maxx - bbox.minx) * pct_x / 100.0
+        loc_y = bbox.miny + (bbox.maxy - bbox.miny) * pct_y / 100.0
+        return (loc_x, loc_y)
+
+    csv_string = "wkt,name,label\n"
     surveys = Survey.objects.filter(school=school)
     for survey in surveys:
         survey.location.transform(srid)
@@ -221,7 +247,21 @@ def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700,
         for c in survey.child_set.all():
             name = str(c.to_school)
         school_circle = survey.location.buffer(50)
-        csv_string += '"%s","%s"\n' % (school_circle.wkt, name)
+        csv_string += '"%s","%s",""\n' % (school_circle.wkt, name)
+
+    lmin = Point(p2l(68, 100.5))
+    lmax = Point(p2l(97, 113.5))
+    lr = LinearRing((lmin.x, lmin.y), (lmax.x, lmin.y), (lmax.x, lmax.y), (lmin.x,lmax.y), (lmin.x, lmin.y))
+    legend = Polygon(lr)
+    csv_string += '"%s","%s","%s"\n' % (legend.wkt, "legend_box", "")
+
+    y = 100
+    for name, label in school_colors:
+        y += 2
+        xy = p2l(70, y)
+        point = Point(*xy)
+        circle = point.buffer(50)
+        csv_string += '"%s","%s","%s"\n' % (circle.wkt, name, MODE_DICT[name])
 
     layer = mapnik.Layer('surveys', "+init=epsg:"+str(srid))
     ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
@@ -229,20 +269,36 @@ def school_sheds(request=None, school_id=None, bbox=None, width=500, height=700,
     layer.styles.append('surveys')
     m.layers.append(layer)
 
+    elements = (
+        ('w', "blue"),
+        ('cp', "purple"),
+        ('sb', "yellow"),
+        ('fv', "red"),
+        ('t', 'violet'),
+        ('none', 'lightgrey'),
+    )
+
+    csv_string = "wkt,name,label\n"
+    y = 0
+    for name, label in elements:
+        y += 10
+        xy = p2l(70, y)
+        point = Point(*xy)
+        circle = point.buffer(50)
+        csv_string += '"%s","%s","%s"\n' % (circle.wkt, name, label)
+
+    layer = mapnik.Layer('legend', "+init=epsg:"+str(srid))
+    ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
+    layer.datasource = ds
+    layer.styles.append('legend')
+    #m.layers.append(layer)
+
     # Render to image
     if format == 'pdf':
         tmp_file = tempfile.NamedTemporaryFile()
         surface = cairo.PDFSurface(tmp_file.name, m.width, m.height)
         mapnik.render(m, surface)
         surface.finish()
-        tmp_file.seek(0)
-        im = tmp_file.read()
-    elif format == 'PDF':
-        from mapnik.printing import PDFPrinter
-        printer = PDFPrinter()
-        tmp_file = tempfile.NamedTemporaryFile()
-        printer.render_map(m, tmp_file.name)
-        printer.finish()
         tmp_file.seek(0)
         im = tmp_file.read()
     else:

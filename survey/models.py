@@ -137,7 +137,8 @@ class Survey(models.Model):
 
     user = models.ForeignKey(User, null=True)
     # GeoDjango
-    location = models.PointField(geography=True, blank=True, null=True, default='POINT(0 0)') # default SRS 4326
+    location = models.PointField(geography=True, blank=True, null=True, default='POINT(0 0)') 
+    # default SRS 4326
     objects = models.GeoManager()
 
     def __unicode__(self):
@@ -153,39 +154,50 @@ class Survey(models.Model):
 
 
 CHILD_GRADES = (
-            ('', '--'),
-            ('p', 'Pre-K'),
-            ('k', 'K'),
-            ('1', '1'),
-            ('2', '2'),
-            ('3', '3'),
-            ('4', '4'),
-            ('5', '5'),
-            ('6', '6'),
-            ('7', '7'),
-            ('8', '8'),
-            ('9', '9'),
-            ('10', '10'),
-            ('11', '11'),
-            ('12', '12'),
-        )
+    ('', '--'),
+    ('p', 'Pre-K'),
+    ('k', 'K'),
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+    ('6', '6'),
+    ('7', '7'),
+    ('8', '8'),
+    ('9', '9'),
+    ('10', '10'),
+    ('11', '11'),
+    ('12', '12'),
+)
 
 CHILD_MODES = (
-            ('', '--'),
-            ('w', _('Walk')),
-            ('b', _('Bike')),
-            ('sb', _('School Bus')),
-            ('fv', _('Family Vehicle (only children in your family)')),
-            ('cp', _('Carpool (with children from other families)')),
-            ('t', _('Transit (city bus, subway, etc.)')),
-            ('o', _('Other (skateboard, scooter, inline skates, etc.)'))
-        )
+    ('', '--'),
+    ('w', _('Walk')),
+    ('b', _('Bike')),
+    ('sb', _('School Bus')),
+    ('fv', _('Family Vehicle (only children in your family)')),
+    ('cp', _('Carpool (with children from other families)')),
+    ('t', _('Transit (city bus, subway, etc.)')),
+    ('o', _('Other (skateboard, scooter, inline skates, etc.)'))
+)
+
+MODE_DICT = {
+    'w': 'Walk',
+    'b': 'Bike',
+    'sb': 'School Bus',
+    'fv': 'Family Vehicle (only children in your family)',
+    'cp': 'Carpool (with children from other families)',
+    't': 'Transit (city bus, subway, etc.)',
+    'o': 'Other (skateboard, scooter, inline skates, etc.)',
+    'none': "Not specified"
+}
 
 CHILD_DROPOFF = (
-            ('', '--'),
-            ('yes', _('Yes')),
-            ('no', _('No')),
-        )
+    ('', '--'),
+    ('yes', _('Yes')),
+    ('no', _('No')),
+)
 
 class Child(models.Model):
     survey = models.ForeignKey('Survey')
