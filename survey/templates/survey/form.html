@@ -235,12 +235,10 @@ var view_intersections = function(){
         return;
     }
     var street2 = $('#id_cross_st').val();
-    if (street2){
-        street2 += '/';
-    }else{
+    if (!street2){
         street2 = '';
     }
-    $.getJSON('/{{school.pk}}/intersection/'+street1+'/'+street2, function(data){
+    $.getJSON('/{{school.pk}}/intersection/'+street1+'/'+street2+'/', function(data){
         if (intersections != null)
             map.removeLayer(intersections);
         console.log(data.features.length);

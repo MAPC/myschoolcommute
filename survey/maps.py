@@ -218,8 +218,8 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     r = mapnik.Rule()
     text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 10, mapnik.Color('black'))
     text_symbolizer.avoid_edges = True
-    #text_symbolizer.halo_fill = mapnik.Color('white')
-    #text_symbolizer.halo_radius = 1
+    text_symbolizer.halo_fill = mapnik.Color('white')
+    text_symbolizer.halo_radius = 1
     text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
     text_symbolizer.label_placement = mapnik.label_placement.VERTEX_PLACEMENT
     text_symbolizer.displacement = (5, 0)
@@ -229,7 +229,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     r = mapnik.Rule()
     r.filter = mapnik.Expression("[name] = 'legend_box'")
     poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color("white"))
-    poly_symbolizer.fill_opacity = 0.85
+    poly_symbolizer.fill_opacity = 0.7
     r.symbols.append(poly_symbolizer)
     s.rules.append(r)
     m.append_style("surveys", s)
