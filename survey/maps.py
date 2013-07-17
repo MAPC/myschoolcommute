@@ -291,9 +291,10 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
 
     xy = p2l(legend_x + 1.5, 112)
     point = Point(*xy)
-    csv_string += '"%s","legend_title","Approx. home locations and travel to shool mode"\n' % (point.wkt, )
+    csv_string += '"%s","legend_title","Approx. home locations and travel to school mode"\n' % (point.wkt, )
 
-    xy = p2l(86, 112)
+    walksheds_x = 88
+    xy = p2l(walksheds_x, 112)
     point = Point(*xy)
     csv_string += '"%s","legend_title","Walksheds"\n' % (point.wkt, )
 
@@ -308,7 +309,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     y = 110
     for name in ('0.5', '1.0', '1.5', '2.0',):
         y -= 2.4
-        ws = box(86, y, 88, y+1.5)
+        ws = box(walksheds_x, y, walksheds_x+2, y+1.5)
         csv_string += '"%s","%s","%s  Mile"\n' % (ws.wkt, name, name)
 
     layer = mapnik.Layer('surveys', "+init=epsg:"+str(srid))
