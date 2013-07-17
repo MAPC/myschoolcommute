@@ -77,6 +77,10 @@ class School(models.Model):
     def __unicode__(self):
         return self.name
 
+    @property
+    def district(self):
+        return self.districtid
+
     class Meta:
         ordering = ['name']
 

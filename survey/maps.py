@@ -146,7 +146,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     format = format.encode('ascii')
     school = School.objects.get(pk=school_id)
     point = school.geometry
-    circle = point.buffer(3000.0)
+    circle = point.buffer(3400.0)
 
     m = mapnik.Map(int(width), int(height), "+init=epsg:"+str(srid))
 
@@ -171,30 +171,6 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         r.symbols.append(line_symbolizer)
         r.symbols.append(poly_symbolizer)
         s.rules.append(r)
-    m.append_style("sheds", s)
-
-    #styles end
-
-    sheds = {
-        0.5: school.shed_05,
-        1.0: school.shed_10,
-        1.5: school.shed_15,
-        2.0: school.shed_20
-    }
-
-    csv_string = 'wkt,name\n'
-    for key, g in reversed(sorted(sheds.items(), key=lambda a: a[0])):
-        if g is None:
-            continue
-        g.srid = 26986
-        g.transform(srid)
-        csv_string += '"%s","%s"\n' % (g.wkt, str(key))
-
-    layer = mapnik.Layer('sheds', "+init=epsg:"+str(srid))
-    ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
-    layer.datasource = ds
-    layer.styles.append('sheds')
-    m.layers.append(layer)
 
     # styles for schools
     school_colors = (
@@ -206,7 +182,6 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         ('none', 'lightgrey'),
     )
 
-    s = mapnik.Style()
     for name, color in school_colors:
         r = mapnik.Rule()
         r.filter = mapnik.Expression("[name] = '"+name+"'")
@@ -216,20 +191,41 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         r.symbols.append(poly_symbolizer)
         s.rules.append(r)
     r = mapnik.Rule()
-    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 10, mapnik.Color('black'))
-    text_symbolizer.avoid_edges = True
+    r.filter = mapnik.Expression("[name] != 'map_title' and [name] != 'legend_title'")
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 9, mapnik.Color('black'))
     text_symbolizer.halo_fill = mapnik.Color('white')
     text_symbolizer.halo_radius = 1
     text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
-    text_symbolizer.label_placement = mapnik.label_placement.VERTEX_PLACEMENT
-    text_symbolizer.displacement = (5, 0)
+    #text_symbolizer.label_placement = mapnik.label_placement.VERTEX_PLACEMENT
+    text_symbolizer.allow_overlap = True
+    text_symbolizer.displacement = (11, 0)
+    r.symbols.append(text_symbolizer)
+    s.rules.append(r)
+
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] = 'map_title'")
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 13, mapnik.Color('black'))
+    text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.MIDDLE
+    text_symbolizer.halo_fill = mapnik.Color('white')
+    text_symbolizer.halo_radius = 1
+    text_symbolizer.allow_overlap = True
+    r.symbols.append(text_symbolizer)
+    s.rules.append(r)
+
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] = 'legend_title'")
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 11, mapnik.Color('black'))
+    text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
+    text_symbolizer.halo_fill = mapnik.Color('white')
+    text_symbolizer.halo_radius = 1
+    text_symbolizer.allow_overlap = True
     r.symbols.append(text_symbolizer)
     s.rules.append(r)
 
     r = mapnik.Rule()
     r.filter = mapnik.Expression("[name] = 'legend_box'")
     poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color("white"))
-    poly_symbolizer.fill_opacity = 0.7
+    poly_symbolizer.fill_opacity = 0.8
     r.symbols.append(poly_symbolizer)
     s.rules.append(r)
     m.append_style("surveys", s)
@@ -239,7 +235,22 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         loc_y = bbox.miny + (bbox.maxy - bbox.miny) * pct_y / 100.0
         return (loc_x, loc_y)
 
-    csv_string = "wkt,name,label\n"
+
+    sheds = {
+        0.5: school.shed_05,
+        1.0: school.shed_10,
+        1.5: school.shed_15,
+        2.0: school.shed_20
+    }
+
+    csv_string = 'wkt,name,label\n'
+    for key, g in reversed(sorted(sheds.items(), key=lambda a: a[0])):
+        if g is None:
+            continue
+        g.srid = 26986
+        g.transform(srid)
+        csv_string += '"%s","%s",""\n' % (g.wkt, str(key))
+
     surveys = Survey.objects.filter(school=school)
     for survey in surveys:
         survey.location.transform(srid)
@@ -249,49 +260,51 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         school_circle = survey.location.buffer(50)
         csv_string += '"%s","%s",""\n' % (school_circle.wkt, name)
 
-    lmin = Point(p2l(68, 100.5))
-    lmax = Point(p2l(97, 113.5))
-    lr = LinearRing((lmin.x, lmin.y), (lmax.x, lmin.y), (lmax.x, lmax.y), (lmin.x,lmax.y), (lmin.x, lmin.y))
-    legend = Polygon(lr)
+
+    def box(minx, miny, maxx, maxy):
+        lmin = Point(p2l(minx, miny))
+        lmax = Point(p2l(maxx, maxy))
+        lr = LinearRing((lmin.x, lmin.y), (lmax.x, lmin.y), (lmax.x, lmax.y), (lmin.x, lmax.y), (lmin.x, lmin.y))
+        poly = Polygon(lr)
+        return poly
+
+    legend = box(2, 109.5, 50, 113.5)
     csv_string += '"%s","%s","%s"\n' % (legend.wkt, "legend_box", "")
 
-    y = 100
+    xy = p2l(24, 111.5)
+    point = Point(*xy)
+    csv_string += '"%s","%s","%s, %s MA"\n' % (point.wkt, "map_title", school, school.districtid)
+
+    legend = box(58, 99, 97.5, 113.5)
+    csv_string += '"%s","%s","%s"\n' % (legend.wkt, "legend_box", "")
+
+    xy = p2l(59.5, 112)
+    point = Point(*xy)
+    csv_string += '"%s","legend_title","Mode of transportation"\n' % (point.wkt, )
+
+    xy = p2l(85, 112)
+    point = Point(*xy)
+    csv_string += '"%s","legend_title","Walksheds"\n' % (point.wkt, )
+
+    y = 99
     for name, label in school_colors:
-        y += 2
-        xy = p2l(70, y)
+        y += 1.8
+        xy = p2l(60, y)
         point = Point(*xy)
         circle = point.buffer(50)
         csv_string += '"%s","%s","%s"\n' % (circle.wkt, name, MODE_DICT[name])
+
+    y = 99
+    for name in ('0.5', '1.0', '1.5', '2.0',):
+        y += 2.4
+        ws = box(85, y, 87, y+1.5)
+        csv_string += '"%s","%s","%s+ Mile"\n' % (ws.wkt, name, name)
 
     layer = mapnik.Layer('surveys', "+init=epsg:"+str(srid))
     ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
     layer.datasource = ds
     layer.styles.append('surveys')
     m.layers.append(layer)
-
-    elements = (
-        ('w', "blue"),
-        ('cp', "purple"),
-        ('sb', "yellow"),
-        ('fv', "red"),
-        ('t', 'violet'),
-        ('none', 'lightgrey'),
-    )
-
-    csv_string = "wkt,name,label\n"
-    y = 0
-    for name, label in elements:
-        y += 10
-        xy = p2l(70, y)
-        point = Point(*xy)
-        circle = point.buffer(50)
-        csv_string += '"%s","%s","%s"\n' % (circle.wkt, name, label)
-
-    layer = mapnik.Layer('legend', "+init=epsg:"+str(srid))
-    ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
-    layer.datasource = ds
-    layer.styles.append('legend')
-    #m.layers.append(layer)
 
     # Render to image
     if format == 'pdf':
