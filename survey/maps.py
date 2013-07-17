@@ -176,9 +176,10 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     school_colors = (
         ('w', "blue"),
         ('fv', "red"),
-        ('cp', "purple"),
+        ('cp', "violet"),
         ('sb', "yellow"),
-        ('t', 'violet'),
+        ('b', "lightgreen"),
+        ('t', "purple"),
         ('none', 'lightgrey'),
     )
 
@@ -288,7 +289,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
 
     legend_x = 53
 
-    legend = box(legend_x, 99, 97.5, 113.5)
+    legend = box(legend_x, 97, 97.5, 113.5)
     csv_string += '"%s","%s","%s"\n' % (legend.wkt, "legend_box", "")
 
     xy = p2l(legend_x + 1.5, 112)
