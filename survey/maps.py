@@ -198,7 +198,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
     #text_symbolizer.label_placement = mapnik.label_placement.VERTEX_PLACEMENT
     text_symbolizer.allow_overlap = True
-    text_symbolizer.displacement = (11, 0)
+    text_symbolizer.displacement = (12, 0)
     r.symbols.append(text_symbolizer)
     s.rules.append(r)
 
@@ -281,7 +281,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     point = Point(*xy)
     csv_string += '"%s","legend_title","Mode of transportation"\n' % (point.wkt, )
 
-    xy = p2l(85, 112)
+    xy = p2l(86, 112)
     point = Point(*xy)
     csv_string += '"%s","legend_title","Walksheds"\n' % (point.wkt, )
 
@@ -296,8 +296,8 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     y = 99
     for name in ('0.5', '1.0', '1.5', '2.0',):
         y += 2.4
-        ws = box(85, y, 87, y+1.5)
-        csv_string += '"%s","%s","%s+ Mile"\n' % (ws.wkt, name, name)
+        ws = box(86, y, 88, y+1.5)
+        csv_string += '"%s","%s","%s  Mile"\n' % (ws.wkt, name, name)
 
     layer = mapnik.Layer('surveys', "+init=epsg:"+str(srid))
     ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
