@@ -231,7 +231,9 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     r = mapnik.Rule()
     r.filter = mapnik.Expression("[name] = 'legend_box'")
     poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color("white"))
+    line_symbolizer = mapnik.LineSymbolizer(mapnik.Color("black"), 0.5)
     poly_symbolizer.fill_opacity = 0.8
+    r.symbols.append(line_symbolizer)
     r.symbols.append(poly_symbolizer)
     s.rules.append(r)
     m.append_style("surveys", s)
