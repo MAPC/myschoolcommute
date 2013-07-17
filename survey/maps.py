@@ -180,7 +180,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         ('sb', "yellow"),
         ('b', "lightgreen"),
         ('t', "purple"),
-        ('none', 'lightgrey'),
+        ('o', 'lightgrey'),
     )
 
     for name, color in school_colors:
@@ -262,7 +262,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     surveys = Survey.objects.filter(school=school)
     for survey in surveys:
         survey.location.transform(srid)
-        name = "none"
+        name = "o"
         for c in survey.child_set.all():
             name = str(c.to_school)
         school_circle = survey.location.buffer(50)
