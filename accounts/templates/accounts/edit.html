@@ -12,7 +12,7 @@
     <br/>
     <form class="form-horizontal" method="post" action=".">
         {% csrf_token %}
-        {% if request.user.username != user.username and perms.user.can_change %}
+        {% if request.user.username != user.username and perms.accounts.change_profile %}
         <div class="control-group">
             <label class="control-label" for="is_active"><b>Is Active</b></label>
             <div class="controls">

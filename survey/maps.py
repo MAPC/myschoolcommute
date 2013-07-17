@@ -235,7 +235,6 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         loc_y = bbox.miny + (bbox.maxy - bbox.miny) * pct_y / 100.0
         return (loc_x, loc_y)
 
-
     sheds = {
         0.5: school.shed_05,
         1.0: school.shed_10,

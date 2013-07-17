@@ -42,6 +42,11 @@
       body {
         padding-top: 55px;
       }
+      .footer-images img{
+        vertical-align: center;
+        max-height: 70px;
+        border:0;
+      }
     </style>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
@@ -85,7 +90,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
                 <li {% if 'accounts' in request.path %}class='active'{% endif %}><a href="/accounts/">Accounts</a></li>
-                {% if perms.school.can_change %}
+                {% if perms.survey.change_school %}
                 <li><a href="{% url 'district_list' %}">Districts</a></li>
                 {% endif %}
                 <li {% if request.path|slice:"4:-1" == profile.district.slug %}class='active'{% endif %}>
