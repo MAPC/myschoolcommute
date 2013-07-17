@@ -175,9 +175,9 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     # styles for schools
     school_colors = (
         ('w', "blue"),
+        ('fv', "red"),
         ('cp', "purple"),
         ('sb', "yellow"),
-        ('fv', "red"),
         ('t', 'violet'),
         ('none', 'lightgrey'),
     )
@@ -191,7 +191,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         r.symbols.append(poly_symbolizer)
         s.rules.append(r)
     r = mapnik.Rule()
-    r.filter = mapnik.Expression("[name] != 'map_title' and [name] != 'legend_title'")
+    r.filter = mapnik.Expression("[name] != 'map_title' and [name] != 'map_subtitle' and [name] != 'legend_title'")
     text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 9, mapnik.Color('black'))
     text_symbolizer.halo_fill = mapnik.Color('white')
     text_symbolizer.halo_radius = 1
@@ -204,17 +204,23 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
 
     r = mapnik.Rule()
     r.filter = mapnik.Expression("[name] = 'map_title'")
-    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 13, mapnik.Color('black'))
-    text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.MIDDLE
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 15, mapnik.Color('black'))
+    text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
     text_symbolizer.halo_fill = mapnik.Color('white')
-    text_symbolizer.halo_radius = 1
-    text_symbolizer.allow_overlap = True
+    r.symbols.append(text_symbolizer)
+    s.rules.append(r)
+
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] = 'map_subtitle'")
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 12, mapnik.Color('black'))
+    text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
+    text_symbolizer.halo_fill = mapnik.Color('white')
     r.symbols.append(text_symbolizer)
     s.rules.append(r)
 
     r = mapnik.Rule()
     r.filter = mapnik.Expression("[name] = 'legend_title'")
-    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 11, mapnik.Color('black'))
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Condensed Bold', 11, mapnik.Color('black'))
     text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
     text_symbolizer.halo_fill = mapnik.Color('white')
     text_symbolizer.halo_radius = 1
@@ -267,35 +273,41 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         poly = Polygon(lr)
         return poly
 
-    legend = box(2, 109.5, 50, 113.5)
+    legend = box(2, 108, 50, 113.5)
     csv_string += '"%s","%s","%s"\n' % (legend.wkt, "legend_box", "")
 
-    xy = p2l(24, 111.5)
+    xy = p2l(3.5, 112)
     point = Point(*xy)
-    csv_string += '"%s","%s","%s, %s MA"\n' % (point.wkt, "map_title", school, school.districtid)
+    csv_string += '"%s","%s","School Commute Survey Results"\n' % (point.wkt, "map_title")
 
-    legend = box(58, 99, 97.5, 113.5)
+    xy = p2l(3.5, 109.5)
+    point = Point(*xy)
+    csv_string += '"%s","%s","%s, %s"\n' % (point.wkt, "map_subtitle", school, school.districtid)
+
+    legend_x = 53
+
+    legend = box(legend_x, 99, 97.5, 113.5)
     csv_string += '"%s","%s","%s"\n' % (legend.wkt, "legend_box", "")
 
-    xy = p2l(59.5, 112)
+    xy = p2l(legend_x + 1.5, 112)
     point = Point(*xy)
-    csv_string += '"%s","legend_title","Mode of transportation"\n' % (point.wkt, )
+    csv_string += '"%s","legend_title","Approx. home locations and travel to shool mode"\n' % (point.wkt, )
 
     xy = p2l(86, 112)
     point = Point(*xy)
     csv_string += '"%s","legend_title","Walksheds"\n' % (point.wkt, )
 
-    y = 99
+    y = 111.5
     for name, label in school_colors:
-        y += 1.8
-        xy = p2l(60, y)
+        y -= 1.8
+        xy = p2l(legend_x+2, y)
         point = Point(*xy)
         circle = point.buffer(50)
         csv_string += '"%s","%s","%s"\n' % (circle.wkt, name, MODE_DICT[name])
 
-    y = 99
+    y = 110
     for name in ('0.5', '1.0', '1.5', '2.0',):
-        y += 2.4
+        y -= 2.4
         ws = box(86, y, 88, y+1.5)
         csv_string += '"%s","%s","%s  Mile"\n' % (ws.wkt, name, name)
 
