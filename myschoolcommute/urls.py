@@ -40,9 +40,9 @@ urlpatterns += patterns('',
     url(r'^testr/$', 'survey.views.testr'),
 
     #Typeahead
-    url(r'^(?P<school_id>\d+)/streets/(?P<query>[\s\w-]*)/?$', 'survey.views.school_streets'),
-    url(r'^(?P<school_id>\d+)/crossing/(?P<street>[\s\w-]+)/(?P<query>[\s\w-]*)/?$', 'survey.views.school_crossing' ),
-    url(r'^(?P<school_id>\d+)/intersection/(?P<street1>[\s\w-]+)/(?P<street2>[\s\w-]*)/?$', 'survey.views.intersection' ),
+    url(r'^(?P<school_id>\d+)/streets/(?P<query>[^/]*)/?$', 'survey.views.school_streets'),
+    url(r'^(?P<school_id>\d+)/crossing/(?P<street>[^/]+)/(?P<query>[^/]*)/?$', 'survey.views.school_crossing' ),
+    url(r'^(?P<school_id>\d+)/intersection/(?P<street1>[^/]+)/(?P<street2>[^/]*)/?$', 'survey.views.intersection' ),
 
     # admin data
     url(r'^(?P<school_id>\d+)/walkshed.geojson$', 'survey.maps.school_sheds_json', name='sheds_json'),

@@ -214,7 +214,7 @@ def intersection(request, school_id, street1, street2=None):
     intersections = Intersection.objects.filter(geometry__intersects=school_circle)
     intersections = intersections.filter(st_name_1__iexact=street1)
 
-    if street2 is not None:
+    if street2 is not None and street2.strip() != "":
         intersections = intersections.filter(st_name_2__iexact=street2)
 
     features = []
@@ -249,8 +249,7 @@ def form(request, district_slug, school_slug, **kwargs):
     formerror = False
 
     if request.method == 'POST':
-
-        surveyform = SurveyForm(request.POST)
+        surveyform = SurveyForm(request.POST, school=school)
 
         if surveyform.is_valid():
             survey = surveyform.save(commit=False)
@@ -305,8 +304,7 @@ def batch_form(request, district_slug, school_slug, **kwargs):
 
     message = "New survey"
     if request.method == 'POST':
-
-        surveyform = SurveyForm(request.POST)
+        surveyform = SurveyForm(request.POST, school=school)
 
         if surveyform.is_valid():
             survey = surveyform.save(commit=False)

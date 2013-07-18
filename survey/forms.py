@@ -4,7 +4,7 @@ from django import forms
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
 
-from survey.models import Survey, Child, School, CHILD_MODES, CHILD_GRADES, CHILD_DROPOFF
+from survey.models import Intersection, Survey, Child, School, CHILD_MODES, CHILD_GRADES, CHILD_DROPOFF
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -32,6 +32,24 @@ class SurveyForm(ModelForm):
         choices=[(i, str(i)) for i in range(10)],
         required=False
     )
+
+    def __init__(self, *args, **kwargs):
+        if 'school' in kwargs:
+            school = kwargs.pop('school')
+            super(SurveyForm, self).__init__(*args, **kwargs)
+            if school.geometry.srid == 4326:
+                school.geometry.transform(26986)
+            school_circle = school.geometry.buffer(5000)
+            intersections = Intersection.objects.filter(geometry__intersects=school_circle).distinct('st_name_1').values('st_name_1')
+            choices = [(st, st) for st in [i['st_name_1'].title() for i in intersections]]
+            self.fields['street'].choices = choices
+
+            intersections = Intersection.objects.filter(geometry__intersects=school_circle).distinct('st_name_2').values('st_name_2')
+            choices = [(st, st) for st in [i['st_name_2'].title() for i in intersections]]
+            self.fields['cross_st'].choices = choices
+
+        else:
+            super(SurveyForm, self).__init__(*args, **kwargs)
 
     class Meta:
         model = Survey

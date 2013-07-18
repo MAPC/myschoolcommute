@@ -121,7 +121,7 @@ class Intersection(models.Model):
         db_table = 'survey_intersection'
 
     def __unicode__(self):
-        return "% - %" % (self.st_name_1, self.st_name_2, )
+        return "%s - %s" % (self.st_name_1, self.st_name_2, )
 
 
 class Survey(models.Model):
