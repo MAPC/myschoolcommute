@@ -329,6 +329,7 @@ def batch_form(request, district_slug, school_slug, **kwargs):
                 surveyformset = SurveyFormset(request.POST, instance=Survey())
                 formerror = True
         else:
+            surveyformset = SurveyFormset(request.POST, instance=Survey())
             formerror = True
     else:
         survey = Survey()
