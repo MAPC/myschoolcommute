@@ -16,6 +16,7 @@ import mimetypes
 import math
 import time
 import urllib
+import random
 from shapely import ops, geometry
 
 from survey.models import School, Survey, MODE_DICT
@@ -262,12 +263,24 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     surveys = Survey.objects.filter(school=school)
     for survey in surveys:
         survey.location.transform(srid)
-        name = "o"
-        for c in survey.child_set.all():
-            name = str(c.to_school)
-        school_circle = survey.location.buffer(50)
-        csv_string += '"%s","%s",""\n' % (school_circle.wkt, name)
 
+        children = list(survey.child_set.all())
+        if len(children) > 0:
+            for c in children:
+                name = str(c.to_school)
+                point = survey.location
+                point.x += random.randint(-50, 50)
+                point.y += random.randint(-50, 50)
+                school_circle = point.buffer(50)
+                csv_string += '"%s","%s",""\n' % (school_circle.wkt, name)
+
+        else:
+            name = "o"
+            point = survey.location
+            point.x += random.randint(-50, 50)
+            point.y += random.randint(-50, 50)
+            school_circle = point.buffer(50)
+            csv_string += '"%s","%s",""\n' % (school_circle.wkt, name)
 
     def box(minx, miny, maxx, maxy):
         lmin = Point(p2l(minx, miny))
