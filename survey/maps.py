@@ -164,7 +164,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     s = mapnik.Style()
     for name, color in (('0.5', VIOLET), ('1.0', PURPLE), ('1.5', LAVENDER), ('2.0', LIGHTCYAN)):
         r = mapnik.Rule()
-        r.filter = mapnik.Filter("[name] = "+name)
+        r.filter = mapnik.Expression("[name] = "+name)
         c = mapnik.Color(color)
         c.a = 80
         line_symbolizer = mapnik.LineSymbolizer(mapnik.Color("gray"), 1)
@@ -193,7 +193,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         r.symbols.append(poly_symbolizer)
         s.rules.append(r)
     r = mapnik.Rule()
-    r.filter = mapnik.Expression("[name] != 'map_title' and [name] != 'map_subtitle' and [name] != 'legend_title'")
+    r.filter = mapnik.Expression("[name] != 'map_title' and [name] != 'map_subtitle' and [name] != 'legend_title' and [name] != 'school'")
     text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 9, mapnik.Color('black'))
     text_symbolizer.halo_fill = mapnik.Color('white')
     text_symbolizer.halo_radius = 1
@@ -238,6 +238,16 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     r.symbols.append(line_symbolizer)
     r.symbols.append(poly_symbolizer)
     s.rules.append(r)
+
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] = 'school'")
+    ps = mapnik.PointSymbolizer(mapnik.PathExpression(os.path.dirname(__file__)+'/static/img/School.svg'))
+    ps.transform = 'scale(0.06)'
+    ps.allow_overlap = True
+    #shield.label_placement = mapnik.label_placement.POINT_PLACEMENT
+    r.symbols.append(ps)
+    s.rules.append(r)
+
     m.append_style("surveys", s)
 
     def p2l(pct_x, pct_y):
@@ -281,6 +291,10 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
             point.y += random.randint(-50, 50)
             school_circle = point.buffer(50)
             csv_string += '"%s","%s",""\n' % (school_circle.wkt, name)
+
+    #Add School geometry
+    school.geometry.transform(srid)
+    csv_string += '"%s","school","%s"\n' % (school.geometry.wkt, school.name)
 
     def box(minx, miny, maxx, maxy):
         lmin = Point(p2l(minx, miny))
