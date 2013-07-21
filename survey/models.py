@@ -81,13 +81,28 @@ class School(models.Model):
     def district(self):
         return self.districtid
 
-    class Meta:
-        ordering = ['name']
-
     @permalink
     def get_absolute_url(self):
         return ('survey_school_form', None, {'school_slug': self.slug, 'district_slug': self.districtid.slug})
 
+    def get_intersections(self):
+        #school_circle = self.geometry.buffer(5000)
+        #intersections = Intersection.objects.filter(geometry__intersects=school_circle)
+        relation = SchoolTown.objects.get(schid=self.schid)
+        intersections = Intersection.objects.filter(town_id=relation.town_id)
+        return intersections
+
+    class Meta:
+        ordering = ['name']
+
+class SchoolTown(models.Model):
+    ogc_fid = models.IntegerField(primary_key=True)
+    schid = models.CharField(max_length=8, blank=True, null=True, unique=True)
+    name = models.CharField(max_length=200)
+    town_id = models.IntegerField(db_column='muni_id')
+
+    class Meta:
+        db_table = 'school_muni'
 
 class Street(models.Model):
     """

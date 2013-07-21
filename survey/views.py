@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 
 from datetime import datetime, timedelta
 
-from survey.models import School, Survey, Child, District, Street, Intersection
+from survey.models import School, Survey, Child, District, Street, Intersection, SchoolTown
 from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
 
 from maps import ForkRunR
@@ -168,9 +168,7 @@ def school_streets(request, school_id, query=None):
     """
 
     school = School.objects.get(pk=school_id)
-    school_circle = school.geometry.buffer(5000)
-
-    intersections = Intersection.objects.filter(geometry__intersects=school_circle)
+    intersections = school.get_intersections()
 
     streets = intersections.values('st_name_1').distinct()
 
@@ -189,9 +187,7 @@ def school_crossing(request, school_id, street, query=None):
     """
 
     school = School.objects.get(pk=school_id)
-    school_circle = school.geometry.buffer(5000)
-
-    intersections = Intersection.objects.filter(geometry__intersects=school_circle)
+    intersections = school.get_intersections()
 
     streets = intersections.filter(st_name_1__iexact=street).values('st_name_2').distinct()
 
@@ -209,9 +205,8 @@ def intersection(request, school_id, street1, street2=None):
     """
 
     school = School.objects.get(pk=school_id)
-    school_circle = school.geometry.buffer(5000)
+    intersections = school.get_intersections()
 
-    intersections = Intersection.objects.filter(geometry__intersects=school_circle)
     intersections = intersections.filter(st_name_1__iexact=street1)
 
     if street2 is not None and street2.strip() != "":
