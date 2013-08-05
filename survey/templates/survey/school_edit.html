@@ -15,7 +15,7 @@
 <script src="{{ STATIC_URL }}js/Leaflet.Google.js"></script>
 
 <style type='text/css'>
-    #map { height: 350px; padding-bottom:1em;}
+    #map { height: 420px; padding-bottom:1em;}
 </style>
 
 <script type="text/javascript">
@@ -64,6 +64,8 @@ $(document).ready(function(){
     }).addTo(map);
 
     $('.dateinput').datepicker({ format: "mm/dd/yyyy" });
+
+    $("[rel=tooltip]").tooltip({placement:'top', html:true});;
 });
 
 </script>
@@ -89,6 +91,15 @@ $(document).ready(function(){
                 Survey is inactive
             {% endif %}
             </p>
+        </div>
+        <div class='well'>
+            <p><h4>Paper Surveys</h4></p>
+
+            <p><a href="{{STATIC_URL}}docs/MySchoolCommuteSurvey_Customizable.pdf" rel='tooltip' title="Click to download a paper survey template that you can customize with your school name, survey URL, due date, and contact information (PDF format, requires Adobe Acrobat Reader)">Customizable survey</a></p>
+
+            <p><a href="{{STATIC_URL}}docs/MySchoolCommuteSurvey_Generic.pdf" rel='tooltip' title="Click for a generic paper survey template (PDF format, requires Adobe Acrobat Reader)">Generic survey</a></p>
+
+            <p>For paper survey templates in alternate languages, please contact MassRIDES staff at 857-368-8638.</p>
         </div>
     </div>
     <div class='span9'>
