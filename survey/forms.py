@@ -37,14 +37,13 @@ class SurveyForm(ModelForm):
         if 'school' in kwargs:
             school = kwargs.pop('school')
             super(SurveyForm, self).__init__(*args, **kwargs)
-            if school.geometry.srid == 4326:
-                school.geometry.transform(26986)
-            school_circle = school.geometry.buffer(5000)
-            intersections = Intersection.objects.filter(geometry__intersects=school_circle).distinct('st_name_1').values('st_name_1')
+            intersections_all = school.get_intersections()
+
+            intersections = intersections_all.distinct('st_name_1').values('st_name_1')
             choices = [(st, st) for st in [i['st_name_1'].title() for i in intersections]]
             self.fields['street'].choices = choices
 
-            intersections = Intersection.objects.filter(geometry__intersects=school_circle).distinct('st_name_2').values('st_name_2')
+            intersections = intersections_all.distinct('st_name_2').values('st_name_2')
             choices = [(st, st) for st in [i['st_name_2'].title() for i in intersections]]
             self.fields['cross_st'].choices = choices
 
