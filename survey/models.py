@@ -175,6 +175,7 @@ class Survey(models.Model):
             crosses = list(crosses)
             if len(crosses):
                 self.location = crosses[0].geometry
+                self.location.transform(4326)
             else:
                 print 'No Intersection'
 
