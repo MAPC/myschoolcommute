@@ -168,7 +168,8 @@ class Survey(models.Model):
 
     def update_location(self):
         if len(self.street) > 0 and len(self.cross_st) > 0:
-            crosses = Intersection.objects.filter(
+            school_cross = self.school.get_intersections()
+            crosses = school_cross.filter(
                 Q(Q(st_name_1__iexact=self.street) & Q(st_name_2__iexact=self.cross_st)) |
                 Q(Q(st_name_2__iexact=self.street) & Q(st_name_1__iexact=self.cross_st))
             )
