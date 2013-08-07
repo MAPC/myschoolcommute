@@ -29,7 +29,7 @@ class SchoolAdmin(admin.OSMGeoAdmin):
 class SurveyAdmin(admin.OSMGeoAdmin):
     list_display = ('pk', 'school', 'location', 'distance', 'created',)
     search_fields = ['school__name', 'street', 'cross_st']
-    ordering = ['created', 'school__name']
+    ordering = ['-created', 'school__name']
 
 
 class ChildAdmin(admin.ModelAdmin):
