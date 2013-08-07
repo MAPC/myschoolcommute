@@ -1,6 +1,7 @@
 from django.contrib.gis.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
@@ -95,6 +96,7 @@ class School(models.Model):
     class Meta:
         ordering = ['name']
 
+
 class SchoolTown(models.Model):
     ogc_fid = models.IntegerField(primary_key=True)
     schid = models.CharField(max_length=8, blank=True, null=True, unique=True)
@@ -103,6 +105,7 @@ class SchoolTown(models.Model):
 
     class Meta:
         db_table = 'school_muni'
+
 
 class Street(models.Model):
     """
@@ -156,12 +159,24 @@ class Survey(models.Model):
 
     user = models.ForeignKey(User, null=True)
     # GeoDjango
-    location = models.PointField(geography=True, blank=True, null=True, default='POINT(0 0)') 
+    location = models.PointField(geography=True, blank=True, null=True, default='POINT(0 0)')
     # default SRS 4326
     objects = models.GeoManager()
 
     def __unicode__(self):
         return u'%s' % (self.id)
+
+    def update_location(self):
+        if len(self.street) > 0 and len(self.cross_st) > 0:
+            crosses = Intersection.objects.filter(
+                Q(Q(st_name_1__iexact=self.street) & Q(st_name_2__iexact=self.cross_st)) |
+                Q(Q(st_name_2__iexact=self.street) & Q(st_name_1__iexact=self.cross_st))
+            )
+            crosses = list(crosses)
+            if len(crosses):
+                self.location = crosses[0].geometry
+            else:
+                print 'No Intersection'
 
     def update_distance(self):
         from survey.maps import get_driving_distance
