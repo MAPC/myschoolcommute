@@ -306,6 +306,10 @@ def batch_form(request, district_slug, school_slug, **kwargs):
             survey.user = request.user
             survey.school = school
             survey.update_distance()
+
+            if survey.location is None or survey.location.x == 0:
+                survey.update_location()
+
             survey.ip = request.META['REMOTE_ADDR']
 
             surveyformset = SurveyFormset(request.POST, instance=survey)
