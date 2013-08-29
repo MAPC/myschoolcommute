@@ -2,6 +2,7 @@ from django.contrib.gis.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
 
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
@@ -92,6 +93,37 @@ class School(models.Model):
         relation = SchoolTown.objects.get(schid=self.schid)
         intersections = Intersection.objects.filter(town_id=relation.town_id)
         return intersections
+
+    def update_sheds(self):
+        from maps import get_sheds
+        sheds = get_sheds(self.id)
+    
+        self.shed_05 = MultiPolygon(GEOSGeometry(sheds[0.5]))
+        self.shed_10 = MultiPolygon(GEOSGeometry(sheds[1.0]))
+        self.shed_15 = MultiPolygon(GEOSGeometry(sheds[1.5]))
+        self.shed_20 = MultiPolygon(GEOSGeometry(sheds[2.0]))
+
+        g = self.shed_20.difference(self.shed_15)
+        try:
+            self.shed_20 = g
+        except TypeError:
+            if g.area == 0:
+                self.shed_20 = None
+
+        g = self.shed_15.difference(self.shed_10)
+        try:
+            self.shed_15 = g
+        except TypeError:
+            if g.area == 0:
+                self.shed_15 = None
+
+        g = self.shed_15.difference(self.shed_10)
+        try:
+            self.shed_15 = g
+        except TypeError:
+            if g.area == 0:
+                self.shed_15 = None
+
 
     class Meta:
         ordering = ['name']
