@@ -148,7 +148,7 @@ msgid ""
 "option that reflects the <em>most common</em> location and travel pattern."
 msgstr ""
 "Nếu vị trí nhà hoặc đi lại của một đứa trẻ không phải là giống nhau mỗi ngày"
-" , chọn tùy chọn phản ánh \\u003cem\\u003e phổ biến nhất \\u003c/ em\\u003e "
+" , chọn tùy chọn phản ánh \<em\> phổ biến nhất \</ em\> "
 "vị trí và mô hình du lịch ."
 
 #: templates/survey/form.html:350
@@ -244,8 +244,8 @@ msgid ""
 msgstr ""
 "Để tìm hiểu thêm về những nỗ lực học của bạn hoặc để tìm hiểu làm thế nào để"
 " tham gia , hãy truy cập tuyến đường an toàn MassDOT của Chương trình học "
-"tại \\u003ca href='http://www.commute.com/schools/'\\u003e www.commute.com /"
-" trường học / \\u003c/ a\\u003e hoặc gọi cho chúng tôi tại 857-368-8638 ."
+"tại \<a href='http://www.commute.com/schools/'\> www.commute.com /"
+" trường học / \</ a\> hoặc gọi cho chúng tôi tại 857-368-8638 ."
 
 #: templates/survey/index.html:67
 msgid "Take the Survey"

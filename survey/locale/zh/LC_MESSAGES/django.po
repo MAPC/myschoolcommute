@@ -140,8 +140,8 @@ msgid ""
 "If a child's home location or commute is not the same every day, choose the "
 "option that reflects the <em>most common</em> location and travel pattern."
 msgstr ""
-"如果一个孩子的家庭所在地或改判是不是每天都一样，选择的选项反映的\\u003cem\\u003e的最常见的\\u003c/ EM "
-"\\u003e位置和交通模式。"
+"如果一个孩子的家庭所在地或改判是不是每天都一样，选择的选项反映的\<em\>的最常见的\</ EM "
+"\>位置和交通模式。"
 
 #: templates/survey/form.html:350
 msgid ""
@@ -216,9 +216,9 @@ msgid ""
 "href='http://www.commute.com/schools/'>www.commute.com/schools/</a> or call "
 "us at 857-368-8638."
 msgstr ""
-"要了解更多有关学校的努力或找出如何涉足访问MassDOT的“学校课程的\\u003ca "
-"href='http://www.commute.com/schools/'\\u003e www.commute.com /学校的安全路线/ "
-"\\u003c / a\\u003e，或致电857-368-8638 。"
+"要了解更多有关学校的努力或找出如何涉足访问MassDOT的“学校课程的\<a "
+"href='http://www.commute.com/schools/'\> www.commute.com /学校的安全路线/ "
+"\< / a\>，或致电857-368-8638 。"
 
 #: templates/survey/index.html:67
 msgid "Take the Survey"

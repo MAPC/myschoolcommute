@@ -33,7 +33,7 @@ LANGUAGES = (
     ('es', _('Spanish')),
     ('pt', _('Portuguese')),
     ('fr', _('French')),
-    ('ht', _('Haitian Creole')),
+    #('ht', _('Haitian Creole')),
     ('vi', _('Vietnamese')),
     ('km', _('Khmer')),
     ('zh', _('Chinese')),

@@ -150,7 +150,7 @@ msgid ""
 "option that reflects the <em>most common</em> location and travel pattern."
 msgstr ""
 "Si kote lakay yon timoun oswa vwayaje se pa menm bagay chak jou a, chwazi "
-"opsyon a ki reflete \\u003cem\\u003e ki pi komen \\u003c la / em \\u003e "
+"opsyon a ki reflete \<em\> ki pi komen \< la / em \> "
 "kote ak modèl vwayaj."
 
 #: templates/survey/form.html:350
@@ -242,9 +242,9 @@ msgid ""
 "us at 857-368-8638."
 msgstr ""
 "Pou aprann plis sou efò lekòl pitit ou a oswa jwenn konnen kouman ou kapab "
-"patisipe , vizite Wout Sekirite MassDOT a nan Pwogram Lekòl nan \\u003ca "
-"www.commute.com href='http://www.commute.com/schools/'\\u003e / schools / "
-"\\u003c/ a\\u003e oswa rele nou nan 857-368-8638 ."
+"patisipe , vizite Wout Sekirite MassDOT a nan Pwogram Lekòl nan \<a "
+"www.commute.com href='http://www.commute.com/schools/'\> / schools / "
+"\</ a\> oswa rele nou nan 857-368-8638 ."
 
 #: templates/survey/index.html:67
 msgid "Take the Survey"

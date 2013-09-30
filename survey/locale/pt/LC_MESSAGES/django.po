@@ -152,8 +152,8 @@ msgid ""
 "option that reflects the <em>most common</em> location and travel pattern."
 msgstr ""
 "Se o local de residência da criança ou comutar não é o mesmo todos os dias ,"
-" escolha a opção que reflete o \\u003cem\\u003e mais comum \\u003c/ "
-"em\\u003e localização e padrão de viagem."
+" escolha a opção que reflete o \<em\> mais comum \</ "
+"em\> localização e padrão de viagem."
 
 #: templates/survey/form.html:350
 msgid ""
@@ -247,9 +247,9 @@ msgid ""
 "us at 857-368-8638."
 msgstr ""
 "Para saber mais sobre os esforços da sua escola ou para saber como "
-"participar , visite rotas seguras de MassDOT ao Programa Escola em \\u003ca "
-"href='http://www.commute.com/schools/'\\u003e www.commute.com / escolas / "
-"\\u003c/ a\\u003e ou ligue para 857-368-8638 ."
+"participar , visite rotas seguras de MassDOT ao Programa Escola em \<a "
+"href='http://www.commute.com/schools/'\> www.commute.com / escolas / "
+"\</ a\> ou ligue para 857-368-8638 ."
 
 #: templates/survey/index.html:67
 msgid "Take the Survey"
