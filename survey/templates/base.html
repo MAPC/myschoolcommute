@@ -94,7 +94,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="{% url 'home' %}">MASafeRoutesSurvey.com</a>
+          <a class="brand" href="{% url 'home' %}">MASafeRoutesSurvey.org</a>
           {% if request.user.is_authenticated %}
           {% with profile=request.user.get_profile %}
           <div class="nav-collapse collapse">
@@ -143,11 +143,11 @@
 
     <hr>
     <footer>
-      {% trans "Questions? Please contact" %} <a href="mailto:admin@myschoolcommute.org?subject=MySchoolCommute.org%20Website%20Question">admin@myschoolcommute.org</a><br />
+      {% trans "Questions? " %}<a href="mailto:admin@myschoolcommute.org?subject=MySchoolCommute.org%20Website%20Question">{% trans "Please click here to email us." %}</a><br />
       {% if request.user.is_authenticated %}
         <a href='{% url 'accounts' %}'>Administration Account</a>
       {% else %}
-        Are you an adminsitrator? <a href='/accounts/login/'>Log in</a> or <a href='/accounts/register/'>Register</a>
+        Are you an administrator? <a href='/accounts/login/'>Log in</a> or <a href='/accounts/register/'>Register</a>
       {% endif %}<br/>
             &copy; <a href="http://www.mapc.org" title="Metropolitan Area Planning Council">MAPC</a> 2011
     </footer>
