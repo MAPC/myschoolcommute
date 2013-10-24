@@ -111,7 +111,7 @@ def profile_edit(request, username=None):
             user = user_form.save()
             p = profile_form.save()
 
-            if 'is_active' in request.POST and request.user.has_perm(user):
+            if 'is_active' in request.POST and request.user.has_perm('auth.change_user'):
                 user.is_active = True
                 user.save()
                 send_mail(
