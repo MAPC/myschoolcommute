@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import url, include, patterns
 from django.contrib.auth.models import User
 from django.views.generic import ListView
 from forms import LoginForm

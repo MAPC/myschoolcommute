@@ -177,4 +177,4 @@ class ProfileForm(InitModelForm):
 
     class Meta:
         model = Profile
-        exclude = ('user')
+        exclude = ('user',)

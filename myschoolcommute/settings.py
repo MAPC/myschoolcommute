@@ -143,7 +143,6 @@ INSTALLED_APPS = (
 
     'south',
     'rosetta',
-    #'localeurl',
     'dbgettext',
     'crispy_forms',
 
@@ -194,6 +193,8 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap2'
 
 # django-rosetta
 #BING_APP_ID = "V7en8/gVWILlccOB4JA5e8LDvYUhd6WhI1v74WknTXY"

@@ -1,12 +1,10 @@
-Django==1.5
-Fiona==0.14
-GDAL==1.9.1
-Shapely==1.2.17
+Django==1.6
+#GDAL #use system
+Fiona
+Shapely
 South==0.8.1
 django-autocomplete-light==1.2.0
-django-crispy-forms==1.2.8
+django-crispy-forms==1.4.0
 django-dbgettext==0.1
-django-debug-toolbar==0.9.4
-django-localeurl==1.5
-django-rosetta==0.6.2
-psycopg2==2.4.2
+django-debug-toolbar==0.11.0
+django-rosetta==0.7.2
