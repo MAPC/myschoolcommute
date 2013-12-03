@@ -1,6 +1,9 @@
-from django.forms import ModelForm, HiddenInput, TextInput, IntegerField, CharField, ChoiceField
+from django.forms import (
+    ModelForm, HiddenInput, TextInput,
+    IntegerField, CharField, ChoiceField,
+)
 from django import forms
-
+from django.contrib.gis.geos import Point, GEOSGeometry
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
 
@@ -33,6 +36,8 @@ class SurveyForm(ModelForm):
         required=False
     )
 
+    location = CharField(widget=HiddenInput())
+
     def __init__(self, *args, **kwargs):
         if 'school' in kwargs:
             school = kwargs.pop('school')
@@ -54,12 +59,15 @@ class SurveyForm(ModelForm):
         model = Survey
         exclude = ('school', 'ip', 'created', 'modified', 'distance', 'user')
 
-        widgets = {
-            'location': HiddenInput(),
-        }
 
     def clean(self):
         cleaned_data = super(SurveyForm, self).clean()
+        wkt = cleaned_data.get('location')
+
+        point = GEOSGeometry(wkt)
+        if point.x == 0 or point.y == 0:
+            raise forms.ValidationError("Your location is required for the survey.")
+
         #TODO: Check if two streets return location
         return cleaned_data
 

@@ -7,7 +7,7 @@ CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-DEBUG_TOOLBAR = DEBUG
+DEBUG_TOOLBAR = False
 
 ADMINS = (
     ('Pavel', 'pavel@appliedgeosolutions.com'),
@@ -112,7 +112,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'myschoolcommute.urls'
@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.gis',
 
     'south',
     'rosetta',
@@ -194,7 +195,7 @@ DATABASES = {
     }
 }
 
-CRISPY_TEMPLATE_PACK = 'bootstrap2'
+CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 # django-rosetta
 #BING_APP_ID = "V7en8/gVWILlccOB4JA5e8LDvYUhd6WhI1v74WknTXY"

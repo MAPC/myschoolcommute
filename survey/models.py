@@ -97,7 +97,7 @@ class School(models.Model):
     def update_sheds(self):
         from maps import get_sheds
         sheds = get_sheds(self.id)
-    
+
         self.shed_05 = MultiPolygon(GEOSGeometry(sheds[0.5]))
         self.shed_10 = MultiPolygon(GEOSGeometry(sheds[1.0]))
         self.shed_15 = MultiPolygon(GEOSGeometry(sheds[1.5]))
