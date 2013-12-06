@@ -173,6 +173,178 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
         r.symbols.append(poly_symbolizer)
         s.rules.append(r)
 
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] = 'legend_box'")
+    poly_symbolizer = mapnik.PolygonSymbolizer(mapnik.Color("white"))
+    line_symbolizer = mapnik.LineSymbolizer(mapnik.Color("black"), 0.5)
+    poly_symbolizer.fill_opacity = 0.8
+    r.symbols.append(line_symbolizer)
+    r.symbols.append(poly_symbolizer)
+    s.rules.append(r)
+
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] != 'map_title' and [name] != 'map_subtitle' and [name] != 'legend_title' and [name] != 'school'")
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 9, mapnik.Color('black'))
+    text_symbolizer.halo_fill = mapnik.Color('white')
+    text_symbolizer.halo_radius = 1
+    text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
+    #text_symbolizer.label_placement = mapnik.label_placement.VERTEX_PLACEMENT
+    text_symbolizer.allow_overlap = True
+    text_symbolizer.displacement = (12, 0)
+    r.symbols.append(text_symbolizer)
+    s.rules.append(r)
+
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] = 'map_title'")
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 15, mapnik.Color('black'))
+    text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
+    text_symbolizer.halo_fill = mapnik.Color('white')
+    text_symbolizer.allow_overlap = True
+    r.symbols.append(text_symbolizer)
+    s.rules.append(r)
+
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] = 'map_subtitle'")
+    text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 12, mapnik.Color('black'))
+    text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
+    text_symbolizer.halo_fill = mapnik.Color('white')
+    text_symbolizer.allow_overlap = True
+    r.symbols.append(text_symbolizer)
+    s.rules.append(r)
+
+    r = mapnik.Rule()
+    r.filter = mapnik.Expression("[name] = 'school'")
+    ps = mapnik.PointSymbolizer(mapnik.PathExpression(os.path.dirname(__file__)+'/static/img/School.svg'))
+    ps.transform = 'scale(0.06)'
+    ps.allow_overlap = True
+    #shield.label_placement = mapnik.label_placement.POINT_PLACEMENT
+    r.symbols.append(ps)
+    s.rules.append(r)
+
+    m.append_style("surveys", s)
+
+    def p2l(pct_x, pct_y):
+        loc_x = bbox.minx + (bbox.maxx - bbox.minx) * pct_x / 100.0
+        loc_y = bbox.miny + (bbox.maxy - bbox.miny) * pct_y / 100.0
+        return (loc_x, loc_y)
+
+    sheds = {
+        0.5: school.shed_05,
+        1.0: school.shed_10,
+        1.5: school.shed_15,
+        2.0: school.shed_20
+    }
+
+    csv_string = 'wkt,name,label\n'
+    for key, g in reversed(sorted(sheds.items(), key=lambda a: a[0])):
+        if g is None:
+            continue
+        g.srid = 26986
+        g.transform(srid)
+        csv_string += '"%s","%s",""\n' % (g.wkt, str(key))
+
+    #Add School geometry
+    school.geometry.transform(srid)
+    csv_string += '"%s","school","%s"\n' % (school.geometry.wkt, school.name)
+
+    def box(minx, miny, maxx, maxy):
+        lmin = Point(p2l(minx, miny))
+        lmax = Point(p2l(maxx, maxy))
+        lr = LinearRing((lmin.x, lmin.y), (lmax.x, lmin.y), (lmax.x, lmax.y), (lmin.x, lmax.y), (lmin.x, lmin.y))
+        poly = Polygon(lr)
+        return poly
+
+    legend = box(2, 108, 50, 113.5)
+    csv_string += '"%s","%s","%s"\n' % (legend.wkt, "legend_box", "")
+
+    xy = p2l(3.5, 112)
+    point = Point(*xy)
+    csv_string += '"%s","%s","School Commute Walksheds"\n' % (point.wkt, "map_title")
+
+    xy = p2l(3.5, 109.5)
+    point = Point(*xy)
+    csv_string += '"%s","%s","%s, %s"\n' % (point.wkt, "map_subtitle", school, school.districtid)
+
+    legend_x = 80
+
+    #legend = box(legend_x, 97, 97.5, 113.5)
+    #csv_string += '"%s","%s","%s"\n' % (legend.wkt, "legend_box", "")
+
+    xy = p2l(legend_x + 1.5, 112)
+    point = Point(*xy)
+    csv_string += '"%s","legend_title","Approx. home locations and travel to school mode"\n' % (point.wkt, )
+
+    walksheds_x = 88
+    xy = p2l(walksheds_x, 112)
+    point = Point(*xy)
+    csv_string += '"%s","legend_title","Walksheds"\n' % (point.wkt, )
+
+    y = 110
+    for name in ('0.5', '1.0', '1.5', '2.0',):
+        y -= 2.4
+        ws = box(walksheds_x, y, walksheds_x+2, y+1.5)
+        csv_string += '"%s","%s","%s  Mile"\n' % (ws.wkt, name, name)
+
+    layer = mapnik.Layer('surveys', "+init=epsg:"+str(srid))
+    ds = mapnik.Datasource(type="csv", inline=csv_string.encode('ascii'))
+    layer.datasource = ds
+    layer.styles.append('surveys')
+    m.layers.append(layer)
+
+    # Render to image
+    if format == 'pdf':
+        tmp_file = tempfile.NamedTemporaryFile()
+        surface = cairo.PDFSurface(tmp_file.name, m.width, m.height)
+        mapnik.render(m, surface)
+        surface.finish()
+        tmp_file.seek(0)
+        im = tmp_file.read()
+    else:
+        im = mapnik.Image(m.width, m.height)
+        mapnik.render(m, im)
+        im = im.tostring(format)
+
+    response = HttpResponse()
+    response['Content-length'] = str(len(im))
+    response['Content-Type'] = mimetypes.types_map['.'+format]
+    response.write(im)
+
+    return response
+
+def school_sheds_results(request=None, school_id=None, bbox=None, width=816, height=1056, srid=3857, format='png'):
+    '''
+    Default height and width are 'Letter' ratio
+    '''
+
+    format = format.encode('ascii')
+    school = School.objects.get(pk=school_id)
+    point = school.geometry
+    circle = point.buffer(3400.0)
+
+    m = mapnik.Map(int(width), int(height), "+init=epsg:"+str(srid))
+
+    mapnik.load_map(m, os.path.dirname(__file__)+"/basemap/basemap.xml")
+
+    if bbox is None:
+        circle.transform(srid)
+        bbox = mapnik.Box2d(*circle.extent)
+    m.zoom_to_box(bbox)
+
+    #m.background = mapnik.Color('steelblue')
+
+    # styles for sheds
+    s = mapnik.Style()
+    for name, color in (('0.5', VIOLET), ('1.0', PURPLE), ('1.5', LAVENDER), ('2.0', LIGHTCYAN)):
+        r = mapnik.Rule()
+        r.filter = mapnik.Expression("[name] = "+name)
+        c = mapnik.Color(color)
+        c.a = 80
+        line_symbolizer = mapnik.LineSymbolizer(mapnik.Color("gray"), 1)
+        poly_symbolizer = mapnik.PolygonSymbolizer(c)
+        r.symbols.append(line_symbolizer)
+        r.symbols.append(poly_symbolizer)
+        s.rules.append(r)
+
     # styles for schools
     school_colors = (
         ('w', "blue"),
@@ -372,7 +544,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
 
 
 def save_sheds(filename, school_id):
-    response = school_sheds(school_id=school_id, format='pdf')
+    response = school_sheds_results(school_id=school_id, format='pdf')
 
     output = open(filename, "wb")
     output.write(response.content)
