@@ -209,6 +209,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 15, mapnik.Color('black'))
     text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
     text_symbolizer.halo_fill = mapnik.Color('white')
+    text_symbolizer.allow_overlap = True
     r.symbols.append(text_symbolizer)
     s.rules.append(r)
 
@@ -217,6 +218,7 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
     text_symbolizer = mapnik.TextSymbolizer(mapnik.Expression('[label]'), 'DejaVu Sans Book', 12, mapnik.Color('black'))
     text_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.RIGHT
     text_symbolizer.halo_fill = mapnik.Color('white')
+    text_symbolizer.allow_overlap = True
     r.symbols.append(text_symbolizer)
     s.rules.append(r)
 
