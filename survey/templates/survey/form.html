@@ -342,7 +342,7 @@ var init_streets = function(){
     {% blocktrans with school.name as schoolname %}Your child’s school is conducting a survey to learn how students get to and from school. This information  will be used to plan safe and healthy transportation choices for all students. The survey will take less than 3 minutes to complete. All responses are voluntary and confidential. {% endblocktrans %}
 <ul>
 <li>{% blocktrans %}If more than one child attends this school, use the "Add Another Child" feature to report additional students. {%endblocktrans%}</li>
-<li>{% blocktrans %}If a child's home location or commute is not the same every day, choose the option that reflects the <em>most common</em> location and travel pattern.{%endblocktrans%}</li>
+<li>{% blocktrans %}If a child's home location or commute is not the same every day, choose the option that reflects the most common location and travel pattern.{%endblocktrans%}</li>
 <li>{% blocktrans %}If you already completed a paper survey, do not complete this online form. {%endblocktrans%}</li>
 <li>{% blocktrans %}If you have questions, please contact a school administrator or call Safe Routes to School at 857-368-8638.{%endblocktrans%}</li>
 </ul>
@@ -369,7 +369,7 @@ var init_streets = function(){
         <fieldset>
 
             <p class="question_title">
-                <strong>{% trans "What is your approximate home location?" %}</strong> (<span class="required_field">required</span>)
+                <strong>{% trans "What is your approximate home location?" %}</strong> (<span class="required_field">{% trans "required" %}</span>)
             </p>
             <p>
                 {% blocktrans %}Please click the map at an intersection on your street, near your home{% endblocktrans %}:
@@ -427,7 +427,7 @@ var init_streets = function(){
                                     {{ error|escape }}.&nbsp;
                                 {% empty %}
                                     {% if field.field.required %}
-                                    (<span class="required_field">required</span>)
+                                    (<span class="required_field">{% trans "required" %}</span>)
                                     {% endif %}
                                 {% endfor %}
                                 </span>

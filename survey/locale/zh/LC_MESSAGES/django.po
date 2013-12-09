@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-09 16:11-0400\n"
+"POT-Creation-Date: 2013-12-09 12:14-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,110 +17,330 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: forms.py:18
+#: forms.py:21
 msgid "Name of your street"
 msgstr "您的街道名称"
 
-#: forms.py:22
+#: forms.py:25
 msgid "Name of nearest cross-street"
 msgstr "最近的跨街的名称"
 
-#: forms.py:26
+#: forms.py:29
 msgid "How many vehicles do you have in your household?"
 msgstr "你有多少车辆在您的家庭吗？"
 
-#: forms.py:31
+#: forms.py:34
 msgid "How many people in your household have a driver's license?"
 msgstr "有多少人在你的家庭有驾驶执照吗？"
 
-#: forms.py:55
+#: forms.py:80
 msgid "What grade is your child in?"
 msgstr "什么档次的是你的孩子吗？"
 
-#: forms.py:61
+#: forms.py:86
 msgid "How does your child get TO school on most days?"
 msgstr "请问你的孩子在大多数日子上学？"
 
-#: forms.py:66
+#: forms.py:91
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
 msgstr "你通常落你的孩子自己的方式工作或其他目的？"
 
-#: forms.py:72
+#: forms.py:97
 msgid "How does your child get home FROM school on most days?"
 msgstr "请问你的孩子回家，学校在大多数日子吗？"
 
-#: forms.py:77
+#: forms.py:102
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr "你拿起你的孩子用自己的方式工作或其他来源的吗？"
 
-#: models.py:171
+#: models.py:244
 msgid "Walk"
 msgstr "走"
 
-#: models.py:172
+#: models.py:245
 msgid "Bike"
 msgstr "自行车"
 
-#: models.py:173
+#: models.py:246
 msgid "School Bus"
 msgstr "校车"
 
-#: models.py:174
+#: models.py:247
 msgid "Family Vehicle (only children in your family)"
 msgstr "家庭车辆（只有在你的家庭的孩子）"
 
-#: models.py:175
+#: models.py:248
 msgid "Carpool (with children from other families)"
 msgstr "拼车（与其他家庭的孩子）"
 
-#: models.py:176
+#: models.py:249
 msgid "Transit (city bus, subway, etc.)"
 msgstr "运输（城市公交车，地铁等）"
 
-#: models.py:177
+#: models.py:250
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "其他（滑板，滑板，直排轮滑鞋，等等）"
 
-#: models.py:182
+#: models.py:266
 msgid "Yes"
 msgstr "是"
 
-#: models.py:183
+#: models.py:267
 msgid "No"
 msgstr "没有"
 
-#: templates/base.html:94
+#: templates/base.html:122
 msgid "About"
 msgstr "关于"
 
-#: templates/base.html:118
-msgid "Questions? Please contact"
+#: templates/base.html:146
+#, fuzzy
+msgid "Questions? "
 msgstr "有问题吗？请联系"
+
+#: templates/base.html:146
+msgid "Please click here to email us."
+msgstr "请点击这里给我们发电子邮件。"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
 msgstr "关于学校课程马萨诸塞州的安全路线"
 
-#: templates/survey/batch.html:356
+#: templates/survey/about.html:10
+msgid "The Massachusetts"
+msgstr "马萨诸塞州"
+
+#: templates/survey/about.html:10
+msgid ""
+"program partners with schools throughout the Commonwealth to help plan and "
+"implement programs that increase student walking and biking activities.  The"
+" program’s goals are to reduce traffic congestion and air pollution near "
+"schools while increasing the health, safety, and physical activity of "
+"students."
+msgstr ""
+"与学校整个英联邦项目的合作伙伴，帮助计划和实施提高学生步行和骑自行车活动方案。该计划的目标是减少交通拥堵和空气污染在学校附近，同时增加学生的健康，安全和身体活动。"
+
+#: templates/survey/about.html:16
+#, fuzzy
+msgid ""
+"Evaluating trends in how students and families choose to travel to school is"
+" a key component to building a successful Safe Routes to School program. "
+"Parent responses to this survey provide valuable information and help "
+"determine how we can improve the environment around the school, target "
+"investments, track progress toward goals and ultimately develop local "
+"programs that benefit students, parents and our communities."
+msgstr ""
+"马萨诸塞州（ "
+"SRTS）学校计划的合作伙伴，整个英联邦，以帮助减少学校附近的交通拥堵和空气污染，同时增加了健康，安全和学生的身体活动与学校的安全路线。评估如何前往学校的学生和家庭的趋势，是建立一个成功的安全路线学校计划的一个关键组成部分。家长响应这项调查提供了宝贵的信息，并帮助确定我们如何能够改善周围环境的学校，确定投资目标，跟踪目标进展，并最终发展本地节目，受益学生，家长和社区。"
+
+#: templates/survey/about.html:19
+msgid ""
+"Massachusetts Safe Routes to School is a federally funded initiative of the "
+"Massachusetts Department of Transportation (MassDOT).  Over 600 elementary "
+"and middle schools, reaching over 270,000 students in 170 communities "
+"throughout the Commonwealth participate in the program.  Established in "
+"2006, SRTS encourages elementary and middle school students to walk and "
+"bicycle to school safely by implementing the Safe Routes Five E’s: "
+"Education, Encouragement, Enforcement, Evaluation and Engineering."
+msgstr ""
+"马萨诸塞州的安全路线，以学校为交通运输的马萨诸塞部门（ MassDOT "
+"）的联邦政府资助的计划。超过600所中小学，整个英联邦达到27万学生在170个社区参与该计划。成立于2006年， "
+"SRTS鼓励小学和初中学生通过实施安全路线五E公司走路和骑自行车上学安全：教育，鼓励，执行，评估和工程。"
+
+#: templates/survey/about.html:22
+msgid ""
+"Safe Routes to School technical services and program offerings include:"
+msgstr "安全路线，以学校技术服务和方案提供的服务包括："
+
+#: templates/survey/about.html:24
+msgid "SRTS task force formation"
+msgstr "SRTS专案组形成"
+
+#: templates/survey/about.html:25
+msgid "Pedestrian and bicycle safety education and training"
+msgstr "行人和自行车安全教育和培训"
+
+#: templates/survey/about.html:26
+msgid "SRTS encouragement activities"
+msgstr "SRTS鼓励活动"
+
+#: templates/survey/about.html:27
+msgid "SRTS gear and incentive items"
+msgstr "SRTS齿轮和激励项目"
+
+#: templates/survey/about.html:28
+msgid "Infrastructure assessments and improvements"
+msgstr "基础设施的评估和改进"
+
+#: templates/survey/about.html:29
+msgid "Middle school PhotoVoice workshop series"
+msgstr "中学PhotoVoice系列研讨会"
+
+#: templates/survey/about.html:30
+msgid "Walking School Bus toolkit and development"
+msgstr "走校车工具包和开发"
+
+#: templates/survey/about.html:31
+msgid "School walking and biking assessments"
+msgstr "学校步行和骑自行车的评估"
+
+#: templates/survey/about.html:32
+msgid "SRTS program evaluation"
+msgstr "SRTS方案评价"
+
+#: templates/survey/about.html:33
+msgid "Summer program"
+msgstr "暑期课程"
+
+#: templates/survey/about.html:38
+msgid "Survey Administration"
+msgstr "调查管理"
+
+#: templates/survey/about.html:41
+msgid ""
+"Safe Routes to School staff will assist partner schools with the "
+"administration of this 3-minute, online survey. Informational and marketing "
+"materials are available for schools to make parents aware of the online "
+"survey tool and provide them with a link to the survey.  Paper versions of "
+"the survey are also available and Safe Routes to School program staff can "
+"assist with the survey collection process.  Both the online and paper "
+"versions are available in multiple languages.  School administrators can "
+"have direct access to survey results and reports through an administrative "
+"login on the website and program staff can also assist with report "
+"generation and the presentation of results."
+msgstr ""
+"安全路线到学校的工作人员将协助伙伴学校这3分钟，在线调查的管理。信息和营销材料可用于学校，使家长认识到在线调查工具，并为他们提供一个链接到调查。有调查纸质版本还提供安全路线，以学校课程的工作人员可以协助调查收集过程。无论是网上和纸质版本，可在多国语言。学校管理人员可以直接获得通过网站和项目工作人员对一个管理员帐号，调查结果和报告，还可以协助生成报告和结果的表述。"
+
+#: templates/survey/about.html:44
+msgid "Survey Results"
+msgstr "调查结果"
+
+#: templates/survey/about.html:46
+msgid ""
+"School and district level reports include a summary of the results "
+"accompanied by maps, tables, and charts. The reports are available to school"
+" and community officials."
+msgstr "学校和区级的报告包括业绩伴随着地图，表格和图表的摘要。该报告可为学校和社区的官员。"
+
+#: templates/survey/about.html:46
+msgid "For more information, please contact MassDOT’s"
+msgstr "欲了解更多信息，请联系MassDOT的"
+
+#: templates/survey/about.html:46
+msgid "program at 857-368-8638."
+msgstr "节目在857-368-8638 。"
+
+#: templates/survey/about.html:48
+msgid "Survey Development"
+msgstr "调查发展"
+
+#: templates/survey/about.html:50
+msgid ""
+"The original design and development of the Safe Routes to School survey tool"
+" was a collaborative effort of"
+msgstr "安全路由到学校调查工具的原始设计和开发是一个合作努力"
+
+#: templates/survey/about.html:50
+msgid "and"
+msgstr "和"
+
+#: templates/survey/about.html:50
+msgid "with support from the"
+msgstr "从支持"
+
+#: templates/survey/about.html:50
+msgid "In 2012, MAPC and WalkBoston published"
+msgstr "2012年， MAPC和WalkBoston公布"
+
+#: templates/survey/about.html:50
+msgid ""
+"a report assessing the walkability of more than 800 schools in Metro Boston "
+"and describing the results of surveys received from 4,500 students in seven "
+"school districts. To read the report or learn more about the analysis, visit"
+msgstr "一份报告，评估800多所学校在波士顿地铁的轻便步行和描述的调查结果从4500名学生在七个学区收到。阅读报告或了解更多的分析，请访问："
+
+#: templates/survey/about.html:52
+msgid "About MassDOT"
+msgstr "关于MassDOT"
+
+#: templates/survey/about.html:54
+msgid ""
+"The Massachusetts Department of Transportation (MassDOT) operates the "
+"Commonwealth’s Safe Routes to School program with funds from the Federal "
+"Highway Division. The Massachusetts Safe Routes to School model of "
+"inclusiveness emphasizes a collaborative, community-focused approach that "
+"fosters mutual partnerships between advocacy groups, law enforcement, "
+"education leaders and public health departments which all work together to "
+"promote safer routes for children to get to school."
+msgstr ""
+"运输的马萨诸塞部门（ MassDOT "
+"）经营联合体的安全路线，以学校计划从联邦公路司的资金。这位马萨诸塞州的安全路线，以包容的学校模型强调，促进其各项工作，共同促进儿童更安全的路线去学校宣传组，执法，教育领导和卫生部门之间的相互合作伙伴的协作，以社区为重点的做法。"
+
+#: templates/survey/about.html:56
+msgid "Read more..."
+msgstr "阅读全文..."
+
+#: templates/survey/about.html:58
+msgid ""
+"The Safe Routes to School program is a key component of the Healthy "
+"Transportation Compact and MassDOT’s GreenDOT plan. The Healthy "
+"Transportation compact is a ground-breaking collaboration between the "
+"departments of transportation, health and human services, and energy and "
+"environmental affairs that is designed to promote best practices, increase "
+"efficiency, and achieve positive health outcomes through the coordination of"
+" land use, transportation and public health policy. GreenDOT calls for "
+"MassDOT to incorporate sustainability into all of its activities, from "
+"strategic planning to project design and construction to system operation. "
+"The GreenDOT policy initiative includes greenhouse gas reduction targets "
+"mandated under the Global Warming Solutions Act, signed by Governor Deval "
+"Patrick in 2008."
+msgstr ""
+"安全路线，以学校课程为健康交通结构紧凑， "
+"MassDOT的GreenDOT计划的一个关键组成部分。健康小巧的交通运输是，卫生和人类服务，以及能源和环境事务的部门之间的突破性合作，旨在促进最佳做法，提高效率，并通过土地使用，交通运输的协调取得积极健康结果与公共卫生政策。"
+" "
+"GreenDOT要求MassDOT将可持续性纳入其所有活动，从战略规划到项目的设计和建设，系统操作。该GreenDOT政策措施，包括根据全球变暖解决方案法规定的温室气体减排目标，由州长德瓦尔帕特里克于2008年签订。"
+
+#: templates/survey/about.html:61
+#, fuzzy
+msgid "About the National Center for Safe Routes to School"
+msgstr "关于学校课程马萨诸塞州的安全路线"
+
+#: templates/survey/about.html:63
+msgid ""
+"Established in May 2006, the National Center for Safe Routes to School "
+"assists states and communities in enabling and encouraging children to "
+"safely walk and bicycle to school. The National Center serves as the "
+"information clearinghouse for the federal Safe Routes to School program. The"
+" organization also provides technical support and resources and coordinates "
+"online registration efforts for Walk to School Day and Bike to School Day in"
+" the U.S.A. and facilitates worldwide promotion and participation in "
+"International Walk to School Day. The National Center is part of the "
+"University of North Carolina Highway Safety Research Center with funding "
+"from the U.S. Department of Transportation Federal Highway Administration. "
+"For more information, visit"
+msgstr ""
+"成立于2006年5月国家中心安全路线到学校协助国家和社区在促进和鼓励儿童安全步行和自行车上学。国家中心作为联邦安全路线，以学校课程的信息交流中心。该组织还提供了技术支持和资源，坐标城网上报名的努力上学日和骑车上学日在美国和促进全球范围内推广和参与国际走路上学日。国家中心是北卡罗莱纳州的公路安全研究中心的大学，从运输联邦公路管理局，美国能源部资助的一部分。欲了解更多信息，请访问："
+
+#: templates/survey/batch.html:354
 msgid "home"
 msgstr "家"
 
-#: templates/survey/batch.html:450 templates/survey/form.html:483
+#: templates/survey/batch.html:448 templates/survey/form.html:488
 msgid "Submit Survey"
 msgstr "提交调查"
 
-#: templates/survey/form.html:338
+#: templates/survey/form.html:334
 msgid "Travel to School Survey"
 msgstr "旅游学校调查"
 
-#: templates/survey/form.html:342
+#: templates/survey/form.html:338
 msgid "Dear Parent or Guardian,"
 msgstr "亲爱的家长或监护人，"
 
-#: templates/survey/form.html:346
+#: templates/survey/form.html:342
 msgid ""
 "Your child’s school is conducting a survey to learn how students get to and "
 "from school. This information  will be used to plan safe and healthy "
@@ -129,112 +349,139 @@ msgid ""
 msgstr ""
 "您孩子的学校进行一项调查，以了解学生如何从学校。这些信息将被用于计划为所有学生的安全和健康的运输选择。这项调查将需要不到3分钟就可以完成。所有的反应是自愿和保密的。"
 
-#: templates/survey/form.html:348
+#: templates/survey/form.html:344
 msgid ""
 "If more than one child attends this school, use the \"Add Another Child\" "
 "feature to report additional students. "
 msgstr "如果不止一个孩子就读这所学校，使用“添加另一个孩子”功能，其他学生报告。"
 
-#: templates/survey/form.html:349
+#: templates/survey/form.html:345
+#, fuzzy
 msgid ""
 "If a child's home location or commute is not the same every day, choose the "
-"option that reflects the <em>most common</em> location and travel pattern."
-msgstr ""
-"如果一个孩子的家庭所在地或改判是不是每天都一样，选择的选项反映的\<em\>的最常见的\</ EM "
-"\>位置和交通模式。"
+"option that reflects the most common location and travel pattern."
+msgstr "如果一个孩子的家庭所在地或改判是不是每天都一样，选择的选项反映的\\<em\\>的最常见的\\</ EM \\>位置和交通模式。"
 
-#: templates/survey/form.html:350
+#: templates/survey/form.html:346
 msgid ""
 "If you already completed a paper survey, do not complete this online form. "
 msgstr "如果你已经完成了纸质的调查，不完成这个网上表格。"
 
-#: templates/survey/form.html:351
+#: templates/survey/form.html:347
+#, fuzzy
 msgid ""
 "If you have questions, please contact a school administrator or call Safe "
-"Routes to School at 857-368-8650."
+"Routes to School at 857-368-8638."
 msgstr "如果您有任何疑问，请联系学校管理员或致电857-368-8650学校的安全路线。"
 
-#: templates/survey/form.html:355
+#: templates/survey/form.html:351
 msgid "We appreciate your time and effort!"
 msgstr "我们非常感谢您的时间和精力！"
 
-#: templates/survey/form.html:367
+#: templates/survey/form.html:372
 msgid "What is your approximate home location?"
 msgstr "近似​​归属位置是什么？"
 
-#: templates/survey/form.html:370
+#: templates/survey/form.html:372 templates/survey/form.html.py:430
+msgid "required"
+msgstr "需要"
+
+#: templates/survey/form.html:375
 msgid "Please click the map at an intersection on your street, near your home"
 msgstr "请点击地图在街道上的一个十字路口，你家附近"
 
-#: templates/survey/form.html:375
+#: templates/survey/form.html:380
 msgid "your home"
 msgstr "你的家"
 
-#: templates/survey/form.html:381
+#: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
 msgstr "或者告诉我们离您家最近的路口。"
 
-#: templates/survey/form.html:445
+#: templates/survey/form.html:450
 msgid "Add another child at this school"
 msgstr "添加另一个孩子在这所学校"
 
-#: templates/survey/index.html:54
+#: templates/survey/index.html:56
 msgid ""
 "Would you like to help create safe routes to school for students in your "
 "community?"
 msgstr "你想在你的社区学校为学生创造安全路由？"
 
-#: templates/survey/index.html:55
+#: templates/survey/index.html:57
 msgid ""
 "The survey takes less than 3 minutes and will help your school plan for more"
 " transportation choices. All responses are voluntary and confidential."
 msgstr "调查需要不到3分钟，将有助于更多的运输选择你的学校计划。所有的反应是自愿和保密的。"
 
-#: templates/survey/index.html:58
+#: templates/survey/index.html:60
 msgid "More information about the survey..."
 msgstr "有关统计调查的更多信息..."
 
-#: templates/survey/index.html:61
+#: templates/survey/index.html:63
+#, fuzzy
 msgid ""
 "The Massachusetts Safe Routes to School (SRTS) program partners with schools"
 " throughout the Commonwealth  to help reduce traffic congestion and air "
 "pollution near schools while increasing the health, safety, and physical "
 "activity of students. Evaluating trends in how students and families travel "
-"to school is a key component to building a successful Safe Routes to School "
-"program.  Parent responses to this survey provide valuable information and "
-"help determine how we can improve the environment around the school, target "
-"investments, track progress toward goals and ultimately develop local "
-"programs that benefit students, parents and our communities."
+"to and from school is a key component to building a successful Safe Routes "
+"to School program.  Parent responses to this survey provide valuable "
+"information and help determine how we can improve the environment around the"
+" school, target investments, track progress toward goals and ultimately "
+"develop local programs that benefit students, parents and our communities."
 msgstr ""
 "马萨诸塞州（ "
 "SRTS）学校计划的合作伙伴，整个英联邦，以帮助减少学校附近的交通拥堵和空气污染，同时增加了健康，安全和学生的身体活动与学校的安全路线。评估如何前往学校的学生和家庭的趋势，是建立一个成功的安全路线学校计划的一个关键组成部分。家长响应这项调查提供了宝贵的信息，并帮助确定我们如何能够改善周围环境的学校，确定投资目标，跟踪目标进展，并最终发展本地节目，受益学生，家长和社区。"
 
-#: templates/survey/index.html:63
+#: templates/survey/index.html:65
+#, fuzzy
 msgid ""
 "To learn more about your school’s efforts or to find out how to get "
-"involved, visit MassDOT’s Safe Routes to School Program at <a "
-"href='http://www.commute.com/schools/'>www.commute.com/schools/</a> or call "
-"us at 857-368-8638."
+"involved, visit MassDOT’s Safe Routes to School Program at"
 msgstr ""
-"要了解更多有关学校的努力或找出如何涉足访问MassDOT的“学校课程的\<a "
-"href='http://www.commute.com/schools/'\> www.commute.com /学校的安全路线/ "
-"\< / a\>，或致电857-368-8638 。"
+"要了解更多有关学校的努力或找出如何涉足访问MassDOT的“学校课程的\\<a "
+"href='http://www.commute.com/schools/'\\> www.commute.com /学校的安全路线/ \\< / "
+"a\\>，或致电857-368-8638 。"
 
-#: templates/survey/index.html:67
+#: templates/survey/index.html:65
+msgid "or call us at 857-368-8638."
+msgstr "或致电857-368-8638 。"
+
+#: templates/survey/index.html:69
 msgid "Take the Survey"
 msgstr "参加调查"
 
-#: templates/survey/index.html:72
+#: templates/survey/index.html:74
 msgid "Please select your school district"
 msgstr "请选择您的学区"
 
-#: templates/survey/index.html:82
+#: templates/survey/index.html:75
+msgid "Scroll or start typing your district name"
+msgstr "滚动或开始键入您的地区名"
+
+#: templates/survey/index.html:84
 msgid "Please select your school"
 msgstr "请选择你的学校"
 
-#: templates/survey/index.html:92
+#: templates/survey/index.html:94
 msgid "Open School Survey Form"
 msgstr "开放学校调查表"
+
+#: templates/survey/index.html:96
+msgid ""
+"All Massachusetts schools can use the survey tool free of charge, but only "
+"districts and schools with an active survey underway are listed. Interested "
+"parents should check with their local Safe Routes to School coordinator to "
+"learn about upcoming surveys. School officials who would like to use this "
+"site should begin by registering for an account and contacting Safe Routes "
+"to School at 857-368-8638."
+msgstr ""
+"马萨诸塞州所有学校可以使用的调查工具是免费的，但只地区和学校以积极的调查正在进行中列出。有兴趣的家长应该检查与当地安全路线到学校协调，以了解未来的调查。学校官员，谁愿意使用本网站应通过注册一个帐号，并在857-368-8638联系安全路线到学校开始。"
+
+#: templates/survey/index.html:96
+msgid "My school isn’t on the list"
+msgstr "我的学校不在名单上"
 
 #: templates/survey/thanks.html:6
 msgid "Thank you!"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-09 16:11-0400\n"
+"POT-Creation-Date: 2013-12-09 12:14-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: forms.py:18
+#: forms.py:21
 msgid "Name of your street"
 msgstr "Non lari ou"
 
-#: forms.py:22
+#: forms.py:25
 msgid "Name of nearest cross-street"
 msgstr "Non ki pi pre kwa lari -"
 
-#: forms.py:26
+#: forms.py:29
 msgid "How many vehicles do you have in your household?"
 msgstr "Konbyen machin ou gen nan kay ou a?"
 
-#: forms.py:31
+#: forms.py:34
 msgid "How many people in your household have a driver's license?"
 msgstr "Konbyen moun ki nan kay la genyen yon lisans chofè a?"
 
-#: forms.py:55
+#: forms.py:80
 msgid "What grade is your child in?"
 msgstr "Ki sa ki klas pitit ou a nan ?"
 
-#: forms.py:61
+#: forms.py:86
 msgid "How does your child get TO school on most days?"
 msgstr "Ki jan pitit ou a rive lekòl la sou pi fò nan jou?"
 
-#: forms.py:66
+#: forms.py:91
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
@@ -49,178 +49,94 @@ msgstr ""
 "Anjeneral ou depoze pitit ou sou wout ou nan travay oswa nan destinasyon yon"
 " lòt?"
 
-#: forms.py:72
+#: forms.py:97
 msgid "How does your child get home FROM school on most days?"
 msgstr "Ki jan pitit ou a rive lakay ou soti nan lekòl sou pi fò nan jou?"
 
-#: forms.py:77
+#: forms.py:102
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr ""
 "Anjeneral ou vin chèche pitit ou sou wout ou soti nan travay oswa orijin yon"
 " lòt?"
 
-#: models.py:171
+#: models.py:244
 msgid "Walk"
 msgstr "mache"
 
-#: models.py:172
+#: models.py:245
 msgid "Bike"
 msgstr "bisiklèt"
 
-#: models.py:173
+#: models.py:246
 msgid "School Bus"
 msgstr "Otobis Lekòl"
 
-#: models.py:174
+#: models.py:247
 msgid "Family Vehicle (only children in your family)"
 msgstr "Veyikil Fanmi ( timoun sèlman nan fanmi an)"
 
-#: models.py:175
+#: models.py:248
 msgid "Carpool (with children from other families)"
 msgstr "Vwayaje nan Menm Machin (ak timoun ki soti nan lòt fanmi )"
 
-#: models.py:176
+#: models.py:249
 msgid "Transit (city bus, subway, etc.)"
 msgstr "Transit ( vil la otobis, tren , elatriye)"
 
-#: models.py:177
+#: models.py:250
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "Lòt ( skateboard , scooter , aliye woulèt , elatriye)"
 
-#: models.py:182
+#: models.py:266
 msgid "Yes"
 msgstr "Wi"
 
-#: models.py:183
+#: models.py:267
 msgid "No"
 msgstr "Pa gen"
 
-#: templates/base.html:94
+#: templates/base.html:122
 msgid "About"
 msgstr "Konsènan"
 
-#: templates/base.html:118
-msgid "Questions? Please contact"
+#: templates/base.html:146
+#, fuzzy
+msgid "Questions? "
 msgstr "Kesyon? tanpri kontakte"
+
+#: templates/base.html:146
+msgid "Please click here to email us."
+msgstr "Tanpri klike isit la yo voye yon imèl ba nou."
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
 msgstr "Sou Wout yo Massachusetts Safe nan Pwogram Lekòl"
 
-#: templates/survey/batch.html:356
-msgid "home"
-msgstr "lakay"
+#: templates/survey/about.html:10
+msgid "The Massachusetts"
+msgstr "Massachusetts nan"
 
-#: templates/survey/batch.html:450 templates/survey/form.html:483
-msgid "Submit Survey"
-msgstr "soumèt Sondaj"
-
-#: templates/survey/form.html:338
-msgid "Travel to School Survey"
-msgstr "Vwayaje nan Sondaj Lekòl"
-
-#: templates/survey/form.html:342
-msgid "Dear Parent or Guardian,"
-msgstr "Chè Paran oswa Gadyen ,"
-
-#: templates/survey/form.html:346
+#: templates/survey/about.html:10
 msgid ""
-"Your child’s school is conducting a survey to learn how students get to and "
-"from school. This information  will be used to plan safe and healthy "
-"transportation choices for all students. The survey will take less than 3 "
-"minutes to complete. All responses are voluntary and confidential. "
+"program partners with schools throughout the Commonwealth to help plan and "
+"implement programs that increase student walking and biking activities.  The"
+" program’s goals are to reduce traffic congestion and air pollution near "
+"schools while increasing the health, safety, and physical activity of "
+"students."
 msgstr ""
-"Lekòl pitit ou a ap fè yon sondaj aprann kijan elèv yo ale ak sòti nan lekòl"
-" la. Pral itilize enfòmasyon sa a pou gen plan pou chwa sekirite ak an sante"
-" transpò pou tout elèv. Sondaj la ap pran mwens pase 3 minit. Tout repons yo"
-" se volontè ak konfidansyèl ."
+"patnè pwogram ak lekòl nan tout Commonwealth la ede planifye ak aplike "
+"pwogram ki ogmante mache ak monte bisiklèt elèv aktivite. Objektif pwogram "
+"lan se diminye anbouteyaj nan sikilasyon ak polisyon nan lè a tou pre lekòl "
+"pandan y ap ogmante aktivite a sante, sekirite, ak fizik nan elèv yo."
 
-#: templates/survey/form.html:348
+#: templates/survey/about.html:16
+#, fuzzy
 msgid ""
-"If more than one child attends this school, use the \"Add Another Child\" "
-"feature to report additional students. "
-msgstr ""
-"Si plis pase yon timoun ale lekòl sa a, sèvi ak \" Add yon lòt timoun \" "
-"karakteristik nan fè rapò elèv yo adisyonèl."
-
-#: templates/survey/form.html:349
-msgid ""
-"If a child's home location or commute is not the same every day, choose the "
-"option that reflects the <em>most common</em> location and travel pattern."
-msgstr ""
-"Si kote lakay yon timoun oswa vwayaje se pa menm bagay chak jou a, chwazi "
-"opsyon a ki reflete \<em\> ki pi komen \< la / em \> "
-"kote ak modèl vwayaj."
-
-#: templates/survey/form.html:350
-msgid ""
-"If you already completed a paper survey, do not complete this online form. "
-msgstr "Si ou deja fè yon sondaj sou papye , pa ranpli fòm sa a sou entènèt."
-
-#: templates/survey/form.html:351
-msgid ""
-"If you have questions, please contact a school administrator or call Safe "
-"Routes to School at 857-368-8650."
-msgstr ""
-"Si w gen kesyon , tanpri kontakte yon administratè lekòl oswa rele Wout "
-"Lekòl an Sekirite nan 857-368-8650 ."
-
-#: templates/survey/form.html:355
-msgid "We appreciate your time and effort!"
-msgstr "Nou apresye tan ou ak efò !"
-
-#: templates/survey/form.html:367
-msgid "What is your approximate home location?"
-msgstr "Ki sa ki se kote lakay apwoksimatif ou a?"
-
-#: templates/survey/form.html:370
-msgid "Please click the map at an intersection on your street, near your home"
-msgstr ""
-"Tanpri klike kat jeyografik la nan yon entèseksyon ki nan lari ou a, tou pre"
-" lakay ou"
-
-#: templates/survey/form.html:375
-msgid "your home"
-msgstr "lakay ou"
-
-#: templates/survey/form.html:381
-msgid "...or tell us the street intersection closest to your home."
-msgstr "... oswa di nou entèseksyon an lari ki pi pre lakay ou."
-
-#: templates/survey/form.html:445
-msgid "Add another child at this school"
-msgstr "Ajoute yon lòt pitit nan lekòl sa a"
-
-#: templates/survey/index.html:54
-msgid ""
-"Would you like to help create safe routes to school for students in your "
-"community?"
-msgstr ""
-"Èske ou ta renmen ede kreye wout ki an sekirite nan lekòl la pou elèv ki nan"
-" kominote ou a?"
-
-#: templates/survey/index.html:55
-msgid ""
-"The survey takes less than 3 minutes and will help your school plan for more"
-" transportation choices. All responses are voluntary and confidential."
-msgstr ""
-"Sondaj la pran mwens pase 3 minit epi yo pral ede plan lekòl ou a pou plis "
-"chwa transpò. Tout repons yo se volontè ak konfidansyèl ."
-
-#: templates/survey/index.html:58
-msgid "More information about the survey..."
-msgstr "Plis enfòmasyon sou sondaj la ..."
-
-#: templates/survey/index.html:61
-msgid ""
-"The Massachusetts Safe Routes to School (SRTS) program partners with schools"
-" throughout the Commonwealth  to help reduce traffic congestion and air "
-"pollution near schools while increasing the health, safety, and physical "
-"activity of students. Evaluating trends in how students and families travel "
-"to school is a key component to building a successful Safe Routes to School "
-"program.  Parent responses to this survey provide valuable information and "
-"help determine how we can improve the environment around the school, target "
+"Evaluating trends in how students and families choose to travel to school is"
+" a key component to building a successful Safe Routes to School program. "
+"Parent responses to this survey provide valuable information and help "
+"determine how we can improve the environment around the school, target "
 "investments, track progress toward goals and ultimately develop local "
 "programs that benefit students, parents and our communities."
 msgstr ""
@@ -234,33 +150,425 @@ msgstr ""
 "objektif yo epi finalman devlope pwogram lokal ki benefis elèv yo, paran yo "
 "ak kominote nou yo."
 
+#: templates/survey/about.html:19
+msgid ""
+"Massachusetts Safe Routes to School is a federally funded initiative of the "
+"Massachusetts Department of Transportation (MassDOT).  Over 600 elementary "
+"and middle schools, reaching over 270,000 students in 170 communities "
+"throughout the Commonwealth participate in the program.  Established in "
+"2006, SRTS encourages elementary and middle school students to walk and "
+"bicycle to school safely by implementing the Safe Routes Five E’s: "
+"Education, Encouragement, Enforcement, Evaluation and Engineering."
+msgstr ""
+"Wout Massachusetts Sekirite a lekòl la se yon inisyativ gouvènman federal "
+"finanse nan Massachusetts Department of Transportation ( MassDOT ). Plis "
+"pase 600 primè ak lekòl presegondè lekòl yo, rive sou 270,000 elèv ki nan "
+"170 kominote nan tout Commonwealth la patisipe nan pwogram nan . Etabli an "
+"2006, SRTS ankouraje elèv lekòl primè ak lekòl mwayen yo nan mache ak "
+"bisiklèt nan lekòl san danje pa mete ann aplikasyon Wout la san danje Senk E"
+" a: edikasyon, ankourajman, Ranfòsman , Evalyasyon ak Jeni."
+
+#: templates/survey/about.html:22
+msgid ""
+"Safe Routes to School technical services and program offerings include:"
+msgstr ""
+"Wout ki an sekirite yo Lekòl sèvis teknik ak pwogram lan ofri genyen ladan "
+"yo:"
+
+#: templates/survey/about.html:24
+msgid "SRTS task force formation"
+msgstr "SRTS fòmasyon fòs travay"
+
+#: templates/survey/about.html:25
+msgid "Pedestrian and bicycle safety education and training"
+msgstr "Edikasyon sekirite pyeton ak bisiklèt ak fòmasyon"
+
+#: templates/survey/about.html:26
+msgid "SRTS encouragement activities"
+msgstr "Aktivite ankourajman SRTS"
+
+#: templates/survey/about.html:27
+msgid "SRTS gear and incentive items"
+msgstr "SRTS Kovèti pou ak ankourajman atik"
+
+#: templates/survey/about.html:28
+msgid "Infrastructure assessments and improvements"
+msgstr "Evalyasyon enfrastrikti ak amelyorasyon"
+
+#: templates/survey/about.html:29
+msgid "Middle school PhotoVoice workshop series"
+msgstr "Seri atelye PhotoVoice nan lekòl mwayen"
+
+#: templates/survey/about.html:30
+msgid "Walking School Bus toolkit and development"
+msgstr "Mache zouti otobis lekòl la ak devlopman"
+
+#: templates/survey/about.html:31
+msgid "School walking and biking assessments"
+msgstr "Evalyasyon mache Lekòl la ak monte bisiklèt"
+
+#: templates/survey/about.html:32
+msgid "SRTS program evaluation"
+msgstr "Evalyasyon pwogram SRTS"
+
+#: templates/survey/about.html:33
+msgid "Summer program"
+msgstr "pwogram ete"
+
+#: templates/survey/about.html:38
+msgid "Survey Administration"
+msgstr "Administrasyon sondaj"
+
+#: templates/survey/about.html:41
+msgid ""
+"Safe Routes to School staff will assist partner schools with the "
+"administration of this 3-minute, online survey. Informational and marketing "
+"materials are available for schools to make parents aware of the online "
+"survey tool and provide them with a link to the survey.  Paper versions of "
+"the survey are also available and Safe Routes to School program staff can "
+"assist with the survey collection process.  Both the online and paper "
+"versions are available in multiple languages.  School administrators can "
+"have direct access to survey results and reports through an administrative "
+"login on the website and program staff can also assist with report "
+"generation and the presentation of results."
+msgstr ""
+"Wout ki an sekirite avèk manm pèsonèl lekòl la ap ede lekòl patnè ak "
+"administrasyon an nan sa a 3-minit , sou entènèt sondaj la. Materyèl "
+"enfòmasyon ak maketing ki disponib pou lekòl yo fè paran yo okouran de zouti"
+" nan sondaj sou entènèt ak founi yo ak yon ap mennen nan sondaj la. Vèsyon "
+"papye nan sondaj la yo disponib tou ak Wout Sekirite a anplwaye pwogram "
+"Lekòl kapab ede avèk pwosesis la koleksyon sondaj la. Tou de sou entènèt la "
+"ak papye vèsyon yo disponib nan plizyè lang. Administratè lekòl yo ka gen "
+"aksè dirèk ak sondaj rezilta yo ak rapò nan yon login administratif sou sit "
+"entènèt la ak anplwaye pwogram kapab tou ede ak rapò moun k'ap viv koulye ak"
+" prezantasyon an nan rezilta yo."
+
+#: templates/survey/about.html:44
+msgid "Survey Results"
+msgstr "Rezilta sondaj sou"
+
+#: templates/survey/about.html:46
+msgid ""
+"School and district level reports include a summary of the results "
+"accompanied by maps, tables, and charts. The reports are available to school"
+" and community officials."
+msgstr ""
+"Lekòl la ak distri a tou rapò genyen ladan yo yon rezime rezilta yo te "
+"akonpaye pa kat , tab, ak graphiques. Rapò sa yo ki disponib nan lekòl yo ak"
+" otorite yo nan kominote a."
+
+#: templates/survey/about.html:46
+msgid "For more information, please contact MassDOT’s"
+msgstr "Pou plis enfòmasyon , tanpri kontakte MassDOT a"
+
+#: templates/survey/about.html:46
+msgid "program at 857-368-8638."
+msgstr "pwogram nan 857-368-8638 ."
+
+#: templates/survey/about.html:48
+msgid "Survey Development"
+msgstr "Devlopman sondaj"
+
+#: templates/survey/about.html:50
+msgid ""
+"The original design and development of the Safe Routes to School survey tool"
+" was a collaborative effort of"
+msgstr ""
+"Konsepsyon orijinal la ak devlopman nan Wout la san danjezouti sondaj Lekòl "
+"te yon efò tèt ansanm ant"
+
+#: templates/survey/about.html:50
+msgid "and"
+msgstr "ak"
+
+#: templates/survey/about.html:50
+msgid "with support from the"
+msgstr "ak sipò nan men la"
+
+#: templates/survey/about.html:50
+msgid "In 2012, MAPC and WalkBoston published"
+msgstr "An 2012, MAPC ak WalkBoston pibliye"
+
+#: templates/survey/about.html:50
+msgid ""
+"a report assessing the walkability of more than 800 schools in Metro Boston "
+"and describing the results of surveys received from 4,500 students in seven "
+"school districts. To read the report or learn more about the analysis, visit"
+msgstr ""
+"yon rapò evalye walkability a nan plis pase 800 lekòl yo nan Metro Boston "
+"epi ki dekri rezilta yo de sondaj te resevwa nan men 4,500 elèv yo nan sèt "
+"distri lekòl la. Pou li rapò a oswa aprann plis sou analiz, vizit la"
+
+#: templates/survey/about.html:52
+msgid "About MassDOT"
+msgstr "sou MassDOT"
+
+#: templates/survey/about.html:54
+msgid ""
+"The Massachusetts Department of Transportation (MassDOT) operates the "
+"Commonwealth’s Safe Routes to School program with funds from the Federal "
+"Highway Division. The Massachusetts Safe Routes to School model of "
+"inclusiveness emphasizes a collaborative, community-focused approach that "
+"fosters mutual partnerships between advocacy groups, law enforcement, "
+"education leaders and public health departments which all work together to "
+"promote safer routes for children to get to school."
+msgstr ""
+"Massachusetts Department of Transportation ( MassDOT ) opere Wout Safe "
+"Commonwealth la a nan pwogram lekòl yo ki gen finansman ki sòti nan Divizyon"
+" an Federal Highway. Wout yo nan Massachusetts ki san danje nan modèl Lekòl "
+"nan ègzostivite mete aksan sou yon , apwòch ki konsantre sou kominotè pou "
+"kolaborasyon ki ankouraje patenarya mityèl ant gwoup defann dwa moun, ki fè "
+"respekte lalwa , lidè edikasyon ak depatman sante piblik kote tout travay "
+"ansanm ankouraje pi an sekirite wout pou timoun pou li ale nan lekòl la."
+
+#: templates/survey/about.html:56
+msgid "Read more..."
+msgstr "Li plis ..."
+
+#: templates/survey/about.html:58
+msgid ""
+"The Safe Routes to School program is a key component of the Healthy "
+"Transportation Compact and MassDOT’s GreenDOT plan. The Healthy "
+"Transportation compact is a ground-breaking collaboration between the "
+"departments of transportation, health and human services, and energy and "
+"environmental affairs that is designed to promote best practices, increase "
+"efficiency, and achieve positive health outcomes through the coordination of"
+" land use, transportation and public health policy. GreenDOT calls for "
+"MassDOT to incorporate sustainability into all of its activities, from "
+"strategic planning to project design and construction to system operation. "
+"The GreenDOT policy initiative includes greenhouse gas reduction targets "
+"mandated under the Global Warming Solutions Act, signed by Governor Deval "
+"Patrick in 2008."
+msgstr ""
+"Wout la san danje nan pwogram lekòl la se yon eleman kle nan Kontra enfòmèl "
+"ant Transpòtasyon Healthy ak GreenDOT plan MassDOT la. Healthy Transpò "
+"kontra enfòmèl ant a se yon kolaborasyon tè -kase ant depatman yo nan "
+"transpò, sèvis sante ak sèvis imen, ak enèji ak anviwònman an zafè ki fèt "
+"ankouraje pi bon pratik , ogmante efikasite a, epi reyalize rezilta sante "
+"pozitif nan kowòdinasyon an nan sèvi ak tè , transpò ak politik sante "
+"piblik. GreenDOT apèl pou MassDOT yo entegre dirab nan tout nan aktivite li "
+"yo , ki soti nan planifikasyon estratejik nan konsepsyon pwojè ak "
+"konstriksyon nan sistèm operasyon. Inisyativ sa a politik GreenDOT gen ladan"
+" objektif rediksyon gaz émissions obligatwa anba Global Solutions planèt la "
+"Lwa a, ki te siyen pa Gouvènè Deval Patrick an 2008."
+
+#: templates/survey/about.html:61
+#, fuzzy
+msgid "About the National Center for Safe Routes to School"
+msgstr "Sou Wout yo Massachusetts Safe nan Pwogram Lekòl"
+
+#: templates/survey/about.html:63
+msgid ""
+"Established in May 2006, the National Center for Safe Routes to School "
+"assists states and communities in enabling and encouraging children to "
+"safely walk and bicycle to school. The National Center serves as the "
+"information clearinghouse for the federal Safe Routes to School program. The"
+" organization also provides technical support and resources and coordinates "
+"online registration efforts for Walk to School Day and Bike to School Day in"
+" the U.S.A. and facilitates worldwide promotion and participation in "
+"International Walk to School Day. The National Center is part of the "
+"University of North Carolina Highway Safety Research Center with funding "
+"from the U.S. Department of Transportation Federal Highway Administration. "
+"For more information, visit"
+msgstr ""
+"Etabli nan mwa me 2006, Sant Nasyonal pou Wout Sekirite a Lekòl ede eta yo "
+"ak kominote yo nan pèmèt e ankouraje timoun yo san danje mache ak bisiklèt "
+"nan lekòl la. Sant Nasyonal sèvi kòm depatman an enfòmasyon pou Wout federal"
+" yo san danje nan pwogram la. Òganizasyon a tou bay sipò teknik ak resous ak"
+" kowòdone efò enskripsyon sou entènèt pou mache ale nan jou lekòl ak "
+"bisiklèt nan Jou Lekòl nan USA a ak fasilite pwomosyon atravè lemond ak "
+"patisipasyon nan Entènasyonal mache ale nan jou lekòl. Sant Nasyonal se yon "
+"pati nan Inivèsite a nan North Carolina sekirite otowout Research Center ak "
+"finansman nan men US Department of Transportation Federal Highway "
+"Administration . Pou plis enfòmasyon, vizite"
+
+#: templates/survey/batch.html:354
+msgid "home"
+msgstr "lakay"
+
+#: templates/survey/batch.html:448 templates/survey/form.html:488
+msgid "Submit Survey"
+msgstr "soumèt Sondaj"
+
+#: templates/survey/form.html:334
+msgid "Travel to School Survey"
+msgstr "Vwayaje nan Sondaj Lekòl"
+
+#: templates/survey/form.html:338
+msgid "Dear Parent or Guardian,"
+msgstr "Chè Paran oswa Gadyen ,"
+
+#: templates/survey/form.html:342
+msgid ""
+"Your child’s school is conducting a survey to learn how students get to and "
+"from school. This information  will be used to plan safe and healthy "
+"transportation choices for all students. The survey will take less than 3 "
+"minutes to complete. All responses are voluntary and confidential. "
+msgstr ""
+"Lekòl pitit ou a ap fè yon sondaj aprann kijan elèv yo ale ak sòti nan lekòl"
+" la. Pral itilize enfòmasyon sa a pou gen plan pou chwa sekirite ak an sante"
+" transpò pou tout elèv. Sondaj la ap pran mwens pase 3 minit. Tout repons yo"
+" se volontè ak konfidansyèl ."
+
+#: templates/survey/form.html:344
+msgid ""
+"If more than one child attends this school, use the \"Add Another Child\" "
+"feature to report additional students. "
+msgstr ""
+"Si plis pase yon timoun ale lekòl sa a, sèvi ak \" Add yon lòt timoun \" "
+"karakteristik nan fè rapò elèv yo adisyonèl."
+
+#: templates/survey/form.html:345
+#, fuzzy
+msgid ""
+"If a child's home location or commute is not the same every day, choose the "
+"option that reflects the most common location and travel pattern."
+msgstr ""
+"Si kote lakay yon timoun oswa vwayaje se pa menm bagay chak jou a, chwazi "
+"opsyon a ki reflete \\<em\\> ki pi komen \\< la / em \\> kote ak modèl "
+"vwayaj."
+
+#: templates/survey/form.html:346
+msgid ""
+"If you already completed a paper survey, do not complete this online form. "
+msgstr "Si ou deja fè yon sondaj sou papye , pa ranpli fòm sa a sou entènèt."
+
+#: templates/survey/form.html:347
+#, fuzzy
+msgid ""
+"If you have questions, please contact a school administrator or call Safe "
+"Routes to School at 857-368-8638."
+msgstr ""
+"Si w gen kesyon , tanpri kontakte yon administratè lekòl oswa rele Wout "
+"Lekòl an Sekirite nan 857-368-8650 ."
+
+#: templates/survey/form.html:351
+msgid "We appreciate your time and effort!"
+msgstr "Nou apresye tan ou ak efò !"
+
+#: templates/survey/form.html:372
+msgid "What is your approximate home location?"
+msgstr "Ki sa ki se kote lakay apwoksimatif ou a?"
+
+#: templates/survey/form.html:372 templates/survey/form.html.py:430
+msgid "required"
+msgstr "mande"
+
+#: templates/survey/form.html:375
+msgid "Please click the map at an intersection on your street, near your home"
+msgstr ""
+"Tanpri klike kat jeyografik la nan yon entèseksyon ki nan lari ou a, tou pre"
+" lakay ou"
+
+#: templates/survey/form.html:380
+msgid "your home"
+msgstr "lakay ou"
+
+#: templates/survey/form.html:386
+msgid "...or tell us the street intersection closest to your home."
+msgstr "... oswa di nou entèseksyon an lari ki pi pre lakay ou."
+
+#: templates/survey/form.html:450
+msgid "Add another child at this school"
+msgstr "Ajoute yon lòt pitit nan lekòl sa a"
+
+#: templates/survey/index.html:56
+msgid ""
+"Would you like to help create safe routes to school for students in your "
+"community?"
+msgstr ""
+"Èske ou ta renmen ede kreye wout ki an sekirite nan lekòl la pou elèv ki nan"
+" kominote ou a?"
+
+#: templates/survey/index.html:57
+msgid ""
+"The survey takes less than 3 minutes and will help your school plan for more"
+" transportation choices. All responses are voluntary and confidential."
+msgstr ""
+"Sondaj la pran mwens pase 3 minit epi yo pral ede plan lekòl ou a pou plis "
+"chwa transpò. Tout repons yo se volontè ak konfidansyèl ."
+
+#: templates/survey/index.html:60
+msgid "More information about the survey..."
+msgstr "Plis enfòmasyon sou sondaj la ..."
+
 #: templates/survey/index.html:63
+#, fuzzy
+msgid ""
+"The Massachusetts Safe Routes to School (SRTS) program partners with schools"
+" throughout the Commonwealth  to help reduce traffic congestion and air "
+"pollution near schools while increasing the health, safety, and physical "
+"activity of students. Evaluating trends in how students and families travel "
+"to and from school is a key component to building a successful Safe Routes "
+"to School program.  Parent responses to this survey provide valuable "
+"information and help determine how we can improve the environment around the"
+" school, target investments, track progress toward goals and ultimately "
+"develop local programs that benefit students, parents and our communities."
+msgstr ""
+"Massachusetts Senesòf Rout Nan Lekòl la ( SRTS ) patnè pwogram ak lekòl nan "
+"tout Commonwealth la ede redwi anbouteyaj nan sikilasyon ak polisyon nan lè "
+"a tou pre lekòl pandan y ap ogmante sante, sekirite , ak aktivite fizik nan "
+"elèv yo. Evalye tandans nan ki jan elèv yo ak fanmi vwayaje nan lekòl se yon"
+" eleman kle nan bati yon siksè Wout Sekirite nan pwogram lekòl la. Repons "
+"Parent to sondaj sa a bay bonjan enfòmasyon ak ede detèmine kijan nou ka "
+"amelyore anviwònman an alantou lekòl la , envestisman sib, pwogrè tras nan "
+"objektif yo epi finalman devlope pwogram lokal ki benefis elèv yo, paran yo "
+"ak kominote nou yo."
+
+#: templates/survey/index.html:65
+#, fuzzy
 msgid ""
 "To learn more about your school’s efforts or to find out how to get "
-"involved, visit MassDOT’s Safe Routes to School Program at <a "
-"href='http://www.commute.com/schools/'>www.commute.com/schools/</a> or call "
-"us at 857-368-8638."
+"involved, visit MassDOT’s Safe Routes to School Program at"
 msgstr ""
 "Pou aprann plis sou efò lekòl pitit ou a oswa jwenn konnen kouman ou kapab "
-"patisipe , vizite Wout Sekirite MassDOT a nan Pwogram Lekòl nan \<a "
-"www.commute.com href='http://www.commute.com/schools/'\> / schools / "
-"\</ a\> oswa rele nou nan 857-368-8638 ."
+"patisipe , vizite Wout Sekirite MassDOT a nan Pwogram Lekòl nan \\<a "
+"www.commute.com href='http://www.commute.com/schools/'\\> / schools / \\</ "
+"a\\> oswa rele nou nan 857-368-8638 ."
 
-#: templates/survey/index.html:67
+#: templates/survey/index.html:65
+msgid "or call us at 857-368-8638."
+msgstr "oswa rele nou nan 857-368-8638 ."
+
+#: templates/survey/index.html:69
 msgid "Take the Survey"
 msgstr "Pran sondaj la"
 
-#: templates/survey/index.html:72
+#: templates/survey/index.html:74
 msgid "Please select your school district"
 msgstr "Tanpri chwazi distri lekòl ou an"
 
-#: templates/survey/index.html:82
+#: templates/survey/index.html:75
+msgid "Scroll or start typing your district name"
+msgstr "Scroll oswa kòmanse sezisman Non distri ou"
+
+#: templates/survey/index.html:84
 msgid "Please select your school"
 msgstr "Tanpri chwazi lekòl ou a"
 
-#: templates/survey/index.html:92
+#: templates/survey/index.html:94
 msgid "Open School Survey Form"
 msgstr "Open School Survey Fòm"
+
+#: templates/survey/index.html:96
+msgid ""
+"All Massachusetts schools can use the survey tool free of charge, but only "
+"districts and schools with an active survey underway are listed. Interested "
+"parents should check with their local Safe Routes to School coordinator to "
+"learn about upcoming surveys. School officials who would like to use this "
+"site should begin by registering for an account and contacting Safe Routes "
+"to School at 857-368-8638."
+msgstr ""
+"Tout lekòl yo nan Massachusetts ka sèvi ak zouti nan sondaj yo gratis , men "
+"se sèlman distri ak lekòl ki gen yon sondaj aktif sou pye yo ki nan lis . "
+"Paran ki enterese dwe tcheke avèk Wout Safe lokal yo avèk koòdonatè Lekòl yo"
+" aprann sou sondaj k ap vini . Ofisyèl lekòl yo ki ta renmen itilize sit sa "
+"a ta dwe kòmanse pa enskri pou yon kont ak kontakte Wout Sekirite a Lekòl "
+"nan 857-368-8638 ."
+
+#: templates/survey/index.html:96
+msgid "My school isn’t on the list"
+msgstr "Lekòl mwen an se pa t sou lis la"
 
 #: templates/survey/thanks.html:6
 msgid "Thank you!"

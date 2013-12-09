@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-09 16:11-0400\n"
+"POT-Creation-Date: 2013-12-09 12:14-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,32 +18,32 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms.py:18
+#: forms.py:21
 msgid "Name of your street"
 msgstr "Nom de votre rue"
 
-#: forms.py:22
+#: forms.py:25
 msgid "Name of nearest cross-street"
 msgstr "Noms des stations rue transversale"
 
-#: forms.py:26
+#: forms.py:29
 msgid "How many vehicles do you have in your household?"
 msgstr "Combien de véhicules avez-vous dans votre ménage?"
 
-#: forms.py:31
+#: forms.py:34
 msgid "How many people in your household have a driver's license?"
 msgstr ""
 "Combien de personnes dans votre ménage possèdent un permis de conduire?"
 
-#: forms.py:55
+#: forms.py:80
 msgid "What grade is your child in?"
 msgstr "En quelle année votre enfant est -il?"
 
-#: forms.py:61
+#: forms.py:86
 msgid "How does your child get TO school on most days?"
 msgstr "Comment votre enfant aller à l'école presque tous les jours ?"
 
-#: forms.py:66
+#: forms.py:91
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
@@ -51,183 +51,97 @@ msgstr ""
 "Avez- vous déposez habituellement votre enfant sur ​​le chemin du travail ou"
 " d'une autre destination?"
 
-#: forms.py:72
+#: forms.py:97
 msgid "How does your child get home FROM school on most days?"
 msgstr "Comment votre enfant rentre de l'école presque tous les jours ?"
 
-#: forms.py:77
+#: forms.py:102
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr ""
 "Choisissez-vous habituellement votre enfant sur ​​le chemin du travail ou "
 "d'une autre origine?"
 
-#: models.py:171
+#: models.py:244
 msgid "Walk"
 msgstr "marchez"
 
-#: models.py:172
+#: models.py:245
 msgid "Bike"
 msgstr "Bike"
 
-#: models.py:173
+#: models.py:246
 msgid "School Bus"
 msgstr "Autobus scolaire"
 
-#: models.py:174
+#: models.py:247
 msgid "Family Vehicle (only children in your family)"
 msgstr "Véhicule familial ( seuls les enfants dans votre famille )"
 
-#: models.py:175
+#: models.py:248
 msgid "Carpool (with children from other families)"
 msgstr "Covoiturage ( avec des enfants d'autres familles )"
 
-#: models.py:176
+#: models.py:249
 msgid "Transit (city bus, subway, etc.)"
 msgstr "Transit ( bus de ville , métro, etc )"
 
-#: models.py:177
+#: models.py:250
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr ""
 "Autre ( planche à roulettes, trottinette , patins à roues alignées , etc )"
 
-#: models.py:182
+#: models.py:266
 msgid "Yes"
 msgstr "Oui"
 
-#: models.py:183
+#: models.py:267
 msgid "No"
 msgstr "Non"
 
-#: templates/base.html:94
+#: templates/base.html:122
 msgid "About"
 msgstr "sur"
 
-#: templates/base.html:118
-msgid "Questions? Please contact"
+#: templates/base.html:146
+#, fuzzy
+msgid "Questions? "
 msgstr "Questions? S'il vous plaît contacter"
+
+#: templates/base.html:146
+msgid "Please click here to email us."
+msgstr "S'il vous plaît , cliquez ici pour nous envoyer."
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
 msgstr "A propos du Massachusetts Safe Routes to School Program"
 
-#: templates/survey/batch.html:356
-msgid "home"
-msgstr "maison"
+#: templates/survey/about.html:10
+msgid "The Massachusetts"
+msgstr "le Massachusetts"
 
-#: templates/survey/batch.html:450 templates/survey/form.html:483
-msgid "Submit Survey"
-msgstr "soumettre Enquête"
-
-#: templates/survey/form.html:338
-msgid "Travel to School Survey"
-msgstr "Voyage à School Survey"
-
-#: templates/survey/form.html:342
-msgid "Dear Parent or Guardian,"
-msgstr "Cher parent ou tuteur ,"
-
-#: templates/survey/form.html:346
+#: templates/survey/about.html:10
 msgid ""
-"Your child’s school is conducting a survey to learn how students get to and "
-"from school. This information  will be used to plan safe and healthy "
-"transportation choices for all students. The survey will take less than 3 "
-"minutes to complete. All responses are voluntary and confidential. "
+"program partners with schools throughout the Commonwealth to help plan and "
+"implement programs that increase student walking and biking activities.  The"
+" program’s goals are to reduce traffic congestion and air pollution near "
+"schools while increasing the health, safety, and physical activity of "
+"students."
 msgstr ""
-"L'école de votre enfant mène une enquête pour savoir comment les élèves "
-"apprennent à l'école. Cette information sera utilisée pour planifier des "
-"choix de transport sûres et saines pour tous les élèves. L'enquête prendra "
-"moins de 3 minutes. Toutes les réponses sont volontaires et confidentiels ."
-
-#: templates/survey/form.html:348
-msgid ""
-"If more than one child attends this school, use the \"Add Another Child\" "
-"feature to report additional students. "
-msgstr ""
-"Si plus d'un enfant fréquente cette école , utilisez la fonction \" Ajouter "
-"un autre enfant» de déclarer étudiants supplémentaires ."
-
-#: templates/survey/form.html:349
-msgid ""
-"If a child's home location or commute is not the same every day, choose the "
-"option that reflects the <em>most common</em> location and travel pattern."
-msgstr ""
-"Si la maison de l'emplacement ou se rendre d'un enfant n'est pas la même "
-"chose chaque jour , choisissez l' option qui reflète la \<em\> "
-"plus courante \</ em\> emplacement et le mode de voyage ."
-
-#: templates/survey/form.html:350
-msgid ""
-"If you already completed a paper survey, do not complete this online form. "
-msgstr ""
-"Si vous avez déjà rempli un questionnaire sur papier , ne pas remplir ce "
-"formulaire en ligne."
-
-#: templates/survey/form.html:351
-msgid ""
-"If you have questions, please contact a school administrator or call Safe "
-"Routes to School at 857-368-8650."
-msgstr ""
-"Si vous avez des questions, s'il vous plaît contacter un administrateur de "
-"l'école ou appelez Safe Routes to School au 857-368-8650 ."
-
-#: templates/survey/form.html:355
-msgid "We appreciate your time and effort!"
-msgstr "Nous vous remercions de votre temps et d'efforts !"
-
-#: templates/survey/form.html:367
-msgid "What is your approximate home location?"
-msgstr "Quelle est votre position approximative de la maison?"
-
-#: templates/survey/form.html:370
-msgid "Please click the map at an intersection on your street, near your home"
-msgstr ""
-"S'il vous plaît cliquer sur la carte à une intersection sur votre rue , près"
-" de chez vous"
-
-#: templates/survey/form.html:375
-msgid "your home"
-msgstr "votre maison"
-
-#: templates/survey/form.html:381
-msgid "...or tell us the street intersection closest to your home."
-msgstr ""
-"... ou nous dire l'intersection de la rue la plus proche de votre domicile."
-
-#: templates/survey/form.html:445
-msgid "Add another child at this school"
-msgstr "Ajouter un autre enfant à cette école"
-
-#: templates/survey/index.html:54
-msgid ""
-"Would you like to help create safe routes to school for students in your "
-"community?"
-msgstr ""
-"Voulez-vous aider à créer des routes sécuritaires à l'école pour les élèves "
-"de votre communauté ?"
-
-#: templates/survey/index.html:55
-msgid ""
-"The survey takes less than 3 minutes and will help your school plan for more"
-" transportation choices. All responses are voluntary and confidential."
-msgstr ""
-"Le sondage prend moins de 3 minutes et aidera votre plan scolaire pour plus "
-"de choix de transport. Toutes les réponses sont volontaires et confidentiels"
+"partenaires du programme avec les écoles de tout le Commonwealth à aider à "
+"planifier et mettre en œuvre des programmes qui améliorent les activités de "
+"marche de l'étudiant et de vélo . Les objectifs du programme sont de réduire"
+" la congestion routière et la pollution de l' air à proximité des écoles , "
+"tout en augmentant la santé, la sécurité , et l'activité physique des élèves"
 " ."
 
-#: templates/survey/index.html:58
-msgid "More information about the survey..."
-msgstr "Plus d'informations sur l'enquête ..."
-
-#: templates/survey/index.html:61
+#: templates/survey/about.html:16
+#, fuzzy
 msgid ""
-"The Massachusetts Safe Routes to School (SRTS) program partners with schools"
-" throughout the Commonwealth  to help reduce traffic congestion and air "
-"pollution near schools while increasing the health, safety, and physical "
-"activity of students. Evaluating trends in how students and families travel "
-"to school is a key component to building a successful Safe Routes to School "
-"program.  Parent responses to this survey provide valuable information and "
-"help determine how we can improve the environment around the school, target "
+"Evaluating trends in how students and families choose to travel to school is"
+" a key component to building a successful Safe Routes to School program. "
+"Parent responses to this survey provide valuable information and help "
+"determine how we can improve the environment around the school, target "
 "investments, track progress toward goals and ultimately develop local "
 "programs that benefit students, parents and our communities."
 msgstr ""
@@ -244,33 +158,443 @@ msgstr ""
 "programmes locaux que les étudiants de prestations , des parents et de nos "
 "collectivités ."
 
+#: templates/survey/about.html:19
+msgid ""
+"Massachusetts Safe Routes to School is a federally funded initiative of the "
+"Massachusetts Department of Transportation (MassDOT).  Over 600 elementary "
+"and middle schools, reaching over 270,000 students in 170 communities "
+"throughout the Commonwealth participate in the program.  Established in "
+"2006, SRTS encourages elementary and middle school students to walk and "
+"bicycle to school safely by implementing the Safe Routes Five E’s: "
+"Education, Encouragement, Enforcement, Evaluation and Engineering."
+msgstr ""
+"Massachusetts Safe Routes to School est une initiative financée par le "
+"gouvernement fédéral du ministère des Transports du Massachusetts ( MassDOT "
+") . Plus de 600 écoles primaires et secondaires , atteignant plus de 270 000"
+" élèves dans 170 communautés à travers le Commonwealth participent au "
+"programme . Créé en 2006 , SRTS encourage les élèves des écoles élémentaires"
+" et intermédiaires à pied et à vélo à l'école en toute sécurité par la mise "
+"en œuvre Safe Routes Cinq E de : l'éducation , l'encouragement , de "
+"l'exécution , de l'évaluation et de l'ingénierie ."
+
+#: templates/survey/about.html:22
+msgid ""
+"Safe Routes to School technical services and program offerings include:"
+msgstr ""
+"Safe Routes to School services techniques et les programmes offerts "
+"comprennent :"
+
+#: templates/survey/about.html:24
+msgid "SRTS task force formation"
+msgstr "Formation du groupe de travail SRTS"
+
+#: templates/survey/about.html:25
+msgid "Pedestrian and bicycle safety education and training"
+msgstr "L'éducation et de la formation sécurité des piétons et vélos"
+
+#: templates/survey/about.html:26
+msgid "SRTS encouragement activities"
+msgstr "Activités d'encouragement SRTS"
+
+#: templates/survey/about.html:27
+msgid "SRTS gear and incentive items"
+msgstr "Engrenages SRTS et incitation articles"
+
+#: templates/survey/about.html:28
+msgid "Infrastructure assessments and improvements"
+msgstr "Évaluations et des améliorations d'infrastructure"
+
+#: templates/survey/about.html:29
+msgid "Middle school PhotoVoice workshop series"
+msgstr "Série d'ateliers de PhotoVoice de collège"
+
+#: templates/survey/about.html:30
+msgid "Walking School Bus toolkit and development"
+msgstr "Marcher boîte à outils et le développement d'autobus scolaire"
+
+#: templates/survey/about.html:31
+msgid "School walking and biking assessments"
+msgstr "Évaluations de la marche et du vélo école"
+
+#: templates/survey/about.html:32
+msgid "SRTS program evaluation"
+msgstr "L'évaluation du programme SRTS"
+
+#: templates/survey/about.html:33
+msgid "Summer program"
+msgstr "Programme d'été"
+
+#: templates/survey/about.html:38
+msgid "Survey Administration"
+msgstr "Administration du sondage"
+
+#: templates/survey/about.html:41
+msgid ""
+"Safe Routes to School staff will assist partner schools with the "
+"administration of this 3-minute, online survey. Informational and marketing "
+"materials are available for schools to make parents aware of the online "
+"survey tool and provide them with a link to the survey.  Paper versions of "
+"the survey are also available and Safe Routes to School program staff can "
+"assist with the survey collection process.  Both the online and paper "
+"versions are available in multiple languages.  School administrators can "
+"have direct access to survey results and reports through an administrative "
+"login on the website and program staff can also assist with report "
+"generation and the presentation of results."
+msgstr ""
+"Safe Routes to personnel de l'école aideront les écoles partenaires avec "
+"l'administration de cette 3 minutes , sondage en ligne. Du matériel "
+"d'information et de marketing sont disponibles pour les écoles pour faire "
+"prendre conscience aux parents de l'outil de sondage en ligne et de leur "
+"fournir un lien vers le sondage . Les versions papier de l'enquête sont "
+"également disponibles et Safe Routes to personnel du programme scolaire "
+"peuvent aider dans le processus de collecte de l'enquête. Les deux versions "
+"en ligne et papier sont disponibles en plusieurs langues . Les "
+"administrateurs scolaires peuvent avoir un accès direct aux résultats de "
+"l'enquête et des rapports à travers une connexion d'administration sur le "
+"site et le personnel du programme peut aussi aider à la génération de "
+"rapports et la présentation des résultats ."
+
+#: templates/survey/about.html:44
+msgid "Survey Results"
+msgstr "Résultats de l'enquête"
+
+#: templates/survey/about.html:46
+msgid ""
+"School and district level reports include a summary of the results "
+"accompanied by maps, tables, and charts. The reports are available to school"
+" and community officials."
+msgstr ""
+"Les bulletins scolaires et de district comprennent un résumé des résultats "
+"accompagnés de cartes, de tableaux et de graphiques . Les rapports sont "
+"disponibles à l'école et les responsables communautaires ."
+
+#: templates/survey/about.html:46
+msgid "For more information, please contact MassDOT’s"
+msgstr "Pour plus d'informations , s'il vous plaît contacter MassDOT de"
+
+#: templates/survey/about.html:46
+msgid "program at 857-368-8638."
+msgstr "programme au 857-368-8638 ."
+
+#: templates/survey/about.html:48
+msgid "Survey Development"
+msgstr "Développement de l'enquête"
+
+#: templates/survey/about.html:50
+msgid ""
+"The original design and development of the Safe Routes to School survey tool"
+" was a collaborative effort of"
+msgstr ""
+"La conception et le développement initial des Safe Routes to outil de "
+"sondage de l'école a été un effort de collaboration de"
+
+#: templates/survey/about.html:50
+msgid "and"
+msgstr "et"
+
+#: templates/survey/about.html:50
+msgid "with support from the"
+msgstr "avec le soutien de la"
+
+#: templates/survey/about.html:50
+msgid "In 2012, MAPC and WalkBoston published"
+msgstr "En 2012 , CPAM et WalkBoston publiés"
+
+#: templates/survey/about.html:50
+msgid ""
+"a report assessing the walkability of more than 800 schools in Metro Boston "
+"and describing the results of surveys received from 4,500 students in seven "
+"school districts. To read the report or learn more about the analysis, visit"
+msgstr ""
+"un rapport évaluant le potentiel piétonnier de plus de 800 écoles dans la "
+"région métropolitaine de Boston et de décrire les résultats des enquêtes de "
+"4500 étudiants a reçu dans sept districts scolaires . Pour lire le rapport "
+"ou en savoir plus sur l'analyse , visite"
+
+#: templates/survey/about.html:52
+msgid "About MassDOT"
+msgstr "À propos de MassDOT"
+
+#: templates/survey/about.html:54
+msgid ""
+"The Massachusetts Department of Transportation (MassDOT) operates the "
+"Commonwealth’s Safe Routes to School program with funds from the Federal "
+"Highway Division. The Massachusetts Safe Routes to School model of "
+"inclusiveness emphasizes a collaborative, community-focused approach that "
+"fosters mutual partnerships between advocacy groups, law enforcement, "
+"education leaders and public health departments which all work together to "
+"promote safer routes for children to get to school."
+msgstr ""
+"Le ministère des Transports du Massachusetts ( MassDOT ) fonctionne Safe "
+"Routes du Commonwealth à programme scolaire avec des fonds de la Division de"
+" la Federal Highway . Les Routes Massachusetts sécuritaire pour modèle "
+"d'inclusion scolaire souligne une approche collaborative , axée sur la "
+"collectivité qui favorise les partenariats mutuels entre les groupes de "
+"défense des droits , l'application de la loi , responsables de l'éducation "
+"et les services de santé publique qui travaillent tous ensemble pour "
+"promouvoir les itinéraires sûrs pour les enfants à aller à l'école ."
+
+#: templates/survey/about.html:56
+msgid "Read more..."
+msgstr "Lire la suite ..."
+
+#: templates/survey/about.html:58
+msgid ""
+"The Safe Routes to School program is a key component of the Healthy "
+"Transportation Compact and MassDOT’s GreenDOT plan. The Healthy "
+"Transportation compact is a ground-breaking collaboration between the "
+"departments of transportation, health and human services, and energy and "
+"environmental affairs that is designed to promote best practices, increase "
+"efficiency, and achieve positive health outcomes through the coordination of"
+" land use, transportation and public health policy. GreenDOT calls for "
+"MassDOT to incorporate sustainability into all of its activities, from "
+"strategic planning to project design and construction to system operation. "
+"The GreenDOT policy initiative includes greenhouse gas reduction targets "
+"mandated under the Global Warming Solutions Act, signed by Governor Deval "
+"Patrick in 2008."
+msgstr ""
+"Les programme Safe Routes to School est un élément clé de la santé Compact "
+"transports et le plan GreenDot de MassDOT . La santé Transport compact est "
+"une collaboration novatrice entre les ministères des transports , de la "
+"santé et des services sociaux , et de l'énergie et de l'environnement des "
+"affaires qui est conçu pour promouvoir les meilleures pratiques , "
+"d'accroître l'efficacité , et d'obtenir des résultats positifs pour la santé"
+" grâce à la coordination de l'utilisation des terres , le transport et de la"
+" politique de santé publique . GreenDot appelle à MassDOT d'intégrer le "
+"développement durable dans toutes ses activités , de la planification "
+"stratégique à la conception du projet et de la construction au "
+"fonctionnement du système . L'initiative de la politique GreenDot comprend "
+"des objectifs de réduction des gaz à effet de serre prescrites en vertu de "
+"la Loi mondial Warming Solutions , signé par le gouverneur Deval Patrick en "
+"2008 ."
+
+#: templates/survey/about.html:61
+#, fuzzy
+msgid "About the National Center for Safe Routes to School"
+msgstr "A propos du Massachusetts Safe Routes to School Program"
+
+#: templates/survey/about.html:63
+msgid ""
+"Established in May 2006, the National Center for Safe Routes to School "
+"assists states and communities in enabling and encouraging children to "
+"safely walk and bicycle to school. The National Center serves as the "
+"information clearinghouse for the federal Safe Routes to School program. The"
+" organization also provides technical support and resources and coordinates "
+"online registration efforts for Walk to School Day and Bike to School Day in"
+" the U.S.A. and facilitates worldwide promotion and participation in "
+"International Walk to School Day. The National Center is part of the "
+"University of North Carolina Highway Safety Research Center with funding "
+"from the U.S. Department of Transportation Federal Highway Administration. "
+"For more information, visit"
+msgstr ""
+"Créé en mai 2006, le Centre national de la Safe Routes to School aide les "
+"États et les collectivités en permettant et en encourageant les enfants à "
+"marcher en toute sécurité et à vélo à l'école . Le Centre national sert de "
+"centre d'information pour les Safe Routes fédérales aux programmes de "
+"l'école . L'organisation fournit également un soutien technique et des "
+"ressources et coordonne les efforts d'inscription en ligne pour Walk to "
+"School Day et de vélo à la journée scolaire aux Etats-Unis et facilite la "
+"promotion et la participation à la Marche internationale dans le monde de la"
+" journée scolaire . Le Centre national fait partie de l'Université de "
+"Caroline du Nord Centre de recherche de la sécurité routière avec le "
+"financement du ministère des Transports Federal Highway Administration des "
+"États-Unis . Pour plus d'informations , visitez le site"
+
+#: templates/survey/batch.html:354
+msgid "home"
+msgstr "maison"
+
+#: templates/survey/batch.html:448 templates/survey/form.html:488
+msgid "Submit Survey"
+msgstr "soumettre Enquête"
+
+#: templates/survey/form.html:334
+msgid "Travel to School Survey"
+msgstr "Voyage à School Survey"
+
+#: templates/survey/form.html:338
+msgid "Dear Parent or Guardian,"
+msgstr "Cher parent ou tuteur ,"
+
+#: templates/survey/form.html:342
+msgid ""
+"Your child’s school is conducting a survey to learn how students get to and "
+"from school. This information  will be used to plan safe and healthy "
+"transportation choices for all students. The survey will take less than 3 "
+"minutes to complete. All responses are voluntary and confidential. "
+msgstr ""
+"L'école de votre enfant mène une enquête pour savoir comment les élèves "
+"apprennent à l'école. Cette information sera utilisée pour planifier des "
+"choix de transport sûres et saines pour tous les élèves. L'enquête prendra "
+"moins de 3 minutes. Toutes les réponses sont volontaires et confidentiels ."
+
+#: templates/survey/form.html:344
+msgid ""
+"If more than one child attends this school, use the \"Add Another Child\" "
+"feature to report additional students. "
+msgstr ""
+"Si plus d'un enfant fréquente cette école , utilisez la fonction \" Ajouter "
+"un autre enfant» de déclarer étudiants supplémentaires ."
+
+#: templates/survey/form.html:345
+#, fuzzy
+msgid ""
+"If a child's home location or commute is not the same every day, choose the "
+"option that reflects the most common location and travel pattern."
+msgstr ""
+"Si la maison de l'emplacement ou se rendre d'un enfant n'est pas la même "
+"chose chaque jour , choisissez l' option qui reflète la \\<em\\> plus "
+"courante \\</ em\\> emplacement et le mode de voyage ."
+
+#: templates/survey/form.html:346
+msgid ""
+"If you already completed a paper survey, do not complete this online form. "
+msgstr ""
+"Si vous avez déjà rempli un questionnaire sur papier , ne pas remplir ce "
+"formulaire en ligne."
+
+#: templates/survey/form.html:347
+#, fuzzy
+msgid ""
+"If you have questions, please contact a school administrator or call Safe "
+"Routes to School at 857-368-8638."
+msgstr ""
+"Si vous avez des questions, s'il vous plaît contacter un administrateur de "
+"l'école ou appelez Safe Routes to School au 857-368-8650 ."
+
+#: templates/survey/form.html:351
+msgid "We appreciate your time and effort!"
+msgstr "Nous vous remercions de votre temps et d'efforts !"
+
+#: templates/survey/form.html:372
+msgid "What is your approximate home location?"
+msgstr "Quelle est votre position approximative de la maison?"
+
+#: templates/survey/form.html:372 templates/survey/form.html.py:430
+msgid "required"
+msgstr "requis"
+
+#: templates/survey/form.html:375
+msgid "Please click the map at an intersection on your street, near your home"
+msgstr ""
+"S'il vous plaît cliquer sur la carte à une intersection sur votre rue , près"
+" de chez vous"
+
+#: templates/survey/form.html:380
+msgid "your home"
+msgstr "votre maison"
+
+#: templates/survey/form.html:386
+msgid "...or tell us the street intersection closest to your home."
+msgstr ""
+"... ou nous dire l'intersection de la rue la plus proche de votre domicile."
+
+#: templates/survey/form.html:450
+msgid "Add another child at this school"
+msgstr "Ajouter un autre enfant à cette école"
+
+#: templates/survey/index.html:56
+msgid ""
+"Would you like to help create safe routes to school for students in your "
+"community?"
+msgstr ""
+"Voulez-vous aider à créer des routes sécuritaires à l'école pour les élèves "
+"de votre communauté ?"
+
+#: templates/survey/index.html:57
+msgid ""
+"The survey takes less than 3 minutes and will help your school plan for more"
+" transportation choices. All responses are voluntary and confidential."
+msgstr ""
+"Le sondage prend moins de 3 minutes et aidera votre plan scolaire pour plus "
+"de choix de transport. Toutes les réponses sont volontaires et confidentiels"
+" ."
+
+#: templates/survey/index.html:60
+msgid "More information about the survey..."
+msgstr "Plus d'informations sur l'enquête ..."
+
 #: templates/survey/index.html:63
+#, fuzzy
+msgid ""
+"The Massachusetts Safe Routes to School (SRTS) program partners with schools"
+" throughout the Commonwealth  to help reduce traffic congestion and air "
+"pollution near schools while increasing the health, safety, and physical "
+"activity of students. Evaluating trends in how students and families travel "
+"to and from school is a key component to building a successful Safe Routes "
+"to School program.  Parent responses to this survey provide valuable "
+"information and help determine how we can improve the environment around the"
+" school, target investments, track progress toward goals and ultimately "
+"develop local programs that benefit students, parents and our communities."
+msgstr ""
+"Les Massachusetts Safe Routes to School ( SRTS ) des partenaires du "
+"programme avec les écoles de la Communauté pour aider à réduire la "
+"congestion routière et la pollution de l' air à proximité des écoles , tout "
+"en augmentant la santé, la sécurité et l'activité physique des élèves . "
+"Évaluer les tendances dans la façon dont les étudiants et les familles se "
+"rendent à l'école est un élément clé pour construire un succès programme "
+"Safe Routes to School . Les réponses des parents à cette enquête fournissent"
+" des renseignements précieux et aider à déterminer comment nous pouvons "
+"améliorer l'environnement autour de l'école , des investissements ciblés , "
+"de suivre les progrès vers les objectifs et, finalement, développer des "
+"programmes locaux que les étudiants de prestations , des parents et de nos "
+"collectivités ."
+
+#: templates/survey/index.html:65
+#, fuzzy
 msgid ""
 "To learn more about your school’s efforts or to find out how to get "
-"involved, visit MassDOT’s Safe Routes to School Program at <a "
-"href='http://www.commute.com/schools/'>www.commute.com/schools/</a> or call "
-"us at 857-368-8638."
+"involved, visit MassDOT’s Safe Routes to School Program at"
 msgstr ""
 "Pour en savoir davantage sur les efforts de votre école ou pour savoir "
 "comment participer , visiter Safe Routes de MassDOT programme Mon école à "
-"\<a href='http://www.commute.com/schools/'\> www.commute.com / "
-"écoles / \</ a\> ou appelez-nous au 857-368-8638 ."
+"\\<a href='http://www.commute.com/schools/'\\> www.commute.com / écoles / "
+"\\</ a\\> ou appelez-nous au 857-368-8638 ."
 
-#: templates/survey/index.html:67
+#: templates/survey/index.html:65
+msgid "or call us at 857-368-8638."
+msgstr "ou appelez-nous au 857-368-8638 ."
+
+#: templates/survey/index.html:69
 msgid "Take the Survey"
 msgstr "Répondez au sondage"
 
-#: templates/survey/index.html:72
+#: templates/survey/index.html:74
 msgid "Please select your school district"
 msgstr "S'il vous plaît choisir votre district scolaire"
 
-#: templates/survey/index.html:82
+#: templates/survey/index.html:75
+msgid "Scroll or start typing your district name"
+msgstr "Faites défiler ou commencez à taper le nom de votre quartier"
+
+#: templates/survey/index.html:84
 msgid "Please select your school"
 msgstr "S'il vous plaît choisir votre école"
 
-#: templates/survey/index.html:92
+#: templates/survey/index.html:94
 msgid "Open School Survey Form"
 msgstr "Ouvert formulaire d'enquête de l'école"
+
+#: templates/survey/index.html:96
+msgid ""
+"All Massachusetts schools can use the survey tool free of charge, but only "
+"districts and schools with an active survey underway are listed. Interested "
+"parents should check with their local Safe Routes to School coordinator to "
+"learn about upcoming surveys. School officials who would like to use this "
+"site should begin by registering for an account and contacting Safe Routes "
+"to School at 857-368-8638."
+msgstr ""
+"Toutes les écoles du Massachusetts peuvent utiliser l'outil de sondage "
+"gratuit , mais seulement des districts et des écoles avec une enquête en "
+"cours actifs sont cotés . Les parents intéressés doivent vérifier auprès de "
+"leur Safe Routes locales à l'école pour apprendre coordinateur sur les "
+"enquêtes à venir . Les responsables scolaires qui voudraient utiliser ce "
+"site devraient commencer en vous inscrivant à un compte et contact Safe "
+"Routes to School au 857-368-8638 ."
+
+#: templates/survey/index.html:96
+msgid "My school isn’t on the list"
+msgstr "Mon école n'est pas sur la liste"
 
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
