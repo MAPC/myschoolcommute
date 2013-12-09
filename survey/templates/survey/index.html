@@ -72,7 +72,7 @@ $(document).ready(function() {
 <div class="row-fluid">
     <div class="span6 columns">
         <h3>{% trans "Please select your school district" %}</h3>
-        <p>Scroll or start typing your district name</p>
+        <p>{% trans "Scroll or start typing your district name" %}</p>
         <div class="input index">
             <select id="district-select" class="chzn-select" style="width: 350px;">
                 {% for district in districts %}<option value="{{ district.districtid }}">{{ district.distname }}</option> {% endfor %}
