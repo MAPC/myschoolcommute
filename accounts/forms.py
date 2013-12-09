@@ -177,7 +177,7 @@ class ProfileForm(InitModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.form_tag = False
         if editor:
-            if not editor.is_superuser:
+            if not editor.is_superuser or editor.groups.filter(name="MassRIDES Staff").count() == 0:
                 self.fields['district'].widget.attrs['disabled'] = True
 
     class Meta:
