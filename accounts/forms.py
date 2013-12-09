@@ -153,6 +153,7 @@ class UserForm(InitModelForm):
     email = forms.CharField(required=True)
 
     def __init__(self, *args, **kwargs):
+        editor = kwargs.pop('editor', None)
         super(UserForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
@@ -170,10 +171,14 @@ class ProfileForm(InitModelForm):
         queryset=School.objects.all().defer('shed_05', 'shed_10', 'shed_15', 'shed_20')
     )
     def __init__(self, *args, **kwargs):
+        editor = kwargs.pop('editor', None)
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
         self.helper.form_tag = False
+        if editor:
+            if not editor.is_superuser:
+                self.fields['district'].widget.attrs['disabled'] = True
 
     class Meta:
         model = Profile

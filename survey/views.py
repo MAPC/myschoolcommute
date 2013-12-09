@@ -7,6 +7,7 @@ from django.db.models import Count, Q, Max, Min
 from django.forms.models import inlineformset_factory
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import permission_required
 
 from datetime import datetime, timedelta
 
@@ -38,6 +39,7 @@ def district(request, district_slug):
             context_instance=RequestContext(request))
 
 
+@permission_required('survey.change_district')
 def district_list(request):
 
     # get all districts with active school surveys

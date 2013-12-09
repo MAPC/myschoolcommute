@@ -1,5 +1,6 @@
 # Django settings for myschoolcommute project.
 import os
+import sys
 
 _ = lambda s: s
 
@@ -8,9 +9,13 @@ CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_TOOLBAR = False
+RUNSERVER = False
+if 'runserver' in sys.argv:
+    DEBUG = True
+    RUNSERVER = True
 
 ADMINS = (
-    ('Pavel', 'pavel@appliedgeosolutions.com'),
+    ('Pavel', 'pavel@ags.io'),
 )
 
 SERVER_EMAIL = 'admin@appliedgeosolutions.com'

@@ -40,6 +40,7 @@ def register(request):
             message = "New user registration!\n\n%s\n%s, %s\nActivate user: %s\nView all users: %s" % (
                 new_user.username, new_user.first_name, new_user.last_name, approve_page, users_page,
             )
+
             try:
                 g = Group.objects.get(name="MassRIDES Staff")
                 emails = [u.email for u in g.user_set.all()]
@@ -106,7 +107,7 @@ def profile_edit(request, username=None):
 
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=user)
-        profile_form = ProfileForm(request.POST, instance=p)
+        profile_form = ProfileForm(request.POST, instance=p, editor=request.user)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             p = profile_form.save()
@@ -124,7 +125,7 @@ def profile_edit(request, username=None):
             return HttpResponseRedirect(reverse('user_detail', args=[user.username]))
     else:
         user_form = UserForm(instance=user)
-        profile_form = ProfileForm(instance=p)
+        profile_form = ProfileForm(instance=p, editor=request.user)
 
     profile_form.helper.add_input(Submit('submit', 'Save account'))
 
