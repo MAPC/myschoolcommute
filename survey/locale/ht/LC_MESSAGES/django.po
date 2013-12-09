@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:14-0500\n"
+"POT-Creation-Date: 2013-12-09 12:25-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,12 +102,16 @@ msgstr "Konsènan"
 
 #: templates/base.html:146
 #, fuzzy
-msgid "Questions? "
+msgid "Questions?"
 msgstr "Kesyon? tanpri kontakte"
 
 #: templates/base.html:146
 msgid "Please click here to email us."
 msgstr "Tanpri klike isit la yo voye yon imèl ba nou."
+
+#: templates/base.html:152
+msgid "Metropolitan Area Planning Council"
+msgstr "Konsèy Planifikasyon Metwopoliten Zòn"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -129,6 +133,10 @@ msgstr ""
 "pwogram ki ogmante mache ak monte bisiklèt elèv aktivite. Objektif pwogram "
 "lan se diminye anbouteyaj nan sikilasyon ak polisyon nan lè a tou pre lekòl "
 "pandan y ap ogmante aktivite a sante, sekirite, ak fizik nan elèv yo."
+
+#: templates/survey/about.html:13 templates/survey/about.html.py:56
+msgid "Read more..."
+msgstr "Li plis ..."
 
 #: templates/survey/about.html:16
 #, fuzzy
@@ -320,10 +328,6 @@ msgstr ""
 "kolaborasyon ki ankouraje patenarya mityèl ant gwoup defann dwa moun, ki fè "
 "respekte lalwa , lidè edikasyon ak depatman sante piblik kote tout travay "
 "ansanm ankouraje pi an sekirite wout pou timoun pou li ale nan lekòl la."
-
-#: templates/survey/about.html:56
-msgid "Read more..."
-msgstr "Li plis ..."
 
 #: templates/survey/about.html:58
 msgid ""

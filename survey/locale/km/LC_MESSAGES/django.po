@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:14-0500\n"
+"POT-Creation-Date: 2013-12-09 12:25-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,12 +105,16 @@ msgstr "អំពី"
 
 #: templates/base.html:146
 #, fuzzy
-msgid "Questions? "
+msgid "Questions?"
 msgstr "សំណួរ ? សូម ទំនាក់ទំនងមកការិយាល័យទំនាក់ទំនង"
 
 #: templates/base.html:146
 msgid "Please click here to email us."
 msgstr "សូម ចុចទីនេះដើម្បី អ៊ីម៉ែល យើង។"
+
+#: templates/base.html:152
+msgid "Metropolitan Area Planning Council"
+msgstr "ក្រុមប្រឹក្សា ផែនការ តំបន់ទី្រកុង"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -133,6 +137,10 @@ msgstr ""
 "របស់កម្មវិធីនេះ គឺដើម្បី កាត់បន្ថយការ កកស្ទះ ចរាចរ និងការបំពុលខ្យល់ នៅជិត "
 "សាលារៀន ខណៈពេលដែល ការបង្កើន សកម្មភាព ផ្នែកសុខភាពសុវត្ថិភាព និងរាងកាយ "
 "របស់សិស្ស។"
+
+#: templates/survey/about.html:13 templates/survey/about.html.py:56
+msgid "Read more..."
+msgstr "អានអត្ថបទទាំងស្រុង ..."
 
 #: templates/survey/about.html:16
 #, fuzzy
@@ -326,10 +334,6 @@ msgstr ""
 "ភាពជាដៃគូ ទៅវិញទៅមក រវាងក្រុម តស៊ូមតិ , ការអនុវត្តច្បាប់នៅ ថ្នាក់ដឹកនាំ "
 "មន្ទីរ សិក្សាអប់រំនិង សុខភាពសាធារណៈ ដែល ការងារទាំងអស់ រួមគ្នាដើម្បី "
 "លើកកម្ពស់ សុវត្ថិភាព ផ្លូវ សម្រាប់កុមារ ដើម្បីទទួលបាន ទៅសាលារៀន មួយ។"
-
-#: templates/survey/about.html:56
-msgid "Read more..."
-msgstr "អានអត្ថបទទាំងស្រុង ..."
 
 #: templates/survey/about.html:58
 msgid ""

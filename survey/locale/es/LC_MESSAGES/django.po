@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:14-0500\n"
+"POT-Creation-Date: 2013-12-09 12:25-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,12 +99,16 @@ msgstr "acerca de"
 
 #: templates/base.html:146
 #, fuzzy
-msgid "Questions? "
+msgid "Questions?"
 msgstr "¿Preguntas? Por favor, póngase en contacto con"
 
 #: templates/base.html:146
 msgid "Please click here to email us."
 msgstr "Haga clic aquí para enviarnos un correo electrónico ."
+
+#: templates/base.html:152
+msgid "Metropolitan Area Planning Council"
+msgstr "Consejo de Planificación del Área Metropolitana"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -128,6 +132,10 @@ msgstr ""
 "son reducir la congestión del tráfico y la contaminación del aire cerca de "
 "las escuelas , mientras que el aumento de la actividad de salud , seguridad,"
 " y físico de los estudiantes ."
+
+#: templates/survey/about.html:13 templates/survey/about.html.py:56
+msgid "Read more..."
+msgstr "Leer más ..."
 
 #: templates/survey/about.html:16
 #, fuzzy
@@ -328,10 +336,6 @@ msgstr ""
 "la policía, líderes de la educación y los departamentos de salud pública, "
 "que trabajan en conjunto para promover las rutas más seguras para los niños "
 "ir a la escuela ."
-
-#: templates/survey/about.html:56
-msgid "Read more..."
-msgstr "Leer más ..."
 
 #: templates/survey/about.html:58
 msgid ""

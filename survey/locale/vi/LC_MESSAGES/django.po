@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:14-0500\n"
+"POT-Creation-Date: 2013-12-09 12:25-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,12 +99,16 @@ msgstr "về"
 
 #: templates/base.html:146
 #, fuzzy
-msgid "Questions? "
+msgid "Questions?"
 msgstr "Câu hỏi ? Vui lòng liên hệ"
 
 #: templates/base.html:146
 msgid "Please click here to email us."
 msgstr "Xin vui lòng bấm vào đây để gửi email cho chúng tôi."
+
+#: templates/base.html:152
+msgid "Metropolitan Area Planning Council"
+msgstr "Hội đồng Kế hoạch Khu đô thị"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -127,6 +131,10 @@ msgstr ""
 "đạp của học sinh . Mục tiêu của chương trình là để giảm ùn tắc giao thông và"
 " ô nhiễm không khí gần trường học trong khi tăng các hoạt động y tế, an toàn"
 " , và thể chất của học sinh."
+
+#: templates/survey/about.html:13 templates/survey/about.html.py:56
+msgid "Read more..."
+msgstr "Đọc thêm ..."
 
 #: templates/survey/about.html:16
 #, fuzzy
@@ -320,10 +328,6 @@ msgstr ""
 "hệ đối tác lẫn nhau giữa các nhóm ủng hộ , thực thi pháp luật , các nhà lãnh"
 " đạo giáo dục và các cơ quan y tế công cộng mà làm việc cùng nhau để thúc "
 "đẩy các tuyến đường an toàn hơn cho trẻ em được đến trường ."
-
-#: templates/survey/about.html:56
-msgid "Read more..."
-msgstr "Đọc thêm ..."
 
 #: templates/survey/about.html:58
 msgid ""

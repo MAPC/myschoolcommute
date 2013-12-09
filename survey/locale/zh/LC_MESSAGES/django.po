@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:14-0500\n"
+"POT-Creation-Date: 2013-12-09 12:25-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,12 +98,16 @@ msgstr "关于"
 
 #: templates/base.html:146
 #, fuzzy
-msgid "Questions? "
+msgid "Questions?"
 msgstr "有问题吗？请联系"
 
 #: templates/base.html:146
 msgid "Please click here to email us."
 msgstr "请点击这里给我们发电子邮件。"
+
+#: templates/base.html:152
+msgid "Metropolitan Area Planning Council"
+msgstr "都市区规划局"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -122,6 +126,10 @@ msgid ""
 "students."
 msgstr ""
 "与学校整个英联邦项目的合作伙伴，帮助计划和实施提高学生步行和骑自行车活动方案。该计划的目标是减少交通拥堵和空气污染在学校附近，同时增加学生的健康，安全和身体活动。"
+
+#: templates/survey/about.html:13 templates/survey/about.html.py:56
+msgid "Read more..."
+msgstr "阅读全文..."
 
 #: templates/survey/about.html:16
 #, fuzzy
@@ -278,10 +286,6 @@ msgid ""
 msgstr ""
 "运输的马萨诸塞部门（ MassDOT "
 "）经营联合体的安全路线，以学校计划从联邦公路司的资金。这位马萨诸塞州的安全路线，以包容的学校模型强调，促进其各项工作，共同促进儿童更安全的路线去学校宣传组，执法，教育领导和卫生部门之间的相互合作伙伴的协作，以社区为重点的做法。"
-
-#: templates/survey/about.html:56
-msgid "Read more..."
-msgstr "阅读全文..."
 
 #: templates/survey/about.html:58
 msgid ""

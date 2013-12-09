@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:14-0500\n"
+"POT-Creation-Date: 2013-12-09 12:25-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,12 +99,16 @@ msgstr "حول"
 
 #: templates/base.html:146
 #, fuzzy
-msgid "Questions? "
+msgid "Questions?"
 msgstr "الأسئلة؟ يرجى الاتصال"
 
 #: templates/base.html:146
 msgid "Please click here to email us."
 msgstr "الرجاء الضغط هنا ل مراسلتنا ."
+
+#: templates/base.html:152
+msgid "Metropolitan Area Planning Council"
+msgstr "مجلس أبوظبي للتخطيط منطقة العاصمة"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -126,6 +130,10 @@ msgstr ""
 "البرامج التي تزيد من الأنشطة الطلابية المشي وركوب الدراجات . أهداف البرنامج "
 "هي للحد من الاختناقات المرورية وتلوث الهواء بالقرب من المدارس مع زيادة "
 "النشاط والصحة، و السلامة، و البدنية للطلاب ."
+
+#: templates/survey/about.html:13 templates/survey/about.html.py:56
+msgid "Read more..."
+msgstr "اقرأ المزيد ..."
 
 #: templates/survey/about.html:16
 #, fuzzy
@@ -306,10 +314,6 @@ msgstr ""
 " الشمولية يؤكد نهج التي تركز على المجتمع التعاونية التي تعزز الشراكات "
 "المتبادلة بين جماعات الدعوة ، وإنفاذ القانون ، وقادة التعليم و إدارات الصحة "
 "العامة التي نعمل جميعا معا لتعزيز طرق أكثر أمانا للأطفال للوصول الى المدرسة."
-
-#: templates/survey/about.html:56
-msgid "Read more..."
-msgstr "اقرأ المزيد ..."
 
 #: templates/survey/about.html:58
 msgid ""
