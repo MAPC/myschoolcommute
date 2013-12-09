@@ -38,6 +38,8 @@ $(document).ready(function() {
     // call change function to load initial schools
     $("#district-select").chosen().change();
 
+    //Popover
+    $("[rel=popover]").popover({placement:'top', html:true});;
 });
 </script>
 
@@ -58,7 +60,7 @@ $(document).ready(function() {
             {% trans "More information about the survey..." %}
         </button>
         <div id="about" class="collapse">
-            <p>{% blocktrans %}The Massachusetts Safe Routes to School (SRTS) program partners with schools throughout the Commonwealth  to help reduce traffic congestion and air pollution near schools while increasing the health, safety, and physical activity of students. Evaluating trends in how students and families travel to school is a key component to building a successful Safe Routes to School program.  Parent responses to this survey provide valuable information and help determine how we can improve the environment around the school, target investments, track progress toward goals and ultimately develop local programs that benefit students, parents and our communities.{% endblocktrans %}
+            <p>{% blocktrans %}The Massachusetts Safe Routes to School (SRTS) program partners with schools throughout the Commonwealth  to help reduce traffic congestion and air pollution near schools while increasing the health, safety, and physical activity of students. Evaluating trends in how students and families travel to and from school is a key component to building a successful Safe Routes to School program.  Parent responses to this survey provide valuable information and help determine how we can improve the environment around the school, target investments, track progress toward goals and ultimately develop local programs that benefit students, parents and our communities.{% endblocktrans %}
             </p>
             <p>{% blocktrans %}To learn more about your school’s efforts or to find out how to get involved, visit MassDOT’s Safe Routes to School Program at <a href='http://www.commute.com/schools/'>www.commute.com/schools/</a> or call us at 857-368-8638.{% endblocktrans %}
             </p>
@@ -90,6 +92,8 @@ $(document).ready(function() {
     <div class="span8 columns offset6">
         <br/>
         <a id="open-survey" href="#" class="btn btn-primary large" tabindex="3">{% trans "Open School Survey Form" %}</a>
+        <br/><br/>
+        <a href="#" class="btn" rel="popover" data-toggle="popover" data-placement="top" data-content="{% blocktrans %}All Massachusetts schools can use the survey tool free of charge, but only districts and schools with an active survey underway are listed. Interested parents should check with their local Safe Routes to School coordinator to learn about upcoming surveys. School officials who would like to use this site should begin by registering for an account and contacting Safe Routes to School at 857-368-8638.{% endblocktrans %}" title="{% trans "My school isn’t on the list" %}">{% trans "My school isn’t on the list" %}</a>
     </div>
 </div>
 
