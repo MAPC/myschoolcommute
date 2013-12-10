@@ -20,6 +20,7 @@ urlpatterns = i18n_patterns('',
 
     # static pages
     url(r'^about/$', TemplateView.as_view(template_name='survey/about.html'), name='about'),
+    url(r'^resources/$', TemplateView.as_view(template_name='survey/resources.html'), name='resources'),
 
     # custom admin pages
     url(r'^districts/$', 'survey.views.district_list', name='district_list'),

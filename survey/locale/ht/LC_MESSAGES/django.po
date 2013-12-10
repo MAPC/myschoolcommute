@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:25-0500\n"
+"POT-Creation-Date: 2013-12-10 15:18-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,22 +96,18 @@ msgstr "Wi"
 msgid "No"
 msgstr "Pa gen"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "About"
 msgstr "Konsènan"
 
-#: templates/base.html:146
+#: templates/base.html:147
 #, fuzzy
 msgid "Questions?"
 msgstr "Kesyon? tanpri kontakte"
 
-#: templates/base.html:146
+#: templates/base.html:147
 msgid "Please click here to email us."
 msgstr "Tanpri klike isit la yo voye yon imèl ba nou."
-
-#: templates/base.html:152
-msgid "Metropolitan Area Planning Council"
-msgstr "Konsèy Planifikasyon Metwopoliten Zòn"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -574,6 +570,101 @@ msgstr ""
 msgid "My school isn’t on the list"
 msgstr "Lekòl mwen an se pa t sou lis la"
 
+#: templates/survey/resources.html:7
+msgid "District Resources"
+msgstr "Resous Distri"
+
+#: templates/survey/resources.html:10
+msgid ""
+"On this page you will find resources to help you implement the MA Safe "
+"Routes Survey in your school."
+msgstr ""
+"Nan paj sa aw ap jwenn resous ede ou aplike MA Wout Safe Sondaj la nan lekòl"
+" ou a."
+
+#: templates/survey/resources.html:13
+#, fuzzy
+msgid ""
+"If you need more assistance, please contact MassDOT’s Safe Routes to School "
+"program at 857-368-8638."
+msgstr ""
+"Si w gen kesyon , tanpri kontakte yon administratè lekòl oswa rele Wout "
+"Lekòl an Sekirite nan 857-368-8650 ."
+
+#: templates/survey/resources.html:15
+#, fuzzy
+msgid "Paper Survey Forms"
+msgstr "Open School Survey Fòm"
+
+#: templates/survey/resources.html:18
+msgid ""
+"The paper survey forms include the same questions as are found in the online"
+" survey.  The generic versions can be printed and distributed “as is.”  The "
+"Customizable versions have  a field where you can enter your school name, "
+"the due date for the survey, and the school-specific web address of the "
+"online survey (e.g.,"
+msgstr ""
+"Fòm yo papye sondaj yo gen kesyon yo menm jan ak yo jwenn nan sondaj la sou "
+"entènèt. Vèsyon yo jenerik yo ka enprime , epi distribye \"kòm se .\" Vèsyon"
+" yo Pèrsonalizabl gen yon jaden kote ou ka ekri non ou lekòl la, dat la akòz"
+" pou sondaj la, ak adrès la lekòl -espesifik entènèt nan sondaj la sou "
+"entènèt (tankou ,"
+
+#: templates/survey/resources.html:18
+msgid ""
+"Customizing the paper survey forms requires the free Adobe Acrobat Reader"
+msgstr ""
+"Pèrsonalizasyon fòm yo papye sondaj mande pou gratis Adobe Acrobat Reader a"
+
+#: templates/survey/resources.html:18
+msgid "download here."
+msgstr "download isit la."
+
+#: templates/survey/resources.html:22
+msgid "English"
+msgstr "angle"
+
+#: templates/survey/resources.html:24 templates/survey/resources.html.py:30
+#: templates/survey/resources.html:36 templates/survey/resources.html.py:42
+#: templates/survey/resources.html:48 templates/survey/resources.html.py:54
+#: templates/survey/resources.html:60
+msgid "Generic"
+msgstr "jenerik"
+
+#: templates/survey/resources.html:25 templates/survey/resources.html.py:31
+#: templates/survey/resources.html:37 templates/survey/resources.html.py:43
+#: templates/survey/resources.html:49 templates/survey/resources.html.py:55
+#: templates/survey/resources.html:61
+msgid "Customizable"
+msgstr "customizable"
+
+#: templates/survey/resources.html:28
+msgid "Spanish"
+msgstr "Panyòl"
+
+#: templates/survey/resources.html:34
+msgid "Portuguese"
+msgstr "Pòtigè"
+
+#: templates/survey/resources.html:40
+msgid "Chinese"
+msgstr "Chinwa"
+
+#: templates/survey/resources.html:46
+msgid "Vietnamese"
+msgstr "Vyetnamyen"
+
+#: templates/survey/resources.html:52
+msgid "French"
+msgstr "franse"
+
+#: templates/survey/resources.html:58
+msgid "Arabic"
+msgstr "Arabic"
+
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "Mèsi!"
+
+#~ msgid "Metropolitan Area Planning Council"
+#~ msgstr "Konsèy Planifikasyon Metwopoliten Zòn"

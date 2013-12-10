@@ -100,6 +100,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
                 <li {% if 'accounts' in request.path %}class='active'{% endif %}><a href="/accounts/">Accounts</a></li>
+                <li {% if 'resources' in request.path %}class='active'{% endif %}><a href="/resources/">District Resources</a></li>
                 {% if perms.survey.change_district %}
                 <li><a href="{% url 'district_list' %}">Districts</a></li>
                 {% endif %}

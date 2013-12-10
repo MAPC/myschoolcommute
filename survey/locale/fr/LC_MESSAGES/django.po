@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:25-0500\n"
+"POT-Creation-Date: 2013-12-10 15:18-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,22 +99,18 @@ msgstr "Oui"
 msgid "No"
 msgstr "Non"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "About"
 msgstr "sur"
 
-#: templates/base.html:146
+#: templates/base.html:147
 #, fuzzy
 msgid "Questions?"
 msgstr "Questions? S'il vous plaît contacter"
 
-#: templates/base.html:146
+#: templates/base.html:147
 msgid "Please click here to email us."
 msgstr "S'il vous plaît , cliquez ici pour nous envoyer."
-
-#: templates/base.html:152
-msgid "Metropolitan Area Planning Council"
-msgstr "Metropolitan Area Planning Council"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -600,6 +596,103 @@ msgstr ""
 msgid "My school isn’t on the list"
 msgstr "Mon école n'est pas sur la liste"
 
+#: templates/survey/resources.html:7
+msgid "District Resources"
+msgstr "Ressources de district"
+
+#: templates/survey/resources.html:10
+msgid ""
+"On this page you will find resources to help you implement the MA Safe "
+"Routes Survey in your school."
+msgstr ""
+"Sur cette page vous trouverez des ressources pour vous aider à mettre en "
+"œuvre la MA Safe Routes Enquête dans votre école ."
+
+#: templates/survey/resources.html:13
+#, fuzzy
+msgid ""
+"If you need more assistance, please contact MassDOT’s Safe Routes to School "
+"program at 857-368-8638."
+msgstr ""
+"Si vous avez des questions, s'il vous plaît contacter un administrateur de "
+"l'école ou appelez Safe Routes to School au 857-368-8650 ."
+
+#: templates/survey/resources.html:15
+#, fuzzy
+msgid "Paper Survey Forms"
+msgstr "Ouvert formulaire d'enquête de l'école"
+
+#: templates/survey/resources.html:18
+msgid ""
+"The paper survey forms include the same questions as are found in the online"
+" survey.  The generic versions can be printed and distributed “as is.”  The "
+"Customizable versions have  a field where you can enter your school name, "
+"the due date for the survey, and the school-specific web address of the "
+"online survey (e.g.,"
+msgstr ""
+"Les formulaires d'enquête de papier comprennent les mêmes questions que l'on"
+" trouve dans le sondage en ligne. Les versions génériques peuvent être "
+"imprimés et distribués «en l'état ». Les versions personnalisables ont un "
+"champ où vous pouvez saisir votre nom d'école, la date d'échéance de "
+"l'enquête , et l'adresse de l'enquête en ligne web spécifique à "
+"l'établissement (par exemple ,"
+
+#: templates/survey/resources.html:18
+msgid ""
+"Customizing the paper survey forms requires the free Adobe Acrobat Reader"
+msgstr ""
+"Personnalisation des formulaires d'enquête de papier nécessite le logiciel "
+"gratuit Adobe Acrobat Reader"
+
+#: templates/survey/resources.html:18
+msgid "download here."
+msgstr "télécharger ici ."
+
+#: templates/survey/resources.html:22
+msgid "English"
+msgstr "Anglais"
+
+#: templates/survey/resources.html:24 templates/survey/resources.html.py:30
+#: templates/survey/resources.html:36 templates/survey/resources.html.py:42
+#: templates/survey/resources.html:48 templates/survey/resources.html.py:54
+#: templates/survey/resources.html:60
+msgid "Generic"
+msgstr "générique"
+
+#: templates/survey/resources.html:25 templates/survey/resources.html.py:31
+#: templates/survey/resources.html:37 templates/survey/resources.html.py:43
+#: templates/survey/resources.html:49 templates/survey/resources.html.py:55
+#: templates/survey/resources.html:61
+msgid "Customizable"
+msgstr "personnalisable"
+
+#: templates/survey/resources.html:28
+msgid "Spanish"
+msgstr "espagnol"
+
+#: templates/survey/resources.html:34
+msgid "Portuguese"
+msgstr "Portugais"
+
+#: templates/survey/resources.html:40
+msgid "Chinese"
+msgstr "chinois"
+
+#: templates/survey/resources.html:46
+msgid "Vietnamese"
+msgstr "vietnamien"
+
+#: templates/survey/resources.html:52
+msgid "French"
+msgstr "français"
+
+#: templates/survey/resources.html:58
+msgid "Arabic"
+msgstr "arabe"
+
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "Je vous remercie !"
+
+#~ msgid "Metropolitan Area Planning Council"
+#~ msgstr "Metropolitan Area Planning Council"

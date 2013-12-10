@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:25-0500\n"
+"POT-Creation-Date: 2013-12-10 15:18-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,22 +99,18 @@ msgstr "បាទ"
 msgid "No"
 msgstr "គ្មាន"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "About"
 msgstr "អំពី"
 
-#: templates/base.html:146
+#: templates/base.html:147
 #, fuzzy
 msgid "Questions?"
 msgstr "សំណួរ ? សូម ទំនាក់ទំនងមកការិយាល័យទំនាក់ទំនង"
 
-#: templates/base.html:146
+#: templates/base.html:147
 msgid "Please click here to email us."
 msgstr "សូម ចុចទីនេះដើម្បី អ៊ីម៉ែល យើង។"
-
-#: templates/base.html:152
-msgid "Metropolitan Area Planning Council"
-msgstr "ក្រុមប្រឹក្សា ផែនការ តំបន់ទី្រកុង"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -588,6 +584,102 @@ msgstr ""
 msgid "My school isn’t on the list"
 msgstr "សាលារបស់ខ្ញុំ គឺមិនមែន នៅលើបញ្ជី"
 
+#: templates/survey/resources.html:7
+msgid "District Resources"
+msgstr "ធនធាន ស្រុក"
+
+#: templates/survey/resources.html:10
+msgid ""
+"On this page you will find resources to help you implement the MA Safe "
+"Routes Survey in your school."
+msgstr ""
+"នៅលើ ទំព័រនេះអ្នក នឹងរកឃើញ ធនធាន ដើម្បីជួយអ្នក អនុវត្ត ការស្ទង់មតិ ផ្លូវ "
+"សុវត្ថិភាព បាន MA នៅក្នុងសាលា របស់អ្នក។"
+
+#: templates/survey/resources.html:13
+#, fuzzy
+msgid ""
+"If you need more assistance, please contact MassDOT’s Safe Routes to School "
+"program at 857-368-8638."
+msgstr ""
+"ប្រសិនបើលោកអ្នក មានសំណួរ សូម ទាក់ទងអ្នកគ្រប់គ្រង សាលារៀន មួយ ឬ ហៅទូរស័ព្ទទៅ "
+"ទស្សនៈកិច្ចសិក្សា ដោយសុវត្ថិភាពដើម្បីឱ្យ សាលា នៅ 857-368-8650 ។"
+
+#: templates/survey/resources.html:15
+#, fuzzy
+msgid "Paper Survey Forms"
+msgstr "សាលា ទម្រង់ បើកចំហ ការស្ទង់មតិ"
+
+#: templates/survey/resources.html:18
+msgid ""
+"The paper survey forms include the same questions as are found in the online"
+" survey.  The generic versions can be printed and distributed “as is.”  The "
+"Customizable versions have  a field where you can enter your school name, "
+"the due date for the survey, and the school-specific web address of the "
+"online survey (e.g.,"
+msgstr ""
+"ទម្រង់ ការស្ទង់មតិ ក្រដាស រួមមាន សំណួរ ដូចគ្នា ត្រូវបានគេ រកឃើញនៅក្នុង "
+"ការស្ទង់មតិ លើបណ្តាញ នេះ។ កំណែ ទូទៅ អាចត្រូវបានបោះពុម្ព និងចែកចាយ \" ជា \" ។"
+" កំណែដែល អាចប្ដូរតាមបំណង មានវាល ដែលជាកន្លែងដែល អ្នកអាចបញ្ចូលឈ្មោះ របស់អ្នក "
+"សាលា កាលបរិច្ឆេទកំណត់ សម្រាប់ ការស្ទង់មតិ នេះ និងអាសយដ្ឋាន បណ្ដាញ "
+"សាលាជរៀនជាក់លាក់ នៃការស្ទង់មតិ លើបណ្តាញ (ឧ មួយ"
+
+#: templates/survey/resources.html:18
+msgid ""
+"Customizing the paper survey forms requires the free Adobe Acrobat Reader"
+msgstr ""
+"តាមបំណង ទម្រង់ ការស្ទង់មតិ ក្រដាស តម្រូវឱ្យ ដោយឥតគិតថ្លៃ កម្មវិធី Adobe "
+"Acrobat Reader \\u0026"
+
+#: templates/survey/resources.html:18
+msgid "download here."
+msgstr "ទាញយក នៅទីនេះ។"
+
+#: templates/survey/resources.html:22
+msgid "English"
+msgstr "ភាសាអង់គ្លេស"
+
+#: templates/survey/resources.html:24 templates/survey/resources.html.py:30
+#: templates/survey/resources.html:36 templates/survey/resources.html.py:42
+#: templates/survey/resources.html:48 templates/survey/resources.html.py:54
+#: templates/survey/resources.html:60
+msgid "Generic"
+msgstr "ទូទៅ"
+
+#: templates/survey/resources.html:25 templates/survey/resources.html.py:31
+#: templates/survey/resources.html:37 templates/survey/resources.html.py:43
+#: templates/survey/resources.html:49 templates/survey/resources.html.py:55
+#: templates/survey/resources.html:61
+msgid "Customizable"
+msgstr "ប្ដូរតាមបំណង"
+
+#: templates/survey/resources.html:28
+msgid "Spanish"
+msgstr "ភាសាអេស្ប៉ាញ"
+
+#: templates/survey/resources.html:34
+msgid "Portuguese"
+msgstr "ព័រទុយហ្គាល់"
+
+#: templates/survey/resources.html:40
+msgid "Chinese"
+msgstr "ប្រទេសចិន"
+
+#: templates/survey/resources.html:46
+msgid "Vietnamese"
+msgstr "វៀតណាម"
+
+#: templates/survey/resources.html:52
+msgid "French"
+msgstr "ភាសាបារាំង"
+
+#: templates/survey/resources.html:58
+msgid "Arabic"
+msgstr "ភាសាអារ៉ាប់"
+
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "សូមអរគុណ!"
+
+#~ msgid "Metropolitan Area Planning Council"
+#~ msgstr "ក្រុមប្រឹក្សា ផែនការ តំបន់ទី្រកុង"

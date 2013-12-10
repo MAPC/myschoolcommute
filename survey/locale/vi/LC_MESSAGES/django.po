@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:25-0500\n"
+"POT-Creation-Date: 2013-12-10 15:18-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,22 +93,18 @@ msgstr "vâng"
 msgid "No"
 msgstr "không"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "About"
 msgstr "về"
 
-#: templates/base.html:146
+#: templates/base.html:147
 #, fuzzy
 msgid "Questions?"
 msgstr "Câu hỏi ? Vui lòng liên hệ"
 
-#: templates/base.html:146
+#: templates/base.html:147
 msgid "Please click here to email us."
 msgstr "Xin vui lòng bấm vào đây để gửi email cho chúng tôi."
-
-#: templates/base.html:152
-msgid "Metropolitan Area Planning Council"
-msgstr "Hội đồng Kế hoạch Khu đô thị"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -581,6 +577,101 @@ msgstr ""
 msgid "My school isn’t on the list"
 msgstr "Trường học của tôi không có trong danh sách"
 
+#: templates/survey/resources.html:7
+msgid "District Resources"
+msgstr "Tài nguyên huyện"
+
+#: templates/survey/resources.html:10
+msgid ""
+"On this page you will find resources to help you implement the MA Safe "
+"Routes Survey in your school."
+msgstr ""
+"Trên trang này bạn sẽ tìm thấy các nguồn lực để giúp bạn thực hiện các tuyến"
+" đường MA an toàn khảo sát tại trường học của bạn ."
+
+#: templates/survey/resources.html:13
+#, fuzzy
+msgid ""
+"If you need more assistance, please contact MassDOT’s Safe Routes to School "
+"program at 857-368-8638."
+msgstr ""
+"Nếu bạn có thắc mắc , xin vui lòng liên hệ với quản trị trường hoặc gọi "
+"tuyến đường an toàn để học tại 857-368-8650 ."
+
+#: templates/survey/resources.html:15
+#, fuzzy
+msgid "Paper Survey Forms"
+msgstr "Mở Mẫu khảo sát học"
+
+#: templates/survey/resources.html:18
+msgid ""
+"The paper survey forms include the same questions as are found in the online"
+" survey.  The generic versions can be printed and distributed “as is.”  The "
+"Customizable versions have  a field where you can enter your school name, "
+"the due date for the survey, and the school-specific web address of the "
+"online survey (e.g.,"
+msgstr ""
+"Các hình thức khảo sát giấy bao gồm các câu hỏi tương tự như được tìm thấy "
+"trong cuộc khảo sát trực tuyến . Các phiên bản chung chung có thể được in và"
+" phân phối \" như vậy. \" Các phiên bản tùy chỉnh có một lĩnh vực mà bạn có "
+"thể nhập tên của bạn học , ngày hết hạn cho cuộc điều tra , và địa chỉ web "
+"của trường cụ thể của cuộc khảo sát trực tuyến (ví dụ ,"
+
+#: templates/survey/resources.html:18
+msgid ""
+"Customizing the paper survey forms requires the free Adobe Acrobat Reader"
+msgstr ""
+"Tùy biến các hình thức khảo sát giấy yêu cầu Adobe Acrobat Reader miễn phí"
+
+#: templates/survey/resources.html:18
+msgid "download here."
+msgstr "tải về tại đây ."
+
+#: templates/survey/resources.html:22
+msgid "English"
+msgstr "Anh"
+
+#: templates/survey/resources.html:24 templates/survey/resources.html.py:30
+#: templates/survey/resources.html:36 templates/survey/resources.html.py:42
+#: templates/survey/resources.html:48 templates/survey/resources.html.py:54
+#: templates/survey/resources.html:60
+msgid "Generic"
+msgstr "chung"
+
+#: templates/survey/resources.html:25 templates/survey/resources.html.py:31
+#: templates/survey/resources.html:37 templates/survey/resources.html.py:43
+#: templates/survey/resources.html:49 templates/survey/resources.html.py:55
+#: templates/survey/resources.html:61
+msgid "Customizable"
+msgstr "tùy biến"
+
+#: templates/survey/resources.html:28
+msgid "Spanish"
+msgstr "Tây Ban Nha"
+
+#: templates/survey/resources.html:34
+msgid "Portuguese"
+msgstr "Bồ Đào Nha"
+
+#: templates/survey/resources.html:40
+msgid "Chinese"
+msgstr "Trung Quốc"
+
+#: templates/survey/resources.html:46
+msgid "Vietnamese"
+msgstr "Việt"
+
+#: templates/survey/resources.html:52
+msgid "French"
+msgstr "Pháp"
+
+#: templates/survey/resources.html:58
+msgid "Arabic"
+msgstr "Tiếng Ả Rập"
+
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "Cảm ơn bạn!"
+
+#~ msgid "Metropolitan Area Planning Council"
+#~ msgstr "Hội đồng Kế hoạch Khu đô thị"

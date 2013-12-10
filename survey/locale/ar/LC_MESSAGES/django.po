@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 12:25-0500\n"
+"POT-Creation-Date: 2013-12-10 15:18-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,22 +93,18 @@ msgstr "نعم"
 msgid "No"
 msgstr "لا"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "About"
 msgstr "حول"
 
-#: templates/base.html:146
+#: templates/base.html:147
 #, fuzzy
 msgid "Questions?"
 msgstr "الأسئلة؟ يرجى الاتصال"
 
-#: templates/base.html:146
+#: templates/base.html:147
 msgid "Please click here to email us."
 msgstr "الرجاء الضغط هنا ل مراسلتنا ."
-
-#: templates/base.html:152
-msgid "Metropolitan Area Planning Council"
-msgstr "مجلس أبوظبي للتخطيط منطقة العاصمة"
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
@@ -548,6 +544,99 @@ msgstr ""
 msgid "My school isn’t on the list"
 msgstr "مدرستي ليست على لائحة"
 
+#: templates/survey/resources.html:7
+msgid "District Resources"
+msgstr "الموارد حي"
+
+#: templates/survey/resources.html:10
+msgid ""
+"On this page you will find resources to help you implement the MA Safe "
+"Routes Survey in your school."
+msgstr ""
+"في هذه الصفحة سوف تجد موارد لمساعدتك على تنفيذ توجيهات صندوق مسح MA في "
+"مدرستك ."
+
+#: templates/survey/resources.html:13
+#, fuzzy
+msgid ""
+"If you need more assistance, please contact MassDOT’s Safe Routes to School "
+"program at 857-368-8638."
+msgstr ""
+"إذا كان لديك أسئلة، يرجى الاتصال على مدير المدرسة أو استدعاء طرق آمنة لل "
+"مدرسة في 857-368-8650 ."
+
+#: templates/survey/resources.html:15
+#, fuzzy
+msgid "Paper Survey Forms"
+msgstr "فتح نموذج المسح مدرسة"
+
+#: templates/survey/resources.html:18
+msgid ""
+"The paper survey forms include the same questions as are found in the online"
+" survey.  The generic versions can be printed and distributed “as is.”  The "
+"Customizable versions have  a field where you can enter your school name, "
+"the due date for the survey, and the school-specific web address of the "
+"online survey (e.g.,"
+msgstr ""
+"وتشمل أشكال المسح ورقة الأسئلة نفسها كما توجد في استطلاع على الانترنت . "
+"إصدارات عامة يمكن طباعتها وتوزيعها \"كما هي \". إصدارات تخصيص لديك حقل حيث "
+"يمكنك إدخال اسم مدرستك ، وهو الموعد المحدد لعملية المسح ، وعنوان على شبكة "
+"الإنترنت في المدارس الخاصة لل استطلاع على الانترنت (على سبيل المثال ،"
+
+#: templates/survey/resources.html:18
+msgid ""
+"Customizing the paper survey forms requires the free Adobe Acrobat Reader"
+msgstr "تخصيص استمارات مسح الورق يتطلب أدوبي أكروبات ريدر مجانا"
+
+#: templates/survey/resources.html:18
+msgid "download here."
+msgstr "تحميل هنا."
+
+#: templates/survey/resources.html:22
+msgid "English"
+msgstr "الإنجليزية"
+
+#: templates/survey/resources.html:24 templates/survey/resources.html.py:30
+#: templates/survey/resources.html:36 templates/survey/resources.html.py:42
+#: templates/survey/resources.html:48 templates/survey/resources.html.py:54
+#: templates/survey/resources.html:60
+msgid "Generic"
+msgstr "عام"
+
+#: templates/survey/resources.html:25 templates/survey/resources.html.py:31
+#: templates/survey/resources.html:37 templates/survey/resources.html.py:43
+#: templates/survey/resources.html:49 templates/survey/resources.html.py:55
+#: templates/survey/resources.html:61
+msgid "Customizable"
+msgstr "تخصيص"
+
+#: templates/survey/resources.html:28
+msgid "Spanish"
+msgstr "الأسبانية"
+
+#: templates/survey/resources.html:34
+msgid "Portuguese"
+msgstr "البرتغالية"
+
+#: templates/survey/resources.html:40
+msgid "Chinese"
+msgstr "الصينية"
+
+#: templates/survey/resources.html:46
+msgid "Vietnamese"
+msgstr "الفيتنامية"
+
+#: templates/survey/resources.html:52
+msgid "French"
+msgstr "فرنسي"
+
+#: templates/survey/resources.html:58
+msgid "Arabic"
+msgstr "العربية"
+
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "شكرا لك!"
+
+#~ msgid "Metropolitan Area Planning Council"
+#~ msgstr "مجلس أبوظبي للتخطيط منطقة العاصمة"
