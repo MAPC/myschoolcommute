@@ -42,8 +42,11 @@ def register(request):
             )
 
             try:
-                g = Group.objects.get(name="MassRIDES Staff")
-                emails = [u.email for u in g.user_set.all()]
+                #g = Group.objects.get(name="MassRIDES Staff")
+                #emails = [u.email for u in g.user_set.all()]
+                # email to single email for now
+                # https://github.com/MAPC/myschoolcommute/issues/49
+                emails = ['admin@masaferoutessurvey.org']
                 send_mail(
                     'myschoolcommute.com new user '+new_user.username,
                     message,
