@@ -178,7 +178,7 @@ class ProfileForm(InitModelForm):
         self.helper.form_tag = False
         if editor:
             if not editor.is_superuser or editor.groups.filter(name="MassRIDES Staff").count() == 0:
-                self.fields['district'].widget.attrs['disabled'] = True
+                self.fields['district'].widget.attrs['readonly'] = 'readonly'
 
     class Meta:
         model = Profile
