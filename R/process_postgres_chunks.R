@@ -10,7 +10,7 @@ pByG3 <- pByG2 + geom_text(label = paste(g_dfg$Pct,
                            y=3)
 pByG4 <- pByG3 + labs(title = paste("Participation by Grade\n",
                                     School_Name,sep=""),
-                      y = "Students")
+                      y = "Number of Students")
 pByG5 <- pByG4 + scale_fill_manual("",
                                    values = c("#D9A09A","#C5C9C9"),
                                    labels = c("Completed Survey", "No Response Received"))
@@ -27,7 +27,7 @@ sByB2 <- sByB1 + geom_bar(aes(y = value,
 sByB3 <- sByB2 + labs(title = paste("Students by Walkshed\n",
                                     School_Name,sep=""),
                       x = "Walkshed (miles)",
-                      y = "Students")
+                      y = "Number of Students")
 sByB4 <- sByB3 + scale_fill_manual("",
                                    values = c("#D9A09A","#C5C9C9"),
                                    labels = c("Surveyed", "Estimated"))
@@ -35,19 +35,20 @@ sByB5 <- sByB4 + theme_minimal()
 sByB5
 
 ## @knitr b_dft
-bufferDF_latex <- latex(b_dft,
+bufferDF_latex <- latex(b_dft[,2:ncol(b_dft)],
                         file="",
-                        colheads = c("Students",buffers),
+                        colheads = buffers,
+                        table.env=FALSE,
+                        # colheads = c("Students",buffers),
                         first.hline.double = FALSE,
-                        rowname = NULL,
+                        rowname = c("Estimated","Surveyed", "Percent"), # NULL,
+                        rowlabel = "Students",
                         where="H",
-                        col.just=c("l",rep("r",5)),
-                        caption="Surveyed and Estimated Total Students by Walkshed")
+                        col.just=rep("r",5)) #c("l",rep("r",5))
                        
 ## @knitr mByBuffer
 mSb_df$time <- factor(mSb_df$time,levels=levels(as.factor(mSb_df$time))[c(2:1)])
 mByBuffer1 <- ggplot(data = mSb_df,
-                            
                      aes(x = Buffer,
                                 y = Estimate,
                                 fill = Mode))
@@ -63,6 +64,29 @@ mByBuffer5 <- mByBuffer4 + scale_fill_manual("",
 
 mByBuffer6 <- mByBuffer5 + theme_minimal()
 mByBuffer6
+
+##### Begin New Code ######
+## @knitr mByBuffer_table
+mByBuffer_table <-
+  sub("^~~",
+      "",
+      capture.output(latex(mSb_df_for_latex,
+                           file="",
+                           colheads = buffers,
+                           col.just=c(rep("r",length(buffers))),
+                           rowlabel = "",
+                           table.env=FALSE,
+                           rowname = rep(c("Auto","School Bus","Walk"),2),
+                           rgroup = c("Morning","Afternoon"),
+                           n.rgroup = c(3,3),
+                           first.hline.double = FALSE,
+                           center="none",
+                           where= "H"))
+                         )
+
+writeLines(mByBuffer_table)
+##### End New Code ######
+
 # 
 # ## @knitr modeDFMorningWideTable
 # modeDFMorningWideTable <-
@@ -183,8 +207,8 @@ m3 <- m2 +
 m4 <- m3 + labs(title = paste("Morning and Afternoon Mode Choices\n",
                               School_Name,sep=""),
                 fill = "",
-                x = "",
-                y = "")
+                x = "Mode Choice",
+                y = "Percent of Trips")
 m5 <- m4 + theme_minimal()
 m5
 # 
@@ -240,8 +264,6 @@ ghgTableSchool <- latex(ghgBufferDFgeneric[c("Buffer",
                                      "Percent"),
                         where="H",
                         first.hline.double = FALSE,
-                        caption = paste("GHG Emissions by Walkshed, ",
-                            paste(School_Name,".",sep="")),
                         col.just=c("l",rep("r",3)),
                         rowname = NULL)
 # 
@@ -271,7 +293,7 @@ pSaggLatexTable <- latex(pSaggLatex,
                          colheads = c("",
                                       "1 Mile",
                                       "Walk",
-                                      "GHG Per Student"),
+                                      "GHG"),
                          where="H",
                          first.hline.double = FALSE,
                          caption = "1.0 Mile walk share and GHG emissions. Peer schools are those 
@@ -279,7 +301,26 @@ pSaggLatexTable <- latex(pSaggLatex,
                                          school is within 25\\% of the share at your 
                                          school. 1 Mile is the percent of students who
                                          live within one mile of school. Walk is the percent
-                                         of students within one mile who walk. GHG Per Student 
-                                         is per student GHG emission in kg for all students.",
+                                         of students within one mile who walk. GHG
+                                         is per-student GHG emissions in kg.",
                               col.just=c("l",rep("r",3)),
                               rowname = NULL)
+
+## @knitr walkExpectedActual
+dfLatex = prettyTable(bufferByModeDFLatex,
+                      pcts = 1:ncol(bufferByModeDFLatex),
+                      digits = 0)
+lc=ncol(dfLatex)
+bufferByModeDFLatexTable <-
+  latex(dfLatex,
+        file = "",
+        title = "",
+        booktabs=TRUE,
+        table.env=FALSE,
+        col.just= rep("r",lc),
+        rowlabel = "",
+        colheads = buffers,
+        colnamesTexCmd = "bfseries")
+
+
+

@@ -26,12 +26,10 @@ drv <- dbDriver("PostgreSQL")
 ch <- dbConnect(drv, 
                 host='localhost',
                 port='5432', 
-                dbname=dbname,
-                user=dbuser,
-                password=dbpasswd)
-#df_all <- dbSendQuery(ch,"select * from temp_child")
-sql <- paste("SELECT * FROM survey_child_survey WHERE created BETWEEN timestamp '",DATE1,"' AND timestamp '",DATE2,"'")
-df_all <- dbSendQuery(ch,sql)
+                dbname='srts',
+                user='cmartin',
+                password='password')
+df_all <- dbSendQuery(ch,"select * from temp_child")
 df_all <- fetch(df_all,n=-1)
 dbDisconnect(ch) # disconnect from PostGres database
 
@@ -43,13 +41,25 @@ df_all <- droplevels(df_all)
 
 # 3)
 # select records that match ORG_CODE
-df <- df_all[df_all$schi == ORG_CODE,]
+df <- df_all[df_all$schid == ORG_CODE,]
+
+# 3a) 
+# choose enrollment table based on date of created column
+start_date = survey_dates(df,"created", "current_time")$start_date
+if (start_date < as.Date("2012-07-30")){
+  enrollmentDF = enrollment11_12
+  enrollmentDate = "2011-2012"
+} else {
+  enrollmentDF = enrollment12_13
+  enrollmentDate = "2012-2013"
+}
+
 
 # 4)
 # check if Enrollment table contains ORG_CODE; if not
 # create pdf 'ORG_CODE.pdf' with error message to user
 # and terminate application
-if (!(ORG_CODE %in% Enrollment$ORG.CODE)){
+if (!(ORG_CODE %in% enrollmentDF$ORG.CODE)){
   knit2pdf("compile_no_school_code.Rnw")
   file.rename("compile_no_school_code.pdf",paste("Reports/",paste(ORG_CODE,".pdf",sep=""),sep=""))
   stop()
@@ -63,11 +73,11 @@ names(df)[grep("dropoff",names(df))] <- "DropOff"
 names(df)[grep("pickup",names(df))] <- "PickUp"
 
 # 6) create BUFF_DIST column based on distance column
-df$BUFF_DIST <- ifelse(df$distance <= .5, "0.5",
-                       ifelse(df$distance <= 1, "1.0",
-                              ifelse(df$distance <= 1.5, "1.5",
-                                     ifelse(df$distance <= 2, "2.0",
-                                            "2.0+"))))
+df$BUFF_DIST <- ifelse(df$shed == 0, "2.0+",
+                       ifelse(df$shed == 1, "0.5",
+                              ifelse(df$shed == 2, "1.0",
+                                     ifelse(df$shed == 3, "1.5",
+                                            "2.0"))))
 
 # 7) relabel the values in ModeTo and ModeFrom columns (e.g. fv -> Family Vehicle)
 df$ModeTo <- mode_labels(df$ModeTo)
@@ -80,8 +90,17 @@ df$ModeFromMod <- mode_simple(df$ModeFrom)
 # Reorder df$grades
 df$grade <- grade_reorder(df$grade)
 
+## create grade ranges 
+lowGrades = c("p", "k", as.character(1:3))
+midGrades = as.character(4:7)
+highGrades = as.character(8:12)
+df$gradeRanges = ifelse(df$grade %in% lowGrades, "low",
+                     ifelse(df$grade %in% midGrades, "mid",
+                            "high"))
+
 # 9) assign 'df' to the variable 'DF'
 DF <- df
+DF <- DF[DF$grade %in% getGrades(enrollmentDF,ORG_CODE),]
 
 
 ############### End Read Data from PostGres database ###################
@@ -90,19 +109,20 @@ DF <- df
 # survey start and end dates are based on the created and current_time columns
 # start_date is the minimum value in created column
 # end_date is the maximum value in current_time column
-date_list <- survey_dates(DF,"created","created")
+date_list <- survey_dates(DF,"created","current_time")
 start_date <- date_list$start_date
 start_month <- date_list$start_month
 start_year <- date_list$start_year
 end_date <- date_list$end_date
 end_month <- date_list$end_month
 end_year <- date_list$end_year
+############### End Get Survey Dates #######################
 
 ############### Begin Calculate GHG Emissions ###################
 # This section addes the following columns to DF:
 # - distEst, the distance to school
 # - ghg_Total_To, estimated GHG emissions to school in the moring
-# - ghg_Total_From, esitmated GHG emissions from school school in the afternon)
+# - ghg_Total_From, esitmated GHG emissions from school school in the afternon
 
 
 ## Assign distance column to variable distEst to conform to 
@@ -179,7 +199,7 @@ ghg_Total = ghg_Total_To + ghg_Total_From
 
 DF <- as.data.frame(cbind(DF,distEst,ghg_Total_To,ghg_Total_From, ghg_Total))
 
-School_Name <- Enrollment[Enrollment$ORG.CODE==ORG_CODE,"SCHOOL"]
+School_Name <- enrollmentDF[enrollmentDF$ORG.CODE==ORG_CODE,"SCHOOL"]
 
 ############### End Calculate GHG Emissions ###################
 
@@ -219,7 +239,7 @@ g_df <- mergeDF(g_df, g_df_temp,
 # SCHOOL = School name (form: <District> - <School>)
 # variable = grade level PK, K, 1 to 12
 # value = enrollment
-et_df <- enroll_totals(Enrollment,ORG_CODE)
+et_df <- enroll_totals(enrollmentDF,ORG_CODE)
 
 # 4:
 # fill Enroll column of g_df
@@ -347,10 +367,11 @@ b_dfg <- melt(b_df,
 
 # Factoids
 estWithinOneMile <- sum(b_df$Estimate[b_df$Buffer %in% c("0.5","1.0")])
-estWithinTwoMile <- sum(b_df$Estimate[b_df$Buffer %in% c("0.5","1.0","1.5","2.0","2.0+")])
+estWithinTwoMile <- sum(b_df$Estimate[b_df$Buffer %in% c("0.5","1.0","1.5","2.0")])
+estBeyondOneMile <- sum(b_df$Estimate[b_df$Buffer %in% c("1.5","2.0","2.0+")])
 pctWithinOneMile <- round(100*estWithinOneMile/sum(b_df$Estimate),0)
 pctWithinTwoMile <- round(100*estWithinTwoMile/sum(b_df$Estimate),0)
-avgDistToSchool <- round(mean(DF$distEst,na.rm=TRUE),digits = 1)
+avgDistToSchool <- round(mean(DF$distance,na.rm=TRUE),digits = 1)
 
 
 # b_dft is b_df with buffers as column headings
@@ -617,6 +638,21 @@ mSb_df_afternoon$time <- "Afternoon"
 
 mSb_df <- rbind(mSb_df_morning,mSb_df_afternoon)
 
+##### Begin New Code #####
+# create table of mode by morning/afternoon and walkshed
+mSb_df_for_latex <- 
+  rbind(aggregate(mSb_df_morning$Estimate,
+                  by=list(mSb_df_morning$Mode),
+                  t),
+        aggregate(mSb_df_afternoon$Estimate,
+                  by=list(mSb_df_morning$Mode),
+                  t))
+mSb_df_for_latex <- as.data.frame(lapply(as.data.frame(round(mSb_df_for_latex$x,0)),
+                                         as.character))
+
+##### End New Code #####
+
+
 ############### End Student Travel Choices ###################
 
 ############### Begin Greenhouse Gas Emissions ###################
@@ -707,10 +743,18 @@ ghgBufferDFgeneric[,2:6] <- lapply(ghgBufferDFgeneric[,2:6],as.character)
 ## pSdF == %peer %School %data %Frame
 oneMileSchoolRatio <- pctWithinOneMile/100
 walkSchoolOneMile <- sum(mSb_df$Estimate[mSb_df$Buffer %in% c("0.5","1.0") & mSb_df$Mode == "Walk"])
+estWithinOneMile <- sum(mSb_df$Estimate[mSb_df$Buffer %in% c("0.5","1.0")])
+estBeyondOneMile <- sum(mSb_df$Estimate[mSb_df$Buffer %in% c("1.5","2.0", "2.0+")])
+schoolBusBeyondOneMile <- sum(mSb_df$Estimate[mSb_df$Buffer %in% c("1.5","2.0", "2.0+") & mSb_df$Mode == "School Bus"])
+pctWalkSchoolOneMile  <-   ifelse(estWithinOneMile > 0,
+                                  round(100*walkSchoolOneMile/estWithinOneMile),
+                                  0)
+walkSchoolOneMileRatio <- pctWalkSchoolOneMile/100
+pctSchoolBusBeyondOneMile  <- ifelse(estBeyondOneMile > 0,
+                                     round(100*schoolBusBeyondOneMile/estBeyondOneMile),
+                                     0)
+
 estWithinOneMileMorningAfternoon <- sum(mSb_df$Estimate[mSb_df$Buffer %in% c("0.5","1.0")])
-walkSchoolOneMileRatio <- ifelse(estWithinOneMileMorningAfternoon == 0,
-                                 0, 
-                                 walkSchoolOneMile/estWithinOneMileMorningAfternoon)
 pSdF <- compareSchTable(allSchComp,.27)
 ## pSdF == %peer %School %aggregation
 pSagg <- compSchoolsData(pSdF)
@@ -724,7 +768,172 @@ pSaggLatex$PctMile <- addPct(100*pSagg$PctMile)
 pSaggLatex$PctWalkMile <- addPct(100*pSagg$PctWalkMile)
 pSaggLatex$ghgPerCap <- as.character(round(pSaggLatex$ghgPerCap,0))
 
+# create DF that has count of students in each gradeRange and Buffer
+# including those with no students 
+
+rangeBufferDF = aggregate(mSb_df_morning$Estimate,
+          by=list(mSb_df_morning$Mode),t)
+
+rangeBufferDF[,2] = rangeBufferDF[,2] +
+  aggregate(mSb_df_afternoon$Estimate,
+            by=list(mSb_df_afternoon$Mode),t)[,2]
+
+rangeBufferDFMorning = ddply(mSb_df_morning,
+                      .(Mode, Buffer),
+                      summarise,
+                      Estimate = sum(Estimate))
+
+rangeBufferDFAfternoon = ddply(mSb_df_afternoon,
+                             .(Mode, Buffer),
+                             summarise,
+                             Estimate = sum(Estimate))
+
+rangeBufferDF = rangeBufferDFMorning
+rangeBufferDF$Estimate = rangeBufferDF$Estimate + rangeBufferDFAfternoon$Estimate
+
+rangeBufferDF = ddply(rangeBufferDF,
+                      .(Buffer),
+                      transform,
+                      BufferTotal = sum(Estimate))
+
+rangeBufferDF$bufferShare = ifelse(rangeBufferDF$BufferTotal > 0,
+                                   100*rangeBufferDF$Estimate/rangeBufferDF$BufferTotal,
+                                   0)
+
+gradeRangeBufferDF = mergeDF(gradeRangeBuffer(),
+                             count(DF,.(gradeRanges,BUFF_DIST)),
+                             by.x = c("gradeRange", "Buffer"),
+                             by.y = c("gradeRanges", "BUFF_DIST"),
+                             data.column1 = "Count",
+                             data.column2 = "freq")
+
+gradeRangeBufferDF$Count = 2*gradeRangeBufferDF$Count
+
+gradeRangeBufferDF$average = 0
+
+gradeRangeBufferDF = mergeDF(gradeRangeBufferDF,
+                             surveysGradeBuffer,
+                             by.x = c("gradeRange", "Buffer"),
+                             by.y = c("gradeRanges", "BUFF_DIST"),
+                             data.column1 = "average",
+                             data.column2 = "Expected")
+
+gradeRangeBufferDF$Expected = gradeRangeBufferDF$Count*gradeRangeBufferDF$average
+
+bufferByModeDF = ddply(gradeRangeBufferDF,
+                       .(Buffer),
+                       summarise,
+                       count = sum(Count),
+                       expected = sum(Expected))
+
+bufferByModeDF$actual = 0 
+
+bufferByModeDF = mergeDF(bufferByModeDF,
+                         count(DF[DF$ModeToMod == "Walk",],
+                               .(BUFF_DIST)),
+                         by.x = c("Buffer"),
+                         by.y = c("BUFF_DIST"),
+                         data.column1 = "actual",
+                         data.column2 = "freq")
+
+bufferByModeDF$expectedPct = ifelse(bufferByModeDF$count > 0,
+                                    100*bufferByModeDF$expected/bufferByModeDF$count,
+                                    0)
+
+bufferByModeDF$actualPct = rangeBufferDF[rangeBufferDF$Mode == "Walk","bufferShare"]
+
+bufferByModeDFLatex = as.data.frame(t(bufferByModeDF[,c("actualPct","expectedPct")]))
+row.names(bufferByModeDFLatex) = c("Actual", "Expected")
+
+## create scenarios for How Your School Compares
+# total trips per buffer
+bufferByModeDF$bufferTotal = rangeBufferDF[rangeBufferDF$Mode == "Auto","BufferTotal"]
+
+if(sum(bufferByModeDF$expectedPct > bufferByModeDF$actualPct) > 0){
+  # calculate extra walk trips needed to achieve expected walk share 
+  # if walk share is already above expected, return 0
+  bufferByModeDF$extraWalk = ifelse(bufferByModeDF$expectedPct > bufferByModeDF$actualPct,
+                                    (bufferByModeDF$expectedPct - bufferByModeDF$actualPct)*bufferByModeDF$bufferTotal/100,
+                                    0)
+  # add auto share
+  bufferByModeDF$autoTotal = rangeBufferDF[rangeBufferDF$Mode == "Auto","Estimate"]
+  # calculate reduction in auto trips if walk share rose 
+  # to expected levels
+  bufferByModeDF$autoReduced = ifelse(bufferByModeDF$autoTotal > bufferByModeDF$extraWalk,
+                                      bufferByModeDF$extraWalk,
+                                      bufferByModeDF$autoTotal)
+  
+  dailyAutoReduce = round(sum(bufferByModeDF$autoReduce))
+  newWalkers = sum(bufferByModeDF$extraWalk)/2
+  totalMinutesWalking = sum(bufferByModeDF$extraWalk*(7.5*1:5))
+  avgMinutesWalking = round(totalMinutesWalking/newWalkers)
+  
+  ghgReductionLowHigh = ghgReduction(bufferByModeDF$autoReduced)
+  annualGHGreductionLow = ghgReductionLowHigh$ghgLow*180
+  annualGHGreductionHigh = ghgReductionLowHigh$ghgHigh*180
+  annualGHGreductionLowPct = 100*annualGHGreductionLow/totGhGest
+  annualGHGreductionHighPct = 100*annualGHGreductionHigh/totGhGest
+  annualGHGreductionLowText = thousands_sep(ghgReductionLowHigh$ghgLow*180)
+  annualGHGreductionHighText = thousands_sep(ghgReductionLowHigh$ghgHigh*180)
+  
+  
+  extraWalkTotal = sum(bufferByModeDF$extraWalk)
+  
+  scenarioText = 'If your school achieved the "expected" values described 
+                  above based on grade specific averages for each walkshed, 
+                  it would:'
+}
+
+if(sum(bufferByModeDF$expectedPct > bufferByModeDF$actualPct) == 0){
+  # calculate extra walk trips needed to achieve expected walk share 
+  # if walk share is already above expected, return 0
+  bufferByModeDF$extraWalk = ifelse(bufferByModeDF$actualPct + 25 < 100,
+                                    25*bufferByModeDF$bufferTotal/100,
+                                    (100 - bufferByModeDF$actualPct)*bufferByModeDF$bufferTotal/100)
+  # add auto share
+  bufferByModeDF$autoTotal = rangeBufferDF[rangeBufferDF$Mode == "Auto","Estimate"]
+  # calculate reduction in auto trips if walk share rose 
+  # by 25%
+  bufferByModeDF$autoReduced = ifelse(bufferByModeDF$autoTotal > bufferByModeDF$extraWalk,
+                                      bufferByModeDF$extraWalk,
+                                      bufferByModeDF$autoTotal)
+  
+  dailyAutoReduce = round(sum(bufferByModeDF$autoReduce))
+  newWalkers = sum(bufferByModeDF$extraWalk)/2
+  totalMinutesWalking = sum(bufferByModeDF$extraWalk*(7.5*1:5))
+  avgMinutesWalking = totalMinutesWalking/newWalkers
+  
+  ghgReductionLowHigh = ghgReduction(bufferByModeDF$autoReduced)
+  annualGHGreductionLow = ghgReductionLowHigh$ghgLow*180
+  annualGHGreductionHigh = ghgReductionLowHigh$ghgHigh*180
+  annualGHGcurrent = sum(as.numeric(ghgBufferDFgeneric$ghgEst))
+  annualGHGreductionLowPct = 100*annualGHGreductionLow/totGhGest
+  annualGHGreductionHighPct = 100*annualGHGreductionHigh/totGhGest
+  annualGHGreductionLowText = thousands_sep(ghgReductionLowHigh$ghgLow*180)
+  annualGHGreductionHighText = thousands_sep(ghgReductionLowHigh$ghgHigh*180)
+  
+  extraWalkTotal = sum(bufferByModeDF$extraWalk)
+  
+  scenarioText = "If you school increase walk\\textbackslash bikeshare rates by 25\\% in each 
+  walkshed, it would:"
+}
+
+
+# calculate GHG emission reduction
+
+bufferByModeDF = mergeDF(bufferByModeDF,
+                         count(DF[DF$ModeFromMod == "Walk",],
+                               .(BUFF_DIST)),
+                         by.x = c("Buffer"),
+                         by.y = c("BUFF_DIST"),
+                         data.column1 = "actual",
+                         data.column2 = "freq")
+
+
+
 ################### End  How Your School Compares ########################
+
+#save.image()
 
 
 
