@@ -26,9 +26,9 @@ drv <- dbDriver("PostgreSQL")
 ch <- dbConnect(drv, 
                 host='localhost',
                 port='5432', 
-                dbname='srts',
-                user='cmartin',
-                password='password')
+                dbname=dbname,
+                user=dbuser,
+                password=dbpasswd)
 df_all <- dbSendQuery(ch,"select * from temp_child")
 df_all <- fetch(df_all,n=-1)
 dbDisconnect(ch) # disconnect from PostGres database
