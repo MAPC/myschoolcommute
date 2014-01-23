@@ -221,6 +221,17 @@ class Survey(models.Model):
             pass
 
 
+class SurveySet(models.Model):
+    """
+    This class represents a set of surveys collected within a set data range
+    """
+    school = models.ForeignKey(School)
+    begin = models.DateTimeField()
+    end = models.DateTimeField()
+
+    def __unicode__(self):
+        return "%s Survey Set for %s - %s" % (self.school, self.begin, self.end,)
+
 CHILD_GRADES = (
     ('', '--'),
     ('p', 'Pre-K'),

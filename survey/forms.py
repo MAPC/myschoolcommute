@@ -7,7 +7,10 @@ from django.contrib.gis.geos import Point, GEOSGeometry
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
 
-from survey.models import Intersection, Survey, Child, School, CHILD_MODES, CHILD_GRADES, CHILD_DROPOFF
+from survey.models import (
+    Survey, SurveySet, Child, School,
+    CHILD_MODES, CHILD_GRADES, CHILD_DROPOFF
+)
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -57,7 +60,7 @@ class SurveyForm(ModelForm):
 
     class Meta:
         model = Survey
-        exclude = ('school', 'ip', 'created', 'modified', 'distance', 'user')
+        exclude = ('school', 'ip', 'created', 'modified', 'distance', 'user', )
 
 
     def clean(self):
@@ -112,6 +115,22 @@ YES_OR_NO = (
     (True, 'Yes'),
     (False, 'No')
 )
+
+class SurveySetForm(ModelForm):
+    begin = forms.DateField(widget=forms.DateInput(format='%m/%d/%Y'), input_formats=('%m/%d/%Y',))
+    end = forms.DateField(widget=forms.DateInput(format='%m/%d/%Y'), input_formats=('%m/%d/%Y',))
+
+    def __init__(self, *args, **kwargs):
+        super(SurveySetForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper(self)
+        self.helper.form_class = 'form-horizontal'
+        self.helper.add_input(Submit('submit', 'Save'))
+        self.helper.add_input(Submit('submit', 'Generate Report'))
+
+    class Meta:
+        model = SurveySet
+        fields = ("begin", "end", )
 
 
 class SchoolForm(ModelForm):

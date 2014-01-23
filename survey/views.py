@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
 from django.db.models import Count, Q, Max, Min
-from django.forms.models import inlineformset_factory
+from django.forms.models import inlineformset_factory, formset_factory
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import permission_required
@@ -33,10 +33,9 @@ def district(request, district_slug):
     district = District.objects.get(slug__iexact=district_slug)
 
     return render_to_response('survey/district.html', {
-            'district': district,
-            'MEDIA_URL': settings.MEDIA_URL,
-            },
-            context_instance=RequestContext(request))
+        'district': district,
+        'MEDIA_URL': settings.MEDIA_URL,
+    }, context_instance=RequestContext(request))
 
 
 @permission_required('survey.change_district')

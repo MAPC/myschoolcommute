@@ -18,50 +18,47 @@
         {% trans "The paper survey forms include the same questions as are found in the online survey.  The generic versions can be printed and distributed “as is.”  The Customizable versions have  a field where you can enter your school name, the due date for the survey, and the school-specific web address of the online survey (e.g.," %} <a href='http://masaferoutessurvey.org/en/boston/kennedy'>http://masaferoutessurvey.org/en/boston/kennedy</a>.)  {% trans "Customizing the paper survey forms requires the free Adobe Acrobat Reader" %} (<a href='http://get.adobe.com/reader/'>{% trans "download here." %}</a>)
     </p>
 
-    <ul>
-        <li>{% trans "English" %}
-            <ul>
-                <li><a href='{{STATIC_URL}}docs/MySchoolCommuteSurvey_English_Generic.pdf'>{% trans "Generic" %}</a></li>
-                <li><a href='{{STATIC_URL}}docs/MySchoolCommuteSurvey_English_Customizable.pdf'>{% trans "Customizable" %}</a></li>
-            </ul>
-        </li>
-        <li>{% trans "Spanish" %}
-            <ul>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Spanish_Generic.pdf'>{% trans "Generic" %}</a></li>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Spanish_Customizable.pdf'>{% trans "Customizable" %}</a></li>
-            </ul>
-        </li>
-        <li>{% trans "Portuguese" %}
-            <ul>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Portuguese_Generic.pdf'>{% trans "Generic" %}</a></li>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Portuguese_Customizable.pdf'>{% trans "Customizable" %}</a></li>
-            </ul>
-        </li>
-        <li>{% trans "Chinese" %}
-            <ul>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Chinese_Generic.pdf'>{% trans "Generic" %}</a></li>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Chinese_Customizable.pdf'>{% trans "Customizable" %}</a></li>
-            </ul>
-        </li>
-        <li>{% trans "Vietnamese" %}
-            <ul>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Vietnamese_Generic.pdf'>{% trans "Generic" %}</a></li>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Vietnamese_Customizable.pdf'>{% trans "Customizable" %}</a></li>
-            </ul>
-        </li>
-        <li>{% trans "French" %}
-            <ul>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_French_Generic.pdf'>{% trans "Generic" %}</a></li>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_French_Customizable.pdf'>{% trans "Customizable" %}</a></li>
-            </ul>
-        </li>
-        <li>{% trans "Arabic" %}
-            <ul>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Arabic_Generic.pdf'>{% trans "Generic" %}</a></li>
-                <li><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Arabic_Customizable.pdf'>{% trans "Customizable" %}</a></li>
-            </ul>
-        </li>
-    </ul>
+    <br/>
+    <table class='table table-hover'>
+        <thead><tr><td><b>Language</b></td><td><b>Generic</b></td><td><b>Customizable</b></td></tr></thead>
+        <tbody>
+            <tr>
+                <td>{% trans "English" %}</td>
+                <td><a href='{{STATIC_URL}}docs/MySchoolCommuteSurvey_English_Generic.pdf'>{% trans "Generic" %}</a></td>
+                <td><a href='{{STATIC_URL}}docs/MySchoolCommuteSurvey_English_Customizable.pdf'>{% trans "Customizable" %}</a></td>
+            </tr>
+            <tr>
+                <td>{% trans "Spanish" %}</td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Spanish_Generic.pdf'>{% trans "Generic" %}</a></td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Spanish_Customizable.pdf'>{% trans "Customizable" %}</a></td>
+            </tr>
+            <tr>
+                <td>{% trans "Portuguese" %}</td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Portuguese_Generic.pdf'>{% trans "Generic" %}</a></td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Portuguese_Customizable.pdf'>{% trans "Customizable" %}</a></td>
+            </tr>
+            <tr>
+                <td>{% trans "Chinese" %}</td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Chinese_Generic.pdf'>{% trans "Generic" %}</a></td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Chinese_Customizable.pdf'>{% trans "Customizable" %}</a></td>
+            </tr>
+            <tr>
+                <td>{% trans "Vietnamese" %}</td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Vietnamese_Generic.pdf'>{% trans "Generic" %}</a></td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Vietnamese_Customizable.pdf'>{% trans "Customizable" %}</a></td>
+            </tr>
+            <tr>
+                <td>{% trans "French" %}</td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_French_Generic.pdf'>{% trans "Generic" %}</a></td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_French_Customizable.pdf'>{% trans "Customizable" %}</a></td>
+            </tr>
+            <tr>
+                <td>{% trans "Arabic" %}</td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Arabic_Generic.pdf'>{% trans "Generic" %}</a></td>
+                <td><a href='{{STATIC_URL}}docs/MAsaferoutessurvey_Arabic_Customizable.pdf'>{% trans "Customizable" %}</a></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}

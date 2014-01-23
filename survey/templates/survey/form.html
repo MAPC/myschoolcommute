@@ -281,7 +281,7 @@ var update_cross = function(e) {
         // clear previouse dropdown options
         $("#id_cross_st option").remove();
         // append new schools to dropdown
-        $("<option value=''></option>").appendTo("#id_street");
+        $("<option value=''></option>").appendTo("#id_cross_st");
         $.each(streets, function(id, street) {
             $("<option value='" + street + "'>" + street + "</option>").appendTo("#id_cross_st");
         });

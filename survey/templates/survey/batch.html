@@ -283,7 +283,7 @@ var update_cross = function(e) {
         // clear previouse dropdown options
         $("#id_cross_st option").remove();
         // append new schools to dropdown
-        $("<option value=''></option>").appendTo("#id_street");
+        $("<option value=''></option>").appendTo("#id_cross_st");
         $.each(streets, function(id, street) {
             $("<option value='" + street + "'>" + street + "</option>").appendTo("#id_cross_st");
         });
@@ -341,6 +341,16 @@ var init_streets = function(){
         {% csrf_token %}
 
         {{ surveyformset.management_form }}
+
+        {% if surveyform.non_field_errors %}
+           <div class="alert alert-block alert-error fade in">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">Survey error</h4>
+            {% for err in surveyform.non_field_errors %}
+                <p>{{ err }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
 
         <fieldset>
             <p>

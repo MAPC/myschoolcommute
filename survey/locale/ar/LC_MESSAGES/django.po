@@ -20,11 +20,11 @@ msgstr ""
 
 #: forms.py:21
 msgid "Name of your street"
-msgstr "اسم الشارع الخاص بك"
+msgstr "اإسم الشارع"
 
 #: forms.py:25
 msgid "Name of nearest cross-street"
-msgstr "اسم أقرب عبر الشارع"
+msgstr "اإسم أقرب شارع يتقاطع مع شارعكم"
 
 #: forms.py:29
 msgid "How many vehicles do you have in your household?"
@@ -36,11 +36,11 @@ msgstr "كم من الناس في منزلك لديك رخصة قيادة؟"
 
 #: forms.py:80
 msgid "What grade is your child in?"
-msgstr "ما هي درجة طفلك في ؟"
+msgstr "ولدكم هو في أي صف مدرسي"
 
 #: forms.py:86
 msgid "How does your child get TO school on most days?"
-msgstr "كيف يمكن لطفلك الوصول إلى المدرسة في معظم أيام الأسبوع ؟"
+msgstr ".  بأي وسيلة يتم نقل ولدكم إلى المدرسة في"
 
 #: forms.py:91
 msgid ""
@@ -50,7 +50,7 @@ msgstr "هل تسقط عادة قبالة طفلك في طريقك إلى الع
 
 #: forms.py:97
 msgid "How does your child get home FROM school on most days?"
-msgstr "كيف يمكن طفلك من المدرسة إلى البيت في معظم أيام الأسبوع ؟"
+msgstr "بأي وسيلة يتم نقل ولدكم من المدرسة في أغلب الأيام"
 
 #: forms.py:102
 msgid ""
@@ -59,31 +59,31 @@ msgstr "هل عادة ما تلتقط طفلك في طريقك إلى العمل
 
 #: models.py:244
 msgid "Walk"
-msgstr "سير"
+msgstr "السير على الأقدام"
 
 #: models.py:245
 msgid "Bike"
-msgstr "دراجة هوائية"
+msgstr "الدراجة"
 
 #: models.py:246
 msgid "School Bus"
-msgstr "الحافلة المدرسية"
+msgstr "اباص المدرسة"
 
 #: models.py:247
 msgid "Family Vehicle (only children in your family)"
-msgstr "سيارة عائلية (الأطفال فقط في عائلتك )"
+msgstr "سيارة العائلة (اولاد أسرتكم فقط)"
 
 #: models.py:248
 msgid "Carpool (with children from other families)"
-msgstr "مرافقي طريق ( مع أطفال من عائلات أخرى )"
+msgstr "سيارة مشتركة (مع أولاد عائلات أخرى)"
 
 #: models.py:249
 msgid "Transit (city bus, subway, etc.)"
-msgstr "العبور ( باص ، مترو الانفاق ، الخ.)"
+msgstr "وسائل النقل العام (باص المدينة، القطار، المترو، الخ)"
 
 #: models.py:250
 msgid "Other (skateboard, scooter, inline skates, etc.)"
-msgstr "أخرى ( لوح التزلج ، سكوتر ، التزلج على الجليد مضمنة ، الخ.)"
+msgstr "غيرها (لوح تزلج، سكوتر، مزلج عجلات، الخ)"
 
 #: models.py:266
 msgid "Yes"
@@ -379,7 +379,7 @@ msgstr "السفر إلى مسح مدرسة"
 
 #: templates/survey/form.html:338
 msgid "Dear Parent or Guardian,"
-msgstr "عزيزي الوالد أو ولي الأمر ،"
+msgstr "حضرات الأهالي او الاوصياء،"
 
 #: templates/survey/form.html:342
 msgid ""
@@ -388,9 +388,9 @@ msgid ""
 "transportation choices for all students. The survey will take less than 3 "
 "minutes to complete. All responses are voluntary and confidential. "
 msgstr ""
-"مدرسة طفلك إجراء مسح لمعرفة كيفية الحصول على الطلاب من وإلى المدرسة . وسيتم "
-"استخدام هذه المعلومات للتخطيط ل خيارات نقل آمنة و صحية لجميع الطلاب . وسوف "
-"يستخدم المسح يستغرق أقل من 3 دقائق لإكمال. جميع الردود الطوعية والسرية ."
+"تود المدرسة الإطلاع على الوسيلة التي ينتقل بها الطلاب من وإلى المدرسة. "
+"تلك المعلومات لتأمين خيارات آمنة وصحية لوسائل النق "
+"المدرسي لجميع الطلاب."
 
 #: templates/survey/form.html:344
 msgid ""
