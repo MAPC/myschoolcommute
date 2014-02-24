@@ -1,12 +1,12 @@
 \documentclass[12pt,letterpaper]{report}
-\usepackage{fontspec} % table layout and font-family specs
+% \usepackage{fontspec} % requires xelatex; table layout and font-family specs
 \usepackage[margin=0.5in]{geometry}
-\usepackage[font={bf,sf},% san-serif font for float captions
+\usepackage[font={bf,sf,small},% san-serif font for float captions
                skip=0pt,% no space between captions and floats
                labelfont=bf,% caption lable (ie "Table 1") in bold face
                justification=justified,% left-justify captions
                singlelinecheck=false]{caption} %
-\usepackage{sectsty} % section headings
+% \usepackage{sectsty} % section headings
 \usepackage{multicol} % for 2-column page layout
 
 % control paragraph indent and spacing
@@ -14,9 +14,7 @@
 \setlength{\parindent}{0pt}
 % end control paragraph indent and spacing
 
-%\renewcommand{\familydefault}{\sfdefault} % set san-serif as default font
 \newcommand{\factoid}[1]{\flushleft{\large{#1}}} %  
-
 \newenvironment{itemize*}% bullet pointed list with smaller line spacing
   {\begin{itemize}%
     \setlength{\itemsep}{0pt}%
@@ -31,10 +29,10 @@
 
 
 % define serif and san-serif fonts
-\allsectionsfont{\sffamily} % section headings in san-serif font
+%\allsectionsfont{\sffamily} % section headings in san-serif font
 \renewcommand{\familydefault}{\sfdefault}
-\setromanfont{Goudy Old Style} % serif font to be Goudy Old Style
-\setsansfont{Tw Cen MT} % san-serif font to be Tw Cen MT
+%\setromanfont{Goudy Old Style} % serif font to be Goudy Old Style
+%\setsansfont{Tw Cen MT} % san-serif font to be Tw Cen MT
 
 %%%%% Setting up table and caption environment
 \usepackage{floatrow} % san-serif font for tabular material
@@ -72,10 +70,10 @@ read_chunk("process_postgres_chunks.R")
 
 
 {\flushleft   
-\includegraphics[height=20 mm]{2010SRTSLogo2}%[height=12 mm]{2010SRTSLogo}
+\includegraphics[height=20 mm]{2010SRTSLogo}%[height=12 mm]{2010SRTSLogo}
 \newline
 \newline
-\includegraphics[height=12 mm]{MassDOT_Logo_Color2}%[height=12 mm]{MassDOT_Logo_Color}
+\includegraphics[height=12 mm]{MassDOT_Logo_Color}%[height=12 mm]{MassDOT_Logo_Color}
 \newline
 \newline
 
@@ -200,7 +198,7 @@ The table below compares your school's actual walk \textbackslash bike share to 
 @
 \end{table}
 
-\section*{The Benefits of Walking and Biking}
+\section*{Benefits of Walking and Biking}
 Shifting some school commutes from auto to walking or biking can create real benefits for your community.  This section estimates the traffic, physical activity, and GHG benefits that might result from increasing walking and biking. It can help you make the case for investing in Safe Routes to School programs and to track your progress over time.
 
 \Sexpr{scenarioText}
@@ -211,4 +209,11 @@ Shifting some school commutes from auto to walking or biking can create real ben
 \end{itemize*}
 
 \end{multicols}
+\newpage
+\begin{center}
+\centering
+    \setlength\fboxsep{0pt}
+    \setlength\fboxrule{0.5pt}
+    \fbox{\includegraphics[width=1.0\textwidth]{figure/map.pdf}}
+\end{center}
 \end{document}

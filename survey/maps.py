@@ -580,7 +580,8 @@ def school_sheds_json(request, school_id):
 
 
 def ForkRunR(school_id, date1, date2):
-    import subprocess
+    import rpy2.robjects as r
+    #import subprocess
     school = School.objects.get(id=school_id)
     org_code = school.schid
     rdir = os.path.abspath(os.path.join(settings.CURRENT_PATH, '../R'))
@@ -591,10 +592,21 @@ def ForkRunR(school_id, date1, date2):
         os.makedirs(wdir)
     save_sheds(os.path.join(wdir, 'map.pdf'), school_id)
 
-    cur_dir = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(cur_dir)
+    r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
+    r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
+    r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
+    r.r("ORG_CODE <- '%s'" % org_code)
+    r.r("DATE1 <- '%s'" % str(date1))
+    r.r("DATE2 <- '%s'" % str(date2))
+    r.r("WORKDIR <- '%s'" % wdir)
+    r.r("load('.RData')")
+    r.r("print(ORG_CODE)")
+    r.r("source('compile.R')")
+
+    #cur_dir = os.path.dirname(os.path.realpath(__file__))
+    #os.chdir(cur_dir)
     #print " ".join(['./runr.py', wdir, rdir, org_code, str(date1), str(date2)])
-    subprocess.call(['./runr.py', wdir, rdir, org_code, str(date1), str(date2)])
+    #subprocess.call(['./runr.py', wdir, rdir, org_code, str(date1), str(date2)])
 
     pdfpath = os.path.join(rdir, 'minimal.pdf')
     return pdfpath

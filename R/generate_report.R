@@ -19,8 +19,6 @@ library(RPostgreSQL)
 # 1)
 # establish connection to PostgreSQl;
 # fetch survey table and write to variable df
-# ch <- odbcConnect("PostgreSQL30",pwd = "max1max2")
-# df <- sqlFetch(ch,"survey_child")
 
 drv <- dbDriver("PostgreSQL")
 ch <- dbConnect(drv, 
