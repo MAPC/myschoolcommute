@@ -23,7 +23,7 @@ msgstr "Non ri kote w ap viv la: "
 
 #: forms.py:28
 msgid "Name of nearest cross-street"
-msgstr "Non ri pou travÃ¨se:"
+msgstr "Non ri pou travèse:"
 
 #: forms.py:32
 msgid "How many vehicles do you have in your household?"
@@ -31,7 +31,7 @@ msgstr "Konbyen veyikil ou genyen lakay ou?"
 
 #: forms.py:37
 msgid "How many people in your household have a driver's license?"
-msgstr "Konbyen moun lakay ou ki gen yon lisans chofÃ¨?"
+msgstr "Konbyen moun lakay ou ki gen yon lisans chofè?"
 
 #: forms.py:83
 msgid "What grade is your child in?"
@@ -39,28 +39,28 @@ msgstr "Nan ki klas pitit ou ye?"
 
 #: forms.py:89
 msgid "How does your child get TO school on most days?"
-msgstr "Kijan pitit ou vini NAN lekÃ²l la nan pifÃ² jou yo?"
+msgstr "Kijan pitit ou vini NAN lekòl la nan pifò jou yo?"
 
 #: forms.py:94
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
 msgstr ""
-"Si ou te chwazi âmachin fanmiâ oswa âko-vwatirajâ pou vini nan "
-"lekÃ²l la, Ã¨ske chofÃ¨ a kontinye travay oswa ale yon lÃ²t kote anjeneral?"
+"Si ou te chwazi “machin fanmi” oswa “ko-vwatiraj” pou vini nan lekòl la, "
+"èske chofè a kontinye travay oswa ale yon lòt kote anjeneral?"
 
 #: forms.py:100
 msgid "How does your child get home FROM school on most days?"
 msgstr ""
-"Kijan pitit ou vini sÃ²ti NAN lekÃ²l la pou ale lakay li nan pifÃ² jou yo?"
+"Kijan pitit ou vini sòti NAN lekòl la pou ale lakay li nan pifò jou yo?"
 
 #: forms.py:105
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr ""
-"Si ou te chwazi âmachin fanmiâ oswa âko-vwatirajâ pou pitit ou sÃ²ti"
-" lekÃ²l la pou ale lakay li, Ã¨ske ou vin chÃ¨che pitit ou pandan ou sou "
-"wout apre travay ou oswa yon lÃ²t kote?"
+"Si ou te chwazi “machin fanmi” oswa “ko-vwatiraj” pou pitit ou sòti lekòl la"
+" pou ale lakay li, èske ou vin chèche pitit ou pandan ou sou wout apre "
+"travay ou oswa yon lòt kote?"
 
 #: models.py:255
 msgid "Walk"
@@ -68,27 +68,27 @@ msgstr "Mache"
 
 #: models.py:256
 msgid "Bicycle"
-msgstr "BisiklÃ¨t"
+msgstr "Bisiklèt"
 
 #: models.py:257
 msgid "School Bus"
-msgstr "Otobis LekÃ²l"
+msgstr "Otobis Lekòl"
 
 #: models.py:258
 msgid "Family Vehicle (only children in your family)"
-msgstr "Machin fanmi (sÃ¨lman timoun ki nan fanmi ou)"
+msgstr "Machin fanmi (sèlman timoun ki nan fanmi ou)"
 
 #: models.py:259
 msgid "Carpool (with children from other families)"
-msgstr "Ko-vwatiraj (avÃ¨k timoun lÃ²t fanmi)"
+msgstr "Ko-vwatiraj (avèk timoun lòt fanmi)"
 
 #: models.py:260
 msgid "Transit (city bus, subway, etc.)"
-msgstr "TranspÃ² Komen (otobis minisipalite vil la, metwo, elatriye)"
+msgstr "Transpò Komen (otobis minisipalite vil la, metwo, elatriye)"
 
 #: models.py:261
 msgid "Other (skateboard, scooter, inline skates, etc.)"
-msgstr "LÃ²t (planch-a-woulÃ¨t, eskoutÃ¨, paten ki gen wou aliyen, elatriye)"
+msgstr "Lòt (planch-a-woulèt, eskoutè, paten ki gen wou aliyen, elatriye)"
 
 #: models.py:277
 msgid "Yes"
@@ -441,7 +441,7 @@ msgstr "Nou apresye tan ou ak efò !"
 
 #: templates/survey/form.html:372
 msgid "What is your approximate home location?"
-msgstr "ApeprÃ¨ ki kote lakay ou lokalize?"
+msgstr "Apeprè ki kote lakay ou lokalize?"
 
 #: templates/survey/form.html:372 templates/survey/form.html.py:430
 msgid "required"
@@ -451,7 +451,7 @@ msgstr "mande"
 msgid ""
 "Please click the map at an intersection on your street, near your home:"
 msgstr ""
-"Tanpri klike sou kat la nan yon entÃ¨seksyon nan ri, ki toupre lakay ou."
+"Tanpri klike sou kat la nan yon entèseksyon nan ri, ki toupre lakay ou."
 
 #: templates/survey/form.html:380
 msgid "your home"
@@ -459,7 +459,7 @@ msgstr "lakay ou"
 
 #: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
-msgstr "â¦oswa di nou entÃ¨seksyon ri ki pipre a lakay ou."
+msgstr "…oswa di nou entèseksyon ri ki pipre a lakay ou."
 
 #: templates/survey/form.html:450
 msgid "Add another child at this school"

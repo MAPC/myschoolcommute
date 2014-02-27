@@ -20,88 +20,84 @@ msgstr ""
 
 #: forms.py:24
 msgid "Name of your street"
-msgstr "TÃªn ÄÆ°á»ng: "
+msgstr "Tên đường: "
 
 #: forms.py:28
 msgid "Name of nearest cross-street"
-msgstr "TÃªn giao lá» gáº§n nháº¥t:  "
+msgstr "Tên giao lộ gần nhất:  "
 
 #: forms.py:32
 msgid "How many vehicles do you have in your household?"
-msgstr "Gia ÄÃ¬nh cá»§a quÃ­ vá» cÃ³ bao nhiÃªu chiáº¿c xe?  "
+msgstr "Gia đình của quí vị có bao nhiêu chiếc xe?  "
 
 #: forms.py:37
 msgid "How many people in your household have a driver's license?"
-msgstr ""
-"Bao nhiÃªu ngÆ°á»i trong gia ÄÃ¬nh cá»§a quÃ­ vá» cÃ³ báº±ng lÃ¡i xe?"
+msgstr "Bao nhiêu người trong gia đình của quí vị có bằng lái xe?"
 
 #: forms.py:83
 msgid "What grade is your child in?"
-msgstr "Con cá»§a quÃ­ vá» há»c lá»p máº¥y ?"
+msgstr "Con của quí vị học lớp mấy ?"
 
 #: forms.py:89
 msgid "How does your child get TO school on most days?"
-msgstr ""
-"Con quÃ­ vá» Äáº¿n trÆ°á»ng báº±ng cÃ¡ch nÃ o háº§u háº¿t cÃ¡c ngÃ y?"
+msgstr "Con quí vị đến trường bằng cách nào hầu hết các ngày?"
 
 #: forms.py:94
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
 msgstr ""
-"Náº¿u quÃ­ vá» chá»n âxe gia ÄÃ¬nhâ hoáº·c âxe Äi chungâ lÃ  "
-"phÆ°Æ¡ng tiá»n Äáº¿n trÆ°á»ng, váº­y ngÆ°á»i lÃ¡i xe cÃ³ thÆ°á»ng "
-"tiáº¿p tá»¥c Äi lÃ m viá»c hoáº·c Äáº¿n cÃ¡c Äá»a Äiá»m khÃ¡c khÃ´ng?"
+"Nếu quí vị chọn “xe gia đình” hoặc “xe đi chung” là phương tiện đến trường, "
+"vậy người lái xe có thường tiếp tục đi làm việc hoặc đến các địa điểm khác "
+"không?"
 
 #: forms.py:100
 msgid "How does your child get home FROM school on most days?"
-msgstr ""
-"Con quÃ­ vá» tá»« trÆ°á»ng há»c vá» nhÃ  báº±ng cÃ¡ch nÃ o háº§u háº¿t "
-"cÃ¡c ngÃ y?"
+msgstr "Con quí vị từ trường học về nhà bằng cách nào hầu hết các ngày?"
 
 #: forms.py:105
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr ""
-"Náº¿u quÃ­ vá» chá»n âxe gia ÄÃ¬nhâ hoáº·c âxe Äi chungâ lÃ  "
-"phÆ°Æ¡ng tiá»n tá»« trÆ°á»ng vá» nhÃ , quÃ­ vá» cÃ³ thÆ°á»ng ÄÃ³n con "
-"trÃªn ÄÆ°á»ng lÃ m viá»c vá» hoáº·c tá»« má»t nÆ¡i khÃ¡c khÃ´ng?"
+"Nếu quí vị chọn “xe gia đình” hoặc “xe đi chung” là phương tiện từ trường về"
+" nhà, quí vị có thường đón con trên đường làm việc về hoặc từ một nơi khác "
+"không?"
 
 #: models.py:255
 msgid "Walk"
-msgstr "Äi bá»"
+msgstr "Đi bộ"
 
 #: models.py:256
 msgid "Bicycle"
-msgstr "Xe Äáº¡p"
+msgstr "Xe đạp"
 
 #: models.py:257
 msgid "School Bus"
-msgstr "Xe buÃ½t trÆ°á»ng há»c"
+msgstr "Xe buýt trường học"
 
 #: models.py:258
 msgid "Family Vehicle (only children in your family)"
-msgstr "Xe gia ÄÃ¬nh (chá» chá» con cá»§a quÃ­ vá»)"
+msgstr "Xe gia đình (chỉ chở con của quí vị)"
 
 #: models.py:259
 msgid "Carpool (with children from other families)"
-msgstr "Xe Äi chung (cÃ¹ng Äi vá»i cÃ¡c há»c sinh khÃ¡c)"
+msgstr "Xe đi chung (cùng đi với các học sinh khác)"
 
 #: models.py:260
 msgid "Transit (city bus, subway, etc.)"
-msgstr "Trung chuyá»n (xe city bus, xe subway, vv.)"
+msgstr "Trung chuyển (xe city bus, xe subway, vv.)"
 
 #: models.py:261
 msgid "Other (skateboard, scooter, inline skates, etc.)"
-msgstr "CÃ¡ch khÃ¡c (vÃ¡n trÆ°á»£t, xe tay ga, giÃ y trÆ°á»£t, vv.)"
+msgstr "Cách khác (ván trượt, xe tay ga, giày trượt, vv.)"
 
 #: models.py:277
 msgid "Yes"
-msgstr "CÃ³"
+msgstr "Có"
 
 #: models.py:278
 msgid "No"
-msgstr "KhÃ´ng"
+msgstr "Không"
 
 #: templates/base.html:123
 msgid "About"
@@ -454,7 +450,7 @@ msgstr "Chúng tôi đánh giá cao thời gian và nỗ lực của bạn !"
 
 #: templates/survey/form.html:372
 msgid "What is your approximate home location?"
-msgstr "NhÃ  cá»§a quÃ½ vá» á» khoáº£ng nÃ o?"
+msgstr "Nhà của quý vị ở khoảng nào?"
 
 #: templates/survey/form.html:372 templates/survey/form.html.py:430
 msgid "required"
@@ -463,9 +459,7 @@ msgstr "yêu cầu"
 #: templates/survey/form.html:375
 msgid ""
 "Please click the map at an intersection on your street, near your home:"
-msgstr ""
-"Xin báº¥m vÃ o báº£n Äá» táº¡i ngÃ£ tÆ° trÃªn con ÄÆ°á»ng gáº§n nhÃ  "
-"quÃ½ vá»;"
+msgstr "Xin bấm vào bản đồ tại ngã tư trên con đường gần nhà quý vị;"
 
 #: templates/survey/form.html:380
 msgid "your home"
@@ -474,8 +468,8 @@ msgstr "nhà của bạn"
 #: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
 msgstr ""
-"...hoáº·c cho chÃºng tÃ´i biáº¿t con ÄÆ°á»ng gáº§n nháº¥t cáº¯t ngang con "
-"ÄÆ°á»ng cá»§a nhÃ  quÃ½ vá»."
+"...hoặc cho chúng tôi biết con đường gần nhất cắt ngang con đường của nhà "
+"quý vị."
 
 #: templates/survey/form.html:450
 msgid "Add another child at this school"

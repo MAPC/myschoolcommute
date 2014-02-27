@@ -19,80 +19,78 @@ msgstr ""
 
 #: forms.py:24
 msgid "Name of your street"
-msgstr "è¡éåç§°ï¼"
+msgstr "街道名称："
 
 #: forms.py:28
 msgid "Name of nearest cross-street"
-msgstr "æè¿çäº¤åè·¯å£çåç§°ï¼"
+msgstr "最近的交叉路口的名称："
 
 #: forms.py:32
 msgid "How many vehicles do you have in your household?"
-msgstr "æ¨å®¶æå¤å°è¾è½¦ï¼"
+msgstr "您家有多少辆车？"
 
 #: forms.py:37
 msgid "How many people in your household have a driver's license?"
-msgstr "æ¨å®¶æå¤å°äººæ¥æé©¾é©¶æ§§?"
+msgstr "您家有多少人拥有驾驶执照?"
 
 #: forms.py:83
 msgid "What grade is your child in?"
-msgstr "æ¨çå­å¥³è¯»å å¹´çº§ï¼"
+msgstr "您的子女读几年级？"
 
 #: forms.py:89
 msgid "How does your child get TO school on most days?"
-msgstr "æ¨çå­å¥³éå¸¸å¦ä½ä¸å­¦ï¼"
+msgstr "您的子女通常如何上学？"
 
 #: forms.py:94
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
-msgstr ""
-"å¦ææ¨éæ©ä»¥âä¹åç§å®¶è½¦âæâæ¼è½¦âçæ¹å¼ä¸å­¦ï¼å¸æºéå¸¸æ¯å¦ä¼ç»§ç»­å·¥ä½æåå¾å¦ä¸ç®çå°ï¼"
+msgstr "如果您选择以“乘坐私家车”或“拼车”的方式上学，司机通常是否会继续工作或前往另一目的地？"
 
 #: forms.py:100
 msgid "How does your child get home FROM school on most days?"
-msgstr "æ¨çå­å¥³æ¾å­¦åéå¸¸å¦ä½åå®¶ï¼"
+msgstr "您的子女放学后通常如何回家？"
 
 #: forms.py:105
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
-msgstr ""
-"å¦ææ¨éæ©ä»¥âä¹åç§å®¶è½¦âæâæ¼è½¦âçæ¹å¼åå®¶ï¼æ¨éå¸¸æ¯å¦ä»ä¸ç­éä¸­æå¦ä¸å°ç¹åºåæ¥å­å¥³ï¼"
+msgstr "如果您选择以“乘坐私家车”或“拼车”的方式回家，您通常是否从下班途中或另一地点出发接子女？"
 
 #: models.py:255
 msgid "Walk"
-msgstr "æ­¥è¡"
+msgstr "步行"
 
 #: models.py:256
 msgid "Bicycle"
-msgstr "éªèªè¡è½¦"
+msgstr "骑自行车"
 
 #: models.py:257
 msgid "School Bus"
-msgstr "æ­ä¹æ ¡è½¦"
+msgstr "搭乘校车"
 
 #: models.py:258
 msgid "Family Vehicle (only children in your family)"
-msgstr "ä¹åç§å®¶è½¦ï¼äæ¨å®¶çå­å¥³ï¼"
+msgstr "乘坐私家车（仅您家的子女）"
 
 #: models.py:259
 msgid "Carpool (with children from other families)"
-msgstr "(ä¸¶ä»å®¶åº­çå­å¥³ï¼æ¼è½¦"
+msgstr "(与其他家庭的子女）拼车"
 
 #: models.py:260
 msgid "Transit (city bus, subway, etc.)"
-msgstr "åå¸¬äº¤ãå°éç­"
+msgstr "城市公交、地铁等"
 
 #: models.py:261
 msgid "Other (skateboard, scooter, inline skates, etc.)"
-msgstr "¶ä»æ¹å¼ï¼æ»æ¿ãåèæ»è¡è½¦ãè½®æ»ç­)"
+msgstr "其他方式（滑板、单脚滑行车、轮滑等)"
 
 #: models.py:277
 msgid "Yes"
-msgstr "æ¯"
+msgstr "是"
 
 #: models.py:278
 msgid "No"
-msgstr "å¦"
+msgstr "否"
 
 #: templates/base.html:123
 msgid "About"
@@ -376,7 +374,7 @@ msgstr "我们感谢您的时间和精力！"
 
 #: templates/survey/form.html:372
 msgid "What is your approximate home location?"
-msgstr "æ¨å®¶çå¤§æ¦ä½ç½®æ¯ä»ä¹ï¼"
+msgstr "您家的大概位置是什么？"
 
 #: templates/survey/form.html:372 templates/survey/form.html.py:430
 msgid "required"
@@ -385,7 +383,7 @@ msgstr "需要"
 #: templates/survey/form.html:375
 msgid ""
 "Please click the map at an intersection on your street, near your home:"
-msgstr "è¯·ç¹å»å°å¾ä¸æ¨å®¶éè¿çè¡éäº¤åè·¯å£ï¼"
+msgstr "请点击地图上您家附近的街道交叉路口："
 
 #: templates/survey/form.html:380
 msgid "your home"
@@ -393,7 +391,7 @@ msgstr "你的家"
 
 #: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
-msgstr "â¦æåè¯æä»¬è·ç¦»æ¨å®¶æè¿çè¡éäº¤åè·¯å£ã"
+msgstr "…或告诉我们距离您家最近的街道交叉路口。"
 
 #: templates/survey/form.html:450
 msgid "Add another child at this school"

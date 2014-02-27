@@ -20,86 +20,78 @@ msgstr ""
 
 #: forms.py:24
 msgid "Name of your street"
-msgstr "Ø¥Ø³ Ø§ÙØ´Ø§Ø±Ø¹"
+msgstr "إسم الشارع"
 
 #: forms.py:28
 msgid "Name of nearest cross-street"
-msgstr "Ø¥Ø³ Ø£ÙØ±Ø¨ Ø´Ø§Ø±Ø¹ ÙØªÙØ§Ø·Ø¹ Ø¹ Ø´Ø§Ø±Ø¹Ù"
+msgstr "إسم أقرب شارع يتقاطع مع شارعكم"
 
 #: forms.py:32
 msgid "How many vehicles do you have in your household?"
-msgstr "Ù Ø³ÙØ§Ø±Ø© Ø¹ÙØ¯Ù ÙÙ ÙØ²ÙÙ"
+msgstr "كم سيارة عندكم في منزلكم"
 
 #: forms.py:37
 msgid "How many people in your household have a driver's license?"
-msgstr ""
-"Ù Ø´Ø®Øµ ÙÙ ÙØ²ÙÙ ÙØ­ÙØ² Ø¹ÙÙ Ø±Ø®ØµØ© ÙÙØ§Ø¯Ø© Ø§ÙØ³ÙØ§Ø±Ø§Øª"
+msgstr "كم شخص في منزلكم يحوز على رخصة قيادة السيارات"
 
 #: forms.py:83
 msgid "What grade is your child in?"
-msgstr "ÙÙØ¯Ù ÙÙ ÙÙ Ø£Ù ØµÙ Ø¯Ø±Ø³ÙØ"
+msgstr "ولدكم هو في أي صف مدرسي؟"
 
 #: forms.py:89
 msgid "How does your child get TO school on most days?"
-msgstr "Ø¨Ø£Ù ÙØ³ÙÙØ© ÙØª ÙÙÙ ÙÙØ¯Ù Ø¥ÙÙ Ø§ÙØ¯Ø±Ø³Ø© ÙÙ Ø"
+msgstr "بأي وسيلة يتم نقل ولدكم إلى المدرسة في ؟"
 
 #: forms.py:94
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
-msgstr ""
-"ÙØ¯Ø±Ø³Ø©Ø ÙÙ ÙØªØ§Ø¨Ø¹ Ø¹Ø§Ø¯Ø©Ù Ø³Ø§Ø¦Ù Ø§ÙØ³ÙØ§Ø±Ø© Ø±Ø­ÙØªÙ "
-"Ø¥ÙÙ Ø§ÙØ¹Ù Ø§Ù Ø¥ÙÙ ÙØ¬ÙØ© Ø§Ø®Ø±ÙØ"
+msgstr "لمدرسة، هل يتابع عادةً سائق السيارة رحلته إلى العمل او إلى وجهة اخرى؟"
 
 #: forms.py:100
 msgid "How does your child get home FROM school on most days?"
-msgstr "Ø¨Ø£Ù ÙØ³ÙÙØ© ÙØª ÙÙÙ ÙÙØ¯Ù Ù Ø§ÙØ¯Ø±Ø³Ø© ÙÙ"
+msgstr "بأي وسيلة يتم نقل ولدكم من المدرسة في"
 
 #: forms.py:105
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
-msgstr ""
-"ÙÙØ¯Ø±Ø³Ø©Ø ÙÙ ØªÙÙÙÙÙ ÙÙØ¯Ù Ø¹ÙÙ Ø·Ø±ÙÙ Ø¹ÙØ¯ØªÙ Ù "
-"Ø§ÙØ¹Ù Ø§Ù ÙØ§Ù Ø¢Ø®Ø±Ø"
+msgstr "للمدرسة، هل تقلّون ولدكم على طريق عودتكم من العمل او مكان آخر؟"
 
 #: models.py:255
 msgid "Walk"
-msgstr "Ø§ÙØ³ÙØ± Ø¹ÙÙ Ø§ÙØ£ÙØ¯Ø§"
+msgstr "السير على الأقدام"
 
 #: models.py:256
 msgid "Bicycle"
-msgstr "Ø§ÙØ¯Ø±Ø§Ø¬Ø©"
+msgstr "الدراجة"
 
 #: models.py:257
 msgid "School Bus"
-msgstr "Ø¨Ø§Øµ Ø§ÙØ¯Ø±Ø³Ø©"
+msgstr "باص المدرسة"
 
 #: models.py:258
 msgid "Family Vehicle (only children in your family)"
-msgstr "العائلة المركبة (الأطفال فقط في عائلتك )"
+msgstr ""
 
 #: models.py:259
 msgid "Carpool (with children from other families)"
-msgstr "(Ø³ÙØ§Ø±Ø© Ø´ØªØ±ÙØ© (Ø¹ Ø£ÙÙØ§Ø¯ Ø¹Ø§Ø¦ÙØ§Øª Ø£Ø®Ø±Ù"
+msgstr "(سيارة مشتركة (مع أولاد عائلات أخرى"
 
 #: models.py:260
 msgid "Transit (city bus, subway, etc.)"
-msgstr ""
-"(ÙØ³Ø§Ø¦Ù Ø§ÙÙÙÙ Ø§ÙØ¹Ø§ (Ø¨Ø§Øµ Ø§ÙØ¯ÙÙØ©Ø Ø§ÙÙØ·Ø§Ø±Ø "
-"Ø§ÙØªØ±ÙØ Ø§ÙØ®"
+msgstr "(وسائل النقل العام (باص المدينة، القطار، المترو، الخ"
 
 #: models.py:261
 msgid "Other (skateboard, scooter, inline skates, etc.)"
-msgstr ""
-"(ØºÙØ±ÙØ§ (ÙÙØ­ ØªØ²ÙØ¬Ø Ø³ÙÙØªØ±Ø Ø²ÙØ¬ Ø¹Ø¬ÙØ§ØªØ Ø§ÙØ®"
+msgstr "(غيرها (لوح تزلج، سكوتر، مزلج عجلات، الخ"
 
 #: models.py:277
 msgid "Yes"
-msgstr "ÙØ¹"
+msgstr "نعم"
 
 #: models.py:278
 msgid "No"
-msgstr "ÙØ§"
+msgstr "لا"
 
 #: templates/base.html:123
 msgid "About"
@@ -429,7 +421,7 @@ msgstr "نحن نقدر الوقت والجهد !"
 
 #: templates/survey/form.html:372
 msgid "What is your approximate home location?"
-msgstr "Ø£ÙÙ ÙÙØ¹ ÙØ²ÙÙ ØªÙØ±ÙØ¨Ø§ÙØ"
+msgstr "أين يقع منزلك تقريباً؟"
 
 #: templates/survey/form.html:372 templates/survey/form.html.py:430
 msgid "required"
@@ -438,9 +430,7 @@ msgstr "مطلوب"
 #: templates/survey/form.html:375
 msgid ""
 "Please click the map at an intersection on your street, near your home:"
-msgstr ""
-"ÙØ±Ø¬Ù ÙÙØ± Ø§ÙØ®Ø§Ø±Ø·Ø© Ø¹ÙÙ ØªÙØ§Ø·Ø¹ Ø´Ø§Ø±Ø¹Ù Ø¨Ø§ÙÙØ±Ø¨ Ù "
-"ÙØ²ÙÙ: "
+msgstr "يرجى نقر الخارطة على تقاطع شارعك بالقرب من منزلك: "
 
 #: templates/survey/form.html:380
 msgid "your home"
@@ -448,7 +438,7 @@ msgstr "منزلك"
 
 #: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
-msgstr "... Ø£Ù Ø£Ø®Ø¨Ø±ÙØ§ Ø£ÙØ±Ø¨ ØªÙØ§Ø·Ø¹ Ø·Ø±Ù Ø¥ÙÙ ÙØ²ÙÙ."
+msgstr "... أو أخبرنا أقرب تقاطع طرق إلى منزلك."
 
 #: templates/survey/form.html:450
 msgid "Add another child at this school"

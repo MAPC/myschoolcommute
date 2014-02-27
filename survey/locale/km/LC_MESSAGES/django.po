@@ -20,46 +20,46 @@ msgstr ""
 
 #: forms.py:24
 msgid "Name of your street"
-msgstr "eQÂµaHpÃÃ¨vrbs'G~k :"
+msgstr "eQµaHpÂèvrbs'G~k :"
 
 #: forms.py:28
 msgid "Name of nearest cross-street"
-msgstr "eQÂµaHpÃÃ¨vkat'TTwgEdlCitCageKbMput"
+msgstr "eQµaHpÂèvkat'TTwgEdlCitCageKbMput"
 
 #: forms.py:32
 msgid "How many vehicles do you have in your household?"
-msgstr "etIG~kmanrfynÂ¶bunÂµaneÂ¨KOg k~Â¬gÂ¨kumÂ¨KYsarrbs'G~k?\""
+msgstr "etIG~kmanrfyn¶bunµane¨KOg k~¬g¨kum¨KYsarrbs'G~k?\""
 
 #: forms.py:37
 msgid "How many people in your household have a driver's license?"
-msgstr " etImanmnusÂ§bunÂµannak' k~Â¬gÂ¨kumÂ¨KYsarrbs'G~k EdlmanlixitebIkbr?\""
+msgstr " etImanmnus§bunµannak' k~¬g¨kum¨KYsarrbs'G~k EdlmanlixitebIkbr?\""
 
 #: forms.py:83
 msgid "What grade is your child in?"
-msgstr "etIkUnrbs'G~keronf~ak'bunÂµan?\""
+msgstr "etIkUnrbs'G~keronf~ak'bunµan?\""
 
 #: forms.py:89
 msgid "How does your child get TO school on most days?"
-msgstr "etIkUnrbs'G~k eTA salaswgEtral'Â«fÂ©  edayrebobNa?"
+msgstr "etIkUnrbs'G~k eTA salaswgEtral'«f©  edayrebobNa?"
 
 #: forms.py:94
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
 msgstr ""
-"ebIG~keÂ¨CIsyk \r"
-"fynÂ¶Â¨KYsar| Ã \\CiHLanrYmK~a| sMrab'kareFÃIdMeNIreTAsala etItamFmÂµta G~kebIkrfynÂ¶bnÂ¶eFÃIdMeNIreTAeFÃIkar ÃeTATisedAmYyeTot ÃeT?"
+"ebIG~ke¨CIsyk \\rfyn¶¨KYsar| É \\CiHLanrYmK~a| sMrab'kareFÃIdMeNIreTAsala "
+"etItamFmµta G~kebIkrfyn¶bn¶eFÃIdMeNIreTAeFÃIkar ÉeTATisedAmYyeTot ÉeT?"
 
 #: forms.py:100
 msgid "How does your child get home FROM school on most days?"
-msgstr "etIkUnrbs'G~k mkBI salaswgEtral'Â«fÂ©  edayrebobNa?"
+msgstr "etIkUnrbs'G~k mkBI salaswgEtral'«f©  edayrebobNa?"
 
 #: forms.py:105
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr ""
-"ebIG~keÂ¨CIsyk \r"
-"fynÂ¶Â¨KYsar| Ã \\CiHLanrYmK~a| sMrab'kareFÃIdMeNIrmkBIsala etItamFmÂµta G~kmkykkUnrbs'G~k tampÃÃ¨vmkBIeFÃIkar ÃmkBITIkEnÃgmYyeTot ÃeT?"
+"ebIG~ke¨CIsyk \\rfyn¶¨KYsar| É \\CiHLanrYmK~a| sMrab'kareFÃIdMeNIrmkBIsala "
+"etItamFmµta G~kmkykkUnrbs'G~k tampÂèvmkBIeFÃIkar ÉmkBITIkEnÂgmYyeTot ÉeT?"
 
 #: models.py:255
 msgid "Walk"
@@ -75,19 +75,19 @@ msgstr "Lansala"
 
 #: models.py:258
 msgid "Family Vehicle (only children in your family)"
-msgstr "rfynÂ¶Â¨KYsar (EtkUnrbs'G~k k~Â¬gÂ¨KYsarrbs'G~k)"
+msgstr "rfyn¶¨KYsar (EtkUnrbs'G~k k~¬g¨KYsarrbs'G~k)"
 
 #: models.py:259
 msgid "Carpool (with children from other families)"
-msgstr "CiHLanrYmK~a (CamYyekÂµg@mkBIÂ¨KYsardÂ«TeTot)"
+msgstr "CiHLanrYmK~a (CamYyekµg@mkBI¨KYsard«TeTot)"
 
 #: models.py:260
 msgid "Transit (city bus, subway, etc.)"
-msgstr "Â¨bB&nÃ¬KmnaKmn_ (LanÂ¨kug, rfePÃIgeÂ¨kamdI, CaedIm)"
+msgstr "¨bB&nìKmnaKmn_ (Lan¨kug, rfePÂIge¨kamdI, CaedIm)"
 
 #: models.py:261
 msgid "Other (skateboard, scooter, inline skates, etc.)"
-msgstr "epÂ§geTot (edIresÃ»tbÃt, sÃ°Ã¨T&r, esÃ»tmankg', CaedIm)"
+msgstr "ep§geTot (edIresûtbßt, sðèT&r, esûtmankg', CaedIm)"
 
 #: models.py:277
 msgid "Yes"
@@ -447,10 +447,7 @@ msgstr "យើង ពេញចិត្តក្នុងការស្តា�
 
 #: templates/survey/form.html:372
 msgid "What is your approximate home location?"
-msgstr ""
-"áá¾áá¸áááááááááááá¢ááá "
-"áá¶áááááá¶ááááá "
-"ááááá»áááá¶áááá?"
+msgstr "តើទីលំនៅរបស់លោកអ្នក មានចម្ងាយប្រហែលប៉ុន្មានដែរ?"
 
 #: templates/survey/form.html:372 templates/survey/form.html.py:430
 msgid "required"
@@ -459,10 +456,7 @@ msgstr "តម្រូវឱ្យមាន"
 #: templates/survey/form.html:375
 msgid ""
 "Please click the map at an intersection on your street, near your home:"
-msgstr ""
-"áá¼ááá»ááá¾ááááá¸ "
-"áááááá»ááááá¼ááá¶áááááá¶ áááá¾ "
-"áááá¼á áááá·ááá¸áááááááá¢ááá á"
+msgstr "សូមចុចលើផែនទី នៅចំណុចផ្លូវកាត់គ្នា នៅលើ ផ្លូវ នៅជិតទីលំនៅលោកអ្នក ៖"
 
 #: templates/survey/form.html:380
 msgid "your home"
@@ -471,10 +465,7 @@ msgstr "ផ្ទះរបស់អ្នក"
 #: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
 msgstr ""
-"... á¬ áá¼ááááá¶áááá¾ááááá»á "
-"á¢ááá¸áááá»ááááá¼ááá¶áááááá¶ "
-"ááááááá·ááá¸áááááááá¢ááááá¶ááá "
-"á"
+"... ឬ សូមប្រាប់យើងខ្ញុំ អំពីចំណុចផ្លូវកាត់គ្នា ដែលនៅជិតទីលំនៅលោកអ្នកជាងគេ ។"
 
 #: templates/survey/form.html:450
 msgid "Add another child at this school"

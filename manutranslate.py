@@ -35,7 +35,7 @@ for po_file in po_files:
         search = entry.msgid.encode('utf8')
         if search in translations:
             found.add(search)
-            translation = translations[search]
+            translation = translations[search].decode('utf8')
             entry.msgstr = translation
 
     print lang, len(found), "translations"

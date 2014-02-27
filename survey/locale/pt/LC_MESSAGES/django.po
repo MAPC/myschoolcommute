@@ -24,23 +24,23 @@ msgstr "Nome da sua rua"
 
 #: forms.py:28
 msgid "Name of nearest cross-street"
-msgstr "Nome da rua tranversal mais prÃ³xima"
+msgstr "Nome da rua tranversal mais próxima"
 
 #: forms.py:32
 msgid "How many vehicles do you have in your household?"
-msgstr "Quantos veÃ­culos vocÃªs tem na vossa casa?"
+msgstr "Quantos veículos vocês tem na vossa casa?"
 
 #: forms.py:37
 msgid "How many people in your household have a driver's license?"
-msgstr "Quantas pessoas na sua casa tÃªm carteira de motorista?"
+msgstr "Quantas pessoas na sua casa têm carteira de motorista?"
 
 #: forms.py:83
 msgid "What grade is your child in?"
-msgstr "Em que turma estÃ  o seu filho(a)?"
+msgstr "Em que turma està o seu filho(a)?"
 
 #: forms.py:89
 msgid "How does your child get TO school on most days?"
-msgstr "Como Ã© que o seu filho(a) chega Ã  escola na maioria dos dias? "
+msgstr "Como é que o seu filho(a) chega à escola na maioria dos dias? "
 
 #: forms.py:94
 msgid ""
@@ -53,13 +53,13 @@ msgstr ""
 #: forms.py:100
 msgid "How does your child get home FROM school on most days?"
 msgstr ""
-"Como Ã© que o seu filho(a) volta para casa da escola, na maioria dos dias? "
+"Como é que o seu filho(a) volta para casa da escola, na maioria dos dias? "
 
 #: forms.py:105
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr ""
-"VocÃª costuma pegar o seu filho(a) quando volta do trabalho ou de outro "
+"Você costuma pegar o seu filho(a) quando volta do trabalho ou de outro "
 "local?"
 
 #: models.py:255
@@ -76,16 +76,16 @@ msgstr "Transporte escolar"
 
 #: models.py:258
 msgid "Family Vehicle (only children in your family)"
-msgstr "VeÃ­culo Familiar (sÃ³ crianÃ§as da sua famÃ­lia)"
+msgstr "Veículo Familiar (só crianças da sua família)"
 
 #: models.py:259
 msgid "Carpool (with children from other families)"
-msgstr "VeÃ­culo compartilhado/ boleia (com crianÃ§as de outras famÃ­lias)"
+msgstr "Veículo compartilhado/ boleia (com crianças de outras famílias)"
 
 #: models.py:260
 msgid "Transit (city bus, subway, etc.)"
 msgstr ""
-"Transportes PÃºblicos (Ã´nibus, metro, etc.)\n"
+"Transportes Públicos (ônibus, metro, etc.)\n"
 "Other (skateboard"
 
 #: models.py:261
@@ -98,7 +98,7 @@ msgstr "Sim"
 
 #: models.py:278
 msgid "No"
-msgstr "NÃ£o"
+msgstr "Não"
 
 #: templates/base.html:123
 msgid "About"
@@ -453,7 +453,7 @@ msgstr "Nós apreciamos o seu tempo e esforço !"
 
 #: templates/survey/form.html:372
 msgid "What is your approximate home location?"
-msgstr "Qual Ã© o seu local de residÃªncia aproximado?"
+msgstr "Qual é o seu local de residência aproximado?"
 
 #: templates/survey/form.html:372 templates/survey/form.html.py:430
 msgid "required"
@@ -463,7 +463,7 @@ msgstr "necessário"
 msgid ""
 "Please click the map at an intersection on your street, near your home:"
 msgstr ""
-"Por favor, clique na mapa uma interseÃ§Ã£o da sua rua, perto da sua casa:"
+"Por favor, clique na mapa uma interseção da sua rua, perto da sua casa:"
 
 #: templates/survey/form.html:380
 msgid "your home"
@@ -471,7 +471,7 @@ msgstr "sua casa"
 
 #: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
-msgstr "â¦ ou diga-nos a interseÃ§Ã£o da rua mais prÃ³xima da sua casa."
+msgstr "… ou diga-nos a interseção da rua mais próxima da sua casa."
 
 #: templates/survey/form.html:450
 msgid "Add another child at this school"
