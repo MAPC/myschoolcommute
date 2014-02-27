@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-10 15:18-0500\n"
+"POT-Creation-Date: 2014-02-27 15:05-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:21
+#: forms.py:24
 msgid "Name of your street"
 msgstr "Nome da sua rua"
 
-#: forms.py:25
+#: forms.py:28
 msgid "Name of nearest cross-street"
-msgstr "Nome da próxima rua transversal"
+msgstr "Nome da rua tranversal mais prÃ³xima"
 
-#: forms.py:29
+#: forms.py:32
 msgid "How many vehicles do you have in your household?"
-msgstr "Quantos veículos que você tem em sua casa?"
+msgstr "Quantos veÃ­culos vocÃªs tem na vossa casa?"
 
-#: forms.py:34
+#: forms.py:37
 msgid "How many people in your household have a driver's license?"
-msgstr "Quantas pessoas em sua casa, ter uma carteira de motorista?"
+msgstr "Quantas pessoas na sua casa tÃªm carteira de motorista?"
 
-#: forms.py:80
+#: forms.py:83
 msgid "What grade is your child in?"
-msgstr "O grau é seu filho ?"
+msgstr "Em que turma estÃ  o seu filho(a)?"
 
-#: forms.py:86
+#: forms.py:89
 msgid "How does your child get TO school on most days?"
-msgstr "Como é que o seu filho ir para a escola na maioria dos dias ?"
+msgstr "Como Ã© que o seu filho(a) chega Ã  escola na maioria dos dias? "
 
-#: forms.py:91
+#: forms.py:94
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
@@ -50,61 +50,63 @@ msgstr ""
 "Você costuma deixar seu filho em seu caminho para o trabalho ou para outro "
 "destino ?"
 
-#: forms.py:97
+#: forms.py:100
 msgid "How does your child get home FROM school on most days?"
 msgstr ""
-"Como é que o seu filho chegar em casa da escola, na maioria dos dias ?"
+"Como Ã© que o seu filho(a) volta para casa da escola, na maioria dos dias? "
 
-#: forms.py:102
+#: forms.py:105
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr ""
-"Você costuma pegar seu filho no caminho do trabalho ou de outra origem?"
+"VocÃª costuma pegar o seu filho(a) quando volta do trabalho ou de outro "
+"local?"
 
-#: models.py:244
+#: models.py:255
 msgid "Walk"
-msgstr "andar"
+msgstr "Caminhando"
 
-#: models.py:245
-msgid "Bike"
-msgstr "bicicleta"
+#: models.py:256
+msgid "Bicycle"
+msgstr "Bicicleta"
 
-#: models.py:246
+#: models.py:257
 msgid "School Bus"
-msgstr "school Bus"
+msgstr "Transporte escolar"
 
-#: models.py:247
+#: models.py:258
 msgid "Family Vehicle (only children in your family)"
-msgstr "Veículo de família (apenas crianças em sua família )"
+msgstr "VeÃ­culo Familiar (sÃ³ crianÃ§as da sua famÃ­lia)"
 
-#: models.py:248
+#: models.py:259
 msgid "Carpool (with children from other families)"
-msgstr "Caronas (com crianças de outras famílias )"
+msgstr "VeÃ­culo compartilhado/ boleia (com crianÃ§as de outras famÃ­lias)"
 
-#: models.py:249
+#: models.py:260
 msgid "Transit (city bus, subway, etc.)"
-msgstr "Transit ( ônibus , metrô , etc )"
+msgstr ""
+"Transportes PÃºblicos (Ã´nibus, metro, etc.)\n"
+"Other (skateboard"
 
-#: models.py:250
+#: models.py:261
 msgid "Other (skateboard, scooter, inline skates, etc.)"
-msgstr "Outros ( skate , patinete, patins em linha , etc )"
+msgstr "Outros ( skate , patinete, patins , etc )"
 
-#: models.py:266
+#: models.py:277
 msgid "Yes"
-msgstr "sim"
+msgstr "Sim"
 
-#: models.py:267
+#: models.py:278
 msgid "No"
-msgstr "não"
+msgstr "NÃ£o"
 
 #: templates/base.html:123
 msgid "About"
 msgstr "sobre"
 
 #: templates/base.html:147
-#, fuzzy
 msgid "Questions?"
-msgstr "Dúvidas? Entre em contato"
+msgstr "Dúvidas?"
 
 #: templates/base.html:147
 msgid "Please click here to email us."
@@ -112,7 +114,7 @@ msgstr "Por favor, clique aqui para nos enviar e-mail ."
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
-msgstr "Sobre os Massachusetts Rotas Seguras para Programa Escola"
+msgstr "Sobre Rotas Seguras para Massachusetts Programa Escola"
 
 #: templates/survey/about.html:10
 msgid "The Massachusetts"
@@ -137,7 +139,6 @@ msgid "Read more..."
 msgstr "Leia mais ..."
 
 #: templates/survey/about.html:16
-#, fuzzy
 msgid ""
 "Evaluating trends in how students and families choose to travel to school is"
 " a key component to building a successful Safe Routes to School program. "
@@ -146,16 +147,13 @@ msgid ""
 "investments, track progress toward goals and ultimately develop local "
 "programs that benefit students, parents and our communities."
 msgstr ""
-"Os Massachusetts rotas seguras para a escola ( LRSS ), parceiros do programa"
-" com escolas de todo o Commonwealth para ajudar a reduzir o congestionamento"
-" do tráfego e poluição do ar , perto de escolas , aumentando a segurança, "
-"saúde e atividade física dos alunos . Avaliar as tendências na forma como os"
-" alunos e as famílias viajam para a escola é um componente-chave para a "
-"construção de um bem-sucedido programa Rotas Seguras para School. Respostas "
-"dos pais a esta pesquisa fornecer informações valiosas e ajudar a determinar"
-" como podemos melhorar o ambiente em torno da escola , os investimentos alvo"
-" , acompanhar o progresso em direção às metas e, finalmente, desenvolver "
-"programas locais que os alunos beneficiam , pais e nossas comunidades."
+"Avaliando as tendências na forma como os alunos e as famílias optam por "
+"viajar para a escola é um componente-chave para a construção de uma bem "
+"sucedida Rotas Seguras para programa Escola . Pais respostas a este "
+"inquérito fornecer informações valiosas e ajudar a determinar como podemos "
+"melhorar o ambiente em torno da escola, investimentos alvo , acompanhar o "
+"progresso em direção às metas e, finalmente, desenvolver programas locais "
+"que beneficiam os alunos , pais e nossas comunidades."
 
 #: templates/survey/about.html:19
 msgid ""
@@ -360,9 +358,8 @@ msgstr ""
 "Aquecimento Global, assinado pelo governador Deval Patrick em 2008."
 
 #: templates/survey/about.html:61
-#, fuzzy
 msgid "About the National Center for Safe Routes to School"
-msgstr "Sobre os Massachusetts Rotas Seguras para Programa Escola"
+msgstr "Sobre o Centro Nacional de rotas seguras para a escola"
 
 #: templates/survey/about.html:63
 msgid ""
@@ -390,21 +387,21 @@ msgstr ""
 "Departamento de Transportes do Federal Highway Administration EUA. Para mais"
 " informações , visite"
 
-#: templates/survey/batch.html:354
+#: templates/survey/batch.html:364
 msgid "home"
 msgstr "casa"
 
-#: templates/survey/batch.html:448 templates/survey/form.html:488
+#: templates/survey/batch.html:458 templates/survey/form.html:488
 msgid "Submit Survey"
 msgstr "enviar Levantamento"
 
 #: templates/survey/form.html:334
 msgid "Travel to School Survey"
-msgstr "Viaje com a Pesquisa Escolar"
+msgstr "Viagem à Pesquisa Escola"
 
 #: templates/survey/form.html:338
 msgid "Dear Parent or Guardian,"
-msgstr "Caro pai ou tutor,"
+msgstr "Prezado pai ou responsável ,"
 
 #: templates/survey/form.html:342
 msgid ""
@@ -414,61 +411,59 @@ msgid ""
 "minutes to complete. All responses are voluntary and confidential. "
 msgstr ""
 "A escola de seu filho está realizando uma pesquisa para saber como os alunos"
-" se para a escola . Esta informação será utilizada para planejar opções de "
-"transporte seguras e saudáveis ​​para todos os alunos. A pesquisa levará "
-"menos de 3 minutos para ser concluído. Todas as respostas são voluntários e "
-"confidenciais."
+" ir e voltar da escola. Esta informação será usada para planejar seguras e "
+"saudáveis ​​opções de transporte para todos os alunos . A pesquisa vai "
+"demorar menos de 3 minutos para ser concluído. Todas as respostas são "
+"voluntários e confidenciais ."
 
 #: templates/survey/form.html:344
 msgid ""
 "If more than one child attends this school, use the \"Add Another Child\" "
 "feature to report additional students. "
 msgstr ""
-"Se mais de um filho frequenta esta escola , utilize o recurso \"Add Another "
-"Criança \" para relatar os alunos adicionais."
+"Se mais de um filho frequenta esta escola , utilize o recurso \"Adicionar "
+"outra criança \" denunciar alunos adicionais."
 
 #: templates/survey/form.html:345
-#, fuzzy
 msgid ""
 "If a child's home location or commute is not the same every day, choose the "
 "option that reflects the most common location and travel pattern."
 msgstr ""
-"Se o local de residência da criança ou comutar não é o mesmo todos os dias ,"
-" escolha a opção que reflete o \\<em\\> mais comum \\</ em\\> localização e "
-"padrão de viagem."
+"Se a localização casa de uma criança ou comutar não é o mesmo dia de cada , "
+"escolha a opção que reflete o local mais comum e padrão de viagem."
 
 #: templates/survey/form.html:346
 msgid ""
 "If you already completed a paper survey, do not complete this online form. "
 msgstr ""
-"Se você já completou um levantamento de papel , não preencha este formulário"
+"Se você já completou um levantamento de papel, não preencher este formulário"
 " online."
 
 #: templates/survey/form.html:347
-#, fuzzy
 msgid ""
 "If you have questions, please contact a school administrator or call Safe "
 "Routes to School at 857-368-8638."
 msgstr ""
-"Se você tiver dúvidas, entre em contato com um administrador da escola ou "
-"ligue para rotas seguras para a escola em 857-368-8650 ."
+"Se você tiver dúvidas, entre em contato com um administrador de escola ou "
+"ligue para rotas seguras para a escola em 857-368-8638 ."
 
 #: templates/survey/form.html:351
 msgid "We appreciate your time and effort!"
-msgstr "Agradecemos o seu tempo e esforço!"
+msgstr "Nós apreciamos o seu tempo e esforço !"
 
 #: templates/survey/form.html:372
 msgid "What is your approximate home location?"
-msgstr "Qual é o seu local de residência aproximado?"
+msgstr "Qual Ã© o seu local de residÃªncia aproximado?"
 
 #: templates/survey/form.html:372 templates/survey/form.html.py:430
 msgid "required"
 msgstr "necessário"
 
 #: templates/survey/form.html:375
-msgid "Please click the map at an intersection on your street, near your home"
+msgid ""
+"Please click the map at an intersection on your street, near your home:"
 msgstr ""
-"Por favor, clique no mapa em um cruzamento em sua rua , perto de sua casa"
+"Por favor, clique na mapa uma interseÃ§Ã£o da sua rua, perto da sua casa:"
 
 #: templates/survey/form.html:380
 msgid "your home"
@@ -476,7 +471,7 @@ msgstr "sua casa"
 
 #: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
-msgstr "... ou dizer-nos o cruzamento da rua mais próxima de sua casa."
+msgstr "â¦ ou diga-nos a interseÃ§Ã£o da rua mais prÃ³xima da sua casa."
 
 #: templates/survey/form.html:450
 msgid "Add another child at this school"
@@ -488,7 +483,7 @@ msgid ""
 "community?"
 msgstr ""
 "Gostaria de ajudar a criar rotas seguras para a escola para os alunos em sua"
-" comunidade ?"
+" comunidade?"
 
 #: templates/survey/index.html:57
 msgid ""
@@ -497,14 +492,13 @@ msgid ""
 msgstr ""
 "A pesquisa leva menos de 3 minutos e vai ajudar o seu plano de escola para "
 "mais opções de transporte. Todas as respostas são voluntários e "
-"confidenciais."
+"confidenciais ."
 
 #: templates/survey/index.html:60
 msgid "More information about the survey..."
 msgstr "Mais informações sobre a pesquisa ..."
 
 #: templates/survey/index.html:63
-#, fuzzy
 msgid ""
 "The Massachusetts Safe Routes to School (SRTS) program partners with schools"
 " throughout the Commonwealth  to help reduce traffic congestion and air "
@@ -516,27 +510,25 @@ msgid ""
 " school, target investments, track progress toward goals and ultimately "
 "develop local programs that benefit students, parents and our communities."
 msgstr ""
-"Os Massachusetts rotas seguras para a escola ( LRSS ), parceiros do programa"
-" com escolas de todo o Commonwealth para ajudar a reduzir o congestionamento"
-" do tráfego e poluição do ar , perto de escolas , aumentando a segurança, "
-"saúde e atividade física dos alunos . Avaliar as tendências na forma como os"
-" alunos e as famílias viajam para a escola é um componente-chave para a "
-"construção de um bem-sucedido programa Rotas Seguras para School. Respostas "
-"dos pais a esta pesquisa fornecer informações valiosas e ajudar a determinar"
-" como podemos melhorar o ambiente em torno da escola , os investimentos alvo"
-" , acompanhar o progresso em direção às metas e, finalmente, desenvolver "
-"programas locais que os alunos beneficiam , pais e nossas comunidades."
+"As Rotas Seguras para Massachusetts School ( LRSS ) parceiros do programa "
+"com as escolas de todo o Commonwealth para ajudar a reduzir o "
+"congestionamento do tráfego e da poluição do ar perto de escolas , "
+"aumentando a atividade de saúde , segurança e física dos alunos . Avaliando "
+"as tendências na forma como os estudantes e famílias viajam para a escola é "
+"um componente chave para a construção de uma bem sucedida Rotas Seguras para"
+" programa Escola . Pais respostas a este inquérito fornecer informações "
+"valiosas e ajudar a determinar como podemos melhorar o ambiente em torno da "
+"escola, investimentos alvo , acompanhar o progresso em direção às metas e, "
+"finalmente, desenvolver programas locais que beneficiam os alunos , pais e "
+"nossas comunidades."
 
 #: templates/survey/index.html:65
-#, fuzzy
 msgid ""
 "To learn more about your school’s efforts or to find out how to get "
 "involved, visit MassDOT’s Safe Routes to School Program at"
 msgstr ""
 "Para saber mais sobre os esforços da sua escola ou para saber como "
-"participar , visite rotas seguras de MassDOT ao Programa Escola em \\<a "
-"href='http://www.commute.com/schools/'\\> www.commute.com / escolas / \\</ "
-"a\\> ou ligue para 857-368-8638 ."
+"participar , visite rotas seguras de MassDOT ao Programa Escola em"
 
 #: templates/survey/index.html:65
 msgid "or call us at 857-368-8638."
@@ -548,7 +540,7 @@ msgstr "Faça a Pesquisa"
 
 #: templates/survey/index.html:74
 msgid "Please select your school district"
-msgstr "Por favor seleccione o seu distrito escolar"
+msgstr "Por favor, selecione o seu distrito escolar"
 
 #: templates/survey/index.html:75
 msgid "Scroll or start typing your district name"
@@ -556,11 +548,11 @@ msgstr "Role ou começar a digitar seu nome de distrito"
 
 #: templates/survey/index.html:84
 msgid "Please select your school"
-msgstr "Selecione sua escola"
+msgstr "Por favor seleccione a sua escola"
 
 #: templates/survey/index.html:94
 msgid "Open School Survey Form"
-msgstr "Escola Aberta formulário de pesquisa"
+msgstr "Escola Aberta Pesquisa Formulário"
 
 #: templates/survey/index.html:96
 msgid ""
@@ -596,18 +588,16 @@ msgstr ""
 "Safe Routes Pesquisa em sua escola."
 
 #: templates/survey/resources.html:13
-#, fuzzy
 msgid ""
 "If you need more assistance, please contact MassDOT’s Safe Routes to School "
 "program at 857-368-8638."
 msgstr ""
-"Se você tiver dúvidas, entre em contato com um administrador da escola ou "
-"ligue para rotas seguras para a escola em 857-368-8650 ."
+"Se precisar de mais ajuda, por favor entre em contato com rotas seguras de "
+"MassDOT ao programa Escola em 857-368-8638 ."
 
 #: templates/survey/resources.html:15
-#, fuzzy
 msgid "Paper Survey Forms"
-msgstr "Escola Aberta formulário de pesquisa"
+msgstr "Formulários de pesquisa Papel"
 
 #: templates/survey/resources.html:18
 msgid ""
@@ -635,33 +625,33 @@ msgstr ""
 msgid "download here."
 msgstr "baixe aqui ."
 
-#: templates/survey/resources.html:22
+#: templates/survey/resources.html:26
 msgid "English"
 msgstr "Inglês"
 
-#: templates/survey/resources.html:24 templates/survey/resources.html.py:30
-#: templates/survey/resources.html:36 templates/survey/resources.html.py:42
-#: templates/survey/resources.html:48 templates/survey/resources.html.py:54
-#: templates/survey/resources.html:60
+#: templates/survey/resources.html:27 templates/survey/resources.html.py:32
+#: templates/survey/resources.html:37 templates/survey/resources.html.py:42
+#: templates/survey/resources.html:47 templates/survey/resources.html.py:52
+#: templates/survey/resources.html:57
 msgid "Generic"
 msgstr "genérico"
 
-#: templates/survey/resources.html:25 templates/survey/resources.html.py:31
-#: templates/survey/resources.html:37 templates/survey/resources.html.py:43
-#: templates/survey/resources.html:49 templates/survey/resources.html.py:55
-#: templates/survey/resources.html:61
+#: templates/survey/resources.html:28 templates/survey/resources.html.py:33
+#: templates/survey/resources.html:38 templates/survey/resources.html.py:43
+#: templates/survey/resources.html:48 templates/survey/resources.html.py:53
+#: templates/survey/resources.html:58
 msgid "Customizable"
 msgstr "customizáveis"
 
-#: templates/survey/resources.html:28
+#: templates/survey/resources.html:31
 msgid "Spanish"
 msgstr "espanhol"
 
-#: templates/survey/resources.html:34
+#: templates/survey/resources.html:36
 msgid "Portuguese"
 msgstr "português"
 
-#: templates/survey/resources.html:40
+#: templates/survey/resources.html:41
 msgid "Chinese"
 msgstr "chinês"
 
@@ -669,17 +659,14 @@ msgstr "chinês"
 msgid "Vietnamese"
 msgstr "vietnamita"
 
-#: templates/survey/resources.html:52
+#: templates/survey/resources.html:51
 msgid "French"
 msgstr "francês"
 
-#: templates/survey/resources.html:58
+#: templates/survey/resources.html:56
 msgid "Arabic"
 msgstr "árabe"
 
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "Obrigado !"
-
-#~ msgid "Metropolitan Area Planning Council"
-#~ msgstr "Área Metropolitana Conselho de Planejamento"

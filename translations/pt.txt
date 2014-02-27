@@ -1,0 +1,25 @@
+"What is your approximate home location?","Qual é o seu local de residência aproximado?"
+"Please click the map at an intersection on your street, near your home:","Por favor, clique na mapa uma interseção da sua rua, perto da sua casa:"
+"...or tell us the street intersection closest to your home.","… ou diga-nos a interseção da rua mais próxima da sua casa."
+"Name of your street","Nome da sua rua"
+"Name of nearest cross-street","Nome da rua tranversal mais próxima"
+"What grade is your child in?","Em que turma està o seu filho(a)?"
+"How does your child get TO school on most days?","Como é que o seu filho(a) chega à escola na maioria dos dias? "
+"Does the driver usually drop off your child on your way to work or another destination?","Depois de deixar seu filho(a) a l'escola, o condutor geralmente se dirige ao trabalho ou a outro destino?"
+"How does your child get home FROM school on most days?","Como é que o seu filho(a) volta para casa da escola, na maioria dos dias? "
+"Do you usually pick up your child on your way from work or another origin?","Você costuma pegar o seu filho(a) quando volta do trabalho ou de outro local?"
+"How many vehicles do you have in your household?","Quantos veículos vocês tem na vossa casa?"
+"How many people in your household have a driver's license?","Quantas pessoas na sua casa têm carteira de motorista?"
+
+
+"Family Vehicle (only children in your family)","Veículo Familiar (só crianças da sua família)"
+"Bicycle","Bicicleta"
+"School Bus","Transporte escolar"
+"Carpool (with children from other families)","Veículo compartilhado/ boleia (com crianças de outras famílias)"
+"Walk","Caminhando"
+"Transit (city bus, subway, etc.)","Transportes Públicos (ônibus, metro, etc.)
+"Other (skateboard, scooter, inline skates, etc.)","Outro (skate, trotinete/scooter, patins em linha, etc.)"
+
+"Yes","Sim"
+"No","Não"
+"Not applicable","Não aplicável"

@@ -253,7 +253,7 @@ CHILD_GRADES = (
 CHILD_MODES = (
     ('', '--'),
     ('w', _('Walk')),
-    ('b', _('Bike')),
+    ('b', _('Bicycle')),
     ('sb', _('School Bus')),
     ('fv', _('Family Vehicle (only children in your family)')),
     ('cp', _('Carpool (with children from other families)')),
@@ -263,7 +263,7 @@ CHILD_MODES = (
 
 MODE_DICT = {
     'w': 'Walk',
-    'b': 'Bike',
+    'b': 'Bicycle',
     'sb': 'School Bus',
     'fv': 'Family Vehicle (only children in your family)',
     'cp': 'Carpool (with children from other families)',

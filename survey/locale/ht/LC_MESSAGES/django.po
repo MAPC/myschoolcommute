@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-10 15:18-0500\n"
+"POT-Creation-Date: 2014-02-27 15:05-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,93 +17,94 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: forms.py:21
+#: forms.py:24
 msgid "Name of your street"
-msgstr "Non lari ou"
+msgstr "Non ri kote w ap viv la: "
 
-#: forms.py:25
+#: forms.py:28
 msgid "Name of nearest cross-street"
-msgstr "Non ki pi pre kwa lari -"
+msgstr "Non ri pou travÃ¨se:"
 
-#: forms.py:29
+#: forms.py:32
 msgid "How many vehicles do you have in your household?"
-msgstr "Konbyen machin ou gen nan kay ou a?"
+msgstr "Konbyen veyikil ou genyen lakay ou?"
 
-#: forms.py:34
+#: forms.py:37
 msgid "How many people in your household have a driver's license?"
-msgstr "Konbyen moun ki nan kay la genyen yon lisans chofè a?"
+msgstr "Konbyen moun lakay ou ki gen yon lisans chofÃ¨?"
 
-#: forms.py:80
+#: forms.py:83
 msgid "What grade is your child in?"
-msgstr "Ki sa ki klas pitit ou a nan ?"
+msgstr "Nan ki klas pitit ou ye?"
 
-#: forms.py:86
+#: forms.py:89
 msgid "How does your child get TO school on most days?"
-msgstr "Ki jan pitit ou a rive lekòl la sou pi fò nan jou?"
+msgstr "Kijan pitit ou vini NAN lekÃ²l la nan pifÃ² jou yo?"
 
-#: forms.py:91
+#: forms.py:94
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
 msgstr ""
-"Anjeneral ou depoze pitit ou sou wout ou nan travay oswa nan destinasyon yon"
-" lòt?"
+"Si ou te chwazi âmachin fanmiâ oswa âko-vwatirajâ pou vini nan "
+"lekÃ²l la, Ã¨ske chofÃ¨ a kontinye travay oswa ale yon lÃ²t kote anjeneral?"
 
-#: forms.py:97
+#: forms.py:100
 msgid "How does your child get home FROM school on most days?"
-msgstr "Ki jan pitit ou a rive lakay ou soti nan lekòl sou pi fò nan jou?"
+msgstr ""
+"Kijan pitit ou vini sÃ²ti NAN lekÃ²l la pou ale lakay li nan pifÃ² jou yo?"
 
-#: forms.py:102
+#: forms.py:105
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr ""
-"Anjeneral ou vin chèche pitit ou sou wout ou soti nan travay oswa orijin yon"
-" lòt?"
+"Si ou te chwazi âmachin fanmiâ oswa âko-vwatirajâ pou pitit ou sÃ²ti"
+" lekÃ²l la pou ale lakay li, Ã¨ske ou vin chÃ¨che pitit ou pandan ou sou "
+"wout apre travay ou oswa yon lÃ²t kote?"
 
-#: models.py:244
+#: models.py:255
 msgid "Walk"
-msgstr "mache"
+msgstr "Mache"
 
-#: models.py:245
-msgid "Bike"
-msgstr "bisiklèt"
+#: models.py:256
+msgid "Bicycle"
+msgstr "BisiklÃ¨t"
 
-#: models.py:246
+#: models.py:257
 msgid "School Bus"
-msgstr "Otobis Lekòl"
+msgstr "Otobis LekÃ²l"
 
-#: models.py:247
+#: models.py:258
 msgid "Family Vehicle (only children in your family)"
-msgstr "Veyikil Fanmi ( timoun sèlman nan fanmi an)"
+msgstr "Machin fanmi (sÃ¨lman timoun ki nan fanmi ou)"
 
-#: models.py:248
+#: models.py:259
 msgid "Carpool (with children from other families)"
-msgstr "Vwayaje nan Menm Machin (ak timoun ki soti nan lòt fanmi )"
+msgstr "Ko-vwatiraj (avÃ¨k timoun lÃ²t fanmi)"
 
-#: models.py:249
+#: models.py:260
 msgid "Transit (city bus, subway, etc.)"
-msgstr "Transit ( vil la otobis, tren , elatriye)"
+msgstr "TranspÃ² Komen (otobis minisipalite vil la, metwo, elatriye)"
 
-#: models.py:250
+#: models.py:261
 msgid "Other (skateboard, scooter, inline skates, etc.)"
-msgstr "Lòt ( skateboard , scooter , aliye woulèt , elatriye)"
+msgstr "LÃ²t (planch-a-woulÃ¨t, eskoutÃ¨, paten ki gen wou aliyen, elatriye)"
 
-#: models.py:266
+#: models.py:277
 msgid "Yes"
 msgstr "Wi"
 
-#: models.py:267
+#: models.py:278
 msgid "No"
-msgstr "Pa gen"
+msgstr "Non"
 
 #: templates/base.html:123
 msgid "About"
-msgstr "Konsènan"
+msgstr "sou"
 
 #: templates/base.html:147
-#, fuzzy
 msgid "Questions?"
-msgstr "Kesyon? tanpri kontakte"
+msgstr "Kesyon?"
 
 #: templates/base.html:147
 msgid "Please click here to email us."
@@ -111,7 +112,7 @@ msgstr "Tanpri klike isit la yo voye yon imèl ba nou."
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
-msgstr "Sou Wout yo Massachusetts Safe nan Pwogram Lekòl"
+msgstr "Sou wout yo nan Massachusetts Safe Pwogram lekòl yo"
 
 #: templates/survey/about.html:10
 msgid "The Massachusetts"
@@ -135,7 +136,6 @@ msgid "Read more..."
 msgstr "Li plis ..."
 
 #: templates/survey/about.html:16
-#, fuzzy
 msgid ""
 "Evaluating trends in how students and families choose to travel to school is"
 " a key component to building a successful Safe Routes to School program. "
@@ -144,15 +144,12 @@ msgid ""
 "investments, track progress toward goals and ultimately develop local "
 "programs that benefit students, parents and our communities."
 msgstr ""
-"Massachusetts Senesòf Rout Nan Lekòl la ( SRTS ) patnè pwogram ak lekòl nan "
-"tout Commonwealth la ede redwi anbouteyaj nan sikilasyon ak polisyon nan lè "
-"a tou pre lekòl pandan y ap ogmante sante, sekirite , ak aktivite fizik nan "
-"elèv yo. Evalye tandans nan ki jan elèv yo ak fanmi vwayaje nan lekòl se yon"
-" eleman kle nan bati yon siksè Wout Sekirite nan pwogram lekòl la. Repons "
-"Parent to sondaj sa a bay bonjan enfòmasyon ak ede detèmine kijan nou ka "
-"amelyore anviwònman an alantou lekòl la , envestisman sib, pwogrè tras nan "
-"objektif yo epi finalman devlope pwogram lokal ki benefis elèv yo, paran yo "
-"ak kominote nou yo."
+"Evalye tandans nan ki jan elèv yo ak fanmi chwazi pou vwayaje lekòl se yon "
+"eleman kle nan bati yon siksè Wout san danje nan pwogram la. Repons Parent "
+"to sondaj sa a ofri enfòmasyon enpòtan ak ede detèmine ki jan nou ka "
+"amelyore anviwònman an bò kote lekòl la, envèstisman yo sib, swiv pwogrè nan"
+" direksyon objektif ak finalman devlope pwogram lokal ki benefisye elèv yo, "
+"paran yo ak kominote nou yo."
 
 #: templates/survey/about.html:19
 msgid ""
@@ -353,9 +350,8 @@ msgstr ""
 "Lwa a, ki te siyen pa Gouvènè Deval Patrick an 2008."
 
 #: templates/survey/about.html:61
-#, fuzzy
 msgid "About the National Center for Safe Routes to School"
-msgstr "Sou Wout yo Massachusetts Safe nan Pwogram Lekòl"
+msgstr "Sou Sant Nasyonal pou Wout Sekirite a Lekòl"
 
 #: templates/survey/about.html:63
 msgid ""
@@ -382,11 +378,11 @@ msgstr ""
 "finansman nan men US Department of Transportation Federal Highway "
 "Administration . Pou plis enfòmasyon, vizite"
 
-#: templates/survey/batch.html:354
+#: templates/survey/batch.html:364
 msgid "home"
 msgstr "lakay"
 
-#: templates/survey/batch.html:448 templates/survey/form.html:488
+#: templates/survey/batch.html:458 templates/survey/form.html:488
 msgid "Submit Survey"
 msgstr "soumèt Sondaj"
 
@@ -406,9 +402,9 @@ msgid ""
 "minutes to complete. All responses are voluntary and confidential. "
 msgstr ""
 "Lekòl pitit ou a ap fè yon sondaj aprann kijan elèv yo ale ak sòti nan lekòl"
-" la. Pral itilize enfòmasyon sa a pou gen plan pou chwa sekirite ak an sante"
-" transpò pou tout elèv. Sondaj la ap pran mwens pase 3 minit. Tout repons yo"
-" se volontè ak konfidansyèl ."
+" la. Yo pral itilize enfòmasyon sa a pou gen plan pou chwa transpò sekirite "
+"ak an sante pou tout elèv. Sondaj la ap pran mwens pase 3 minit. Tout repons"
+" yo se volontè ak konfidansyèl ."
 
 #: templates/survey/form.html:344
 msgid ""
@@ -419,14 +415,12 @@ msgstr ""
 "karakteristik nan fè rapò elèv yo adisyonèl."
 
 #: templates/survey/form.html:345
-#, fuzzy
 msgid ""
 "If a child's home location or commute is not the same every day, choose the "
 "option that reflects the most common location and travel pattern."
 msgstr ""
 "Si kote lakay yon timoun oswa vwayaje se pa menm bagay chak jou a, chwazi "
-"opsyon a ki reflete \\<em\\> ki pi komen \\< la / em \\> kote ak modèl "
-"vwayaj."
+"opsyon a ki reflete kote ki pi komen ak modèl vwayaj."
 
 #: templates/survey/form.html:346
 msgid ""
@@ -434,13 +428,12 @@ msgid ""
 msgstr "Si ou deja fè yon sondaj sou papye , pa ranpli fòm sa a sou entènèt."
 
 #: templates/survey/form.html:347
-#, fuzzy
 msgid ""
 "If you have questions, please contact a school administrator or call Safe "
 "Routes to School at 857-368-8638."
 msgstr ""
-"Si w gen kesyon , tanpri kontakte yon administratè lekòl oswa rele Wout "
-"Lekòl an Sekirite nan 857-368-8650 ."
+"Si w gen kesyon , tanpri kontakte yon administratè lekòl la oswa rele Wout "
+"Sekirite a Lekòl nan 857-368-8638 ."
 
 #: templates/survey/form.html:351
 msgid "We appreciate your time and effort!"
@@ -448,17 +441,17 @@ msgstr "Nou apresye tan ou ak efò !"
 
 #: templates/survey/form.html:372
 msgid "What is your approximate home location?"
-msgstr "Ki sa ki se kote lakay apwoksimatif ou a?"
+msgstr "ApeprÃ¨ ki kote lakay ou lokalize?"
 
 #: templates/survey/form.html:372 templates/survey/form.html.py:430
 msgid "required"
 msgstr "mande"
 
 #: templates/survey/form.html:375
-msgid "Please click the map at an intersection on your street, near your home"
+msgid ""
+"Please click the map at an intersection on your street, near your home:"
 msgstr ""
-"Tanpri klike kat jeyografik la nan yon entèseksyon ki nan lari ou a, tou pre"
-" lakay ou"
+"Tanpri klike sou kat la nan yon entÃ¨seksyon nan ri, ki toupre lakay ou."
 
 #: templates/survey/form.html:380
 msgid "your home"
@@ -466,7 +459,7 @@ msgstr "lakay ou"
 
 #: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
-msgstr "... oswa di nou entèseksyon an lari ki pi pre lakay ou."
+msgstr "â¦oswa di nou entÃ¨seksyon ri ki pipre a lakay ou."
 
 #: templates/survey/form.html:450
 msgid "Add another child at this school"
@@ -477,8 +470,8 @@ msgid ""
 "Would you like to help create safe routes to school for students in your "
 "community?"
 msgstr ""
-"Èske ou ta renmen ede kreye wout ki an sekirite nan lekòl la pou elèv ki nan"
-" kominote ou a?"
+"Èske ou ta renmen ede kreye wout ki an sekirite nan lekòl pou elèv ki nan "
+"kominote ou a?"
 
 #: templates/survey/index.html:57
 msgid ""
@@ -493,7 +486,6 @@ msgid "More information about the survey..."
 msgstr "Plis enfòmasyon sou sondaj la ..."
 
 #: templates/survey/index.html:63
-#, fuzzy
 msgid ""
 "The Massachusetts Safe Routes to School (SRTS) program partners with schools"
 " throughout the Commonwealth  to help reduce traffic congestion and air "
@@ -505,26 +497,23 @@ msgid ""
 " school, target investments, track progress toward goals and ultimately "
 "develop local programs that benefit students, parents and our communities."
 msgstr ""
-"Massachusetts Senesòf Rout Nan Lekòl la ( SRTS ) patnè pwogram ak lekòl nan "
-"tout Commonwealth la ede redwi anbouteyaj nan sikilasyon ak polisyon nan lè "
-"a tou pre lekòl pandan y ap ogmante sante, sekirite , ak aktivite fizik nan "
-"elèv yo. Evalye tandans nan ki jan elèv yo ak fanmi vwayaje nan lekòl se yon"
-" eleman kle nan bati yon siksè Wout Sekirite nan pwogram lekòl la. Repons "
-"Parent to sondaj sa a bay bonjan enfòmasyon ak ede detèmine kijan nou ka "
-"amelyore anviwònman an alantou lekòl la , envestisman sib, pwogrè tras nan "
-"objektif yo epi finalman devlope pwogram lokal ki benefis elèv yo, paran yo "
-"ak kominote nou yo."
+"Wout yo Massachusetts SafeLekòl la ( SRTS ) patnè pwogram ak lekòl nan tout "
+"Commonwealth la ede redwi anbouteyaj nan sikilasyon ak polisyon nan lè a tou"
+" pre lekòl pandan y ap ogmante aktivite a sante, sekirite, ak fizik nan elèv"
+" yo. Evalye tandans nan ki jan elèv yo ak fanmi vwayaje pou ale ak pou soti "
+"nan lekòl se yon eleman kle nan bati yon siksè Wout san danje nan pwogram "
+"la. Repons Parent to sondaj sa a ofri enfòmasyon enpòtan ak ede detèmine ki "
+"jan nou ka amelyore anviwònman an bò kote lekòl la, envèstisman yo sib, swiv"
+" pwogrè nan direksyon objektif ak finalman devlope pwogram lokal ki "
+"benefisye elèv yo, paran yo ak kominote nou yo."
 
 #: templates/survey/index.html:65
-#, fuzzy
 msgid ""
 "To learn more about your school’s efforts or to find out how to get "
 "involved, visit MassDOT’s Safe Routes to School Program at"
 msgstr ""
-"Pou aprann plis sou efò lekòl pitit ou a oswa jwenn konnen kouman ou kapab "
-"patisipe , vizite Wout Sekirite MassDOT a nan Pwogram Lekòl nan \\<a "
-"www.commute.com href='http://www.commute.com/schools/'\\> / schools / \\</ "
-"a\\> oswa rele nou nan 857-368-8638 ."
+"Pou aprann plis sou efò lekòl pitit ou a oswa yo chèche konnen kòman ou "
+"kapab jwenn patisipe , vizite Wout Safe Pwogram lekòl yo MassDOT a nan"
 
 #: templates/survey/index.html:65
 msgid "or call us at 857-368-8638."
@@ -532,7 +521,7 @@ msgstr "oswa rele nou nan 857-368-8638 ."
 
 #: templates/survey/index.html:69
 msgid "Take the Survey"
-msgstr "Pran sondaj la"
+msgstr "Pran Sondaj sou"
 
 #: templates/survey/index.html:74
 msgid "Please select your school district"
@@ -548,7 +537,7 @@ msgstr "Tanpri chwazi lekòl ou a"
 
 #: templates/survey/index.html:94
 msgid "Open School Survey Form"
-msgstr "Open School Survey Fòm"
+msgstr "Fòm Sondaj Open Lekòl"
 
 #: templates/survey/index.html:96
 msgid ""
@@ -583,18 +572,16 @@ msgstr ""
 " ou a."
 
 #: templates/survey/resources.html:13
-#, fuzzy
 msgid ""
 "If you need more assistance, please contact MassDOT’s Safe Routes to School "
 "program at 857-368-8638."
 msgstr ""
-"Si w gen kesyon , tanpri kontakte yon administratè lekòl oswa rele Wout "
-"Lekòl an Sekirite nan 857-368-8650 ."
+"Si ou bezwen plis èd, tanpri kontakte Wout Safe MassDOT a nan pwogram lekòl "
+"la nan 857-368-8638 ."
 
 #: templates/survey/resources.html:15
-#, fuzzy
 msgid "Paper Survey Forms"
-msgstr "Open School Survey Fòm"
+msgstr "Sondaj sou papye Fòm"
 
 #: templates/survey/resources.html:18
 msgid ""
@@ -620,33 +607,33 @@ msgstr ""
 msgid "download here."
 msgstr "download isit la."
 
-#: templates/survey/resources.html:22
+#: templates/survey/resources.html:26
 msgid "English"
 msgstr "angle"
 
-#: templates/survey/resources.html:24 templates/survey/resources.html.py:30
-#: templates/survey/resources.html:36 templates/survey/resources.html.py:42
-#: templates/survey/resources.html:48 templates/survey/resources.html.py:54
-#: templates/survey/resources.html:60
+#: templates/survey/resources.html:27 templates/survey/resources.html.py:32
+#: templates/survey/resources.html:37 templates/survey/resources.html.py:42
+#: templates/survey/resources.html:47 templates/survey/resources.html.py:52
+#: templates/survey/resources.html:57
 msgid "Generic"
 msgstr "jenerik"
 
-#: templates/survey/resources.html:25 templates/survey/resources.html.py:31
-#: templates/survey/resources.html:37 templates/survey/resources.html.py:43
-#: templates/survey/resources.html:49 templates/survey/resources.html.py:55
-#: templates/survey/resources.html:61
+#: templates/survey/resources.html:28 templates/survey/resources.html.py:33
+#: templates/survey/resources.html:38 templates/survey/resources.html.py:43
+#: templates/survey/resources.html:48 templates/survey/resources.html.py:53
+#: templates/survey/resources.html:58
 msgid "Customizable"
 msgstr "customizable"
 
-#: templates/survey/resources.html:28
+#: templates/survey/resources.html:31
 msgid "Spanish"
 msgstr "Panyòl"
 
-#: templates/survey/resources.html:34
+#: templates/survey/resources.html:36
 msgid "Portuguese"
 msgstr "Pòtigè"
 
-#: templates/survey/resources.html:40
+#: templates/survey/resources.html:41
 msgid "Chinese"
 msgstr "Chinwa"
 
@@ -654,17 +641,14 @@ msgstr "Chinwa"
 msgid "Vietnamese"
 msgstr "Vyetnamyen"
 
-#: templates/survey/resources.html:52
+#: templates/survey/resources.html:51
 msgid "French"
 msgstr "franse"
 
-#: templates/survey/resources.html:58
+#: templates/survey/resources.html:56
 msgid "Arabic"
 msgstr "Arabic"
 
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
 msgstr "Mèsi!"
-
-#~ msgid "Metropolitan Area Planning Council"
-#~ msgstr "Konsèy Planifikasyon Metwopoliten Zòn"

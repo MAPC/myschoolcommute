@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-10 15:18-0500\n"
+"POT-Creation-Date: 2014-02-27 15:05-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,89 +18,96 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: forms.py:21
+#: forms.py:24
 msgid "Name of your street"
-msgstr "اإسم الشارع"
+msgstr "Ø¥Ø³ Ø§ÙØ´Ø§Ø±Ø¹"
 
-#: forms.py:25
+#: forms.py:28
 msgid "Name of nearest cross-street"
-msgstr "اإسم أقرب شارع يتقاطع مع شارعكم"
+msgstr "Ø¥Ø³ Ø£ÙØ±Ø¨ Ø´Ø§Ø±Ø¹ ÙØªÙØ§Ø·Ø¹ Ø¹ Ø´Ø§Ø±Ø¹Ù"
 
-#: forms.py:29
+#: forms.py:32
 msgid "How many vehicles do you have in your household?"
-msgstr "كم عدد المركبات التي لديك في منزلك؟"
+msgstr "Ù Ø³ÙØ§Ø±Ø© Ø¹ÙØ¯Ù ÙÙ ÙØ²ÙÙ"
 
-#: forms.py:34
+#: forms.py:37
 msgid "How many people in your household have a driver's license?"
-msgstr "كم من الناس في منزلك لديك رخصة قيادة؟"
+msgstr ""
+"Ù Ø´Ø®Øµ ÙÙ ÙØ²ÙÙ ÙØ­ÙØ² Ø¹ÙÙ Ø±Ø®ØµØ© ÙÙØ§Ø¯Ø© Ø§ÙØ³ÙØ§Ø±Ø§Øª"
 
-#: forms.py:80
+#: forms.py:83
 msgid "What grade is your child in?"
-msgstr "ولدكم هو في أي صف مدرسي"
+msgstr "ÙÙØ¯Ù ÙÙ ÙÙ Ø£Ù ØµÙ Ø¯Ø±Ø³ÙØ"
 
-#: forms.py:86
+#: forms.py:89
 msgid "How does your child get TO school on most days?"
-msgstr ".  بأي وسيلة يتم نقل ولدكم إلى المدرسة في"
+msgstr "Ø¨Ø£Ù ÙØ³ÙÙØ© ÙØª ÙÙÙ ÙÙØ¯Ù Ø¥ÙÙ Ø§ÙØ¯Ø±Ø³Ø© ÙÙ Ø"
 
-#: forms.py:91
+#: forms.py:94
 msgid ""
 "Do you usually drop off your child on your way to work or another "
 "destination?"
-msgstr "هل تسقط عادة قبالة طفلك في طريقك إلى العمل أو وجهة أخرى ؟"
+msgstr ""
+"ÙØ¯Ø±Ø³Ø©Ø ÙÙ ÙØªØ§Ø¨Ø¹ Ø¹Ø§Ø¯Ø©Ù Ø³Ø§Ø¦Ù Ø§ÙØ³ÙØ§Ø±Ø© Ø±Ø­ÙØªÙ "
+"Ø¥ÙÙ Ø§ÙØ¹Ù Ø§Ù Ø¥ÙÙ ÙØ¬ÙØ© Ø§Ø®Ø±ÙØ"
 
-#: forms.py:97
+#: forms.py:100
 msgid "How does your child get home FROM school on most days?"
-msgstr "بأي وسيلة يتم نقل ولدكم من المدرسة في أغلب الأيام"
+msgstr "Ø¨Ø£Ù ÙØ³ÙÙØ© ÙØª ÙÙÙ ÙÙØ¯Ù Ù Ø§ÙØ¯Ø±Ø³Ø© ÙÙ"
 
-#: forms.py:102
+#: forms.py:105
 msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
-msgstr "هل عادة ما تلتقط طفلك في طريقك إلى العمل أو الأصل آخر؟"
+msgstr ""
+"ÙÙØ¯Ø±Ø³Ø©Ø ÙÙ ØªÙÙÙÙÙ ÙÙØ¯Ù Ø¹ÙÙ Ø·Ø±ÙÙ Ø¹ÙØ¯ØªÙ Ù "
+"Ø§ÙØ¹Ù Ø§Ù ÙØ§Ù Ø¢Ø®Ø±Ø"
 
-#: models.py:244
+#: models.py:255
 msgid "Walk"
-msgstr "السير على الأقدام"
+msgstr "Ø§ÙØ³ÙØ± Ø¹ÙÙ Ø§ÙØ£ÙØ¯Ø§"
 
-#: models.py:245
-msgid "Bike"
-msgstr "الدراجة"
+#: models.py:256
+msgid "Bicycle"
+msgstr "Ø§ÙØ¯Ø±Ø§Ø¬Ø©"
 
-#: models.py:246
+#: models.py:257
 msgid "School Bus"
-msgstr "اباص المدرسة"
+msgstr "Ø¨Ø§Øµ Ø§ÙØ¯Ø±Ø³Ø©"
 
-#: models.py:247
+#: models.py:258
 msgid "Family Vehicle (only children in your family)"
-msgstr "سيارة العائلة (اولاد أسرتكم فقط)"
+msgstr "العائلة المركبة (الأطفال فقط في عائلتك )"
 
-#: models.py:248
+#: models.py:259
 msgid "Carpool (with children from other families)"
-msgstr "سيارة مشتركة (مع أولاد عائلات أخرى)"
+msgstr "(Ø³ÙØ§Ø±Ø© Ø´ØªØ±ÙØ© (Ø¹ Ø£ÙÙØ§Ø¯ Ø¹Ø§Ø¦ÙØ§Øª Ø£Ø®Ø±Ù"
 
-#: models.py:249
+#: models.py:260
 msgid "Transit (city bus, subway, etc.)"
-msgstr "وسائل النقل العام (باص المدينة، القطار، المترو، الخ)"
+msgstr ""
+"(ÙØ³Ø§Ø¦Ù Ø§ÙÙÙÙ Ø§ÙØ¹Ø§ (Ø¨Ø§Øµ Ø§ÙØ¯ÙÙØ©Ø Ø§ÙÙØ·Ø§Ø±Ø "
+"Ø§ÙØªØ±ÙØ Ø§ÙØ®"
 
-#: models.py:250
+#: models.py:261
 msgid "Other (skateboard, scooter, inline skates, etc.)"
-msgstr "غيرها (لوح تزلج، سكوتر، مزلج عجلات، الخ)"
+msgstr ""
+"(ØºÙØ±ÙØ§ (ÙÙØ­ ØªØ²ÙØ¬Ø Ø³ÙÙØªØ±Ø Ø²ÙØ¬ Ø¹Ø¬ÙØ§ØªØ Ø§ÙØ®"
 
-#: models.py:266
+#: models.py:277
 msgid "Yes"
-msgstr "نعم"
+msgstr "ÙØ¹"
 
-#: models.py:267
+#: models.py:278
 msgid "No"
-msgstr "لا"
+msgstr "ÙØ§"
 
 #: templates/base.html:123
 msgid "About"
 msgstr "حول"
 
 #: templates/base.html:147
-#, fuzzy
 msgid "Questions?"
-msgstr "الأسئلة؟ يرجى الاتصال"
+msgstr "الأسئلة؟"
 
 #: templates/base.html:147
 msgid "Please click here to email us."
@@ -108,7 +115,7 @@ msgstr "الرجاء الضغط هنا ل مراسلتنا ."
 
 #: templates/survey/about.html:7
 msgid "About the Massachusetts Safe Routes to School Program"
-msgstr "حول طرق ماساتشوستس الآمن ل برنامج مدرسة"
+msgstr "حول طرق ماساتشوستس الآمن ل برنامج المدرسة"
 
 #: templates/survey/about.html:10
 msgid "The Massachusetts"
@@ -132,7 +139,6 @@ msgid "Read more..."
 msgstr "اقرأ المزيد ..."
 
 #: templates/survey/about.html:16
-#, fuzzy
 msgid ""
 "Evaluating trends in how students and families choose to travel to school is"
 " a key component to building a successful Safe Routes to School program. "
@@ -141,14 +147,11 @@ msgid ""
 "investments, track progress toward goals and ultimately develop local "
 "programs that benefit students, parents and our communities."
 msgstr ""
-"طرق ماساتشوستس الآمن ل مدرسة ( SRTS ) شركاء البرنامج مع المدارس في جميع "
-"أنحاء الكومنولث للمساعدة في تقليل الاختناقات المرورية وتلوث الهواء بالقرب من"
-" المدارس مع زيادة الصحة والسلامة ، والنشاط البدني من الطلاب. تقييم الاتجاهات"
-" في كيفية الطلبة والأسر السفر إلى المدرسة هو عنصر أساسي لبناء الطرق آمنة "
-"ناجحة ل برنامج مدرسة . ردود الرئيسي ل هذه الدراسة توفر معلومات قيمة وتساعد "
-"على تحديد كيف يمكننا تحسين البيئة المحيطة بالمدرسة ، والاستثمارات المستهدفة،"
-" تتبع التقدم المحرز نحو تحقيق أهداف ووضع في نهاية المطاف البرامج المحلية "
-"التي تفيد الطلاب وأولياء الأمور و مجتمعاتنا ."
+"تقييم الاتجاهات في كيفية اختيار الطلاب والأسر للسفر إلى المدرسة هو عنصر "
+"أساسي لبناء الطرق آمنة ناجحة ل برنامج المدرسة . ردود الأصل ل هذه الدراسة "
+"توفر معلومات قيمة وتساعد على تحديد كيف يمكننا تحسين البيئة المحيطة بالمدرسة "
+"، والاستثمارات المستهدفة ، وتتبع التقدم نحو الأهداف وفي نهاية المطاف تطوير "
+"البرامج المحلية التي تفيد الطلاب وأولياء الأمور و مجتمعاتنا."
 
 #: templates/survey/about.html:19
 msgid ""
@@ -337,9 +340,8 @@ msgstr ""
 " باتريك في عام 2008."
 
 #: templates/survey/about.html:61
-#, fuzzy
 msgid "About the National Center for Safe Routes to School"
-msgstr "حول طرق ماساتشوستس الآمن ل برنامج مدرسة"
+msgstr "عن المركز الوطني لل طرق آمنة لل مدرسة"
 
 #: templates/survey/about.html:63
 msgid ""
@@ -365,11 +367,11 @@ msgstr ""
 "الطرق السريعة ولاية كارولينا الشمالية بتمويل من وزارة النقل الأمريكية إدارة "
 "الطرق السريعة الاتحادية . لمزيد من المعلومات ، يرجى زيارة"
 
-#: templates/survey/batch.html:354
+#: templates/survey/batch.html:364
 msgid "home"
 msgstr "منزل"
 
-#: templates/survey/batch.html:448 templates/survey/form.html:488
+#: templates/survey/batch.html:458 templates/survey/form.html:488
 msgid "Submit Survey"
 msgstr "يقدم المسح"
 
@@ -379,7 +381,7 @@ msgstr "السفر إلى مسح مدرسة"
 
 #: templates/survey/form.html:338
 msgid "Dear Parent or Guardian,"
-msgstr "حضرات الأهالي او الاوصياء،"
+msgstr "عزيزي الوالد أو ولي الأمر ،"
 
 #: templates/survey/form.html:342
 msgid ""
@@ -388,56 +390,57 @@ msgid ""
 "transportation choices for all students. The survey will take less than 3 "
 "minutes to complete. All responses are voluntary and confidential. "
 msgstr ""
-"تود المدرسة الإطلاع على الوسيلة التي ينتقل بها الطلاب من وإلى المدرسة. "
-"تلك المعلومات لتأمين خيارات آمنة وصحية لوسائل النق "
-"المدرسي لجميع الطلاب."
+"مدرسة طفلك هو إجراء مسح لمعرفة كيفية الحصول على الطلاب من وإلى المدرسة . "
+"وسيتم استخدام هذه المعلومات للتخطيط ل خيارات نقل آمنة و صحية لجميع الطلاب. "
+"سوف يستغرق المسح أقل من 3 دقائق لإكمال. جميع الردود طوعية وسرية."
 
 #: templates/survey/form.html:344
 msgid ""
 "If more than one child attends this school, use the \"Add Another Child\" "
 "feature to report additional students. "
 msgstr ""
-"إذا أكثر من طفل واحد يحضر هذه المدرسة ، واستخدام \" إضافة طفل آخر \" ميزة أن"
-" يقدم الطلاب إضافية ."
+"إذا أكثر من طفل و احد يحضر هذه المدرسة ، استخدم \" إضافة طفل آخر \" ميزة أن "
+"يقدم الطلاب إضافية."
 
 #: templates/survey/form.html:345
-#, fuzzy
 msgid ""
 "If a child's home location or commute is not the same every day, choose the "
 "option that reflects the most common location and travel pattern."
 msgstr ""
 "إذا كان الموقع منزل الطفل أو تخفيف ليست هي نفسها كل يوم ، واختيار الخيار "
-"الذي يعكس \\<EM\\> الأكثر شيوعا \\</ EM \\> الموقع و نمط السفر."
+"الذي يعكس الموقع الأكثر شيوعا ونمط السفر."
 
 #: templates/survey/form.html:346
 msgid ""
 "If you already completed a paper survey, do not complete this online form. "
-msgstr "إذا كنت أنجزت بالفعل مسح ورقة ، لا تستكمل هذا النموذج على الانترنت."
+msgstr "إذا كنت أنجزت بالفعل مسح ورقة ، لا إكمال هذا النموذج على الانترنت."
 
 #: templates/survey/form.html:347
-#, fuzzy
 msgid ""
 "If you have questions, please contact a school administrator or call Safe "
 "Routes to School at 857-368-8638."
 msgstr ""
-"إذا كان لديك أسئلة، يرجى الاتصال على مدير المدرسة أو استدعاء طرق آمنة لل "
-"مدرسة في 857-368-8650 ."
+"إذا كان لديك أسئلة ، يرجى الاتصال على مدير المدرسة أو استدعاء طرق آمنة لل "
+"مدرسة في 857-368-8638 ."
 
 #: templates/survey/form.html:351
 msgid "We appreciate your time and effort!"
-msgstr "ونحن نقدر الوقت والجهد !"
+msgstr "نحن نقدر الوقت والجهد !"
 
 #: templates/survey/form.html:372
 msgid "What is your approximate home location?"
-msgstr "ما هو منزلك موقع تقريبي ؟"
+msgstr "Ø£ÙÙ ÙÙØ¹ ÙØ²ÙÙ ØªÙØ±ÙØ¨Ø§ÙØ"
 
 #: templates/survey/form.html:372 templates/survey/form.html.py:430
 msgid "required"
 msgstr "مطلوب"
 
 #: templates/survey/form.html:375
-msgid "Please click the map at an intersection on your street, near your home"
-msgstr "الرجاء الضغط على الخريطة عند تقاطع على شارعك ، بالقرب من منزلك"
+msgid ""
+"Please click the map at an intersection on your street, near your home:"
+msgstr ""
+"ÙØ±Ø¬Ù ÙÙØ± Ø§ÙØ®Ø§Ø±Ø·Ø© Ø¹ÙÙ ØªÙØ§Ø·Ø¹ Ø´Ø§Ø±Ø¹Ù Ø¨Ø§ÙÙØ±Ø¨ Ù "
+"ÙØ²ÙÙ: "
 
 #: templates/survey/form.html:380
 msgid "your home"
@@ -445,32 +448,31 @@ msgstr "منزلك"
 
 #: templates/survey/form.html:386
 msgid "...or tell us the street intersection closest to your home."
-msgstr "... أو تخبرنا تقاطع شارع الأقرب إلى منزلك ."
+msgstr "... Ø£Ù Ø£Ø®Ø¨Ø±ÙØ§ Ø£ÙØ±Ø¨ ØªÙØ§Ø·Ø¹ Ø·Ø±Ù Ø¥ÙÙ ÙØ²ÙÙ."
 
 #: templates/survey/form.html:450
 msgid "Add another child at this school"
-msgstr "أضف طفل آخر في هذه المدرسة"
+msgstr "إضافة طفل آخر في هذه المدرسة"
 
 #: templates/survey/index.html:56
 msgid ""
 "Would you like to help create safe routes to school for students in your "
 "community?"
-msgstr "هل ترغب في مساعدة إنشاء مسارات آمنة إلى المدرسة للطلاب في مجتمعك ؟"
+msgstr "تريد أن تساعد في خلق طرق آمنة إلى المدرسة للطلاب في مجتمعك ؟"
 
 #: templates/survey/index.html:57
 msgid ""
 "The survey takes less than 3 minutes and will help your school plan for more"
 " transportation choices. All responses are voluntary and confidential."
 msgstr ""
-"يستغرق المسح أقل من 3 دقائق ، وسوف تساعد خطة المدرسة للحصول على مزيد من "
-"الخيارات وسائل النقل . جميع الردود الطوعية والسرية ."
+"يأخذ المسح أقل من 3 دقائق ، وسوف تساعد خطة المدرسة لمزيد من خيارات النقل . "
+"جميع الردود طوعية وسرية."
 
 #: templates/survey/index.html:60
 msgid "More information about the survey..."
 msgstr "مزيد من المعلومات حول المسح ..."
 
 #: templates/survey/index.html:63
-#, fuzzy
 msgid ""
 "The Massachusetts Safe Routes to School (SRTS) program partners with schools"
 " throughout the Commonwealth  to help reduce traffic congestion and air "
@@ -482,24 +484,22 @@ msgid ""
 " school, target investments, track progress toward goals and ultimately "
 "develop local programs that benefit students, parents and our communities."
 msgstr ""
-"طرق ماساتشوستس الآمن ل مدرسة ( SRTS ) شركاء البرنامج مع المدارس في جميع "
-"أنحاء الكومنولث للمساعدة في تقليل الاختناقات المرورية وتلوث الهواء بالقرب من"
-" المدارس مع زيادة الصحة والسلامة ، والنشاط البدني من الطلاب. تقييم الاتجاهات"
-" في كيفية الطلبة والأسر السفر إلى المدرسة هو عنصر أساسي لبناء الطرق آمنة "
-"ناجحة ل برنامج مدرسة . ردود الرئيسي ل هذه الدراسة توفر معلومات قيمة وتساعد "
-"على تحديد كيف يمكننا تحسين البيئة المحيطة بالمدرسة ، والاستثمارات المستهدفة،"
-" تتبع التقدم المحرز نحو تحقيق أهداف ووضع في نهاية المطاف البرامج المحلية "
-"التي تفيد الطلاب وأولياء الأمور و مجتمعاتنا ."
+"طرق آمنة لل مدرسة ولاية ماساشوستس ( SRTS ) شركاء البرنامج مع المدارس في جميع"
+" أنحاء الكومنولث للمساعدة في تقليل الازدحام المروري وتلوث الهواء بالقرب من "
+"المدارس مع زيادة النشاط والصحة، و السلامة، و البدنية للطلاب . تقييم "
+"الاتجاهات في كيفية الطلاب والأسر السفر من وإلى المدرسة هو عنصر أساسي لبناء "
+"الطرق آمنة ناجحة ل برنامج المدرسة . ردود الأصل ل هذه الدراسة توفر معلومات "
+"قيمة وتساعد على تحديد كيف يمكننا تحسين البيئة المحيطة بالمدرسة ، "
+"والاستثمارات المستهدفة ، وتتبع التقدم نحو الأهداف وفي نهاية المطاف تطوير "
+"البرامج المحلية التي تفيد الطلاب وأولياء الأمور و مجتمعاتنا."
 
 #: templates/survey/index.html:65
-#, fuzzy
 msgid ""
 "To learn more about your school’s efforts or to find out how to get "
 "involved, visit MassDOT’s Safe Routes to School Program at"
 msgstr ""
-"لمعرفة المزيد عن جهود مدرستك أو لمعرفة كيفية المشاركة ، يرجى زيارة طرق آمنة "
-"MassDOT ل برنامج مدرسة في \\<a href='http://www.commute.com/schools/'\\> "
-"www.commute.com / مدارس / \\< / a\\> أو الاتصال بنا على 857-368-8638 ."
+"لمعرفة المزيد عن الجهود مدرستك أو لمعرفة كيفية المشاركة ، يرجى زيارة الدروب "
+"MassDOT و الآمن ل برنامج مدرسة في"
 
 #: templates/survey/index.html:65
 msgid "or call us at 857-368-8638."
@@ -507,7 +507,7 @@ msgstr "أو الاتصال بنا على 857-368-8638 ."
 
 #: templates/survey/index.html:69
 msgid "Take the Survey"
-msgstr "خذ مسح"
+msgstr "اتخاذ المسح"
 
 #: templates/survey/index.html:74
 msgid "Please select your school district"
@@ -523,7 +523,7 @@ msgstr "الرجاء اختيار مدرستك"
 
 #: templates/survey/index.html:94
 msgid "Open School Survey Form"
-msgstr "فتح نموذج المسح مدرسة"
+msgstr "نموذج استبيان مفتوح مدرسة"
 
 #: templates/survey/index.html:96
 msgid ""
@@ -557,18 +557,16 @@ msgstr ""
 "مدرستك ."
 
 #: templates/survey/resources.html:13
-#, fuzzy
 msgid ""
 "If you need more assistance, please contact MassDOT’s Safe Routes to School "
 "program at 857-368-8638."
 msgstr ""
-"إذا كان لديك أسئلة، يرجى الاتصال على مدير المدرسة أو استدعاء طرق آمنة لل "
-"مدرسة في 857-368-8650 ."
+"اذا كنت بحاجة الى مزيد من المساعدة ، يرجى الاتصال الدروب آمنة MassDOT ل "
+"برنامج مدرسة في 857-368-8638 ."
 
 #: templates/survey/resources.html:15
-#, fuzzy
 msgid "Paper Survey Forms"
-msgstr "فتح نموذج المسح مدرسة"
+msgstr "أشكال مسح الورق"
 
 #: templates/survey/resources.html:18
 msgid ""
@@ -592,33 +590,33 @@ msgstr "تخصيص استمارات مسح الورق يتطلب أدوبي أك
 msgid "download here."
 msgstr "تحميل هنا."
 
-#: templates/survey/resources.html:22
+#: templates/survey/resources.html:26
 msgid "English"
 msgstr "الإنجليزية"
 
-#: templates/survey/resources.html:24 templates/survey/resources.html.py:30
-#: templates/survey/resources.html:36 templates/survey/resources.html.py:42
-#: templates/survey/resources.html:48 templates/survey/resources.html.py:54
-#: templates/survey/resources.html:60
+#: templates/survey/resources.html:27 templates/survey/resources.html.py:32
+#: templates/survey/resources.html:37 templates/survey/resources.html.py:42
+#: templates/survey/resources.html:47 templates/survey/resources.html.py:52
+#: templates/survey/resources.html:57
 msgid "Generic"
 msgstr "عام"
 
-#: templates/survey/resources.html:25 templates/survey/resources.html.py:31
-#: templates/survey/resources.html:37 templates/survey/resources.html.py:43
-#: templates/survey/resources.html:49 templates/survey/resources.html.py:55
-#: templates/survey/resources.html:61
+#: templates/survey/resources.html:28 templates/survey/resources.html.py:33
+#: templates/survey/resources.html:38 templates/survey/resources.html.py:43
+#: templates/survey/resources.html:48 templates/survey/resources.html.py:53
+#: templates/survey/resources.html:58
 msgid "Customizable"
 msgstr "تخصيص"
 
-#: templates/survey/resources.html:28
+#: templates/survey/resources.html:31
 msgid "Spanish"
 msgstr "الأسبانية"
 
-#: templates/survey/resources.html:34
+#: templates/survey/resources.html:36
 msgid "Portuguese"
 msgstr "البرتغالية"
 
-#: templates/survey/resources.html:40
+#: templates/survey/resources.html:41
 msgid "Chinese"
 msgstr "الصينية"
 
@@ -626,17 +624,14 @@ msgstr "الصينية"
 msgid "Vietnamese"
 msgstr "الفيتنامية"
 
-#: templates/survey/resources.html:52
+#: templates/survey/resources.html:51
 msgid "French"
 msgstr "فرنسي"
 
-#: templates/survey/resources.html:58
+#: templates/survey/resources.html:56
 msgid "Arabic"
 msgstr "العربية"
 
 #: templates/survey/thanks.html:6
 msgid "Thank you!"
-msgstr "شكرا لك!"
-
-#~ msgid "Metropolitan Area Planning Council"
-#~ msgstr "مجلس أبوظبي للتخطيط منطقة العاصمة"
+msgstr "شكرا لك !"

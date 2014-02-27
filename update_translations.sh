@@ -10,6 +10,7 @@ cd survey
 find -name *.po -exec sed -i 's/\\u003c/</g' {} \;
 find -name *.po -exec sed -i 's/\\u003e/>/g' {} \;
 cd ..
+./manutranslate.py
 ./autotranslate.py
 cd survey
 ../manage.py compilemessages
