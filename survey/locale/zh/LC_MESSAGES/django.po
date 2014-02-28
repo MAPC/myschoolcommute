@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 15:33-0500\n"
+"POT-Creation-Date: 2014-02-28 16:10-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -455,7 +455,6 @@ msgid "Please select your school"
 msgstr "请选择您的学校"
 
 #: templates/survey/index.html:85
-#, fuzzy
 msgid "Scroll or start typing your school name"
 msgstr "滚动或开始输入学校名称"
 
