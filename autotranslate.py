@@ -15,7 +15,10 @@ for po_file in po_files:
 
     po = polib.pofile(po_file)
 
-    for entry in po.untranslated_entries():
+    for entry in po:
+        if entry.translated():
+            continue
+
         try:
             translation = translator.translate(entry.msgid.encode('utf8'))
             try:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-27 15:05-0500\n"
+"POT-Creation-Date: 2014-02-28 15:33-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,39 +62,39 @@ msgstr ""
 " pou ale lakay li, èske ou vin chèche pitit ou pandan ou sou wout apre "
 "travay ou oswa yon lòt kote?"
 
-#: models.py:255
+#: models.py:275
 msgid "Walk"
 msgstr "Mache"
 
-#: models.py:256
+#: models.py:276
 msgid "Bicycle"
 msgstr "Bisiklèt"
 
-#: models.py:257
+#: models.py:277
 msgid "School Bus"
 msgstr "Otobis Lekòl"
 
-#: models.py:258
+#: models.py:278
 msgid "Family Vehicle (only children in your family)"
 msgstr "Machin fanmi (sèlman timoun ki nan fanmi ou)"
 
-#: models.py:259
+#: models.py:279
 msgid "Carpool (with children from other families)"
 msgstr "Ko-vwatiraj (avèk timoun lòt fanmi)"
 
-#: models.py:260
+#: models.py:280
 msgid "Transit (city bus, subway, etc.)"
 msgstr "Transpò Komen (otobis minisipalite vil la, metwo, elatriye)"
 
-#: models.py:261
+#: models.py:281
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "Lòt (planch-a-woulèt, eskoutè, paten ki gen wou aliyen, elatriye)"
 
-#: models.py:277
+#: models.py:297
 msgid "Yes"
 msgstr "Wi"
 
-#: models.py:278
+#: models.py:298
 msgid "No"
 msgstr "Non"
 
@@ -534,6 +534,11 @@ msgstr "Scroll oswa kòmanse sezisman Non distri ou"
 #: templates/survey/index.html:84
 msgid "Please select your school"
 msgstr "Tanpri chwazi lekòl ou a"
+
+#: templates/survey/index.html:85
+#, fuzzy
+msgid "Scroll or start typing your school name"
+msgstr "Scroll oswa kòmanse sezisman Non lekòl ou a"
 
 #: templates/survey/index.html:94
 msgid "Open School Survey Form"

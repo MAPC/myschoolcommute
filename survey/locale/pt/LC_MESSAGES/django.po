@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-27 15:05-0500\n"
+"POT-Creation-Date: 2014-02-28 15:33-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,41 +62,41 @@ msgstr ""
 "Você costuma pegar o seu filho(a) quando volta do trabalho ou de outro "
 "local?"
 
-#: models.py:255
+#: models.py:275
 msgid "Walk"
 msgstr "Caminhando"
 
-#: models.py:256
+#: models.py:276
 msgid "Bicycle"
 msgstr "Bicicleta"
 
-#: models.py:257
+#: models.py:277
 msgid "School Bus"
 msgstr "Transporte escolar"
 
-#: models.py:258
+#: models.py:278
 msgid "Family Vehicle (only children in your family)"
 msgstr "Veículo Familiar (só crianças da sua família)"
 
-#: models.py:259
+#: models.py:279
 msgid "Carpool (with children from other families)"
 msgstr "Veículo compartilhado/ boleia (com crianças de outras famílias)"
 
-#: models.py:260
+#: models.py:280
 msgid "Transit (city bus, subway, etc.)"
 msgstr ""
 "Transportes Públicos (ônibus, metro, etc.)\n"
 "Other (skateboard"
 
-#: models.py:261
+#: models.py:281
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "Outros ( skate , patinete, patins , etc )"
 
-#: models.py:277
+#: models.py:297
 msgid "Yes"
 msgstr "Sim"
 
-#: models.py:278
+#: models.py:298
 msgid "No"
 msgstr "Não"
 
@@ -549,6 +549,11 @@ msgstr "Role ou começar a digitar seu nome de distrito"
 #: templates/survey/index.html:84
 msgid "Please select your school"
 msgstr "Por favor seleccione a sua escola"
+
+#: templates/survey/index.html:85
+#, fuzzy
+msgid "Scroll or start typing your school name"
+msgstr "Role ou começar a escrever o nome da escola"
 
 #: templates/survey/index.html:94
 msgid "Open School Survey Form"

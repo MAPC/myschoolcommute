@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-27 15:05-0500\n"
+"POT-Creation-Date: 2014-02-28 15:33-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,39 +56,39 @@ msgid ""
 "Do you usually pick up your child on your way from work or another origin?"
 msgstr "如果您选择以“乘坐私家车”或“拼车”的方式回家，您通常是否从下班途中或另一地点出发接子女？"
 
-#: models.py:255
+#: models.py:275
 msgid "Walk"
 msgstr "步行"
 
-#: models.py:256
+#: models.py:276
 msgid "Bicycle"
 msgstr "骑自行车"
 
-#: models.py:257
+#: models.py:277
 msgid "School Bus"
 msgstr "搭乘校车"
 
-#: models.py:258
+#: models.py:278
 msgid "Family Vehicle (only children in your family)"
 msgstr "乘坐私家车（仅您家的子女）"
 
-#: models.py:259
+#: models.py:279
 msgid "Carpool (with children from other families)"
 msgstr "(与其他家庭的子女）拼车"
 
-#: models.py:260
+#: models.py:280
 msgid "Transit (city bus, subway, etc.)"
 msgstr "城市公交、地铁等"
 
-#: models.py:261
+#: models.py:281
 msgid "Other (skateboard, scooter, inline skates, etc.)"
 msgstr "其他方式（滑板、单脚滑行车、轮滑等)"
 
-#: models.py:277
+#: models.py:297
 msgid "Yes"
 msgstr "是"
 
-#: models.py:278
+#: models.py:298
 msgid "No"
 msgstr "否"
 
@@ -453,6 +453,11 @@ msgstr "滚动或开始键入您的地区名"
 #: templates/survey/index.html:84
 msgid "Please select your school"
 msgstr "请选择您的学校"
+
+#: templates/survey/index.html:85
+#, fuzzy
+msgid "Scroll or start typing your school name"
+msgstr "滚动或开始输入学校名称"
 
 #: templates/survey/index.html:94
 msgid "Open School Survey Form"
