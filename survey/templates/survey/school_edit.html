@@ -98,6 +98,11 @@ $(document).ready(function(){
     <div class='span9'>
         <div id="map"></div>
         <a href='{% url "school_sheds_format" school.pk 'pdf' %}'>Click here for a school walkshed map</a>
+<!--        <legend>Surveys</legend>
+        {% for form in formset %}
+            {% crispy form %}
+        {% endfor %}
+-->
     </div>
 </div>
 
@@ -107,6 +112,7 @@ $(document).ready(function(){
 </div>
 
 <div class='row-fluid'>
+
     <div class='span6'>
         <legend>Edit School</legend>
         {% crispy school_form %}
@@ -115,5 +121,6 @@ $(document).ready(function(){
         <legend>Surveys</legend>
         {% crispy report_form %}
     </div>
+
 </div>
 {% endblock %}

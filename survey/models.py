@@ -180,18 +180,28 @@ class Survey(models.Model):
     """
     school = models.ForeignKey(School)
     street = models.CharField(max_length=50, blank=True, null=True)
-    cross_st = models.CharField('Cross street', max_length=50, blank=True, null=True)
-    nr_vehicles = models.IntegerField('Number of Vehicles', blank=True, null=True)
-    nr_licenses = models.IntegerField('Number of License', blank=True, null=True)
+    cross_st = models.CharField(
+        'Cross street', max_length=50, blank=True, null=True
+    )
+    nr_vehicles = models.IntegerField(
+        'Number of Vehicles', blank=True, null=True
+    )
+    nr_licenses = models.IntegerField(
+        'Number of License', blank=True, null=True
+    )
     ip = models.IPAddressField('IP Address', blank=True, null=True)
     #Mile, shortest driving distance, not walk/bike distance
     distance = models.FloatField(null=True)
-    created = models.DateTimeField(auto_now_add=True, editable=False, null=True)
+    created = models.DateTimeField(
+        auto_now_add=True, editable=False, null=True
+    )
     modified = models.DateTimeField(auto_now=True, null=True)
 
     user = models.ForeignKey(User, null=True)
     # GeoDjango
-    location = models.PointField(geography=True, blank=True, null=True, default='POINT(0 0)')
+    location = models.PointField(
+        geography=True, blank=True, null=True, default='POINT(0 0)'
+    )
     # default SRS 4326
     objects = models.GeoManager()
 
@@ -202,8 +212,14 @@ class Survey(models.Model):
         if len(self.street) > 0 and len(self.cross_st) > 0:
             school_cross = self.school.get_intersections()
             crosses = school_cross.filter(
-                Q(Q(st_name_1__iexact=self.street) & Q(st_name_2__iexact=self.cross_st)) |
-                Q(Q(st_name_2__iexact=self.street) & Q(st_name_1__iexact=self.cross_st))
+                Q(
+                    Q(st_name_1__iexact=self.street) &
+                    Q(st_name_2__iexact=self.cross_st)
+                ) |
+                Q(
+                    Q(st_name_2__iexact=self.street) &
+                    Q(st_name_1__iexact=self.cross_st)
+                )
             )
             crosses = list(crosses)
             if len(crosses):
@@ -213,10 +229,12 @@ class Survey(models.Model):
                 print 'No Intersection'
 
     def update_distance(self):
-        from survey.maps import get_driving_distance
+        from maps import get_driving_distance
 
         try:
-            self.distance = get_driving_distance(self.school.geometry, self.location)
+            self.distance = get_driving_distance(
+                self.school.geometry, self.location
+            )
         except:
             pass
 
@@ -228,9 +246,11 @@ class SurveySet(models.Model):
     school = models.ForeignKey(School)
     begin = models.DateTimeField()
     end = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return "%s Survey Set for %s - %s" % (self.school, self.begin, self.end,)
+        return "Surveys: %s for %s - %s" % (self.school, self.begin, self.end,)
 
 CHILD_GRADES = (
     ('', '--'),

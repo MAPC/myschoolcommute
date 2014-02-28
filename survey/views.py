@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import permission_required
 from datetime import datetime, timedelta
 
 from survey.models import School, Survey, Child, District, Street, Intersection, SchoolTown
-from survey.forms import SurveyForm, ChildForm, SchoolForm, ReportForm
+from survey.forms import SurveyForm, SurveySetForm, ChildForm, SchoolForm, ReportForm
 
 from maps import ForkRunR
 
@@ -62,6 +62,8 @@ def school_edit(request, district_slug, school_slug, **kwargs):
 
     # translate to lat/lon
     school.geometry.transform(4326)
+
+    formset = SurveySetFormSet = formset_factory(SurveySetForm, extra=1)
 
     if request.method == 'POST':
         school_form = SchoolForm(request.POST, instance=school)
@@ -121,7 +123,8 @@ def school_edit(request, district_slug, school_slug, **kwargs):
             'count_day': count_day,
             'count_week': count_week,
             'start_date': initial['start_date'],
-            'end_date': initial['end_date']
+            'end_date': initial['end_date'],
+            'formset': formset
         },
         context_instance=RequestContext(request)
     )

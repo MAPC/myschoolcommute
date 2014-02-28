@@ -117,8 +117,12 @@ YES_OR_NO = (
 )
 
 class SurveySetForm(ModelForm):
-    begin = forms.DateField(widget=forms.DateInput(format='%m/%d/%Y'), input_formats=('%m/%d/%Y',))
-    end = forms.DateField(widget=forms.DateInput(format='%m/%d/%Y'), input_formats=('%m/%d/%Y',))
+    begin = forms.DateField(
+        widget=forms.DateInput(format='%m/%d/%Y'), input_formats=('%m/%d/%Y',)
+    )
+    end = forms.DateField(
+        widget=forms.DateInput(format='%m/%d/%Y'), input_formats=('%m/%d/%Y',)
+    )
 
     def __init__(self, *args, **kwargs):
         super(SurveySetForm, self).__init__(*args, **kwargs)
