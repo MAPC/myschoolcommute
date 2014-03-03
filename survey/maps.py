@@ -592,6 +592,7 @@ def ForkRunR(school_id, date1, date2):
         os.makedirs(wdir)
     save_sheds(os.path.join(wdir, 'map.pdf'), school_id)
 
+    r.r("load('.RData')")
     r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
     r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
     r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
@@ -599,7 +600,6 @@ def ForkRunR(school_id, date1, date2):
     r.r("DATE1 <- '%s'" % str(date1))
     r.r("DATE2 <- '%s'" % str(date2))
     r.r("WORKDIR <- '%s'" % wdir)
-    r.r("load('.RData')")
     r.r("print(ORG_CODE)")
     r.r("source('compile.R')")
 
