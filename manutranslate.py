@@ -13,7 +13,7 @@ for po_file in po_files:
     m = re.search('locale/(\w+)/LC_', po_file)
     lang = m.group(1)
 
-    csv_path = 'translations/'+lang+'.txt'
+    csv_path = 'translations/'+lang+'.csv'
     if os.path.exists(csv_path):
         with open(csv_path, 'rb') as csvfile:
             table = csv.reader(csvfile)
