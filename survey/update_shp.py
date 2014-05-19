@@ -3,24 +3,22 @@ import os, sys
 import fiona
 from shapely import geometry
 
+
 if __name__ == '__main__':
     sys.path.append(os.path.realpath(".."))
-    from django.core.management import setup_environ
-    from myschoolcommute import settings
-
-    setup_environ(settings)
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myschoolcommute.settings")
 
 
 from survey.models import School, District, Street
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 
-def update_schools():    
+def update_schools():
     new_schools = []
     updated_schools = []
 
     school_ids = []
-    
+
     with fiona.open("data/Schools.shp", "r") as shape:
         for f in shape:
             props = f['properties']
@@ -68,7 +66,7 @@ def update_schools():
             print str(e)
             transaction.savepoint_rollback(sid)
             print "Database import rolled back"
-            
+
 if __name__ == '__main__':
 
     update_schools()
