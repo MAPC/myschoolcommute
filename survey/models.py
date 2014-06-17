@@ -250,7 +250,17 @@ class SurveySet(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return "Surveys: %s for %s - %s" % (self.school, self.begin, self.end,)
+        return "Surveys: %s for %s - %s" % (
+            self.school, self.begin.strftime("%D"), self.end.strftime("%D"),
+        )
+
+    def surveys(self):
+        return Survey.objects.filter(
+            Q(modified__gte=self.begin) & Q(modified__lte=self.end)
+        )
+
+    def surveys_count(self):
+        return len(self.surveys())
 
 CHILD_GRADES = (
     ('', '--'),

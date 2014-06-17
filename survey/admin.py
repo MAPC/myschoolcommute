@@ -1,4 +1,4 @@
-from survey.models import School, Survey, Child, District
+from survey.models import School, Survey, SurveySet, Child, District
 # from django.contrib import admin
 from django.contrib.gis import admin
 
@@ -16,7 +16,7 @@ class SchoolAdmin(admin.OSMGeoAdmin):
         ('Map',
             {'fields': ['geometry', ]}),
     ]
-    list_filter = ['survey_active']
+    #list_filter = ['survey_active']
     list_display = ('name', 'survey_count', 'town', 'grades', 'principal', 'phone',)
     search_fields = ['name', 'districtid__distname']
     ordering = ['districtid__distname']
@@ -32,6 +32,18 @@ class SurveyAdmin(admin.OSMGeoAdmin):
     ordering = ['-created', 'school__name']
 
 
+class SurveyInline(admin.TabularInline):
+    model = Survey
+    can_delete = False
+
+
+class SurveySetAdmin(admin.ModelAdmin):
+    #inlines = (SurveyInline,)
+    list_display = ('__unicode__', 'school', 'begin', 'end', 'surveys_count',)
+    ordering = ['-begin', 'end']
+    search_fields = ['school', 'begin', 'end']
+
+
 class ChildAdmin(admin.ModelAdmin):
     list_display = ('pk', 'survey')
 
@@ -39,4 +51,5 @@ class ChildAdmin(admin.ModelAdmin):
 admin.site.register(District, DistrictAdmin)
 admin.site.register(School, SchoolAdmin)
 admin.site.register(Survey, SurveyAdmin)
+admin.site.register(SurveySet, SurveySetAdmin)
 admin.site.register(Child, ChildAdmin)
