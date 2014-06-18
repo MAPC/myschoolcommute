@@ -3,6 +3,7 @@ from django.db.models import permalink
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
+from django.core.urlresolvers import reverse
 
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
@@ -16,6 +17,7 @@ try:
 except ImportError:
     pass
 
+from datetime import datetime
 
 class District(models.Model):
     """ School Districts """
@@ -66,7 +68,8 @@ class School(models.Model):
     districtid = models.ForeignKey('District', blank=True, null=True)
 
     survey_incentive = models.TextField(blank=True, null=True)
-    survey_active = models.BooleanField('Is survey active?')
+    #Renamed to disable for now
+    _active = models.BooleanField('Is survey active? (Disabled)', db_column='survey_active')
 
     # GeoDjango
     geometry = models.PointField(srid=26986)
@@ -78,6 +81,14 @@ class School(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def survey_active(self):
+        return SurveySet.objects.filter(
+            Q(school=self) &
+            Q(begin__lte=datetime.now()) &
+            Q(end__gte=datetime.now())
+        ).count() > 0
 
     @property
     def district(self):
@@ -254,9 +265,25 @@ class SurveySet(models.Model):
             self.school, self.begin.strftime("%D"), self.end.strftime("%D"),
         )
 
+    def start_date(self):
+        return 
+
+    def report_url(self):
+        return reverse(
+            "school_report",
+            kwargs={
+                'school_id': self.school.pk,
+                'start': str(self.begin.date()),
+                'end': str(self.end.date())
+            }
+        )
+
+
     def surveys(self):
         return Survey.objects.filter(
-            Q(modified__gte=self.begin) & Q(modified__lte=self.end)
+            Q(school=self.school) &
+            Q(modified__gte=self.begin) &
+            Q(modified__lte=self.end)
         )
 
     def surveys_count(self):

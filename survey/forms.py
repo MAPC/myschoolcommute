@@ -111,10 +111,12 @@ class ChildForm(ModelForm):
     class Meta:
         model = Child
 
+
 YES_OR_NO = (
     (True, 'Yes'),
     (False, 'No')
 )
+
 
 class SurveySetForm(ModelForm):
     begin = forms.DateField(
@@ -129,41 +131,7 @@ class SurveySetForm(ModelForm):
 
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
-        self.helper.add_input(Submit('submit', 'Save'))
-        self.helper.add_input(Submit('submit', 'Generate Report'))
 
     class Meta:
         model = SurveySet
         fields = ("begin", "end", )
-
-
-class SchoolForm(ModelForm):
-    survey_active = forms.TypedChoiceField(
-        choices=YES_OR_NO, widget=forms.RadioSelect
-    )
-    #survey_incentive = forms.CharField(label="Survey Form Message", required=False)
-
-    def __init__(self, *args, **kwargs):
-        super(SchoolForm, self).__init__(*args, **kwargs)
-
-        self.helper = FormHelper(self)
-        self.helper.form_class = 'form-horizontal'
-        self.helper.add_input(Submit('submit', 'Save'))
-
-    class Meta:
-        model = School
-        fields = ("name", "survey_active", )
-
-
-class ReportForm(forms.Form):
-    start_date = forms.DateField(widget=forms.DateInput(format='%m/%d/%Y'), input_formats=('%m/%d/%Y',))
-    end_date = forms.DateField(widget=forms.DateInput(format='%m/%d/%Y'), input_formats=('%m/%d/%Y',))
-
-    def __init__(self, *args, **kwargs):
-        super(ReportForm, self).__init__(*args, **kwargs)
-
-        self.helper = FormHelper(self)
-        self.helper.form_class = 'form-horizontal'
-        self.helper.form_method = 'get'
-        self.helper.add_input(Submit('submit', 'Generate Report'))
-        #self.helper.add_input(Submit('submit', 'Download Raw Data'))

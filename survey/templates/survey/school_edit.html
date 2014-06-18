@@ -78,7 +78,7 @@ $(document).ready(function(){
 <div class='row-fluid'>
     <div class='span3'>
         <div class='well'>
-            <p><h4>Summary</h4></p>
+            <p><h4>Summary <small> - {% now "SHORT_DATE_FORMAT" %}</small></h4></p>
 
             <p>{{ count_day }} surveys in past 24 hours</p>
             <p>{{ count_week }} surveys in past week</p>
@@ -98,29 +98,63 @@ $(document).ready(function(){
     <div class='span9'>
         <div id="map"></div>
         <a href='{% url "school_sheds_format" school.pk 'pdf' %}'>Click here for a school walkshed map</a>
-<!--        <legend>Surveys</legend>
-        {% for form in formset %}
-            {% crispy form %}
-        {% endfor %}
--->
     </div>
 </div>
 
 <div class='row-fluid'>
-    <div class='span12'>
+    <div class='span9 offset3'>
+        <form action="." method="post" class="form-horizontal">
+        {{ formset.management_form }}{% csrf_token %}
+        {% if formset.forms|length > 1 %}
+            <legend>Survey Sets</legend>
+            {{ formset.non_form_errors }}
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>Surveys</th>
+                        <th>Status</th>
+                        <th>Report</th>
+                        <th>Begin</th>
+                        <th>End</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for form in formset %}
+                    {% if not forloop.last %}
+                        <tr>
+                            <td><strong>{{form.instance.surveys_count}}{{form.errors}}</strong></td>
+                            <td>
+                                {% if form.instance.begin <= now and form.instance.end >= now %}
+                                In Progress
+                                {% else %}
+                                Finished
+                                {% endif %}
+                            <td><a target='_blank' href='{{form.instance.report_url}}'>View</a></td>
+                            <td>
+                                {{form.id}}{{form.instance.begin|date}}
+                                <div class='hide'>{{form.begin}}</div>
+                            </td>
+                            <td>
+                                {{form.instance.end|date}}
+                                <div class='hide'>{{form.end}}</div>
+                            </td>
+                            <td>{{form.DELETE}}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        <legend>New Survey Set</legend>
+        <fieldset>
+            {{formset.forms|last|crispy}}
+        </fieldset>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        </form>
     </div>
 </div>
 
-<div class='row-fluid'>
-
-    <div class='span6'>
-        <legend>Edit School</legend>
-        {% crispy school_form %}
-    </div>
-    <div class='span6'>
-        <legend>Surveys</legend>
-        {% crispy report_form %}
-    </div>
-
-</div>
 {% endblock %}

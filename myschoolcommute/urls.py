@@ -41,6 +41,9 @@ urlpatterns += patterns('',
     # Testing
     url(r'^testr/$', 'survey.views.testr'),
 
+    # Generate report
+    url(r'^(?P<school_id>\d+)/(?P<start>\d{4}-\d{2}-\d{2})_(?P<end>\d{4}-\d{2}-\d{2})_report\.pdf$', 'survey.views.school_report', name='school_report'),
+
     #Typeahead
     url(r'^(?P<school_id>\d+)/streets/(?P<query>[^/]*)/?$', 'survey.views.school_streets'),
     url(r'^(?P<school_id>\d+)/crossing/(?P<street>[^/]+)/(?P<query>[^/]*)/?$', 'survey.views.school_crossing' ),

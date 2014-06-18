@@ -2,28 +2,35 @@ from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from django.utils import simplejson
-from django.db.models import Count, Q, Max, Min
-from django.forms.models import inlineformset_factory, formset_factory
+from django.utils import simplejson, dateparse
+from django.db.models import Count, Q
+from django.forms.models import (
+    inlineformset_factory, modelformset_factory, BaseModelFormSet
+)
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import permission_required
 
 from datetime import datetime, timedelta
 
-from survey.models import School, Survey, Child, District, Street, Intersection, SchoolTown
-from survey.forms import SurveyForm, SurveySetForm, ChildForm, SchoolForm, ReportForm
+from survey.models import (
+    School, Survey, SurveySet, SurveySet, Child, District, Street
+)
+from survey.forms import SurveyForm, SurveySetForm, ChildForm
 
 from maps import ForkRunR
 
 import os
-import fcntl
 
 
 def index(request):
 
     # get all districts with active school surveys
-    districts = District.objects.filter(school__survey_active=True).distinct()
+    active_schools = School.objects.filter(
+        Q(surveyset__begin__lte=datetime.now()) &
+        Q(surveyset__end__gte=datetime.now())
+    )
+    districts = District.objects.filter(school__in=active_schools).distinct()
 
     return render_to_response('survey/index.html', locals(), context_instance=RequestContext(request))
 
@@ -42,7 +49,11 @@ def district(request, district_slug):
 def district_list(request):
 
     # get all districts with active school surveys
-    districts = District.objects.filter(school__survey_active=True)
+    active_schools = School.objects.filter(
+        Q(surveyset__begin__lte=datetime.now()) &
+        Q(surveyset__end__gte=datetime.now())
+    )
+    districts = District.objects.filter(school__in=active_schools).distinct()
     districts = District.objects.all()
     districts = districts.annotate(school_count=Count('school'))
     districts = districts.annotate(survey_count=Count('school__survey'))
@@ -63,71 +74,81 @@ def school_edit(request, district_slug, school_slug, **kwargs):
     # translate to lat/lon
     school.geometry.transform(4326)
 
-    formset = SurveySetFormSet = formset_factory(SurveySetForm, extra=1)
+    class BaseSurveySetFormSet(BaseModelFormSet):
+        def __init__(self, *args, **kwargs):
+            super(BaseSurveySetFormSet, self).__init__(*args, **kwargs)
+            self.queryset = SurveySet.objects.filter(school=school)
+
+    surveysets = SurveySet.objects.filter(school=school)
+    SurveySetFormSet = modelformset_factory(
+        SurveySet, formset=BaseSurveySetFormSet, form=SurveySetForm,
+        can_delete=True, extra=1
+    )
 
     if request.method == 'POST':
-        school_form = SchoolForm(request.POST, instance=school)
-        if school_form.is_valid():
-            school = school_form.save()
-    elif request.method == 'GET' and len(request.GET) > 0:
-        form = ReportForm(request.GET)
-        if form.is_valid():
-            start = str(form.cleaned_data['start_date'])
-            end = str(form.cleaned_data['end_date'])
-            report_path = "reports/%s/%s_%s_report.pdf" % (school.slug, start, end)
-            full_path = settings.MEDIA_ROOT + '/' + report_path
-            full_url = settings.MEDIA_URL + '/' + report_path
+        formset = SurveySetFormSet(request.POST)
+        if formset.is_valid():
+            sets = formset.save(commit=False)
+            for surveyset in sets:
+                surveyset.school = school
+                surveyset.save()
 
-            #lock = Lock("/tmp/saferides_report.lock")
-            #lock.acquire()
-            path = ForkRunR(
-                school.pk,
-                form.cleaned_data['start_date'],
-                form.cleaned_data['end_date']
-            )
-            dir_name = os.path.dirname(full_path)
-            if not os.path.exists(dir_name):
-                os.makedirs(dir_name)
-            os.rename(path, full_path)
-
-            #lock.release()
-
-            send_mail(
-                "Your report for school %s, date range %s - %s" % (school, start, end),
-                "You may download it at http://%s/%s" % (request.META['HTTP_HOST'], full_url),
-                settings.SERVER_EMAIL,
-                [request.user.email]
-            )
-
-            return HttpResponseRedirect(full_url)
-        else:
-            school_form = SchoolForm(instance=school)
+            formset = SurveySetFormSet()
     else:
-        school_form = SchoolForm(instance=school)
+        #formset = SurveySetFormSet()
+        formset = SurveySetFormSet()
 
     surveys = Survey.objects.filter(school=school)
     count_day = surveys.filter(created__gte=datetime.today() - timedelta(hours=24)).count()
     count_week = surveys.filter(created__gte=datetime.today() - timedelta(days=7)).count()
 
-    initial = {
-        'start_date': surveys.aggregate(Min('created'))['created__min'],
-        'end_date': surveys.aggregate(Max('created'))['created__max']
-    }
-    report_form = ReportForm(initial=initial)
     return render_to_response('survey/school_edit.html', {
             'school': school,
             'district': district,
-            'school_form': school_form,
-            'report_form': report_form,
             'surveys': surveys,
             'count_day': count_day,
             'count_week': count_week,
-            'start_date': initial['start_date'],
-            'end_date': initial['end_date'],
-            'formset': formset
+            'formset': formset,
+            'surveysets': surveysets,
+            'now': datetime.now()
         },
         context_instance=RequestContext(request)
     )
+
+@login_required
+def school_report(request, school_id, start, end):
+    school = School.objects.get(pk=school_id)
+    start_d = dateparse.parse_date(start)
+    end_d = dateparse.parse_date(end)
+
+    report_path = "reports/%s/%s_%s_report.pdf" % (
+        school.slug, start, end
+    )
+    full_path = settings.MEDIA_ROOT + '/' + report_path
+    full_url = settings.MEDIA_URL + '/' + report_path
+
+    path = ForkRunR(
+        school.pk,
+        start_d,
+        end_d
+    )
+    dir_name = os.path.dirname(full_path)
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+    os.rename(path, full_path)
+
+    send_mail(
+        "Your report for school %s, date range %s - %s" % (
+            school, start, end
+        ),
+        "You may download it at http://%s/%s" % (
+            request.META['HTTP_HOST'], full_url
+        ),
+        settings.SERVER_EMAIL,
+        [request.user.email]
+    )
+
+    return HttpResponseRedirect(full_url)
 
 
 def get_schools(request, districtid):
@@ -138,7 +159,10 @@ def get_schools(request, districtid):
     # check if district exists
     district = get_object_or_404(District.objects, districtid=districtid)
 
-    schools = School.objects.filter(districtid=district).filter(survey_active=True)
+    schools = School.objects.filter(districtid=district).filter(
+        Q(surveyset__begin__lte=datetime.now()) &
+        Q(surveyset__end__gte=datetime.now())
+    )
 
     response = {}
 
