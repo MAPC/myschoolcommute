@@ -77,7 +77,7 @@ def school_edit(request, district_slug, school_slug, **kwargs):
     class BaseSurveySetFormSet(BaseModelFormSet):
         def __init__(self, *args, **kwargs):
             super(BaseSurveySetFormSet, self).__init__(*args, **kwargs)
-            self.queryset = SurveySet.objects.filter(school=school)
+            self.queryset = SurveySet.objects.filter(school=school).order_by('-begin')
 
     surveysets = SurveySet.objects.filter(school=school)
     SurveySetFormSet = modelformset_factory(

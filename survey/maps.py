@@ -600,7 +600,7 @@ def ForkRunR(school_id, date1, date2):
     r.r("DATE1 <- '%s'" % str(date1))
     r.r("DATE2 <- '%s'" % str(date2))
     r.r("WORKDIR <- '%s'" % wdir)
-    r.r("print(ORG_CODE)")
+    #r.r("print(ORG_CODE)")
     r.r("source('compile.R')")
 
     #cur_dir = os.path.dirname(os.path.realpath(__file__))
