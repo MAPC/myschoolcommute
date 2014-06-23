@@ -122,25 +122,31 @@ $(document).ready(function(){
                 <tbody>
                 {% for form in formset %}
                     {% if not forloop.last %}
+                    {% with ss=form.instance count=form.instance.surveys_count %}
                         <tr>
-                            <td><strong>{{form.instance.surveys_count}}{{form.errors}}</strong></td>
+                            <td><strong>{{count}}{{form.errors}}</strong></td>
                             <td>
-                                {% if form.instance.begin <= now and form.instance.end >= now %}
+                                {% if ss.begin <= now and ss.end >= now %}
                                 In Progress
                                 {% else %}
                                 Finished
                                 {% endif %}
-                            <td><a target='_blank' href='{{form.instance.report_url}}'>View</a></td>
                             <td>
-                                {{form.id}}{{form.instance.begin|date}}
+                                {% if count > 1 %}
+                                <a target='_blank' href='{{ss.report_url}}'>View</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{form.id}}{{ss.begin|date}}
                                 <div class='hide'>{{form.begin}}</div>
                             </td>
                             <td>
-                                {{form.instance.end|date}}
+                                {{ss.end|date}}
                                 <div class='hide'>{{form.end}}</div>
                             </td>
                             <td>{{form.DELETE}}</td>
                         </tr>
+                    {% endwith %}
                     {% endif %}
                 {% endfor %}
                 </tbody>
