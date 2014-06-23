@@ -40,9 +40,9 @@ $(document).ready(function(){
     map.addLayer(ggl);
     map.addControl(new L.Control.Layers( {'MapQuest':mq, 'Google':ggl}, {}));
 
-    var paths;
+    var paths, surveys;
 
-    $.getJSON('/{{school.pk}}/walkshed.geojson',function(data){
+    $.getJSON('/{{school.pk}}/walkshed.geojson', function(data){
         paths = L.geoJson(data, {
             style: function(feature) {
                 console.log(feature.properties);
@@ -53,6 +53,24 @@ $(document).ready(function(){
                 };
             }
         }).addTo(map);
+    });
+
+    $.ajax({
+        url: '/{{school.pk}}/surveys.geojson',
+        dataType: 'json',
+        success: function(data){
+            surveys = L.geoJson(data, {
+                style: function(feature) {
+                    return {
+                        color: feature.properties.color,
+                        fillOpacity: 0.5
+                    };
+                }
+            }).addTo(map);
+        },
+        error: function(request, textStatus, errorThrown) {
+            console.log(textStatus);
+        }
     });
 
     var circle = L.circle(school_loc, 50, {

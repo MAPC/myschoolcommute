@@ -311,6 +311,18 @@ def school_sheds(request=None, school_id=None, bbox=None, width=816, height=1056
 
     return response
 
+
+SCHOOL_COLORS = (
+    ('w', "blue"),
+    ('fv', "red"),
+    ('cp', "violet"),
+    ('sb', "yellow"),
+    ('b', "lightgreen"),
+    ('t', "purple"),
+    ('o', 'lightgrey'),
+)
+
+
 def school_sheds_results(request=None, school_id=None, bbox=None, width=816, height=1056, srid=3857, format='png'):
     '''
     Default height and width are 'Letter' ratio
@@ -346,15 +358,7 @@ def school_sheds_results(request=None, school_id=None, bbox=None, width=816, hei
         s.rules.append(r)
 
     # styles for schools
-    school_colors = (
-        ('w', "blue"),
-        ('fv', "red"),
-        ('cp', "violet"),
-        ('sb', "yellow"),
-        ('b', "lightgreen"),
-        ('t', "purple"),
-        ('o', 'lightgrey'),
-    )
+    school_colors = SCHOOL_COLORS
 
     for name, color in school_colors:
         r = mapnik.Rule()
@@ -571,6 +575,47 @@ def school_sheds_json(request, school_id):
             "geometry": %s,
             "properties": {"distance": "%0.1f"}
         }""" % (geom.geojson, dist))
+
+    json_text = """{
+    "type": "FeatureCollection",
+    "features": [%s]
+    }""" % ((",\n").join(features))
+    return HttpResponse(json_text)
+
+
+def school_surveys_json(request, school_id):
+    surveys = Survey.objects.filter(school__pk=school_id)
+    surveys = surveys.exclude(location__intersects='POINT(0 0)')
+
+    features = []
+    colors = {row[0]: row[1] for row in SCHOOL_COLORS}
+
+    for s in surveys:
+        children = list(s.child_set.all())
+
+        if children:
+            for c in children:
+                point = s.location
+                point.transform(26986)
+                point.x += random.randint(-50, 50)
+                point.y += random.randint(-50, 50)
+                circle = point.buffer(20)
+                circle.transform(4326)
+                features.append(""" {
+                    "type": "Feature",
+                    "geometry": %s,
+                    "properties": {"color": ["%s"]}
+                }""" % (circle.geojson, colors[str(c.to_school)]))
+        else:
+            point = s.location
+            point.transform(26986)
+            circle = point.buffer(20)
+            circle.transform(4326)
+            features.append(""" {
+                "type": "Feature",
+                "geometry": %s,
+                "properties": {"color": ["%s"]}
+            }""" % (circle.geojson, colors['o']))
 
     json_text = """{
     "type": "FeatureCollection",

@@ -51,6 +51,7 @@ urlpatterns += patterns('',
 
     # admin data
     url(r'^(?P<school_id>\d+)/walkshed.geojson$', 'survey.maps.school_sheds_json', name='sheds_json'),
+    url(r'^(?P<school_id>\d+)/surveys.geojson$', 'survey.maps.school_surveys_json', name='surveys_json'),
     url(r'^(?P<school_id>\d+)/walkshed.png$', 'survey.maps.school_sheds', name='school_sheds'),
     url(r'^(?P<school_id>\d+)/walkshed.(?P<format>\w+)$', 'survey.maps.school_sheds', name='school_sheds_format'),
 )
