@@ -33,8 +33,8 @@
 % define serif and san-serif fonts
 \allsectionsfont{\sffamily} % section headings in san-serif font
 \renewcommand{\familydefault}{\sfdefault}
-\setromanfont{Goudy Old Style} % serif font to be Goudy Old Style
-\setsansfont{Tw Cen MT} % san-serif font to be Tw Cen MT
+% \setromanfont{Goudy Old Style} % serif font to be Goudy Old Style
+% \setsansfont{Tw Cen MT} % san-serif font to be Tw Cen MT
 
 %%%%% Setting up table and caption environment
 \usepackage{floatrow} % san-serif font for tabular material
@@ -72,10 +72,10 @@ read_chunk("process_postgres_chunks.R")
 
 
 {\flushleft   
-\includegraphics[height=20 mm]{2010SRTSLogo2}%[height=12 mm]{2010SRTSLogo}
+\includegraphics[height=20 mm]{2010SRTSLogo}%[height=12 mm]{2010SRTSLogo}
 \newline
 \newline
-\includegraphics[height=12 mm]{MassDOT_Logo_Color2}%[height=12 mm]{MassDOT_Logo_Color}
+\includegraphics[height=12 mm]{MassDOT_Logo_Color}%[height=12 mm]{MassDOT_Logo_Color}
 \newline
 \newline
 

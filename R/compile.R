@@ -7,15 +7,18 @@ library(scales)
 library(knitr)
 library(Hmisc)
 
-for (ORG_CODE in ORG_CODES){
-  if (ORG_CODE == "01760068") next
-  source("generate_report.R")
-  School_Name <- enrollmentDF[enrollmentDF$ORG.CODE==ORG_CODE,"SCHOOL"]
-  school_name_no_space <- gsub("\\s","",School_Name)
-  knit2pdf("minimal.Rnw", compiler = "xelatex")
-  file.rename("minimal.pdf",paste("Reports/",
-                                  paste(school_name_no_space,".pdf",sep=""),
-                                  sep=""))
-}
+# date1 = "2012-06-01"
+# date2 = "2013-06-01"
+source("generate_report.R")
+
+# test with 1 response
+# ORG_CODE = "06450310"
+# source("generate_report.R")
+# test with more than 10 responses
+# ORG_CODE = "02480014"
+# source("generate_report.R")
+# test with missing org code
+# ORG_CODE = "05160002"
+# source("generate_report.R")
 
 

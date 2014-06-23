@@ -1,0 +1,7 @@
+\documentclass{article}
+
+\begin{document}
+
+We cannot generate a report for your school because enrollment data is not available. We apologize for the inconvenience.
+
+\end{document}
