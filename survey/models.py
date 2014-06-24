@@ -17,7 +17,7 @@ try:
 except ImportError:
     pass
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class District(models.Model):
     """ School Districts """
@@ -282,8 +282,8 @@ class SurveySet(models.Model):
     def surveys(self):
         return Survey.objects.filter(
             Q(school=self.school) &
-            Q(modified__gte=self.begin) &
-            Q(modified__lte=self.end)
+            Q(modified__gte=self.begin.date()) &
+            Q(modified__lt=self.end.date() + timedelta(days=1))
         )
 
     def surveys_count(self):
