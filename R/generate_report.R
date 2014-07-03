@@ -16,26 +16,25 @@
 
 library(RPostgreSQL)
 
-# 1)
-# establish connection to PostgreSQl;
-# fetch survey table and write to variable df
-
-drv <- dbDriver("PostgreSQL")
-ch <- dbConnect(drv, 
-                host='localhost',
-                port='5432', 
-                dbname=dbname,
-                user=dbuser,
-                password=dbpasswd)
-df_all <- dbSendQuery(ch,"select * from survey_child_survey")
-df_all <- fetch(df_all,n=-1)
-dbDisconnect(ch) # disconnect from PostGres database
-
 # 2)
 # cols_needed contains variables that cannot be NA 
 cols_needed <- c("grade","to_school","dropoff","from_school","pickup","schid","distance")
 df_all <- df_all[complete.cases(df_all[cols_needed]),] # remove any tuples that contain NA values in the cols_needed columns
 df_all <- droplevels(df_all)
+
+############### Get Survey Dates #######################
+# survey start and end dates are based on the created and current_time columns
+# start_date is the minimum value in created column
+# end_date is the maximum value in current_time column
+# date_list <- survey_dates(DF,"created","current_time")
+date_list <- get_dates(date1, date2)
+start_date <- date_list$start_date
+start_month <- date_list$start_month
+start_year <- date_list$start_year
+end_date <- date_list$end_date
+end_month <- date_list$end_month
+end_year <- date_list$end_year
+############### End Get Survey Dates #######################
 
 # 3)
 # select records that match ORG_CODE
@@ -43,26 +42,28 @@ df <- df_all[df_all$schid == ORG_CODE,]
 
 # 3a) 
 # choose enrollment table based on date of created column
-start_date = survey_dates(df,"created", "current_time")$start_date
-if (start_date < as.Date("2012-07-30")){
-  enrollmentDF = enrollment11_12
-  enrollmentDate = "2011-2012"
-} else {
-  enrollmentDF = enrollment12_13
-  enrollmentDate = "2012-2013"
-}
 
+enrollmentDF = get_enrollment_df(start_date)
+enrollmentDate = get_enrollment_date(start_date)
 
 # 4)
+# 4a)
 # check if Enrollment table contains ORG_CODE; if not
-# create pdf 'ORG_CODE.pdf' with error message to user
+# create pdf 'no_school_code.pdf' with error message to user
 # and terminate application
 if (!(ORG_CODE %in% enrollmentDF$ORG.CODE)){
-  knit2pdf("compile_no_school_code.Rnw")
-  file.rename("compile_no_school_code.pdf",paste("Reports/",paste(ORG_CODE,".pdf",sep=""),sep=""))
+  source("compile_no_school_code.R")
   stop()
 }
 
+# 4b)
+# check if survey data contains fewer than 10 responses
+# if it does, then create pdf "too_few_responses.pdf"
+# with error message to user and terminate application
+if (nrow(df) < 10){
+   source("compile_too_few_responses.R")
+   stop()
+}
 
 # 5) Relabel columns to match 'legacy' code
 names(df)[grep("to_school",names(df))] <- "ModeTo"
@@ -100,21 +101,7 @@ df$gradeRanges = ifelse(df$grade %in% lowGrades, "low",
 DF <- df
 DF <- DF[DF$grade %in% getGrades(enrollmentDF,ORG_CODE),]
 
-
 ############### End Read Data from PostGres database ###################
-
-############### Get Survey Dates #######################
-# survey start and end dates are based on the created and current_time columns
-# start_date is the minimum value in created column
-# end_date is the maximum value in current_time column
-date_list <- survey_dates(DF,"created","current_time")
-start_date <- date_list$start_date
-start_month <- date_list$start_month
-start_year <- date_list$start_year
-end_date <- date_list$end_date
-end_month <- date_list$end_month
-end_year <- date_list$end_year
-############### End Get Survey Dates #######################
 
 ############### Begin Calculate GHG Emissions ###################
 # This section addes the following columns to DF:
@@ -927,11 +914,16 @@ bufferByModeDF = mergeDF(bufferByModeDF,
                          data.column1 = "actual",
                          data.column2 = "freq")
 
-
+## compile to pdf and rename
+School_Name <- enrollmentDF[enrollmentDF$ORG.CODE==ORG_CODE,"SCHOOL"]
+school_name_no_space <- gsub("\\s","",School_Name)
+knit2pdf("minimal.Rnw", compiler = "lualatex")
+file.rename("minimal.pdf",
+            paste("Reports/",
+                  paste(school_name_no_space,".pdf",sep=""),
+                  sep=""))
 
 ################### End  How Your School Compares ########################
-
-#save.image()
 
 
 

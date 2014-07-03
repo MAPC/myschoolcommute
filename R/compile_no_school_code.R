@@ -1,3 +1,2 @@
-
-knit2pdf("compile_no_school_code.Rnw")
-file.rename("minimal.pdf",paste("Reports/",paste(ORG_CODE,".pdf",sep=""),sep=""))
+knit2pdf("no_school_id.Rnw")
+file.rename("no_school_id.pdf", "Reports/no_school_code.pdf")

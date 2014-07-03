@@ -31,8 +31,8 @@
 % define serif and san-serif fonts
 %\allsectionsfont{\sffamily} % section headings in san-serif font
 \renewcommand{\familydefault}{\sfdefault}
-%\setromanfont{Goudy Old Style} % serif font to be Goudy Old Style
-%\setsansfont{Tw Cen MT} % san-serif font to be Tw Cen MT
+% \setromanfont{Goudy Old Style} % serif font to be Goudy Old Style
+% \setsansfont{Tw Cen MT} % san-serif font to be Tw Cen MT
 
 %%%%% Setting up table and caption environment
 \usepackage{floatrow} % san-serif font for tabular material

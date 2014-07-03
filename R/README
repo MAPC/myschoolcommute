@@ -1,0 +1,7 @@
+compile.R loads necessary R libraries and runs generate_report.R
+
+If the school code is not found in the ORG.CODE column of the school enrollment table from the appropriate year, generate_report.R calls compile_no_school_code.R, which in turn runs no_school_id.Rnw, which generates a PDF file with a message to the user, then terminates the application. 
+
+If the survey has fewer than 10 responses, generate_report.R calls compile_too_few_responses.R, which in turn calls too_few_responses.Rnw, which generates a PDF file with a message to the user, and then terminates the application.
+
+Otherwise, generate_report.R calls minimal.Rnw, which produces a full report as a PDF.  
