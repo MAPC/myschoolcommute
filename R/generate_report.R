@@ -15,6 +15,25 @@
 # 9) assign 'df' to the variable 'DF'
 
 library(RPostgreSQL)
+library(DBI)
+library(reshape2)
+library(plyr)
+library(ggplot2)
+library(scales)
+library(knitr)
+library(Hmisc)
+
+#DATE1 = "2012-06-01"
+#DATE2 = "2013-06-01"
+
+# test with 1 response
+# ORG_CODE = "06450310"
+# test with more than 10 responses
+#ORG_CODE = "02480014"
+# test with missing org code
+#ORG_CODE = "05160002"
+
+#library(RPostgreSQL)
 
 # 2)
 # cols_needed contains variables that cannot be NA 
@@ -27,7 +46,7 @@ df_all <- droplevels(df_all)
 # start_date is the minimum value in created column
 # end_date is the maximum value in current_time column
 # date_list <- survey_dates(DF,"created","current_time")
-date_list <- get_dates(date1, date2)
+date_list <- get_dates(DATE1, DATE2)
 start_date <- date_list$start_date
 start_month <- date_list$start_month
 start_year <- date_list$start_year
@@ -595,7 +614,8 @@ gmSbse_df_afternoon <-  droplevels(gmSbse_df_afternoon)
 if (sum(gmSbse_df_morning$Grade_Surveyed) == 0){
   knit2pdf("compile_no_school_code.Rnw")
   school_name_no_space <- gsub("\\s","",School_Name)
-  file.rename("compile_no_school_code.pdf",paste("Reports/",paste(school_name_no_space,".pdf",sep=""),sep=""))
+  #file.rename("compile_no_school_code.pdf",paste("Reports/",paste(school_name_no_space,".pdf",sep=""),sep=""))
+  file.rename("compile_no_school_code.pdf","minimal.pdf")
   stop()
 }
 
@@ -918,10 +938,10 @@ bufferByModeDF = mergeDF(bufferByModeDF,
 School_Name <- enrollmentDF[enrollmentDF$ORG.CODE==ORG_CODE,"SCHOOL"]
 school_name_no_space <- gsub("\\s","",School_Name)
 knit2pdf("minimal.Rnw", compiler = "lualatex")
-file.rename("minimal.pdf",
-            paste("Reports/",
-                  paste(school_name_no_space,".pdf",sep=""),
-                  sep=""))
+#file.rename("minimal.pdf",
+#            paste("Reports/",
+#                  paste(school_name_no_space,".pdf",sep=""),
+#                  sep=""))
 
 ################### End  How Your School Compares ########################
 
