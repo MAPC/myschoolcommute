@@ -24,14 +24,15 @@ library(knitr)
 library(Hmisc)
 
 #DATE1 = "2012-06-01"
-#DATE2 = "2013-06-01"
+#DATE2 = "2014-01-14"
 
 # test with 1 response
-# ORG_CODE = "06450310"
+#ORG_CODE = "06450310"
 # test with more than 10 responses
 #ORG_CODE = "02480014"
 # test with missing org code
 #ORG_CODE = "05160002"
+#ORG_CODE = "00010505"
 
 #library(RPostgreSQL)
 
@@ -71,7 +72,10 @@ enrollmentDate = get_enrollment_date(start_date)
 # create pdf 'no_school_code.pdf' with error message to user
 # and terminate application
 if (!(ORG_CODE %in% enrollmentDF$ORG.CODE)){
-  source("compile_no_school_code.R")
+  #source("compile_no_school_code.R")
+  #file.rename("no_school_id.pdf", "Reports/no_school_code.pdf")
+  knit2pdf("compile_no_school_code.Rnw")
+  file.rename("compile_no_school_code.pdf", "minimal.pdf")
   stop()
 }
 
@@ -80,7 +84,10 @@ if (!(ORG_CODE %in% enrollmentDF$ORG.CODE)){
 # if it does, then create pdf "too_few_responses.pdf"
 # with error message to user and terminate application
 if (nrow(df) < 10){
-   source("compile_too_few_responses.R")
+   #source("compile_too_few_responses.R")
+   #file.rename("minimal.pdf",paste("Reports/",paste(ORG_CODE,".pdf",sep=""),sep=""))
+   knit2pdf("too_few_responses.Rnw")
+   file.rename("too_few_responses.pdf","minimal.pdf")
    stop()
 }
 

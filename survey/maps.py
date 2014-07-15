@@ -636,17 +636,22 @@ def ForkRunR(school_id, date1, date2):
     if not os.path.exists(wdir):
         os.makedirs(wdir)
     save_sheds(os.path.join(wdir, 'map.pdf'), school_id)
+    print 'endmap'
+    print date1, date2, school_id, org_code
 
-    r.r("load('.RData')")
-    r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
-    r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
-    r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
-    r.r("ORG_CODE <- '%s'" % org_code)
-    r.r("DATE1 <- '%s'" % str(date1))
-    r.r("DATE2 <- '%s'" % str(date2))
-    r.r("WORKDIR <- '%s'" % wdir)
-    #r.r("print(ORG_CODE)")
-    r.r("source('generate_report.R')")
+    try:
+        r.r("load('.RData')")
+        r.r("dbname <- '%s'" % settings.DATABASES['default']['NAME'])
+        r.r("dbuser <- '%s'" % settings.DATABASES['default']['USER'])
+        r.r("dbpasswd <- '%s'" % settings.DATABASES['default']['PASSWORD'])
+        r.r("ORG_CODE <- '%s'" % org_code)
+        r.r("DATE1 <- '%s'" % str(date1))
+        r.r("DATE2 <- '%s'" % str(date2))
+        r.r("WORKDIR <- '%s'" % wdir)
+        #r.r("print(ORG_CODE)")
+        r.r("source('generate_report.R')")
+    except:
+        pass
 
     #cur_dir = os.path.dirname(os.path.realpath(__file__))
     #os.chdir(cur_dir)
