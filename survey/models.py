@@ -282,8 +282,8 @@ class SurveySet(models.Model):
     def surveys(self):
         return Survey.objects.filter(
             Q(school=self.school) &
-            Q(modified__gte=self.begin.date()) &
-            Q(modified__lt=self.end.date() + timedelta(days=1))
+            Q(created__gte=self.begin.date()) &
+            Q(created__lt=self.end.date() + timedelta(days=1))
         )
 
     def surveys_count(self):

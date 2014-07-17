@@ -25,7 +25,6 @@ library(Hmisc)
 
 #DATE1 = "2012-06-01"
 #DATE2 = "2014-01-14"
-
 # test with 1 response
 #ORG_CODE = "06450310"
 # test with more than 10 responses
@@ -34,13 +33,17 @@ library(Hmisc)
 #ORG_CODE = "05160002"
 #ORG_CODE = "00010505"
 
-#library(RPostgreSQL)
+drv <- dbDriver("PostgreSQL")
+ch <- dbConnect(drv, host='localhost', port='5432', dbname=dbname, user=dbuser, password=dbpasswd)
+sql <- paste("SELECT grade,to_school,dropoff,from_school,pickup,distance,shed FROM survey_child_survey WHERE schid = '",ORG_CODE,"' AND created BETWEEN timestamp '",DATE1,"' AND timestamp '",DATE2,"'",sep="")
+df_all <- dbSendQuery(ch,sql)
+df_all <- fetch(df_all,n=-1)
+dbDisconnect(ch) # disconnect from PostGres database
 
 # 2)
 # cols_needed contains variables that cannot be NA 
-cols_needed <- c("grade","to_school","dropoff","from_school","pickup","schid","distance")
-df_all <- df_all[complete.cases(df_all[cols_needed]),] # remove any tuples that contain NA values in the cols_needed columns
-df_all <- droplevels(df_all)
+#df_all <- df_all[complete.cases(df_all),] # remove any tuples that contain NA values in the cols_needed columns
+df <- droplevels(df_all)
 
 ############### Get Survey Dates #######################
 # survey start and end dates are based on the created and current_time columns
@@ -49,16 +52,11 @@ df_all <- droplevels(df_all)
 # date_list <- survey_dates(DF,"created","current_time")
 date_list <- get_dates(DATE1, DATE2)
 start_date <- date_list$start_date
-start_month <- date_list$start_month
-start_year <- date_list$start_year
-end_date <- date_list$end_date
-end_month <- date_list$end_month
-end_year <- date_list$end_year
 ############### End Get Survey Dates #######################
 
 # 3)
 # select records that match ORG_CODE
-df <- df_all[df_all$schid == ORG_CODE,]
+#df <- df_all[df_all$schid == ORG_CODE,]
 
 # 3a) 
 # choose enrollment table based on date of created column
