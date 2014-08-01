@@ -47,17 +47,9 @@ def district(request, district_slug):
 
 @permission_required('survey.change_district')
 def district_list(request):
-
-    # get all districts with active school surveys
-    active_schools = School.objects.filter(
-        Q(surveyset__begin__lte=datetime.now()) &
-        Q(surveyset__end__gte=datetime.now())
-    )
-    districts = District.objects.filter(school__in=active_schools).distinct()
     districts = District.objects.all()
-    districts = districts.annotate(school_count=Count('school'))
-    districts = districts.annotate(survey_count=Count('school__survey'))
-    districts = districts.distinct()
+    districts = districts.annotate(school_count=Count('school', distinct=True))
+    districts = districts.annotate(survey_count=Count('school__survey', distinct=True))
 
     return render_to_response('survey/district_list.html', locals(), context_instance=RequestContext(request))
 
