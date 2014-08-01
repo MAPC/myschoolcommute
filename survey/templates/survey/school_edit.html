@@ -55,24 +55,6 @@ $(document).ready(function(){
         }).addTo(map);
     });
 
-    $.ajax({
-        url: '/{{school.pk}}/surveys.geojson',
-        dataType: 'json',
-        success: function(data){
-            surveys = L.geoJson(data, {
-                style: function(feature) {
-                    return {
-                        color: feature.properties.color,
-                        fillOpacity: 0.5
-                    };
-                }
-            }).addTo(map);
-        },
-        error: function(request, textStatus, errorThrown) {
-            console.log(textStatus);
-        }
-    });
-
     var circle = L.circle(school_loc, 50, {
         color: 'red',
         fillColor: '#f03',
