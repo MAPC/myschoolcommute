@@ -19,6 +19,7 @@ except ImportError:
 
 from datetime import datetime, timedelta
 
+
 class District(models.Model):
     """ School Districts """
     districtid = models.IntegerField(primary_key=True)
@@ -68,7 +69,7 @@ class School(models.Model):
     districtid = models.ForeignKey('District', blank=True, null=True)
 
     survey_incentive = models.TextField(blank=True, null=True)
-    #Renamed to disable for now
+    # Renamed to disable for now
     _active = models.BooleanField('Is survey active? (Disabled)', db_column='survey_active')
 
     # GeoDjango
@@ -99,8 +100,8 @@ class School(models.Model):
         return ('survey_school_form', None, {'school_slug': self.slug, 'district_slug': self.districtid.slug})
 
     def get_intersections(self):
-        #school_circle = self.geometry.buffer(5000)
-        #intersections = Intersection.objects.filter(geometry__intersects=school_circle)
+        # school_circle = self.geometry.buffer(5000)
+        # intersections = Intersection.objects.filter(geometry__intersects=school_circle)
         relation = SchoolTown.objects.get(schid=self.schid)
         intersections = Intersection.objects.filter(town_id=relation.town_id)
         return intersections
@@ -134,7 +135,6 @@ class School(models.Model):
         except TypeError:
             if g.area == 0:
                 self.shed_15 = None
-
 
     class Meta:
         ordering = ['name']
@@ -201,7 +201,7 @@ class Survey(models.Model):
         'Number of License', blank=True, null=True
     )
     ip = models.IPAddressField('IP Address', blank=True, null=True)
-    #Mile, shortest driving distance, not walk/bike distance
+    # Mile, shortest driving distance, not walk/bike distance
     distance = models.FloatField(null=True)
     created = models.DateTimeField(
         auto_now_add=True, editable=False, null=True
@@ -265,9 +265,6 @@ class SurveySet(models.Model):
             self.school, self.begin.strftime("%D"), self.end.strftime("%D"),
         )
 
-    def start_date(self):
-        return 
-
     def report_url(self):
         return reverse(
             "school_report",
@@ -278,7 +275,6 @@ class SurveySet(models.Model):
             }
         )
 
-
     def surveys(self):
         return Survey.objects.filter(
             Q(school=self.school) &
@@ -287,7 +283,7 @@ class SurveySet(models.Model):
         )
 
     def surveys_count(self):
-        return len(self.surveys())
+        return self.surveys().count()
 
 CHILD_GRADES = (
     ('', '--'),
@@ -309,11 +305,11 @@ CHILD_GRADES = (
 
 CHILD_MODES = (
     ('', '--'),
-    ('w', _('Walk')),
+    ('fv', _('Family Vehicle (only children in your family)')),
     ('b', _('Bicycle')),
     ('sb', _('School Bus')),
-    ('fv', _('Family Vehicle (only children in your family)')),
     ('cp', _('Carpool (with children from other families)')),
+    ('w', _('Walk')),
     ('t', _('Transit (city bus, subway, etc.)')),
     ('o', _('Other (skateboard, scooter, inline skates, etc.)'))
 )
@@ -335,6 +331,7 @@ CHILD_DROPOFF = (
     ('no', _('No')),
 )
 
+
 class Child(models.Model):
     survey = models.ForeignKey('Survey')
     grade = models.CharField(max_length=2, blank=True, null=True, choices=CHILD_GRADES)
@@ -348,5 +345,3 @@ class Child(models.Model):
 
     def __unicode__(self):
         return u'%s' % (self.id)
-
-
