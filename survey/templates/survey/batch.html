@@ -216,9 +216,6 @@ $(document).ready(function() {
     // bind dropoffDetail function to start form
     if (!validation.formerror) $("#id_child_set-0-from_school, #id_child_set-0-to_school").dropoffDetails(0);
 
-    // random order of modes
-    $("#id_child_set-0-to_school, #id_child_set-0-from_school").shuffle();
-
     // hide and show optional street intersection fields
     $("#map").hide();
     $("#map_link").click(function () {
