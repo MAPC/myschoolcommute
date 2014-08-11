@@ -38,10 +38,11 @@ class SurveyInline(admin.TabularInline):
 
 
 class SurveySetAdmin(admin.ModelAdmin):
-    #inlines = (SurveyInline,)
+    # inlines = (SurveyInline,)
     list_display = ('__unicode__', 'school', 'begin', 'end', 'surveys_count',)
     ordering = ['-begin', 'end']
-    search_fields = ['school', 'begin', 'end']
+    search_fields = ['school__name', 'begin', 'end']
+    list_filter = ['begin', 'end']
 
 
 class ChildAdmin(admin.ModelAdmin):
