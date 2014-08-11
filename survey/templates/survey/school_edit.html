@@ -106,7 +106,7 @@ $(document).ready(function(){
         <form action="." method="post" class="form-horizontal">
         {{ formset.management_form }}{% csrf_token %}
         {% if formset.forms|length > 1 %}
-            <legend>Survey Sets</legend>
+            <legend>Survey Instances</legend>
             {{ formset.non_form_errors }}
             <table class='table'>
                 <thead>
@@ -152,7 +152,7 @@ $(document).ready(function(){
                 </tbody>
             </table>
         {% endif %}
-        <legend>New Survey Set</legend>
+        <legend>New Survey Instance</legend>
         <fieldset>
             {{formset.forms|last|crispy}}
         </fieldset>
