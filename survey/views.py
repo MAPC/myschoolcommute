@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 from survey.models import (
     School, Survey, SurveySet, SurveySet, Child, District, Street
 )
-from survey.forms import SurveyForm, SurveySetForm, ChildForm
+from survey.forms import SurveyForm, BatchForm, SurveySetForm, ChildForm
 
 from maps import ForkRunR
 
@@ -319,10 +319,13 @@ def batch_form(request, district_slug, school_slug, **kwargs):
 
     message = "New survey"
     if request.method == 'POST':
-        surveyform = SurveyForm(request.POST, school=school)
+        surveyform = BatchForm(request.POST, school=school)
 
         if surveyform.is_valid():
             survey = surveyform.save(commit=False)
+            # Ugly Fix: created should save to model, but does not!
+            created = surveyform.cleaned_data['created']
+            survey.created = created
             survey.user = request.user
             survey.school = school
             survey.update_distance()
@@ -339,18 +342,23 @@ def batch_form(request, district_slug, school_slug, **kwargs):
 
                 #Done. Make new form.
                 message = "Survey submitted. New Entry."
-                survey = Survey()
-                surveyform = SurveyForm(instance=survey)
+                #Save created to reduce repeating
+                survey = Survey(created=created)
+                surveyform = BatchForm(instance=survey, initial={
+                    'created': created
+                })
                 surveyformset = SurveyFormset(instance=survey)
             else:
-                surveyformset = SurveyFormset(request.POST, instance=Survey())
+                surveyformset = SurveyFormset(
+                    request.POST, instance=Survey(created=created)
+                )
                 formerror = True
         else:
             surveyformset = SurveyFormset(request.POST, instance=Survey())
             formerror = True
     else:
         survey = Survey()
-        surveyform = SurveyForm(instance=survey)
+        surveyform = BatchForm(instance=survey)
         surveyformset = SurveyFormset(instance=survey)
 
     return render_to_response('survey/batch.html', {

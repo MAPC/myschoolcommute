@@ -62,7 +62,6 @@ class SurveyForm(ModelForm):
         model = Survey
         exclude = ('school', 'ip', 'created', 'modified', 'distance', 'user', )
 
-
     def clean(self):
         cleaned_data = super(SurveyForm, self).clean()
         wkt = cleaned_data.get('location')
@@ -71,8 +70,19 @@ class SurveyForm(ModelForm):
         if point.x == 0 or point.y == 0:
             raise forms.ValidationError("Your location is required for the survey.")
 
-        #TODO: Check if two streets return location
+        # TODO: Check if two streets return location
         return cleaned_data
+
+
+class BatchForm(SurveyForm):
+    created = forms.DateField(
+        widget=forms.DateInput(format='%m/%d/%Y', attrs={'class': 'dateinput'}),
+        input_formats=('%m/%d/%Y',),
+    )
+
+    class Meta:
+        model = Survey
+        exclude = ('school', 'ip', 'modified', 'distance', 'user', )
 
 
 class ChildForm(ModelForm):
