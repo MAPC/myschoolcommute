@@ -203,9 +203,7 @@ class Survey(models.Model):
     ip = models.IPAddressField('IP Address', blank=True, null=True)
     # Mile, shortest driving distance, not walk/bike distance
     distance = models.FloatField(null=True)
-    created = models.DateTimeField(
-        auto_now_add=True, editable=False, null=True
-    )
+    created = models.DateTimeField(null=True)
     modified = models.DateTimeField(auto_now=True, null=True)
 
     user = models.ForeignKey(User, null=True)
