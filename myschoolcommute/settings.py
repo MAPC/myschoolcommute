@@ -152,6 +152,7 @@ INSTALLED_APPS = (
     'rosetta',
     'dbgettext',
     'crispy_forms',
+    'massadmin',
 
     # myschoolcommute apps
     'accounts',

@@ -10,7 +10,7 @@ class DistrictAdmin(admin.OSMGeoAdmin):
 class SchoolAdmin(admin.OSMGeoAdmin):
     fieldsets = [
         (None,
-            {'fields': ['name', 'slug', 'survey_active', 'districtid', 'survey_incentive']}),
+            {'fields': ['name', 'slug', 'districtid', 'survey_incentive']}),
         ('School Database Attributes',
             {'fields': ['schid', 'address', 'town', 'state', 'zip', 'principal', 'phone', 'fax', 'grades', 'schl_type']}),
         ('Map',
@@ -27,10 +27,12 @@ class SchoolAdmin(admin.OSMGeoAdmin):
 
 
 class SurveyAdmin(admin.OSMGeoAdmin):
-    list_display = ('pk', 'school', 'location', 'distance', 'created', 'modified')
+    list_display = (
+        'pk', 'school', 'location', 'distance', 'user', 'created', 'modified',
+    )
     search_fields = ['school__name', 'street', 'cross_st']
     ordering = ['-modified', '-created', 'school__name']
-
+    massadmin_exclude = ['location', ]
 
 class SurveyInline(admin.TabularInline):
     model = Survey
