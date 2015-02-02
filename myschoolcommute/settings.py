@@ -193,10 +193,10 @@ FORMAT_MODULE_PATH = 'formats'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'myschoolcommute',
+        'USER': 'django',
+        'PASSWORD': 'django',
         'HOST': '',
         'PORT': '',
     }
@@ -210,10 +210,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 AUTH_PROFILE_MODULE = 'accounts.Profile'
 # import local settings
-try:
-    execfile(os.path.join(CURRENT_PATH, 'local_settings.py'))
-except ImportError:
-    pass
+# try:
+#     execfile(os.path.join(CURRENT_PATH, 'local_settings.py'))
+# except ImportError:
+#     pass
 
 # django-debug-toolbar
 if DEBUG_TOOLBAR:
