@@ -71,7 +71,7 @@ $(document).ready(function() {
 </div>
 <div class="row-fluid">
     <div class="span6 columns">
-        <h3>{% trans "Please select your school district" %}</h3>
+        <label for="district-select"><h3>{% trans "Please select your school district" %}</h3></label>
         <p>{% trans "Scroll or start typing your district name" %}</p>
         <div class="input index">
             <select id="district-select" class="chzn-select" style="width: 350px;">
@@ -81,7 +81,7 @@ $(document).ready(function() {
     </div>
 
     <div class="span6 columns">
-        <h3>{% trans "Please select your school" %}</h3>
+        <label for="school-select"><h3>{% trans "Please select your school" %}</h3></label>
         <p>{% trans "Scroll or start typing your school name" %}</p>
         <div class="input index">
             <select id="school-select" class="chzn-select" style="width: 350px;" tabindex="2"></select>
@@ -99,12 +99,12 @@ $(document).ready(function() {
 
 <div class='row-fluid footer-row'>
     <div class="span2 offset3 footer-span">
-        <img src='{{STATIC_URL}}/img/2010 SRTS Logo.jpg'>
+        <img alt="Massachusetts Safe Routes to School Logo" src='{{STATIC_URL}}/img/2010 SRTS Logo.jpg'>
     </div>
-    <div class="span2 footer-span">
+    <div alt="Massachusetts Department of Transportation Logo" class="span2 footer-span">
         <img src='{{STATIC_URL}}/img/MassDOT_Logo_Color.png'>
     </div>
-    <div class="span2 footer-span">
+    <div alt="Metropolitan Area Planning Council Logo" class="span2 footer-span">
         <img src='{{STATIC_URL}}/img/MAPC_Logo-Name_CMYK.JPG'>
     </div>
 </div>
