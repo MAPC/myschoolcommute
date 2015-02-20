@@ -210,10 +210,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 AUTH_PROFILE_MODULE = 'accounts.Profile'
 # import local settings
-# try:
-#     execfile(os.path.join(CURRENT_PATH, 'local_settings.py'))
-# except ImportError:
-#     pass
+try:
+    execfile(os.path.join(CURRENT_PATH, 'local_settings.py'))
+except ImportError:
+    pass
 
 # django-debug-toolbar
 if DEBUG_TOOLBAR:
