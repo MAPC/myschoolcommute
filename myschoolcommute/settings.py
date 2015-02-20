@@ -193,10 +193,10 @@ FORMAT_MODULE_PATH = 'formats'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'myschoolcommute',
+        'USER': 'django',
+        'PASSWORD': 'django',
         'HOST': '',
         'PORT': '',
     }
