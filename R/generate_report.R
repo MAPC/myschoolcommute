@@ -53,6 +53,10 @@ df <- droplevels(df_all)
 date_list <- get_dates(DATE1, DATE2)
 start_date <- date_list$start_date
 end_date <- date_list$end_date
+start_month <- date_list$start_month
+start_year <- date_list$start_year
+end_month <- date_list$end_month
+end_year <- date_list$end_year
 ############### End Get Survey Dates #######################
 
 # 3)
