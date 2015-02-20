@@ -52,6 +52,7 @@ df <- droplevels(df_all)
 # date_list <- survey_dates(DF,"created","current_time")
 date_list <- get_dates(DATE1, DATE2)
 start_date <- date_list$start_date
+end_date <- date_list$end_date
 ############### End Get Survey Dates #######################
 
 # 3)
