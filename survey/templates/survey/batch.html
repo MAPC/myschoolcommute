@@ -222,7 +222,11 @@ $(document).ready(function() {
     // hide and show optional street intersection fields
     $("#map").hide();
     $("#map_link").click(function () {
-        $("#map").toggle(500);
+        map.invalidateSize(); 
+        $("#map").toggle(500, function() {
+            map.invalidateSize();
+        });
+
         return false;
     });
     init_streets();
