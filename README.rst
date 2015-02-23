@@ -20,7 +20,7 @@ This project uses Vagrant and VirtualBox to help manage time spent creating the 
   $ vagrant ssh -c "cd myschoolcommute && python manage.py runserver 0.0.0.0:8001"
 
 Manual setup:
-setup.sh is the provisioning script used for Vagrant, and provides the basis for setting up the project in Linux.
+setup.sh is the provisioning script used for Vagrant, and provides the basis for setting up the project for Linux.
 
 Install Python requirements
 
