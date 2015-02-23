@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "hashicorp/precise32"
-  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  config.vm.network "forwarded_port", guest: 8000, host: 8001
   config.vm.synced_folder ".", "/home/vagrant/myschoolcommute"
-  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.provision :shell, path: "setup.sh"
 end

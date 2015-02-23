@@ -13,7 +13,14 @@ Applied GeoSolutions Project team: Matthew Hanson, Pavel Dorovskoy
 Usage
 =====
 
-Execute setup.sh to install system dependencies.  
+Quick setup:
+This project uses Vagrant and VirtualBox to help manage time spent creating the development environment. This helps with transferability. Be sure to download Vagrant and VirtualBox. With these tools, the project can be run on any machine.
+::
+  $ vagrant up
+  $ vagrant ssh -c "cd myschoolcommute && python manage.py runserver 0.0.0.0:8001"
+
+Manual setup:
+setup.sh is the provisioning script used for Vagrant, and provides the basis for setting up the project in Linux.
 
 Install Python requirements
 
