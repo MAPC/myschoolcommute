@@ -270,6 +270,7 @@ def form(request, district_slug, school_slug, **kwargs):
             survey = surveyform.save(commit=False)
             survey.school = school
             survey.update_distance()
+            survey.created = datetime.now()
             survey.ip = request.META['REMOTE_ADDR']
 
             surveyformset = SurveyFormset(request.POST, instance=survey)
