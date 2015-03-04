@@ -2,7 +2,7 @@ CREATE VIEW survey_child_survey AS
 SELECT
     c.id, c.grade, c.to_school, c.dropoff, c.from_school, c.pickup,
     s.school_id, s.street, s.cross_st, s.nr_vehicles, s.nr_licenses, s.distance, s.created, s.modified,
-    st_astext(s.location),
+    st_astext(s.location), sch.schid,
     trunc(log(2, (ST_Intersects(sch.shed_20, ST_Transform(geometry(s.location),26986)) is TRUE::int::bit ||
     ST_Intersects(sch.shed_15, ST_Transform(geometry(s.location),26986)) is TRUE::int::bit ||
     ST_Intersects(sch.shed_10, ST_Transform(geometry(s.location),26986)) is TRUE::int::bit ||
