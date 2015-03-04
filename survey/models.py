@@ -2,7 +2,7 @@ from django.contrib.gis.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon, GeometryCollection
 from django.core.urlresolvers import reverse
 
 # lazy translation
@@ -115,36 +115,38 @@ class School(models.Model):
         shed_15 = GEOSGeometry(sheds[1.5])
         shed_20 = GEOSGeometry(sheds[2.0])
 
+        def coerce_to_multipolygon(geometry):
+            if geometry.area == 0:
+                return None
+
+            if type(geometry) == MultiPolygon:
+                return geometry
+            elif type(geometry) == Polygon:
+                return MultiPolygon(geometry)
+            elif type(geometry) == GeometryCollection:
+                polys = []
+                for g in geometry:
+                    if type(g) == Polygon:
+                        polys.append(g)
+                    elif type(g) == MultiPolygon:
+                        polys += list(g)
+                if any(polys):
+                    return MultiPolygon(polys)
+                else:
+                    return None
+            else:
+                return geometry
+
         shed_20_ring = shed_20.difference(shed_15)
-        if type(shed_20_ring) == Polygon:
-            shed_20_ring = MultiPolygon(shed_20_ring)
-        try:
-            self.shed_20 = shed_20_ring
-        except TypeError:
-            if shed_20_ring.area == 0:
-                self.shed_20 = None
+        self.shed_20 = coerce_to_multipolygon(shed_20_ring)
 
         shed_15_ring = shed_15.difference(shed_10)
-        if type(shed_15_ring) == Polygon:
-            shed_15_ring = MultiPolygon(shed_15_ring)
-        try:
-            self.shed_15 = shed_15_ring
-        except TypeError:
-            if shed_15_ring.area == 0:
-                self.shed_15 = None
+        self.shed_15 = coerce_to_multipolygon(shed_15_ring)
 
         shed_10_ring = shed_10.difference(shed_05)
-        if type(shed_10_ring) == Polygon:
-            shed_10_ring = MultiPolygon(shed_10_ring)
-        try:
-            self.shed_10 = shed_10_ring
-        except TypeError:
-            if shed_10_ring.area == 0:
-                self.shed_10 = None
+        self.shed_10 = coerce_to_multipolygon(shed_10_ring)
 
-        if type(shed_05) == Polygon:
-            shed_05 = MultiPolygon(shed_05)
-        self.shed_05 = shed_05
+        self.shed_05 = coerce_to_multipolygon(shed_05)
 
     def save(self, *args, **kwargs):
         self.update_sheds()
