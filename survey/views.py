@@ -379,12 +379,16 @@ def testr(request):
     #out = 'TEST'
     return HttpResponse(out)
 
+
 def surveys_csv(request):
     from django.db import connection
     from cStringIO import StringIO
 
     out = StringIO()
     cursor = connection.cursor()
-    cursor.copy_to(out, '(select * from survey_child_survey)', sep=',')
+    sql = (
+        "COPY (select * from survey_child_survey) TO STDOUT CSV HEADER"
+    )
+    cursor.copy_expert(sql, out)
 
     return HttpResponse(out.getvalue(), content_type='text/csv')
