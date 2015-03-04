@@ -111,20 +111,9 @@ class School(models.Model):
         sheds = get_sheds(self.id)
 
         shed_05 = GEOSGeometry(sheds[0.5])
-        if type(shed_05) == Polygon:
-            shed_05 = MultiPolygon(shed_05)
-
         shed_10 = GEOSGeometry(sheds[1.0])
-        if type(shed_10) == Polygon:
-            shed_10 = MultiPolygon(shed_10)
-
         shed_15 = GEOSGeometry(sheds[1.5])
-        if type(shed_15) == Polygon:
-            shed_15 = MultiPolygon(shed_15)
-
         shed_20 = GEOSGeometry(sheds[2.0])
-        if type(shed_20) == Polygon:
-            shed_20 = MultiPolygon(shed_20)
 
         shed_20_ring = shed_20.difference(shed_15)
         if type(shed_20_ring) == Polygon:
