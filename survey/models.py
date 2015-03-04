@@ -127,6 +127,8 @@ class School(models.Model):
             shed_20 = MultiPolygon(shed_20)
 
         shed_20_ring = shed_20.difference(shed_15)
+        if type(shed_20_ring) == Polygon:
+            shed_20_ring = MultiPolygon(shed_20_ring)
         try:
             self.shed_20 = shed_20_ring
         except TypeError:
@@ -134,6 +136,8 @@ class School(models.Model):
                 self.shed_20 = None
 
         shed_15_ring = shed_15.difference(shed_10)
+        if type(shed_15_ring) == Polygon:
+            shed_15_ring = MultiPolygon(shed_15_ring)
         try:
             self.shed_15 = shed_15_ring
         except TypeError:
@@ -141,12 +145,16 @@ class School(models.Model):
                 self.shed_15 = None
 
         shed_10_ring = shed_10.difference(shed_05)
+        if type(shed_10_ring) == Polygon:
+            shed_10_ring = MultiPolygon(shed_10_ring)
         try:
             self.shed_10 = shed_10_ring
         except TypeError:
             if shed_10_ring.area == 0:
                 self.shed_10 = None
 
+        if type(shed_05) == Polygon:
+            shed_05 = MultiPolygon(shed_05)
         self.shed_05 = shed_05
 
     def save(self, *args, **kwargs):
