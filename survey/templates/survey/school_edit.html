@@ -64,6 +64,32 @@ $(document).ready(function(){
     $('.dateinput').datepicker({ format: "mm/dd/yyyy" });
 
     $("[rel=tooltip]").tooltip({placement:'top', html:true});;
+
+    {% if request.user.is_staff %}
+    var surveys = {
+        "type": "FeatureCollection",
+        "features": [
+            {% for s in school.survey_set.all %}{
+                "type": "Feature",
+                "geometry": {{s.location.json|safe}},
+                "properties": { "id": {{s.pk}}}
+            }{% if not forloop.last %},{% endif %}{% endfor %}
+        ]
+    };
+    var geojsonMarkerOptions = {
+        radius: 3,
+        fillColor: "#ff7800",
+        color: "#000",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+    };
+    var surveys_layer = L.geoJson(surveys, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, geojsonMarkerOptions);
+        }
+    }).addTo(map)
+    {% endif %}
 });
 
 </script>
