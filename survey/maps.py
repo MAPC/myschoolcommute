@@ -33,23 +33,6 @@ PEACHPUFF = "#FFDAB9"
 LIGHTCYAN = "#E0FFFF"
 
 
-class Lock:
-    def __init__(self, filename):
-        self.filename = filename
-        # This will create it if it does not exist already
-        self.handle = open(filename, 'w')
-
-    # Bitwise OR fcntl.LOCK_NB if you need a non-blocking lock
-    def acquire(self):
-        fcntl.flock(self.handle, fcntl.LOCK_EX)
-
-    def release(self):
-        fcntl.flock(self.handle, fcntl.LOCK_UN)
-
-    def __del__(self):
-        self.handle.close()
-
-
 class NetworkWalk(models.Model):
     ogc_fid = models.IntegerField(primary_key=True)
     geometry = models.LineStringField(srid=26986)
@@ -86,27 +69,31 @@ def mapnik_extent(geometry):
 
 def paths_sql(school_id, network='survey_network_walk', miles=1.5):
 
-    school = """st_transform(
-        (SELECT geometry FROM survey_school WHERE id = %d), 26986
-    )""" % int(school_id)
+    school = """
+        ST_SetSRID(
+            (SELECT geometry FROM survey_school WHERE id = {}), 26986
+        )
+    """.format(int(school_id))
 
-    closest_street = """(
-        SELECT source from {0} ORDER BY
-        {1} <-> geometry
-        asc limit 1
-    )""".format(network, school)
+    closest_street = """
+        (SELECT source from {0} ORDER BY
+            {1} <-> geometry
+            asc limit 1
+        )
+    """.format(network, school)
 
-    query = """SELECT ogc_fid, geometry, route.cost from {0} as w
-                JOIN
-                (SELECT * FROM
-                   driving_distance(
-                        'SELECT ogc_fid as id, source, target, miles AS cost
-                         FROM {0}
-                         WHERE geometry && ST_Buffer(ST_Envelope({1}), 8000)'
-                        , {2}, {3}, false, false
-                    )) AS route
-                ON
-                w.target = route.vertex_id
+    query = """
+        SELECT ogc_fid, geometry, route.cost from {0} as w
+        JOIN
+        (SELECT * FROM
+           pgr_drivingdistance(
+                'SELECT ogc_fid as id, source, target, miles AS cost
+                 FROM {0}
+                 WHERE geometry && ST_Buffer(ST_Envelope({1}), 8000)'
+                , {2}, {3}, false, false
+            )) AS route
+        ON
+        w.target = route.id1
     """.format(network, school, closest_street, miles)
 
     return query
@@ -118,19 +105,56 @@ def get_sheds(school_id):
 
     cursor = connection.cursor()
     hull_query = """
-    WITH paths as (%s)
-    SELECT ST_AsText(
-        ST_Union(array(select ST_BUFFER(geometry, 100) from (%s) as BIKE))
-    ),
-    ST_AsText(
-        ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 1.5))
-    ),
-    ST_AsText(
-        ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 1.0))
-    ),
-    ST_AsText(
-        ST_Union(array(select ST_BUFFER(geometry, 100) from paths where cost < 0.5))
-    )""" % (query, bike_query)
+        WITH paths as (%s)
+        SELECT ST_AsEWKT(
+            ST_MakeValid(
+                ST_Transform(
+                    ST_Union(
+                        array(
+                            select ST_BUFFER(geometry, 100) from (%s) as BIKE
+                        )
+                    ),
+                    26986
+                )
+            )
+        ) as _20,
+        ST_AsEWKT(
+            ST_MakeValid(
+                ST_Transform(
+                    ST_Union(
+                        array(
+                            select ST_BUFFER(geometry, 100) from paths where cost < 1.5
+                        )
+                    ),
+                    26986
+                )
+            )
+        ) as _15,
+        ST_AsEWKT(
+            ST_MakeValid(
+                ST_Transform(
+                    ST_Union(
+                        array(
+                            select ST_BUFFER(geometry, 100) from paths where cost < 1.0
+                        )
+                    ),
+                    26986
+                )
+            )
+        ) as _10,
+        ST_AsEWKT(
+            ST_MakeValid(
+                ST_Transform(
+                    ST_Union(
+                        array(
+                            select ST_BUFFER(geometry, 100) from paths where cost < 0.5
+                        )
+                    ),
+                    26986
+                )
+            )
+        ) as _05
+    """ % (query, bike_query)
 
     cursor.execute(hull_query)
     row = cursor.fetchone()

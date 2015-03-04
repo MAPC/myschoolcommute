@@ -2,7 +2,7 @@ from django.contrib.gis.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon
 from django.core.urlresolvers import reverse
 
 # lazy translation
@@ -110,31 +110,48 @@ class School(models.Model):
         from maps import get_sheds
         sheds = get_sheds(self.id)
 
-        self.shed_05 = MultiPolygon(GEOSGeometry(sheds[0.5]))
-        self.shed_10 = MultiPolygon(GEOSGeometry(sheds[1.0]))
-        self.shed_15 = MultiPolygon(GEOSGeometry(sheds[1.5]))
-        self.shed_20 = MultiPolygon(GEOSGeometry(sheds[2.0]))
+        shed_05 = GEOSGeometry(sheds[0.5])
+        if type(shed_05) == Polygon:
+            shed_05 = MultiPolygon(shed_05)
 
-        g = self.shed_20.difference(self.shed_15)
+        shed_10 = GEOSGeometry(sheds[1.0])
+        if type(shed_10) == Polygon:
+            shed_10 = MultiPolygon(shed_10)
+
+        shed_15 = GEOSGeometry(sheds[1.5])
+        if type(shed_15) == Polygon:
+            shed_15 = MultiPolygon(shed_15)
+
+        shed_20 = GEOSGeometry(sheds[2.0])
+        if type(shed_20) == Polygon:
+            shed_20 = MultiPolygon(shed_20)
+
+        shed_20_ring = shed_20.difference(shed_15)
         try:
-            self.shed_20 = g
+            self.shed_20 = shed_20_ring
         except TypeError:
-            if g.area == 0:
+            if shed_20_ring.area == 0:
                 self.shed_20 = None
 
-        g = self.shed_15.difference(self.shed_10)
+        shed_15_ring = shed_15.difference(shed_10)
         try:
-            self.shed_15 = g
+            self.shed_15 = shed_15_ring
         except TypeError:
-            if g.area == 0:
+            if shed_15_ring.area == 0:
                 self.shed_15 = None
 
-        g = self.shed_15.difference(self.shed_10)
+        shed_10_ring = shed_10.difference(shed_05)
         try:
-            self.shed_15 = g
+            self.shed_10 = shed_10_ring
         except TypeError:
-            if g.area == 0:
-                self.shed_15 = None
+            if shed_10_ring.area == 0:
+                self.shed_10 = None
+
+        self.shed_05 = shed_05
+
+    def save(self, *args, **kwargs):
+        self.update_sheds()
+        super(School, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['name']
