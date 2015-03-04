@@ -372,8 +372,19 @@ def batch_form(request, district_slug, school_slug, **kwargs):
         context_instance=RequestContext(request)
     )
 
+
 def testr(request):
     import rpy2.robjects as r
     out = r.r("print('TEST')")
     #out = 'TEST'
     return HttpResponse(out)
+
+def surveys_csv(request):
+    from django.db import connection
+    from cStringIO import StringIO
+
+    out = StringIO()
+    cursor = connection.cursor()
+    cursor.copy_to(out, '(select * from survey_child_survey)', sep=',')
+
+    return HttpResponse(out.getvalue(), content_type='text/csv')

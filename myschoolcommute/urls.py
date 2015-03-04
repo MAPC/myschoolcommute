@@ -55,4 +55,5 @@ urlpatterns += patterns('',
     url(r'^(?P<school_id>\d+)/surveys.geojson$', 'survey.maps.school_surveys_json', name='surveys_json'),
     url(r'^(?P<school_id>\d+)/walkshed.png$', 'survey.maps.school_sheds', name='school_sheds'),
     url(r'^(?P<school_id>\d+)/walkshed.(?P<format>\w+)$', 'survey.maps.school_sheds', name='school_sheds_format'),
+    url(r'^survey_child_survey\.csv$', 'survey.views.surveys_csv', name='surveys_csv'),
 )
