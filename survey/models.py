@@ -68,9 +68,11 @@ class School(models.Model):
     schl_type = models.CharField(max_length=3, blank=True, null=True)
     districtid = models.ForeignKey('District', blank=True, null=True)
 
-    survey_incentive = models.TextField(blank=True, null=True, default=False)
+    survey_incentive = models.TextField(blank=True, null=True)
     # Renamed to disable for now
-    _active = models.BooleanField('Is survey active? (Disabled)', db_column='survey_active')
+    _active = models.BooleanField(
+        'Is survey active? (Disabled)', db_column='survey_active', default=False
+    )
 
     # GeoDjango
     geometry = models.PointField(srid=26986)
