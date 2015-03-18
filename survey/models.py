@@ -80,6 +80,11 @@ class School(models.Model):
     shed_20 = models.MultiPolygonField(srid=26986, null=True, blank=True)
     objects = CustomManager()
 
+
+    def __init__(self, *args, **kwargs):
+        super(School, self).__init__(*args, **kwargs)
+        self.__init__geometry = self.geometry
+
     def __unicode__(self):
         return self.name
 
@@ -149,8 +154,15 @@ class School(models.Model):
         self.shed_05 = coerce_to_multipolygon(shed_05)
 
     def save(self, *args, **kwargs):
-        self.update_sheds()
         super(School, self).save(*args, **kwargs)
+
+        # the geometry actually needs to be commited first to be used in update
+        if 'commit' not in kwargs or kwargs['commit'] is not False:
+            # only run the update queries if the location has moved
+            if not self.__init__geometry.equals_exact(self.geometry, 0.001):
+                self.update_sheds()
+                # save the sheds
+                super(School, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['name']
