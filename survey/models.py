@@ -68,7 +68,7 @@ class School(models.Model):
     schl_type = models.CharField(max_length=3, blank=True, null=True)
     districtid = models.ForeignKey('District', blank=True, null=True)
 
-    survey_incentive = models.TextField(blank=True, null=True)
+    survey_incentive = models.TextField(blank=True, null=True, default=False)
     # Renamed to disable for now
     _active = models.BooleanField('Is survey active? (Disabled)', db_column='survey_active')
 
@@ -79,6 +79,11 @@ class School(models.Model):
     shed_15 = models.MultiPolygonField(srid=26986, null=True, blank=True)
     shed_20 = models.MultiPolygonField(srid=26986, null=True, blank=True)
     objects = CustomManager()
+
+
+    def __init__(self, *args, **kwargs):
+        super(School, self).__init__(*args, **kwargs)
+        self.__init__geometry = self.geometry
 
     def __unicode__(self):
         return self.name
@@ -149,8 +154,15 @@ class School(models.Model):
         self.shed_05 = coerce_to_multipolygon(shed_05)
 
     def save(self, *args, **kwargs):
-        self.update_sheds()
         super(School, self).save(*args, **kwargs)
+
+        # the geometry actually needs to be commited first to be used in update
+        if 'commit' not in kwargs or kwargs['commit'] is not False:
+            # only run the update queries if the location has moved
+            if not self.__init__geometry.equals_exact(self.geometry, 0.001):
+                self.update_sheds()
+                # save the sheds
+                super(School, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['name']
