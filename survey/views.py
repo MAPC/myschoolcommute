@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils import simplejson, dateparse
 from django.db.models import Count, Q
 from django.forms.models import (
@@ -380,7 +380,11 @@ def testr(request):
     return HttpResponse(out)
 
 
+@login_required
 def surveys_csv(request):
+    if not request.user.is_staff:
+        raise Http404
+
     from django.db import connection
     from cStringIO import StringIO
 
