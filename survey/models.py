@@ -160,8 +160,16 @@ class School(models.Model):
 
         # the geometry actually needs to be commited first to be used in update
         if 'commit' not in kwargs or kwargs['commit'] is not False:
-            # only run the update queries if the location has moved
-            if not self.__init__geometry.equals_exact(self.geometry, 0.001):
+
+            # new school
+            if self.__init__geometry is None and self.geometry is not None:
+                # new school, generate sheds
+                self.update_sheds()
+                # save the sheds
+                super(School, self).save(*args, **kwargs)
+
+            # school has moved
+            elif not self.__init__geometry.equals_exact(self.geometry, 0.001):
                 self.update_sheds()
                 # save the sheds
                 super(School, self).save(*args, **kwargs)
