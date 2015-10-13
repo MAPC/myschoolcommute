@@ -13,6 +13,9 @@ $(document).ready(function() {
     // get schools for selected district
     $("#district-select").chosen().change(function(e) {
         var districtid = $("#district-select option:selected").val();
+        if (!districtid){
+            return;
+        }
         // get schools for given district-id
         $.getJSON("/{{LANGUAGE_CODE}}/" + districtid + "/schools/", function(schools) {
             // clear previouse dropdown options
@@ -30,8 +33,12 @@ $(document).ready(function() {
 
     // go to school survey form
     $("#open-survey").click(function() {
-        schoolurl = $("#school-select option:selected").val();
-        window.location = schoolurl;
+        var schoolurl = $("#school-select option:selected").val();
+        if (schoolurl){
+            window.location = schoolurl;
+        }else{
+            $("#school-select").hide();
+        }
         return false;
     });
 
@@ -101,11 +108,11 @@ $(document).ready(function() {
     <div class="span2 offset3 footer-span">
         <img alt="Massachusetts Safe Routes to School Logo" src='{{STATIC_URL}}/img/2010 SRTS Logo.jpg'>
     </div>
-    <div alt="Massachusetts Department of Transportation Logo" class="span2 footer-span">
-        <img src='{{STATIC_URL}}/img/MassDOT_Logo_Color.png'>
+    <div class="span2 footer-span">
+        <img alt="Massachusetts Department of Transportation Logo"  src='{{STATIC_URL}}/img/MassDOT_Logo_Color.png'>
     </div>
-    <div alt="Metropolitan Area Planning Council Logo" class="span2 footer-span">
-        <img src='{{STATIC_URL}}/img/MAPC_Logo-Name_CMYK.JPG'>
+    <div class="span2 footer-span">
+        <img alt="Metropolitan Area Planning Council Logo" src='{{STATIC_URL}}/img/MAPC_Logo-Name_CMYK.JPG'>
     </div>
 </div>
 {% endblock %}

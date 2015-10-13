@@ -11,3 +11,4 @@ translate==0.0.4
 django-rosetta==0.7.2
 django-mass-edit
 psycopg2==2.5.1
+rpy2==2.3.8

@@ -87,7 +87,7 @@ read_chunk("process_postgres_chunks.R")
 }
 
 \section*{Introduction}
-This report will help your school plan safe transportation options for all students. It contains the results of a survey conducted at \Sexpr{School_Name} from \Sexpr{start_month} \Sexpr{start_year} to \Sexpr{end_month} \Sexpr{end_year}. Participating parents provided information about how students travel to school and their approximate home location. If your school is interested in 
+This report will help your school plan safe transportation options for all students. It contains the results of a survey conducted at \Sexpr{School_Name} in \Sexpr{start_month} \Sexpr{start_year}. Participating parents provided information about how students travel to school and their approximate home location. If your school is interested in 
 \begin{itemize*}
 \item reducing traffic congestion,
 \item encouraging walking and biking,

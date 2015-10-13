@@ -2,7 +2,7 @@ from django.contrib.gis.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon, GeometryCollection
 from django.core.urlresolvers import reverse
 
 # lazy translation
@@ -70,7 +70,9 @@ class School(models.Model):
 
     survey_incentive = models.TextField(blank=True, null=True)
     # Renamed to disable for now
-    _active = models.BooleanField('Is survey active? (Disabled)', db_column='survey_active')
+    _active = models.BooleanField(
+        'Is survey active? (Disabled)', db_column='survey_active', default=False
+    )
 
     # GeoDjango
     geometry = models.PointField(srid=26986)
@@ -79,6 +81,11 @@ class School(models.Model):
     shed_15 = models.MultiPolygonField(srid=26986, null=True, blank=True)
     shed_20 = models.MultiPolygonField(srid=26986, null=True, blank=True)
     objects = CustomManager()
+
+
+    def __init__(self, *args, **kwargs):
+        super(School, self).__init__(*args, **kwargs)
+        self.__init__geometry = self.geometry
 
     def __unicode__(self):
         return self.name
@@ -110,31 +117,62 @@ class School(models.Model):
         from maps import get_sheds
         sheds = get_sheds(self.id)
 
-        self.shed_05 = MultiPolygon(GEOSGeometry(sheds[0.5]))
-        self.shed_10 = MultiPolygon(GEOSGeometry(sheds[1.0]))
-        self.shed_15 = MultiPolygon(GEOSGeometry(sheds[1.5]))
-        self.shed_20 = MultiPolygon(GEOSGeometry(sheds[2.0]))
+        shed_05 = GEOSGeometry(sheds[0.5])
+        shed_10 = GEOSGeometry(sheds[1.0])
+        shed_15 = GEOSGeometry(sheds[1.5])
+        shed_20 = GEOSGeometry(sheds[2.0])
 
-        g = self.shed_20.difference(self.shed_15)
-        try:
-            self.shed_20 = g
-        except TypeError:
-            if g.area == 0:
-                self.shed_20 = None
+        def coerce_to_multipolygon(geometry):
+            if geometry.area == 0:
+                return None
 
-        g = self.shed_15.difference(self.shed_10)
-        try:
-            self.shed_15 = g
-        except TypeError:
-            if g.area == 0:
-                self.shed_15 = None
+            if type(geometry) == MultiPolygon:
+                return geometry
+            elif type(geometry) == Polygon:
+                return MultiPolygon(geometry)
+            elif type(geometry) == GeometryCollection:
+                polys = []
+                for g in geometry:
+                    if type(g) == Polygon:
+                        polys.append(g)
+                    elif type(g) == MultiPolygon:
+                        polys += list(g)
+                if any(polys):
+                    return MultiPolygon(polys)
+                else:
+                    return None
+            else:
+                return geometry
 
-        g = self.shed_15.difference(self.shed_10)
-        try:
-            self.shed_15 = g
-        except TypeError:
-            if g.area == 0:
-                self.shed_15 = None
+        shed_20_ring = shed_20.difference(shed_15)
+        self.shed_20 = coerce_to_multipolygon(shed_20_ring)
+
+        shed_15_ring = shed_15.difference(shed_10)
+        self.shed_15 = coerce_to_multipolygon(shed_15_ring)
+
+        shed_10_ring = shed_10.difference(shed_05)
+        self.shed_10 = coerce_to_multipolygon(shed_10_ring)
+
+        self.shed_05 = coerce_to_multipolygon(shed_05)
+
+    def save(self, *args, **kwargs):
+        super(School, self).save(*args, **kwargs)
+
+        # the geometry actually needs to be commited first to be used in update
+        if 'commit' not in kwargs or kwargs['commit'] is not False:
+
+            # new school
+            if self.__init__geometry is None and self.geometry is not None:
+                # new school, generate sheds
+                self.update_sheds()
+                # save the sheds
+                super(School, self).save(*args, **kwargs)
+
+            # school has moved
+            elif not self.__init__geometry.equals_exact(self.geometry, 0.001):
+                self.update_sheds()
+                # save the sheds
+                super(School, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['name']

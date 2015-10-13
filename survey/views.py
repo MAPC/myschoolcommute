@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils import simplejson, dateparse
 from django.db.models import Count, Q
 from django.forms.models import (
@@ -270,6 +270,7 @@ def form(request, district_slug, school_slug, **kwargs):
             survey = surveyform.save(commit=False)
             survey.school = school
             survey.update_distance()
+            survey.created = datetime.now()
             survey.ip = request.META['REMOTE_ADDR']
 
             surveyformset = SurveyFormset(request.POST, instance=survey)
@@ -371,8 +372,27 @@ def batch_form(request, district_slug, school_slug, **kwargs):
         context_instance=RequestContext(request)
     )
 
+
 def testr(request):
     import rpy2.robjects as r
     out = r.r("print('TEST')")
     #out = 'TEST'
     return HttpResponse(out)
+
+
+@login_required
+def surveys_csv(request):
+    if not request.user.is_staff:
+        raise Http404
+
+    from django.db import connection
+    from cStringIO import StringIO
+
+    out = StringIO()
+    cursor = connection.cursor()
+    sql = (
+        "COPY (select * from survey_child_survey) TO STDOUT CSV HEADER"
+    )
+    cursor.copy_expert(sql, out)
+
+    return HttpResponse(out.getvalue(), content_type='text/csv')
