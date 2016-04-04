@@ -32,8 +32,11 @@ get_enrollment_df = function(start_date) {
   else if (start_date < as.Date("2015-07-30")) {
     df = enrollment14_15
   }
+  else if (start_date < as.Date("2016-07-30")) {
+    df = enrollment15_16
+  }
   else {
-    df = enrollment14_15
+    df = enrollment15_16
   }
   return(df)
 }
