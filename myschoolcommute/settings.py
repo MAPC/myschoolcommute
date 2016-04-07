@@ -210,8 +210,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 AUTH_PROFILE_MODULE = 'accounts.Profile'
 # import local settings
+def load_settings(settings_filename):
+    settings_filename = os.path.join(SETTINGS_DIR, settings_filename)
+    with open(settings_filename, 'r') as settings_file:
+        exec(settings_file.read(), globals())
+
+# import local settings
 try:
-    execfile(os.path.join(CURRENT_PATH, 'local_settings.py'))
+    from local_settings import *
 except ImportError:
     pass
 
