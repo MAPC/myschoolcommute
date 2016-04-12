@@ -2,3 +2,27 @@
 local_settings.py
 myschoolcommute/static/*
 myschoolcommute/media/*
+.DS_Store
+.Rhistory
+.vagrant/
+R/.DS_Store
+R/.RData 2
+R/.RData.RData
+R/.Rapp.history
+R/Untitled.RData
+R/enrollment14_15.csv
+Rep-Res-Book/
+basemap.dump.lst
+db2.sql.lst
+domesday24Mar.sql
+error.log
+errors.txt
+homebrew.pth
+management/
+meeting_notes
+mysc.dump.lst
+postgis_restore.pl
+research/
+run_server.sh
+src/
+virtualenv/
