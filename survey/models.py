@@ -158,6 +158,8 @@ class School(models.Model):
     def save(self, *args, **kwargs):
         super(School, self).save(*args, **kwargs)
 
+        SchoolTown.objects.create(schid=self.schid, name=self.name, town_id=self.districtid.districtid)
+
         # the geometry actually needs to be commited first to be used in update
         if 'commit' not in kwargs or kwargs['commit'] is not False:
 
@@ -179,7 +181,7 @@ class School(models.Model):
 
 
 class SchoolTown(models.Model):
-    ogc_fid = models.IntegerField(primary_key=True)
+    ogc_fid = models.AutoField(primary_key=True)
     schid = models.CharField(max_length=8, blank=True, null=True, unique=True)
     name = models.CharField(max_length=200)
     town_id = models.IntegerField(db_column='muni_id')
