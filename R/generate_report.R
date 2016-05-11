@@ -199,8 +199,8 @@ ghg_Other_From <- CO2_From/19
 ## Corresponds to Step 8 (page C7) from Kids Are Commuters Too
 ## Estimate cold start additivles
 
-cold_start_To <- ifelse(CO2_To > 0.0, 0.035,CO2_To)
-cold_start_From <- ifelse(CO2_From > 0.0, 0.035, CO2_From)
+cold_start_To <- ifelse(ghg_Other_To > 0.0, 0.035,ghg_Other_To)
+cold_start_From <- ifelse(ghg_Other_From > 0.0, 0.035, ghg_Other_From)
 
 ## Corresponds to Step 9 (page C7) from Kids Are Commuters Too
 # Calculate Total GHG Emissions
